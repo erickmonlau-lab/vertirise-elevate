@@ -804,9 +804,9 @@ function CTA() {
                 <div className="w-12 h-12 rounded-xl bg-white/10 grid place-items-center shrink-0">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </div>
-                <div>
+                <div className="min-w-0 flex-1">
                   <div className="text-white/60 text-xs font-semibold uppercase tracking-wider">Email</div>
-                  <div className="text-white font-bold group-hover:text-electric transition-colors break-all">info@disetlimpiezasverticales.com</div>
+                  <div className="text-white font-bold text-[13px] sm:text-base tracking-tight group-hover:text-electric transition-colors truncate">info@disetlimpiezasverticales.com</div>
                 </div>
                 <svg className="ml-auto text-white/30 group-hover:text-electric group-hover:translate-x-1 transition-all shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
