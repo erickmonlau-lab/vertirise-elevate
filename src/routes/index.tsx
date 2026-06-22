@@ -156,12 +156,12 @@ const heroAvatars = [
 ];
 
 const sectors = [
-  { name: "Comunidades de Propietarios", icon: "M3 21h18 M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16 M9 7h6 M9 11h6 M9 15h6" },
-  { name: "Edificios Corporativos", icon: "M12 2v20 M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6 M6 5h1 M6 9h1 M6 13h1 M6 17h1 M17 9h1 M17 13h1 M17 17h1" },
-  { name: "Hoteles", icon: "M3 21h18 M4 21V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13 M8 10h.01 M12 10h.01 M16 10h.01 M8 14h.01 M12 14h.01 M16 14h.01 M8 18h.01 M12 18h.01 M16 18h.01" },
-  { name: "Fachadas de Vidrio", icon: "M4 4h16v16H4z M4 12h16 M12 4v16" },
-  { name: "Centros Comerciales", icon: "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M9 20a1 1 0 100-2 1 1 0 000 2zM18 20a1 1 0 100-2 1 1 0 000 2z" },
-  { name: "Naves Industriales", icon: "M2 20h20 M4 20V8l4-4 4 4v12 M12 20V8l4-4 4 4v12 M9 20v-4h6v4" },
+  { name: "Comunidades", icon: "M4 21h16 M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14 M10 21v-4a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4 M9 9h2 M13 9h2 M9 13h2 M13 13h2" },
+  { name: "Oficinas", icon: "M8 21V3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v18 M4 21h16 M10 6h4 M10 10h4 M10 14h4 M10 18h4" },
+  { name: "Hoteles", icon: "M4 21h16 M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16 M12 7l1 2.5 2.5.5-2 1.5.5 2.5-2-1.5-2 1.5.5-2.5-2-1.5 2.5-.5z M9 17h6 M9 14h6" },
+  { name: "Fachadas de vidrio", icon: "M4 4h16v16H4z M4 9h16 M4 14h16 M4 19h16 M9 4v16 M14 4v16 M19 4v16 M6 4l12 12 M14 4l6 6" },
+  { name: "Centros comerciales", icon: "M3 21h18 M4 21V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13 M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2 M10 14h4 M10 18h4" },
+  { name: "Naves industriales", icon: "M2 21h20 M4 21V9l4-3 4 3v-2l4-3 4 3v12 M9 21v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5 M18 9V4h2v5" },
 ];
 
 // — Counter with count-up animation —
@@ -406,20 +406,21 @@ function Stats() {
 // — Sectors (Replaces Client Logos) —
 function Sectors() {
   return (
-    <section className="bg-[#0a1628] py-14 border-b border-white/5 overflow-hidden">
+    <section className="bg-mist pt-10 pb-16 border-b border-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="text-center mb-10">
-          <span className="text-electric text-xs font-bold tracking-[0.25em] uppercase">Especialistas en trabajos verticales para:</span>
+          <span className="text-electric text-sm md:text-base font-extrabold tracking-widest uppercase mb-3 block">Experiencia en los entornos más exigentes</span>
+          <div className="w-12 h-1 bg-electric mx-auto rounded-full opacity-60" />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
           {sectors.map((sector, i) => (
             <Reveal key={sector.name} delay={i * 50} className="flex flex-col items-center text-center group">
-              <div className="w-16 h-16 rounded-2xl bg-white/[0.04] border border-white/10 grid place-items-center mb-4 group-hover:bg-electric/10 group-hover:border-electric/30 transition-all duration-300">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/60 group-hover:text-electric transition-colors">
+              <div className="w-20 h-20 rounded-2xl bg-white border border-border shadow-sm grid place-items-center mb-4 group-hover:border-electric/50 group-hover:shadow-soft transition-all duration-300">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-navy group-hover:text-electric transition-colors">
                   <path d={sector.icon} />
                 </svg>
               </div>
-              <h3 className="text-white/80 font-bold text-sm tracking-wide leading-tight group-hover:text-white transition-colors">{sector.name}</h3>
+              <h3 className="text-navy font-bold text-base tracking-wide leading-tight group-hover:text-electric transition-colors">{sector.name}</h3>
             </Reveal>
           ))}
         </div>
