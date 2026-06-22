@@ -16,7 +16,7 @@ export function BeforeAfter({ before, after }: { before: string; after: string }
   return (
     <div
       ref={ref}
-      className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl shadow-elev select-none cursor-ew-resize"
+      className="relative w-full aspect-[4/5] sm:aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-2xl shadow-elev select-none cursor-ew-resize"
       onMouseDown={(e) => { dragging.current = true; move(e.clientX); }}
       onMouseMove={(e) => dragging.current && move(e.clientX)}
       onMouseUp={() => (dragging.current = false)}
