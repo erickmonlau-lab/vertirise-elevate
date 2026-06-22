@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { BeforeAfter } from "@/components/BeforeAfter";
 
@@ -17,7 +17,7 @@ import afterFachadaImg from "@/assets/after-fachada.webp";
 import beforeSolaresImg from "@/assets/before-solares.webp";
 import afterSolaresImg from "@/assets/after-solares.webp";
 
-export const Route = createFileRoute("/")(  {
+export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "DISET · Trabajos Verticales y Limpieza en Altura en Barcelona" },
@@ -57,11 +57,11 @@ const benefits = [
 ];
 
 const process = [
-  { n: "01", t: "Contacto inicial", d: "Atendemos su consulta y recopilamos los datos del inmueble.", icon: "M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" },
-  { n: "02", t: "Visita técnica", d: "Inspeccionamos in situ y evaluamos accesos y riesgos.", icon: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" },
-  { n: "03", t: "Propuesta detallada", d: "Presupuesto cerrado con planificación y plan de seguridad.", icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" },
-  { n: "04", t: "Ejecución", d: "Equipo certificado realiza el trabajo con coordinación total.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
-  { n: "05", t: "Entrega y garantía", d: "Certificación, documentación y garantía por escrito.", icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" },
+  { n: "01", t: "Contacto inicial", d: "Atendemos su consulta y recopilamos los datos del inmueble para evaluar el tipo de intervención necesaria.", icon: "M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" },
+  { n: "02", t: "Visita técnica", d: "Nos desplazamos sin coste para inspeccionar in situ los accesos, anclajes y posibles riesgos estructurales.", icon: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" },
+  { n: "03", t: "Propuesta detallada", d: "En menos de 24h entregamos un presupuesto cerrado con planificación temporal y plan de seguridad.", icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" },
+  { n: "04", t: "Ejecución", d: "Despliegue del equipo certificado IRATA ejecutando el trabajo bajo estricta coordinación técnica.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
+  { n: "05", t: "Entrega y garantía", d: "Revisión final conjunta, emisión de certificados y garantía de resultado por escrito.", icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" },
 ];
 
 const testimonials = [
@@ -72,7 +72,6 @@ const testimonials = [
     project: "Limpieza de fachada · Comunidad de 64 viviendas",
     quote: "DISET nos resolvió la limpieza de fachada del edificio en tiempo récord y con cero incidencias. Profesionalidad de primer nivel.",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face",
-    initials: "MV",
   },
   {
     name: "Jordi Soler",
@@ -81,7 +80,6 @@ const testimonials = [
     project: "Mantenimiento cubiertas · Líneas de vida",
     quote: "Llevamos 6 años trabajando con ellos en mantenimiento de cubiertas y líneas de vida. Imprescindibles.",
     avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face",
-    initials: "JS",
   },
   {
     name: "Anna Roig",
@@ -90,7 +88,6 @@ const testimonials = [
     project: "Limpieza de cristales · Mantenimiento trimestral",
     quote: "Cristales impecables cada trimestre, personal silencioso y sin afectar a la operativa del hotel. Recomendados al 100%.",
     avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop&crop=face",
-    initials: "AR",
   },
 ];
 
@@ -170,12 +167,14 @@ const clientLogos = [
 ];
 
 const coverageCities = [
-  { name: "Barcelona", x: "52%", y: "48%", projects: 1840 },
-  { name: "L'Hospitalet", x: "45%", y: "56%", projects: 420 },
-  { name: "Badalona", x: "60%", y: "38%", projects: 310 },
-  { name: "Terrassa", x: "28%", y: "32%", projects: 280 },
-  { name: "Sabadell", x: "36%", y: "24%", projects: 260 },
-  { name: "Mataró", x: "74%", y: "30%", projects: 195 },
+  { name: "Barcelona", x: "250", y: "260", projects: 1840 },
+  { name: "L'Hospitalet", x: "230", y: "275", projects: 420 },
+  { name: "Badalona", x: "275", y: "245", projects: 310 },
+  { name: "Terrassa", x: "200", y: "180", projects: 280 },
+  { name: "Sabadell", x: "230", y: "190", projects: 260 },
+  { name: "Mataró", x: "320", y: "200", projects: 195 },
+  { name: "Granollers", x: "280", y: "180", projects: 140 },
+  { name: "Vilanova", x: "140", y: "320", projects: 90 },
 ];
 
 // — Counter with count-up animation —
@@ -210,20 +209,20 @@ function AnimatedCounter({ to, suffix }: { to: number; suffix: string }) {
 }
 
 // — Logo —
-function Logo({ white = false }: { white?: boolean }) {
+function Logo() {
   return (
     <div className="flex items-center">
       <img
         src={logoDiset}
         alt="DISET Limpiezas Verticales"
         height={48}
-        className={`h-12 w-auto object-contain transition-all duration-300 ${white ? "brightness-0 invert" : ""}`}
+        className="h-10 md:h-12 w-auto object-contain transition-all duration-300"
       />
     </div>
   );
 }
 
-// — Nav —
+// — Nav (White always, Glass on scroll) —
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -243,21 +242,18 @@ function Nav() {
     { href: "#contacto", label: "Contacto" },
   ];
 
-  const scrolledStyle = "bg-navy/95 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_32px_-8px_rgba(0,0,0,0.4)]";
-  const transparentStyle = "bg-transparent";
-
   return (
     <>
-      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled || mobileOpen ? scrolledStyle : transparentStyle}`}>
+      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-xl border-b border-border ${scrolled ? "shadow-soft" : ""}`}>
         <div className="max-w-7xl mx-auto px-5 lg:px-10 h-18 md:h-20 flex items-center justify-between gap-4">
           <a href="#top" onClick={() => setMobileOpen(false)}>
-            <Logo white={!scrolled || mobileOpen ? true : false} />
+            <Logo />
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-9 text-sm font-semibold text-white">
+          <nav className="hidden md:flex items-center gap-9 text-sm font-bold text-navy">
             {navLinks.map(l => (
-              <a key={l.href} href={l.href} className="hover:text-electric transition-colors opacity-80 hover:opacity-100">{l.label}</a>
+              <a key={l.href} href={l.href} className="hover:text-electric transition-colors opacity-90 hover:opacity-100">{l.label}</a>
             ))}
           </nav>
 
@@ -276,24 +272,24 @@ function Nav() {
             <button
               onClick={() => setMobileOpen(o => !o)}
               aria-label="Abrir menú"
-              className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl gap-1.5 bg-white/15 backdrop-blur-sm transition-all"
+              className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl gap-1.5 bg-mist border border-border transition-all"
             >
-              <span className={`block w-5 h-0.5 rounded-full bg-white transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-              <span className={`block w-5 h-0.5 rounded-full bg-white transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-              <span className={`block w-5 h-0.5 rounded-full bg-white transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full bg-navy transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full bg-navy transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full bg-navy transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
             </button>
           </div>
         </div>
 
         {/* Mobile menu */}
-        <div className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out ${mobileOpen ? "max-h-80 border-t border-white/10" : "max-h-0"}`}>
-          <nav className="flex flex-col bg-navy px-5 py-4 gap-1">
+        <div className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out ${mobileOpen ? "max-h-80 border-t border-border bg-white" : "max-h-0 bg-white"}`}>
+          <nav className="flex flex-col px-5 py-4 gap-1">
             {navLinks.map(l => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-white/80 font-semibold text-base hover:bg-white/10 hover:text-electric transition-all"
+                className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-navy font-bold text-base hover:bg-mist hover:text-electric transition-all"
               >
                 {l.label}
               </a>
@@ -316,34 +312,21 @@ function Hero() {
           width={1920} height={1080}
           className="absolute inset-0 w-full h-full object-cover object-[55%_10%] md:object-center scale-105"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(13,59,102,0.92)_0%,rgba(13,59,102,0.75)_45%,rgba(13,59,102,0.25)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_20%_50%,rgba(0,150,255,0.25),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(13,59,102,0.95)_0%,rgba(13,59,102,0.85)_40%,rgba(13,59,102,0.3)_100%)]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-32 pb-20 w-full">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-32 pb-20 w-full mt-10">
         <div className="max-w-3xl text-white">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-wider uppercase animate-[fade-in_0.8s_ease-out]">
             <span className="w-2 h-2 rounded-full bg-electric animate-pulse" />
             25+ años de experiencia · Barcelona
           </div>
           <h1 className="mt-7 text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] text-white animate-[fade-up_1s_cubic-bezier(0.22,1,0.36,1)_both]">
-            Especialistas en <span className="bg-gradient-to-r from-white to-electric bg-clip-text text-transparent">trabajos verticales</span> y limpieza en altura en Barcelona
+            Especialistas en <span className="text-electric">trabajos verticales</span> y limpieza en altura en Barcelona
           </h1>
           <p className="mt-7 text-lg sm:text-xl text-white/85 max-w-2xl leading-relaxed animate-[fade-up_1s_0.15s_cubic-bezier(0.22,1,0.36,1)_both]">
             Limpieza de cristales, fachadas, placas solares e instalación de líneas de vida para empresas, industrias y comunidades.
           </p>
-
-          {/* Trust badges */}
-          <div className="mt-6 flex flex-wrap gap-3 animate-[fade-up_1s_0.25s_cubic-bezier(0.22,1,0.36,1)_both]">
-            {["Presupuesto gratuito", "Técnicos certificados IRATA", "Cobertura Barcelona y provincia"].map((badge) => (
-              <div key={badge} className="inline-flex items-center gap-1.5 text-sm text-white/90 font-medium">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 6 9 17l-5-5" />
-                </svg>
-                {badge}
-              </div>
-            ))}
-          </div>
 
           <div className="mt-10 flex flex-wrap items-center gap-4 animate-[fade-up_1s_0.3s_cubic-bezier(0.22,1,0.36,1)_both]">
             <a href="#contacto" className="group inline-flex items-center gap-3 h-14 px-7 rounded-full bg-electric text-white font-bold shadow-glow hover:shadow-elev hover:-translate-y-0.5 transition-all">
@@ -383,15 +366,11 @@ function Hero() {
           </div>
         </div>
       </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 text-xs font-semibold tracking-widest uppercase animate-bounce">
-        Scroll
-      </div>
     </section>
   );
 }
 
-// — Trust Bar (15) —
+// — Trust Bar —
 function TrustBar() {
   const items = [
     { icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z", text: "Técnicos certificados IRATA" },
@@ -418,7 +397,7 @@ function TrustBar() {
   );
 }
 
-// — Stats (premium dark with count-up) —
+// — Stats —
 function Stats() {
   return (
     <section className="bg-[#0a1628] border-b border-white/5">
@@ -437,7 +416,7 @@ function Stats() {
   );
 }
 
-// — Client Logos (new) —
+// — Client Logos —
 function ClientLogos() {
   const doubled = [...clientLogos, ...clientLogos];
   return (
@@ -462,7 +441,7 @@ function ClientLogos() {
   );
 }
 
-// — Services with premium hover —
+// — Services —
 function Services() {
   return (
     <section id="servicios" className="py-24 lg:py-32 bg-white">
@@ -487,9 +466,7 @@ function Services() {
               <article className="group relative overflow-hidden rounded-2xl bg-mist border border-border hover:border-electric/40 hover:shadow-elev hover:-translate-y-1 transition-all duration-500 cursor-pointer">
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <img src={s.img} alt={s.title} loading="lazy" width={1024} height={640} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out" />
-                  {/* Hover overlay */}
                   <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/60 transition-all duration-500" />
-                  {/* Floating icon on hover */}
                   <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
                     <div className="w-16 h-16 rounded-2xl bg-electric/90 backdrop-blur-sm grid place-items-center shadow-glow">
                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -501,7 +478,6 @@ function Services() {
                 <div className="p-8">
                   <h3 className="text-2xl font-extrabold text-navy group-hover:text-electric transition-colors duration-300">{s.title}</h3>
                   <p className="mt-4 text-base text-muted-foreground leading-relaxed">{s.desc}</p>
-                  {/* CTA slides up on hover */}
                   <div className="mt-7 overflow-hidden h-7">
                     <div className="translate-y-0 group-hover:-translate-y-0 transition-transform duration-300 inline-flex items-center gap-2 text-electric font-bold text-base group-hover:gap-3">
                       Más información
@@ -522,7 +498,7 @@ function Services() {
 function BeforeAfterSection() {
   const [activeCase, setActiveCase] = useState(0);
   return (
-    <section id="proyectos" className="py-24 lg:py-32 bg-mist">
+    <section id="proyectos" className="py-24 lg:py-32 bg-mist border-y border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-12">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Antes / Después</span>
@@ -579,7 +555,7 @@ function BeforeAfterSection() {
   );
 }
 
-// — Success Cases (new) —
+// — Success Cases —
 function SuccessCases() {
   const [featured, ...rest] = successCases;
   return (
@@ -595,7 +571,6 @@ function SuccessCases() {
           </p>
         </Reveal>
 
-        {/* Featured case — 100% width */}
         <Reveal>
           <article className="group relative rounded-2xl overflow-hidden border border-border hover:border-electric/40 hover:shadow-elev transition-all duration-500 mb-6 md:mb-8">
             <div className="grid md:grid-cols-2">
@@ -633,25 +608,24 @@ function SuccessCases() {
           </article>
         </Reveal>
 
-        {/* Grid of 3 */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {rest.map((c, i) => (
             <Reveal key={c.title} delay={i * 100}>
-              <article className="group rounded-2xl border border-border hover:border-electric/40 hover:shadow-elev hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+              <article className="group rounded-2xl border border-border hover:border-electric/40 hover:shadow-elev hover:-translate-y-1 transition-all duration-500 overflow-hidden bg-white h-full flex flex-col">
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <img src={c.img} alt={c.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]" />
                   <div className="absolute top-3 left-3 flex gap-2">
                     <span className="px-2.5 py-0.5 rounded-full bg-electric text-white text-[10px] font-bold">{c.type}</span>
                   </div>
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex-1 flex flex-col">
                   <h3 className="font-extrabold text-navy text-lg mb-1 group-hover:text-electric transition-colors">{c.title}</h3>
                   <p className="text-sm text-muted-foreground mb-4">{c.location}</p>
                   <div className="flex gap-3 text-xs font-semibold text-navy mb-4">
                     <span className="flex items-center gap-1"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>{c.duration}</span>
                     <span className="text-electric">{c.result}</span>
                   </div>
-                  <div className="space-y-2 border-t border-border pt-4">
+                  <div className="space-y-2 border-t border-border pt-4 mt-auto">
                     <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Resultado</div>
                     <p className="text-xs text-ink leading-relaxed">{c.resultDesc}</p>
                   </div>
@@ -665,7 +639,7 @@ function SuccessCases() {
   );
 }
 
-// — Mid CTA (new) —
+// — Mid CTA —
 function MidCTA() {
   return (
     <section className="py-14 bg-[#0a1628] border-y border-white/5">
@@ -690,10 +664,10 @@ function MidCTA() {
   );
 }
 
-// — Benefits (premium cards) —
+// — Benefits —
 function Benefits() {
   return (
-    <section className="py-24 lg:py-32 bg-white">
+    <section className="py-24 lg:py-32 bg-mist border-y border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-14">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Por qué DISET</span>
@@ -704,8 +678,8 @@ function Benefits() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {benefits.map((b, i) => (
             <Reveal key={b.title} delay={i * 60}>
-              <div className="group p-8 rounded-2xl bg-mist border border-border hover:border-electric hover:shadow-elev hover:-translate-y-1 transition-all duration-400 cursor-default">
-                <div className="w-14 h-14 rounded-xl bg-navy/5 text-navy grid place-items-center group-hover:bg-electric group-hover:text-white group-hover:scale-110 transition-all duration-300">
+              <div className="group p-8 rounded-2xl bg-white border border-border hover:border-electric hover:shadow-elev hover:-translate-y-1 transition-all duration-400 cursor-default">
+                <div className="w-14 h-14 rounded-xl bg-mist border border-border text-navy grid place-items-center group-hover:bg-electric group-hover:border-electric group-hover:text-white group-hover:scale-110 transition-all duration-300">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d={b.icon} />
                   </svg>
@@ -721,18 +695,16 @@ function Benefits() {
   );
 }
 
-// — Video Section (industrial, no particles) —
+// — Video Section —
 function VideoSection() {
   const [playing, setPlaying] = useState(false);
   const VIDEO_ID = "aBf0OXTJgkA";
 
   return (
     <section className="py-24 lg:py-32 bg-[#080f1d] overflow-hidden industrial-texture relative">
-      {/* Subtle ambient light */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] rounded-full bg-electric/5 blur-[120px] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Text column */}
           <Reveal>
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">DISET en acción</span>
             <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white">
@@ -756,7 +728,6 @@ function VideoSection() {
             </div>
           </Reveal>
 
-          {/* Video column */}
           <Reveal delay={120}>
             <div className="flex justify-center">
               <div className="relative w-full max-w-[320px] lg:max-w-[360px] rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(0,150,255,0.15)]" style={{ aspectRatio: '9/16' }}>
@@ -791,95 +762,45 @@ function VideoSection() {
   );
 }
 
-// — Process (horizontal timeline desktop / vertical mobile) —
+// — Process (Cards) —
 function Process() {
-  const lineRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = lineRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        el.style.width = "100%";
-        obs.disconnect();
-      }
-    }, { threshold: 0.1 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
   return (
-    <section id="proceso" className="py-24 lg:py-32 bg-mist">
+    <section id="proceso" className="py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <Reveal className="max-w-2xl mb-16">
+        <Reveal className="max-w-2xl mb-14">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Proceso</span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
             Un método claro,<br />de principio a fin.
           </h2>
         </Reveal>
 
-        {/* Desktop: Horizontal timeline */}
-        <div className="hidden lg:block relative">
-          {/* Progress line */}
-          <div className="absolute top-8 left-0 right-0 h-px bg-border">
-            <div
-              ref={lineRef}
-              className="h-full bg-gradient-to-r from-electric/60 to-electric"
-              style={{ width: "0%", transition: "width 1.5s cubic-bezier(0.22,1,0.36,1) 0.3s" }}
-            />
-          </div>
-          <div className="grid grid-cols-5 gap-6">
-            {process.map((p, i) => (
-              <Reveal key={p.n} delay={i * 120}>
-                <div className="relative pt-2">
-                  {/* Dot on line */}
-                  <div className="w-4 h-4 rounded-full bg-electric shadow-glow mb-8 relative z-10" />
-                  {/* Big number */}
-                  <div className="text-[56px] leading-none font-black text-navy/8 select-none mb-2">{p.n}</div>
-                  {/* Icon */}
-                  <div className="w-10 h-10 rounded-xl bg-white border border-border shadow-soft grid place-items-center mb-4">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d={p.icon} />
-                    </svg>
-                  </div>
-                  <h3 className="text-base font-extrabold text-navy mb-2">{p.t}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{p.d}</p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {process.map((p, i) => (
+            <Reveal key={p.n} delay={i * 80}>
+              <div className="h-full bg-mist rounded-2xl p-8 border border-border shadow-soft hover:shadow-elev hover:border-electric/40 transition-all group flex flex-col relative overflow-hidden">
+                <div className="absolute -top-8 -right-4 text-[120px] font-black text-navy/[0.03] select-none pointer-events-none group-hover:text-electric/[0.05] transition-colors duration-500">
+                  {p.n}
                 </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile: Vertical timeline */}
-        <div className="lg:hidden relative">
-          <div className="absolute left-5 top-0 bottom-0 w-px bg-border" />
-          <div className="space-y-8">
-            {process.map((p, i) => (
-              <Reveal key={p.n} delay={i * 80}>
-                <div className="flex gap-6 items-start pl-2">
-                  <div className="relative shrink-0 flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-xl bg-white border-2 border-electric shadow-glow grid place-items-center z-10">
-                      <span className="text-electric font-black text-sm">{p.n}</span>
-                    </div>
-                  </div>
-                  <div className="pb-2">
-                    <h3 className="text-lg font-extrabold text-navy mb-1">{p.t}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{p.d}</p>
-                  </div>
+                <div className="w-14 h-14 rounded-xl bg-white border border-border group-hover:bg-electric group-hover:border-electric transition-colors grid place-items-center mb-6 shadow-sm">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-navy group-hover:text-white transition-colors">
+                    <path d={p.icon} />
+                  </svg>
                 </div>
-              </Reveal>
-            ))}
-          </div>
+                <h3 className="text-2xl font-extrabold text-navy mb-3 group-hover:text-electric transition-colors relative z-10">{p.t}</h3>
+                <p className="text-base text-muted-foreground leading-relaxed flex-1 relative z-10">{p.d}</p>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-// — Testimonials (with photo + project + auto-scroll) —
+// — Testimonials —
 function Testimonials() {
   return (
-    <section className="py-24 lg:py-32 bg-white">
+    <section className="py-24 lg:py-32 bg-mist border-y border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="mb-12 text-center">
           <div className="inline-flex flex-col items-center gap-3">
@@ -898,20 +819,16 @@ function Testimonials() {
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <Reveal key={t.name} delay={i * 100}>
-              <article className="flex flex-col bg-mist rounded-2xl p-8 border border-border hover:border-electric/40 hover:shadow-elev hover:-translate-y-1 transition-all duration-500 h-full">
-                {/* Stars */}
+              <article className="flex flex-col bg-white rounded-2xl p-8 border border-border hover:border-electric/40 hover:shadow-elev hover:-translate-y-1 transition-all duration-500 h-full">
                 <div className="flex gap-1 text-electric mb-5">
                   {[...Array(5)].map((_, k) => <svg key={k} width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>)}
                 </div>
-                {/* Quote */}
                 <p className="text-base leading-relaxed text-ink flex-1 italic">"{t.quote}"</p>
-                {/* Project tag */}
-                <div className="mt-5 px-3 py-1.5 rounded-lg bg-electric/8 border border-electric/15 inline-block">
+                <div className="mt-5 px-3 py-1.5 rounded-lg bg-mist border border-border inline-block self-start">
                   <span className="text-electric text-xs font-bold">{t.project}</span>
                 </div>
-                {/* Author */}
                 <div className="mt-5 pt-5 border-t border-border flex items-center gap-3">
-                  <img src={t.avatar} alt={t.name} className="w-11 h-11 rounded-full object-cover border-2 border-white shadow-soft" />
+                  <img src={t.avatar} alt={t.name} className="w-11 h-11 rounded-full object-cover border border-border shadow-sm" />
                   <div>
                     <div className="font-extrabold text-navy text-sm">{t.name}</div>
                     <div className="text-xs text-muted-foreground">{t.role}</div>
@@ -927,106 +844,112 @@ function Testimonials() {
   );
 }
 
-// — Coverage (SVG interactive map) —
+// — Coverage (Balanced 50/50 & Realistic SVG) —
 function Coverage() {
   const [hoveredCity, setHoveredCity] = useState<string | null>(null);
 
   return (
-    <section id="cobertura" className="py-24 lg:py-32 bg-mist">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
+    <section id="cobertura" className="py-24 lg:py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        
+        {/* Left column: 50% width, Text & Mini metrics */}
         <Reveal>
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Cobertura</span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
             Toda Barcelona<br />y provincia.
           </h2>
-          <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-md">
+          <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-md mb-12">
             Operamos en toda la provincia con equipos propios y vehículos preparados para intervenciones rápidas. Sin subcontratas.
           </p>
-          {/* City stats */}
-          <div className="mt-8 grid grid-cols-2 gap-3">
-            {coverageCities.map((city) => (
-              <div
-                key={city.name}
-                className={`flex items-center justify-between p-3 rounded-xl border transition-all duration-300 cursor-default ${hoveredCity === city.name ? "border-electric bg-white shadow-soft" : "border-border bg-white/50"}`}
-                onMouseEnter={() => setHoveredCity(city.name)}
-                onMouseLeave={() => setHoveredCity(null)}
-              >
-                <div className="flex items-center gap-2">
-                  <span className={`w-2 h-2 rounded-full transition-all ${hoveredCity === city.name ? "bg-electric shadow-glow scale-125" : "bg-electric/40"}`} />
-                  <span className="text-sm font-semibold text-navy">{city.name}</span>
-                </div>
-                <span className="text-xs text-electric font-bold">{city.projects}+</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 p-6 rounded-2xl bg-navy text-white">
-            <div className="text-3xl font-extrabold text-electric">+300</div>
-            <div className="text-sm font-semibold mt-1">comunidades atendidas en toda la provincia</div>
-            <div className="mt-4 text-xs text-white/50">Carrer de Cuzco, 39-41 · 08030 Barcelona · Lun–Vie 08:00–19:00</div>
-            <a href={PHONE_HREF} className="mt-3 inline-flex items-center gap-2 text-electric font-bold text-sm hover:underline">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
-              {PHONE}
-            </a>
+          
+          <div className="grid grid-cols-2 gap-y-8 gap-x-6">
+            <div className="border-l-[3px] border-electric pl-5">
+              <div className="text-3xl lg:text-4xl font-extrabold text-navy">+300</div>
+              <div className="text-sm font-semibold text-muted-foreground mt-1">Comunidades<br/>atendidas</div>
+            </div>
+            <div className="border-l-[3px] border-electric pl-5">
+              <div className="text-3xl lg:text-4xl font-extrabold text-navy">25+</div>
+              <div className="text-sm font-semibold text-muted-foreground mt-1">Años de<br/>experiencia</div>
+            </div>
+            <div className="border-l-[3px] border-electric pl-5">
+              <div className="text-3xl lg:text-4xl font-extrabold text-navy">100%</div>
+              <div className="text-sm font-semibold text-muted-foreground mt-1">Personal propio<br/>y certificado</div>
+            </div>
+            <div className="border-l-[3px] border-electric pl-5">
+              <div className="text-3xl lg:text-4xl font-extrabold text-navy">24h</div>
+              <div className="text-sm font-semibold text-muted-foreground mt-1">Respuesta rápida<br/>garantizada</div>
+            </div>
           </div>
         </Reveal>
 
-        {/* SVG Interactive Map */}
+        {/* Right column: 50% width, Big Breathing SVG Map */}
         <Reveal delay={120}>
-          <div className="relative bg-[#0a1628] rounded-2xl overflow-hidden border border-white/10 shadow-elev p-6">
-            <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-4 text-center">Provincia de Barcelona</div>
-            <svg viewBox="0 0 400 400" className="w-full h-auto">
-              {/* Province outline — simplified stylised shape */}
-              <path
-                d="M60,200 Q80,120 140,80 Q200,50 270,70 Q340,90 370,150 Q395,210 360,290 Q330,360 260,380 Q190,395 130,360 Q70,330 50,270 Q40,235 60,200Z"
-                fill="none"
-                stroke="rgba(0,150,255,0.15)"
-                strokeWidth="1.5"
-              />
-              {/* Terrain lines */}
-              <path d="M80,180 Q160,150 240,170 Q310,190 350,220" fill="none" stroke="rgba(0,150,255,0.06)" strokeWidth="1" />
-              <path d="M100,240 Q180,210 280,230 Q330,240 360,260" fill="none" stroke="rgba(0,150,255,0.06)" strokeWidth="1" />
-              <path d="M120,300 Q200,275 300,290" fill="none" stroke="rgba(0,150,255,0.06)" strokeWidth="1" />
+          <div className="relative bg-[#0a1628] rounded-[2rem] overflow-hidden border border-white/10 shadow-elev p-8 lg:p-12 h-full flex flex-col justify-center min-h-[450px]">
+            <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-6 text-center">Provincia de Barcelona</div>
+            
+            <div className="relative flex-1 w-full max-w-[400px] mx-auto">
+              <svg viewBox="0 0 500 500" className="w-full h-full drop-shadow-[0_0_30px_rgba(0,150,255,0.1)]">
+                {/* Realistic-ish Barcelona Province Silhouette */}
+                {/* Coastal outline: Sitges/Vilanova bottom left up to Maresme top right */}
+                <path
+                  d="M100,420 Q140,380 180,360 Q230,330 250,290 Q300,240 380,180 L420,130"
+                  fill="none" stroke="rgba(0,150,255,0.4)" strokeWidth="3" strokeLinecap="round"
+                />
+                
+                {/* Inland boundary */}
+                <path
+                  d="M100,420 C60,350 80,250 140,160 C200,90 280,60 350,80 C400,90 420,110 420,130 L380,180 Q300,240 250,290 Q230,330 180,360 Q140,380 100,420 Z"
+                  fill="rgba(0,150,255,0.06)" stroke="rgba(0,150,255,0.15)" strokeWidth="2" strokeDasharray="6 6"
+                />
 
-              {/* City points */}
-              {coverageCities.map((city) => {
-                const cx = parseFloat(city.x) * 4;
-                const cy = parseFloat(city.y) * 4;
-                const isHovered = hoveredCity === city.name;
-                return (
-                  <g key={city.name}
-                    onMouseEnter={() => setHoveredCity(city.name)}
-                    onMouseLeave={() => setHoveredCity(null)}
-                    className="cursor-pointer"
-                  >
-                    {/* Pulse ring */}
-                    <circle cx={cx} cy={cy} r={isHovered ? 16 : 10} fill="rgba(0,150,255,0.08)" className="transition-all duration-300" />
-                    <circle cx={cx} cy={cy} r={isHovered ? 8 : 5} fill="rgba(0,150,255,0.2)" className="transition-all duration-300" />
-                    <circle cx={cx} cy={cy} r={isHovered ? 5 : 3} fill="#0096FF" className="transition-all duration-300" />
+                {/* Internal comarca lines */}
+                <path d="M140,160 Q180,240 250,290" fill="none" stroke="rgba(0,150,255,0.1)" strokeWidth="1" />
+                <path d="M250,290 Q290,180 350,80" fill="none" stroke="rgba(0,150,255,0.1)" strokeWidth="1" />
 
-                    {/* Label */}
-                    <text
-                      x={cx}
-                      y={cy - (isHovered ? 22 : 14)}
-                      textAnchor="middle"
-                      fill={isHovered ? "#0096FF" : "rgba(255,255,255,0.5)"}
-                      fontSize={isHovered ? "11" : "9"}
-                      fontWeight="bold"
-                      className="transition-all duration-300 select-none"
+                {/* Cities */}
+                {coverageCities.map((city) => {
+                  const cx = parseFloat(city.x);
+                  const cy = parseFloat(city.y);
+                  const isHovered = hoveredCity === city.name;
+                  return (
+                    <g key={city.name}
+                      onMouseEnter={() => setHoveredCity(city.name)}
+                      onMouseLeave={() => setHoveredCity(null)}
+                      className="cursor-pointer"
                     >
-                      {city.name}
-                    </text>
-                    {isHovered && (
-                      <text x={cx} y={cy - 8} textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8">
-                        {city.projects}+ proyectos
+                      {/* Mega Pulse ring on hover */}
+                      <circle cx={cx} cy={cy} r={isHovered ? 24 : 10} fill="rgba(0,150,255,0.1)" className="transition-all duration-500 origin-center" />
+                      {/* Constant subtle pulse */}
+                      <circle cx={cx} cy={cy} r="6" fill="none" stroke="rgba(0,150,255,0.5)" strokeWidth="1" className="animate-map-pulse origin-center" style={{ transformOrigin: `${cx}px ${cy}px` }} />
+                      
+                      <circle cx={cx} cy={cy} r={isHovered ? 7 : 4} fill="#0096FF" className="transition-all duration-300 shadow-[0_0_15px_#0096FF]" />
+
+                      {/* Label */}
+                      <text
+                        x={cx}
+                        y={cy - (isHovered ? 20 : 12)}
+                        textAnchor="middle"
+                        fill={isHovered ? "#0096FF" : "rgba(255,255,255,0.6)"}
+                        fontSize={isHovered ? "14" : "11"}
+                        fontWeight="bold"
+                        className="transition-all duration-300 select-none drop-shadow-md"
+                      >
+                        {city.name}
                       </text>
-                    )}
-                  </g>
-                );
-              })}
-            </svg>
-            <div className="mt-4 flex items-center justify-center gap-2 text-white/30 text-xs">
-              <span className="w-2 h-2 rounded-full bg-electric animate-pulse" />
-              Pasa el cursor sobre una ciudad para más info
+                      {isHovered && (
+                        <text x={cx} y={cy - 5} textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" className="drop-shadow-sm font-semibold">
+                          {city.projects}+ proyectos
+                        </text>
+                      )}
+                    </g>
+                  );
+                })}
+              </svg>
+            </div>
+            
+            <div className="mt-8 flex items-center justify-center gap-2 text-white/30 text-xs font-semibold">
+              <span className="w-2 h-2 rounded-full bg-electric animate-pulse shadow-[0_0_8px_#0096FF]" />
+              Pasa el cursor sobre una ciudad
             </div>
           </div>
         </Reveal>
@@ -1035,7 +958,7 @@ function Coverage() {
   );
 }
 
-// — Certifications (new standalone section) —
+// — Certifications —
 function Certifications() {
   const certs = [
     { name: "IRATA", desc: "Industrial Rope Access Trade Association", detail: "Formación continua en acceso por cuerdas de nivel internacional", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
@@ -1057,7 +980,6 @@ function Certifications() {
           </p>
         </Reveal>
 
-        {/* Trust band */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
           {[
             { label: "Seguro RC", val: "Cobertura total" },
@@ -1075,8 +997,8 @@ function Certifications() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {certs.map((c, i) => (
             <Reveal key={c.name} delay={i * 80}>
-              <div className="group p-6 rounded-2xl bg-white/[0.04] border border-white/8 hover:border-electric/40 hover:bg-white/[0.07] hover:-translate-y-1 transition-all duration-400 text-center">
-                <div className="w-14 h-14 rounded-2xl bg-electric/10 border border-electric/20 grid place-items-center mx-auto mb-4 group-hover:bg-electric group-hover:border-electric transition-all duration-300">
+              <div className="group p-6 rounded-2xl bg-white/[0.04] border border-white/8 hover:border-electric/40 hover:bg-white/[0.07] hover:-translate-y-1 transition-all duration-400 text-center h-full">
+                <div className="w-14 h-14 rounded-2xl bg-electric/10 border border-electric/20 grid place-items-center mx-auto mb-4 group-hover:bg-electric group-hover:border-electric transition-all duration-300 shadow-[0_0_15px_rgba(0,150,255,0.2)]">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-white transition-colors">
                     <path d={c.icon} />
                   </svg>
@@ -1112,15 +1034,15 @@ function ContactForm({ light = false }: { light?: boolean }) {
     setSent(true);
   };
 
-  const lbl = light ? "block text-navy text-sm font-semibold mb-1.5" : "block text-white/80 text-sm font-semibold mb-1.5";
+  const lbl = light ? "block text-navy text-sm font-bold mb-1.5" : "block text-white/80 text-sm font-bold mb-1.5";
   const inp = light
-    ? "w-full h-12 px-4 rounded-xl bg-mist border border-border text-ink placeholder-muted-foreground text-sm focus:outline-none focus:border-electric transition-all"
+    ? "w-full h-12 px-4 rounded-xl bg-mist border border-border text-ink placeholder-muted-foreground text-sm focus:outline-none focus:border-electric focus:ring-1 focus:ring-electric transition-all"
     : "w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all";
   const sel = light
-    ? "w-full h-12 px-4 rounded-xl bg-mist border border-border text-ink text-sm focus:outline-none focus:border-electric transition-all appearance-none"
+    ? "w-full h-12 px-4 rounded-xl bg-mist border border-border text-ink text-sm focus:outline-none focus:border-electric focus:ring-1 focus:ring-electric transition-all appearance-none"
     : "w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all appearance-none";
   const ta = light
-    ? "w-full px-4 py-3 rounded-xl bg-mist border border-border text-ink placeholder-muted-foreground text-sm focus:outline-none focus:border-electric transition-all resize-none"
+    ? "w-full px-4 py-3 rounded-xl bg-mist border border-border text-ink placeholder-muted-foreground text-sm focus:outline-none focus:border-electric focus:ring-1 focus:ring-electric transition-all resize-none"
     : "w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all resize-none";
 
   return (
@@ -1164,7 +1086,7 @@ function ContactForm({ light = false }: { light?: boolean }) {
             <label htmlFor="mensaje" className={lbl}>Mensaje</label>
             <textarea id="mensaje" name="mensaje" rows={3} placeholder="Describa brevemente su proyecto…" className={ta} />
           </div>
-          <button type="submit" className="w-full rounded-xl bg-electric text-white font-bold shadow-glow hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 py-3.5">
+          <button type="submit" className="w-full rounded-xl bg-electric text-white font-bold shadow-glow hover:-translate-y-0.5 hover:shadow-elev transition-all flex items-center justify-center gap-2 py-3.5">
             Solicitar Presupuesto Gratuito
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
           </button>
@@ -1185,8 +1107,8 @@ function CTA() {
       <div className="relative max-w-7xl mx-auto px-5 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start">
           <Reveal>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-electric/15 border border-electric/30 text-xs font-semibold tracking-wider uppercase text-electric">
-              <span className="w-2 h-2 rounded-full bg-electric animate-pulse" /> Respuesta en menos de 24h
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-electric/15 border border-electric/30 text-xs font-semibold tracking-wider uppercase text-electric shadow-[0_0_15px_rgba(0,150,255,0.2)]">
+              <span className="w-2 h-2 rounded-full bg-electric animate-pulse shadow-[0_0_8px_#0096FF]" /> Respuesta en menos de 24h
             </span>
             <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05] break-words">
               Solicite su presupuesto <span className="text-electric">gratuito.</span>
@@ -1196,7 +1118,7 @@ function CTA() {
             </p>
 
             <div className="mt-10 space-y-4">
-              <a href={PHONE_HREF} className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group">
+              <a href={PHONE_HREF} className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
                 <div className="w-12 h-12 rounded-xl bg-electric grid place-items-center shrink-0 shadow-glow">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
                 </div>
@@ -1208,8 +1130,8 @@ function CTA() {
                 <svg className="ml-auto text-white/30 group-hover:text-electric group-hover:translate-x-1 transition-all" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
 
-              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-5 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/20 hover:bg-[#25D366]/20 hover:border-[#25D366]/40 transition-all group">
-                <div className="w-12 h-12 rounded-xl bg-[#25D366] grid place-items-center shrink-0">
+              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-5 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/20 hover:bg-[#25D366]/20 hover:border-[#25D366]/40 transition-all group shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+                <div className="w-12 h-12 rounded-xl bg-[#25D366] grid place-items-center shrink-0 shadow-[0_0_15px_rgba(37,211,102,0.4)]">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z"/></svg>
                 </div>
                 <div className="min-w-0 flex-1">
@@ -1225,7 +1147,7 @@ function CTA() {
                 <div className="flex-1 h-px bg-white/10" />
               </div>
 
-              <a href="mailto:info@disetlimpiezasverticales.com" className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group">
+              <a href="mailto:info@disetlimpiezasverticales.com" className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
                 <div className="w-12 h-12 rounded-xl bg-white/10 grid place-items-center shrink-0">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </div>
@@ -1251,11 +1173,10 @@ function CTA() {
   );
 }
 
-// — Footer (corporate) —
+// — Footer —
 function Footer() {
   return (
     <footer className="bg-[#040b14] text-white/70">
-      {/* Mini emergency CTA */}
       <div className="border-b border-white/5 py-8">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
@@ -1272,11 +1193,12 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16">
         <div className="grid md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
-            <Logo white />
+            <div className="flex items-center">
+              <img src={logoDiset} alt="DISET Limpiezas Verticales" height={48} className="h-10 md:h-12 w-auto object-contain brightness-0 invert" />
+            </div>
             <p className="mt-5 max-w-md leading-relaxed text-white/50">
               Especialistas en trabajos verticales y limpieza en altura en Barcelona y provincia. +25 años elevando los estándares del sector.
             </p>
-            {/* Certification badges */}
             <div className="mt-6 flex flex-wrap gap-2">
               {["IRATA", "PRL", "EN 795", "ISO"].map(badge => (
                 <span key={badge} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/40 text-xs font-bold tracking-wider">{badge}</span>
@@ -1318,7 +1240,7 @@ function Footer() {
   );
 }
 
-// — Sticky Mobile CTA (16) —
+// — Sticky Mobile CTA —
 function StickyMobileCTA() {
   const [visible, setVisible] = useState(false);
   useEffect(() => {

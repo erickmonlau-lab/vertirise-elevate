@@ -35,9 +35,9 @@
   --color-ink: var(--ink);
   --color-mist: var(--mist);
 
-  --shadow-soft: 0 4px 24px -8px color-mix(in oklab, var(--navy) 18%, transparent);
-  --shadow-elev: 0 24px 60px -24px color-mix(in oklab, var(--navy) 35%, transparent);
-  --shadow-glow: 0 10px 40px -10px color-mix(in oklab, var(--electric) 45%, transparent);
+  --shadow-soft: 0 4px 24px -8px color-mix(in oklab, var(--navy) 12%, transparent);
+  --shadow-elev: 0 24px 60px -24px color-mix(in oklab, var(--navy) 25%, transparent);
+  --shadow-glow: 0 10px 40px -10px color-mix(in oklab, var(--electric) 60%, transparent);
 
   --gradient-hero: linear-gradient(135deg, color-mix(in oklab, var(--navy) 90%, black) 0%, var(--navy) 55%, color-mix(in oklab, var(--electric) 35%, var(--navy)) 100%);
   --gradient-accent: linear-gradient(135deg, var(--electric), color-mix(in oklab, var(--electric) 70%, var(--navy)));
@@ -52,22 +52,22 @@
   --popover-foreground: #111111;
   --primary: #0D3B66;
   --primary-foreground: #ffffff;
-  --secondary: #F5F7FA;
+  --secondary: #FAFBFC;
   --secondary-foreground: #0D3B66;
-  --muted: #F5F7FA;
+  --muted: #FAFBFC;
   --muted-foreground: #5b6675;
   --accent: #0096FF;
   --accent-foreground: #ffffff;
   --destructive: oklch(0.6 0.22 25);
   --destructive-foreground: #ffffff;
-  --border: #e6ebf1;
-  --input: #e6ebf1;
+  --border: #eef2f6;
+  --input: #eef2f6;
   --ring: #0096FF;
 
   --navy: #0D3B66;
   --electric: #0096FF;
   --ink: #111111;
-  --mist: #F5F7FA;
+  --mist: #FAFBFC;
 }
 
 @layer base {
@@ -110,16 +110,13 @@
   to { transform: translateX(-50%); }
 }
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0,150,255,0.5); }
-  50% { box-shadow: 0 0 0 8px rgba(0,150,255,0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,150,255,0.6); }
+  50% { box-shadow: 0 0 0 12px rgba(0,150,255,0); }
 }
-@keyframes timeline-fill {
-  from { width: 0%; }
-  to { width: 100%; }
-}
-@keyframes count-glow {
-  0% { text-shadow: 0 0 20px rgba(0,150,255,0.8); }
-  100% { text-shadow: 0 0 0px rgba(0,150,255,0); }
+@keyframes map-pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
 }
 
 @utility reveal {
@@ -142,6 +139,10 @@
 
 @utility animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@utility animate-map-pulse {
+  animation: map-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 /* Industrial grid texture for dark sections */
