@@ -57,37 +57,36 @@ const benefits = [
 ];
 
 const process = [
-  { n: "01", t: "Contacto inicial", d: "Recopilamos los datos del inmueble y evaluamos el tipo de intervención necesaria.", icon: "M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" },
-  { n: "02", t: "Visita técnica", d: "Inspeccionamos in situ los accesos, anclajes y posibles riesgos estructurales.", icon: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" },
-  { n: "03", t: "Propuesta", d: "Entregamos presupuesto cerrado con planificación temporal y plan de seguridad.", icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" },
-  { n: "04", t: "Ejecución", d: "Despliegue del equipo IRATA ejecutando el trabajo bajo estricta coordinación.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
-  { n: "05", t: "Entrega", d: "Revisión conjunta, emisión de certificados y garantía de resultado por escrito.", icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" },
+  { n: "01", t: "Contacto", d: "Recopilamos los datos y requisitos técnicos de su proyecto.", icon: "M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" },
+  { n: "02", t: "Inspección", d: "Evaluamos accesos, anclajes y riesgos estructurales in situ.", icon: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" },
+  { n: "03", t: "Presupuesto", d: "Entregamos valoración cerrada y planificación detallada.", icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" },
+  { n: "04", t: "Ejecución", d: "Intervención del equipo técnico y entrega con garantía.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
 ];
 
 const testimonials = [
   {
     name: "Marta Vidal",
+    initials: "MV",
     role: "Administradora de Fincas",
     location: "Eixample, Barcelona",
     project: "Limpieza de fachada · Comunidad de 64 viviendas",
     quote: "DISET nos resolvió la limpieza de fachada del edificio en tiempo récord y con cero incidencias. Profesionalidad de primer nivel.",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face",
   },
   {
     name: "Jordi Soler",
+    initials: "JS",
     role: "Facility Manager",
     location: "Grupo Industrial, Sant Andreu",
     project: "Mantenimiento cubiertas · Líneas de vida",
     quote: "Llevamos 6 años trabajando con ellos en mantenimiento de cubiertas y líneas de vida. Imprescindibles.",
-    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face",
   },
   {
     name: "Anna Roig",
+    initials: "AR",
     role: "Directora de Operaciones",
     location: "Hotel BCN, Eixample",
     project: "Limpieza de cristales · Mantenimiento trimestral",
     quote: "Cristales impecables cada trimestre, personal silencioso y sin afectar a la operativa del hotel. Recomendados al 100%.",
-    avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop&crop=face",
   },
 ];
 
@@ -98,9 +97,9 @@ const successCases = [
     location: "Barceloneta, Barcelona",
     duration: "5 días",
     result: "3.200 m² recuperados",
-    problem: "Fachada histórica con acumulación de depósitos calcáreos y residuos orgánicos visibles desde el paseo marítimo.",
-    solution: "Intervención con equipo de cuerdas y hidrolimpieza de presión controlada para preservar el revestimiento original.",
-    resultDesc: "Fachada completamente restaurada sin interrumpir la actividad del hotel. Cero quejas de huéspedes.",
+    problem: "Pérdida de imagen por acumulación de depósitos y residuos orgánicos.",
+    solution: "Hidrolimpieza vertical de presión controlada sin andamios.",
+    resultDesc: "Restauración completa sin interrumpir la actividad del hotel.",
     img: fachadasImg,
     featured: true,
   },
@@ -110,9 +109,9 @@ const successCases = [
     location: "Sant Gervasi, Barcelona",
     duration: "2 días",
     result: "280 m² de cristal",
-    problem: "Cristalería de lujo con residuos de obras y cal en 18 plantas de altura.",
-    solution: "Acceso por cuerda con sistema de limpieza en seco de precisión para acabado sin marcas.",
-    resultDesc: "Acabado de nivel premium sin una sola marca. Propietarios completamente satisfechos.",
+    problem: "Residuos de cal y obra en cristalería a gran altura.",
+    solution: "Acceso por cuerdas con sistema de limpieza en seco.",
+    resultDesc: "Acabado impecable sin marcas en tiempo récord.",
     img: cristalesImg,
     featured: false,
   },
@@ -121,10 +120,10 @@ const successCases = [
     type: "Placas Solares",
     location: "Zona Franca, Barcelona",
     duration: "1 día",
-    result: "+28% eficiencia recuperada",
-    problem: "420 paneles solares sin limpiar durante 14 meses con pérdida de rendimiento significativa.",
-    solution: "Limpieza con agua osmotizada y cepillado suave para no dañar el recubrimiento fotovoltaico.",
-    resultDesc: "Recuperación del 28% de eficiencia energética documentada. ROI para el cliente en 3 semanas.",
+    result: "+28% eficiencia",
+    problem: "Pérdida de rendimiento por suciedad de 14 meses.",
+    solution: "Limpieza con agua osmotizada y cepillado fotovoltaico.",
+    resultDesc: "Recuperación del 28% de eficiencia energética demostrada.",
     img: solarImg,
     featured: false,
   },
@@ -133,10 +132,10 @@ const successCases = [
     type: "Líneas de Vida",
     location: "Diagonal, Barcelona",
     duration: "3 días",
-    result: "Sistema EN 795 certificado",
-    problem: "Edificio de 22 plantas sin sistema anticaídas para futuras intervenciones de mantenimiento.",
-    solution: "Instalación de líneas de vida perimetral homologada con puntos de anclaje estructural y certificación.",
-    resultDesc: "Sistema completamente operativo y certificado, habilitando el mantenimiento futuro de forma segura.",
+    result: "Certificación EN 795",
+    problem: "Ausencia de sistema anticaídas para el mantenimiento.",
+    solution: "Instalación perimetral homologada con anclajes.",
+    resultDesc: "Edificio operativo de forma segura para mantenimientos.",
     img: lineasImg,
     featured: false,
   },
@@ -231,14 +230,14 @@ function Nav() {
 
   return (
     <>
-      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "bg-navy/95 backdrop-blur-xl border-b border-white/10 shadow-soft" : "bg-white border-b border-border"}`}>
+      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "bg-navy/95 backdrop-blur-xl border-b border-white/10 shadow-soft" : "bg-transparent border-b border-transparent"}`}>
         <div className="max-w-7xl mx-auto px-5 lg:px-10 h-18 md:h-20 flex items-center justify-between gap-4">
           <a href="#top" onClick={() => setMobileOpen(false)}>
-            <Logo white={scrolled || mobileOpen} />
+            <Logo white={true} />
           </a>
 
           {/* Desktop nav */}
-          <nav className={`hidden md:flex items-center gap-9 text-sm font-bold ${scrolled ? "text-white" : "text-navy"}`}>
+          <nav className="hidden md:flex items-center gap-9 text-sm font-bold text-white">
             {navLinks.map(l => (
               <a key={l.href} href={l.href} className="hover:text-electric transition-colors opacity-90 hover:opacity-100">{l.label}</a>
             ))}
@@ -247,23 +246,22 @@ function Nav() {
           <div className="flex items-center gap-3">
             <a
               href={PHONE_HREF}
-              className="inline-flex items-center gap-2 pl-3.5 pr-4 h-10 md:h-11 rounded-full bg-electric text-white text-sm font-bold hover:-translate-y-0.5 transition-all shadow-sm"
+              className="hidden lg:inline-flex items-center gap-2 pl-3.5 pr-4 h-10 md:h-11 rounded-full bg-electric text-white text-sm font-bold hover:-translate-y-0.5 transition-all shadow-sm"
             >
               <span className="w-6 h-6 rounded-full bg-white/20 grid place-items-center">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
               </span>
-              <span className="hidden sm:inline">Llamar gratis</span>
-              <span className="sm:hidden">Llamar</span>
+              <span>Llamar</span>
             </a>
 
             <button
               onClick={() => setMobileOpen(o => !o)}
               aria-label="Abrir menú"
-              className={`md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl gap-1.5 transition-all ${scrolled || mobileOpen ? "bg-white/10" : "bg-mist border border-border"}`}
+              className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl gap-1.5 transition-all bg-white/10"
             >
-              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 ${scrolled || mobileOpen ? "bg-white" : "bg-navy"} ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 ${scrolled || mobileOpen ? "bg-white" : "bg-navy"} ${mobileOpen ? "opacity-0" : ""}`} />
-              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 ${scrolled || mobileOpen ? "bg-white" : "bg-navy"} ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 bg-white ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 bg-white ${mobileOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 bg-white ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
             </button>
           </div>
         </div>
@@ -299,7 +297,8 @@ function Hero() {
           width={1920} height={1080}
           className="absolute inset-0 w-full h-full object-cover object-[55%_10%] md:object-center scale-105"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(13,59,102,0.95)_0%,rgba(13,59,102,0.85)_40%,rgba(13,59,102,0.3)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(10,22,40,0.95)_0%,rgba(10,22,40,0.85)_40%,rgba(10,22,40,0.4)_100%)]" />
+        <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-[#040b14]/90 to-transparent pointer-events-none" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-32 pb-20 w-full mt-10">
@@ -317,10 +316,7 @@ function Hero() {
 
           <div className="mt-10 flex flex-wrap items-center gap-4 animate-[fade-up_1s_0.3s_cubic-bezier(0.22,1,0.36,1)_both]">
             <a href="#contacto" className="group inline-flex items-center gap-3 h-14 px-7 rounded-full bg-electric text-white font-bold hover:shadow-elev hover:-translate-y-0.5 transition-all">
-              Solicitar Presupuesto Gratuito
-              <span className="w-7 h-7 rounded-full bg-white/20 grid place-items-center group-hover:translate-x-1 transition-transform">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-              </span>
+              Solicitar Presupuesto
             </a>
             <a href={PHONE_HREF} className="inline-flex items-center gap-3 h-14 px-7 rounded-full bg-white text-navy font-bold shadow-soft hover:shadow-elev hover:-translate-y-0.5 transition-all">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
@@ -390,7 +386,7 @@ function Stats() {
     <section className="bg-[#0a1628] border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 grid grid-cols-2 md:grid-cols-4">
         {stats.map((s, i) => (
-          <Reveal key={s.label} delay={i * 80} className={`text-center px-6 py-4 ${i < stats.length - 1 ? "md:border-r border-white/10" : ""}`}>
+          <Reveal key={s.label} delay={i * 80} className={`text-center px-4 md:px-6 py-8 md:py-4 border-white/10 ${i % 2 === 0 ? "border-r md:border-r-0" : ""} ${i < 2 ? "border-b md:border-b-0" : ""} ${i < stats.length - 1 ? "md:border-r" : ""}`}>
             <div className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
               <AnimatedCounter to={s.value} suffix={s.suffix} />
             </div>
@@ -432,7 +428,7 @@ function Sectors() {
 // — Services —
 function Services() {
   return (
-    <section id="servicios" className="py-24 lg:py-32 bg-white">
+    <section id="servicios" className="py-24 lg:py-32 bg-white scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
           <Reveal className="max-w-2xl">
@@ -486,7 +482,7 @@ function Services() {
 function BeforeAfterSection() {
   const [activeCase, setActiveCase] = useState(0);
   return (
-    <section id="proyectos" className="py-24 lg:py-32 bg-mist border-y border-border">
+    <section id="proyectos" className="py-24 lg:py-32 bg-mist border-y border-border scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-12">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Antes / Después</span>
@@ -631,18 +627,18 @@ function SuccessCases() {
 function MidCTA() {
   return (
     <section className="py-14 bg-[#0a1628] border-y border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div>
-          <div className="text-white/50 text-xs font-bold uppercase tracking-widest mb-1">¿Necesitas una intervención en altura?</div>
-          <div className="text-white text-xl md:text-2xl font-extrabold">Solicita una visita técnica gratuita.</div>
-          <div className="text-white/50 text-sm mt-1">Sin compromiso · Respuesta garantizada en menos de 24h</div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+        <div className="text-center md:text-left">
+          <div className="text-white/80 text-xs font-bold uppercase tracking-widest mb-2">¿Necesitas una intervención en altura?</div>
+          <div className="text-white text-2xl md:text-3xl font-extrabold text-balance">Solicita una visita técnica gratuita.</div>
+          <div className="text-white/80 text-sm mt-3 text-balance">Sin compromiso · Respuesta garantizada en menos de&nbsp;24h</div>
         </div>
-        <div className="flex gap-3 shrink-0">
-          <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[#25D366] text-white font-bold hover:-translate-y-0.5 transition-all shadow-glow">
+        <div className="flex flex-col sm:flex-row w-full md:w-auto gap-3 shrink-0">
+          <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="flex-1 md:flex-none inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-[#25D366] text-white font-bold hover:-translate-y-0.5 transition-all shadow-glow">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z"/></svg>
             WhatsApp
           </a>
-          <a href="#contacto" className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-electric text-white font-bold hover:-translate-y-0.5 transition-all shadow-glow">
+          <a href="#contacto" className="flex-1 md:flex-none inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-electric text-white font-bold hover:-translate-y-0.5 transition-all shadow-glow">
             Solicitar visita
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -752,7 +748,7 @@ function VideoSection() {
 // — Process (Linear Flow) —
 function Process() {
   return (
-    <section id="proceso" className="py-24 lg:py-32 bg-white">
+    <section id="proceso" className="py-24 lg:py-32 bg-white scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-14">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Proceso</span>
@@ -765,7 +761,7 @@ function Process() {
           {/* Progress Line */}
           <div className="hidden lg:block absolute top-[44px] left-6 right-6 h-px bg-border z-0" />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-4 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 relative z-10">
             {process.map((p, i) => (
               <Reveal key={p.n} delay={i * 80} className="bg-mist border border-border rounded-xl p-6 hover:border-electric/30 hover:shadow-soft transition-all flex flex-col group">
                 <div className="flex items-center gap-4 mb-5">
@@ -817,8 +813,10 @@ function Testimonials() {
                 <div className="mt-5 px-3 py-1.5 rounded-lg bg-mist border border-border inline-block self-start">
                   <span className="text-electric text-xs font-bold">{t.project}</span>
                 </div>
-                <div className="mt-5 pt-5 border-t border-border flex items-center gap-3">
-                  <img src={t.avatar} alt={t.name} className="w-11 h-11 rounded-full object-cover border border-border shadow-sm" />
+                <div className="mt-5 pt-5 border-t border-border flex items-center gap-4">
+                  <div className="w-11 h-11 rounded-full bg-mist border border-border text-navy font-bold flex items-center justify-center shrink-0">
+                    {t.initials}
+                  </div>
                   <div>
                     <div className="font-extrabold text-navy text-sm">{t.name}</div>
                     <div className="text-xs text-muted-foreground">{t.role}</div>
@@ -837,7 +835,7 @@ function Testimonials() {
 // — Coverage (Google Maps) —
 function Coverage() {
   return (
-    <section id="cobertura" className="py-24 lg:py-32 bg-white">
+    <section id="cobertura" className="py-24 lg:py-32 bg-white scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         
         {/* Left column: Text & Metrics */}
@@ -876,7 +874,7 @@ function Coverage() {
             <iframe
               title="Ubicación DISET — Carrer de Cuzco 39-41, Barcelona"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.359223363065!2d2.1814110766324225!3d41.41750007129525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a321200df13b%3A0xc319138ce3ed8966!2sCarrer%20de%20Cuzco%2C%2039%2C%20Sant%20Andreu%2C%2008030%20Barcelona!5e0!3m2!1sen!2ses!4v1700000000000!5m2!1sen!2ses"
-              className="w-full h-full grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000"
+              className="w-full h-full saturate-50 group-hover:saturate-100 transition-all duration-1000"
               style={{ border: 0 }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -888,7 +886,11 @@ function Coverage() {
               </div>
               <div>
                 <div className="font-bold text-navy text-sm">Cobertura en toda Barcelona y provincia</div>
-                <div className="text-xs text-muted-foreground mt-0.5">Sede: Carrer de Cuzco, 39</div>
+                <div className="text-xs text-muted-foreground mt-0.5">Sede: Carrer de Cuzco, 39-41</div>
+                <div className="text-xs text-electric font-semibold mt-1 flex items-center gap-1">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
+                  {PHONE}
+                </div>
               </div>
             </div>
             <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-navy/5 rounded-2xl" />
@@ -965,14 +967,14 @@ function ContactForm({ light = false }: { light?: boolean }) {
 
   const lbl = light ? "block text-navy text-sm font-bold mb-1.5" : "block text-white/80 text-sm font-bold mb-1.5";
   const inp = light
-    ? "w-full h-12 px-4 rounded-xl bg-mist border border-border text-ink placeholder-muted-foreground text-sm focus:outline-none focus:border-electric focus:ring-1 focus:ring-electric transition-all"
-    : "w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all";
+    ? "w-full h-12 px-4 rounded-xl bg-mist border border-border text-ink placeholder-muted-foreground text-sm focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/50 transition-all"
+    : "w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/50 focus:bg-white/15 transition-all";
   const sel = light
-    ? "w-full h-12 px-4 rounded-xl bg-mist border border-border text-ink text-sm focus:outline-none focus:border-electric focus:ring-1 focus:ring-electric transition-all appearance-none"
-    : "w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all appearance-none";
+    ? "w-full h-12 px-4 rounded-xl bg-mist border border-border text-ink text-sm focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/50 transition-all appearance-none"
+    : "w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/50 focus:bg-white/15 transition-all appearance-none";
   const ta = light
-    ? "w-full px-4 py-3 rounded-xl bg-mist border border-border text-ink placeholder-muted-foreground text-sm focus:outline-none focus:border-electric focus:ring-1 focus:ring-electric transition-all resize-none"
-    : "w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all resize-none";
+    ? "w-full px-4 py-3 rounded-xl bg-mist border border-border text-ink placeholder-muted-foreground text-sm focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/50 transition-all resize-none"
+    : "w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/50 focus:bg-white/15 transition-all resize-none";
 
   return (
     <div>
@@ -1015,11 +1017,10 @@ function ContactForm({ light = false }: { light?: boolean }) {
             <label htmlFor="mensaje" className={lbl}>Mensaje</label>
             <textarea id="mensaje" name="mensaje" rows={3} placeholder="Describa brevemente su proyecto…" className={ta} />
           </div>
-          <button type="submit" className="w-full rounded-xl bg-electric text-white font-bold shadow-glow hover:-translate-y-0.5 hover:shadow-elev transition-all flex items-center justify-center gap-2 py-3.5">
-            Solicitar Presupuesto Gratuito
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          <button type="submit" className="w-full rounded-xl bg-electric text-white font-bold text-sm sm:text-base shadow-glow hover:-translate-y-0.5 hover:shadow-elev transition-all py-4 px-4">
+            <span className="truncate">Solicitar Presupuesto</span>
           </button>
-          {!light && <p className="text-white/50 text-xs text-center">Sin compromiso · Respuesta en menos de 24 horas</p>}
+          {!light && <p className="text-white/80 text-xs text-center text-balance">Sin compromiso · Respuesta en 24h</p>}
         </form>
       )}
     </div>
@@ -1029,54 +1030,54 @@ function ContactForm({ light = false }: { light?: boolean }) {
 // — CTA —
 function CTA() {
   return (
-    <section id="contacto" className="py-20 lg:py-32 relative overflow-hidden bg-[#0a1628]">
+    <section id="contacto" className="py-20 lg:py-32 relative overflow-hidden bg-[#0a1628] scroll-mt-20 md:scroll-mt-24">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-electric/10 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-navy/60 blur-[100px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start">
-          <Reveal>
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start min-w-0">
+          <Reveal className="min-w-0">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-electric/15 border border-electric/30 text-xs font-semibold tracking-wider uppercase text-electric">
               <span className="w-2 h-2 rounded-full bg-electric animate-pulse shadow-[0_0_8px_#0096FF]" /> Respuesta en menos de 24h
             </span>
             <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05] break-words">
-              Solicite su presupuesto <span className="text-electric">gratuito.</span>
+              Solicite su <span className="text-electric">presupuesto.</span>
             </h2>
             <p className="mt-6 text-white/80 leading-relaxed text-base lg:text-lg">
               Un técnico especializado revisará su caso y le enviará una propuesta cerrada, sin costes ocultos ni compromisos.
             </p>
 
             <div className="mt-10 space-y-4">
-              <a href={PHONE_HREF} className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group shadow-soft">
+              <a href={PHONE_HREF} className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group shadow-soft min-w-0">
                 <div className="w-12 h-12 rounded-xl bg-electric grid place-items-center shrink-0">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
                 </div>
-                <div>
-                  <div className="text-white/60 text-xs font-semibold uppercase tracking-wider">Llámenos directamente</div>
-                  <div className="text-white font-extrabold text-xl group-hover:text-electric transition-colors">{PHONE}</div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-white/60 text-[10px] sm:text-xs font-semibold uppercase tracking-wider">Llámenos directamente</div>
+                  <div className="text-white font-extrabold text-xl group-hover:text-electric transition-colors truncate">{PHONE}</div>
                   <div className="text-white/40 text-xs mt-0.5">Lun – Vie · 08:00 – 19:00</div>
                 </div>
-                <svg className="ml-auto text-white/30 group-hover:text-electric group-hover:translate-x-1 transition-all" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <svg className="ml-auto text-white/30 group-hover:text-electric group-hover:translate-x-1 transition-all shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
 
-              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-5 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/20 hover:bg-[#25D366]/20 hover:border-[#25D366]/40 transition-all group shadow-soft">
+              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-5 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/20 hover:bg-[#25D366]/20 hover:border-[#25D366]/40 transition-all group shadow-soft min-w-0">
                 <div className="w-12 h-12 rounded-xl bg-[#25D366] grid place-items-center shrink-0">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z"/></svg>
                 </div>
                 <div className="min-w-0 flex-1">
-                  <div className="text-white/60 text-xs font-semibold uppercase tracking-wider">WhatsApp</div>
-                  <div className="text-white font-bold group-hover:text-[#25D366] transition-colors">Escríbanos ahora</div>
+                  <div className="text-white/60 text-[10px] sm:text-xs font-semibold uppercase tracking-wider">WhatsApp</div>
+                  <div className="text-white font-bold group-hover:text-[#25D366] transition-colors truncate">Escríbanos ahora</div>
                 </div>
                 <svg className="ml-auto text-white/30 group-hover:text-[#25D366] group-hover:translate-x-1 transition-all shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 w-full">
                 <div className="flex-1 h-px bg-white/10" />
-                <span className="text-white/40 text-sm">o escríbanos</span>
+                <span className="text-white/40 text-sm whitespace-nowrap">o escríbanos</span>
                 <div className="flex-1 h-px bg-white/10" />
               </div>
 
-              <a href="mailto:info@disetlimpiezasverticales.com" className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group shadow-soft">
+              <a href="mailto:info@disetlimpiezasverticales.com" className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group shadow-soft min-w-0">
                 <div className="w-12 h-12 rounded-xl bg-white/10 grid place-items-center shrink-0">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </div>
@@ -1089,10 +1090,10 @@ function CTA() {
             </div>
           </Reveal>
 
-          <Reveal delay={120} className="w-full max-w-full">
-            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-elev max-w-full overflow-hidden">
-              <h3 className="text-xl sm:text-2xl font-extrabold text-navy mb-1 leading-tight">Solicitar presupuesto gratuito</h3>
-              <p className="text-muted-foreground text-sm mb-6">Sin compromiso · Respuesta en menos de 24 horas</p>
+          <Reveal delay={120} className="w-full max-w-full min-w-0">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-elev max-w-full overflow-hidden w-full mx-auto md:max-w-[28rem] lg:max-w-none">
+              <h3 className="text-xl sm:text-2xl font-extrabold text-navy mb-1 leading-tight">Solicitar presupuesto</h3>
+              <p className="text-slate-500 text-sm mb-6 text-balance">Sin compromiso · Respuesta en 24h</p>
               <ContactForm light />
             </div>
           </Reveal>
@@ -1143,11 +1144,21 @@ function Footer() {
           <div>
             <h4 className="text-white font-extrabold text-sm uppercase tracking-wider mb-5">Contacto</h4>
             <ul className="space-y-3 text-sm">
-              <li>Carrer de Cuzco, 39-41<br />08030 Barcelona</li>
-              <li className="text-white/40 text-xs">Lun – Vie · 08:00 – 19:00</li>
-              <li><a href={PHONE_HREF} className="hover:text-electric font-semibold">{PHONE}</a></li>
-              <li><a href="mailto:info@disetlimpiezasverticales.com" className="hover:text-electric break-all text-xs">info@disetlimpiezasverticales.com</a></li>
               <li>
+                <div className="text-white">Sede Central</div>
+                <div className="text-white/60 mt-1">Carrer de Cuzco, 39-41<br />08030 Barcelona</div>
+              </li>
+              <li className="pt-2">
+                <div className="text-white">Horario de atención</div>
+                <div className="text-white/60 mt-1">Lunes – Viernes<br />08:00 – 19:00</div>
+              </li>
+              <li className="pt-4">
+                <a href={PHONE_HREF} className="hover:text-electric text-white font-bold text-lg">{PHONE}</a>
+              </li>
+              <li>
+                <a href="mailto:info@disetlimpiezasverticales.com" className="hover:text-electric break-all text-xs text-white/80">info@disetlimpiezasverticales.com</a>
+              </li>
+              <li className="pt-2">
                 <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-[#25D366] hover:underline font-semibold">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z"/></svg>
                   WhatsApp
@@ -1179,7 +1190,7 @@ function StickyMobileCTA() {
   }, []);
   return (
     <div className={`fixed bottom-0 left-0 right-0 z-40 md:hidden transition-all duration-500 ${visible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}>
-      <div className="bg-navy/95 backdrop-blur-xl border-t border-white/10 px-4 py-3 flex gap-3 safe-area-inset-bottom">
+      <div className="bg-navy/95 backdrop-blur-xl border-t border-white/10 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex gap-3">
         <a href={PHONE_HREF} className="flex-1 h-12 rounded-xl bg-electric text-white font-bold flex items-center justify-center gap-2 shadow-glow active:scale-95 transition-transform">
           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
           <span className="font-semibold">Llamar</span>
@@ -1195,7 +1206,7 @@ function StickyMobileCTA() {
 
 function Index() {
   return (
-    <div className="bg-white">
+    <div className="bg-white overflow-x-hidden">
       <Nav />
       <main>
         <Hero />
