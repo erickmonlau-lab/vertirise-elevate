@@ -172,7 +172,7 @@ function Nav() {
         </div>
 
         {/* Mobile menu dropdown */}
-        <div className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out ${mobileOpen ? "max-h-80 border-t border-border" : "max-h-0"}`}>
+        <div className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out ${mobileOpen ? "max-h-80 border-t border-border shadow-soft" : "max-h-0"}`}>
           <nav className="flex flex-col bg-white px-5 py-4 gap-1">
             {navLinks.map(l => (
               <a
@@ -184,13 +184,6 @@ function Nav() {
                 {l.label}
               </a>
             ))}
-            <a
-              href={PHONE_HREF}
-              className="mt-2 flex items-center justify-center gap-2 h-12 rounded-xl bg-electric text-white font-bold shadow-glow"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
-              Llamar gratis · {PHONE}
-            </a>
           </nav>
         </div>
       </header>
@@ -206,7 +199,7 @@ function Hero() {
           src={heroImg}
           alt="Operarios DISET en trabajos verticales sobre fachada de cristal en Barcelona"
           width={1920} height={1080}
-          className="absolute inset-0 w-full h-full object-cover object-[60%_center] md:object-center scale-105"
+          className="absolute inset-0 w-full h-full object-cover object-[55%_10%] md:object-center scale-105"
         />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(13,59,102,0.92)_0%,rgba(13,59,102,0.75)_45%,rgba(13,59,102,0.25)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_20%_50%,rgba(0,150,255,0.25),transparent_70%)]" />
@@ -616,14 +609,6 @@ function Testimonials() {
 }
 
 function Coverage() {
-  // Coordinates: Carrer de Cuzco, 39-41, 08030 Barcelona
-  // lat: 41.4175, lon: 2.1836
-  const LAT = 41.4175;
-  const LON = 2.1836;
-  const BBOX_OFFSET = 0.06;
-  const bbox = `${LON - BBOX_OFFSET},${LAT - BBOX_OFFSET},${LON + BBOX_OFFSET},${LAT + BBOX_OFFSET}`;
-  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${LAT},${LON}`;
-
   return (
     <section id="cobertura" className="py-28 lg:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
@@ -671,9 +656,11 @@ function Coverage() {
           <div className="relative aspect-square rounded-2xl overflow-hidden border border-border shadow-elev bg-mist">
             <iframe
               title="Ubicación DISET — Carrer de Cuzco 39-41, Barcelona"
-              src={mapSrc}
-              className="w-full h-full grayscale-[0.3]"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.359223363065!2d2.1814110766324225!3d41.41750007129525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a321200df13b%3A0xc319138ce3ed8966!2sCarrer%20de%20Cuzco%2C%2039%2C%20Sant%20Andreu%2C%2008030%20Barcelona!5e0!3m2!1sen!2ses!4v1700000000000!5m2!1sen!2ses"
+              className="w-full h-full grayscale-[0.2]"
+              style={{ border: 0 }}
               loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             />
             <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-navy/10" />
           </div>
@@ -819,17 +806,17 @@ function CTA() {
                 </div>
                 <div>
                   <div className="text-white/60 text-xs font-semibold uppercase tracking-wider">Email</div>
-                  <div className="text-white font-bold group-hover:text-electric transition-colors">info@disetlimpiezasverticales.com</div>
+                  <div className="text-white font-bold group-hover:text-electric transition-colors break-all">info@disetlimpiezasverticales.com</div>
                 </div>
-                <svg className="ml-auto text-white/30 group-hover:text-electric group-hover:translate-x-1 transition-all" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <svg className="ml-auto text-white/30 group-hover:text-electric group-hover:translate-x-1 transition-all shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
             </div>
           </Reveal>
 
           {/* Right: form */}
-          <Reveal delay={120}>
-            <div className="bg-white rounded-2xl p-8 shadow-elev">
-              <h3 className="text-2xl font-extrabold text-navy mb-1">Solicitar presupuesto gratuito</h3>
+          <Reveal delay={120} className="w-full max-w-full">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-elev max-w-full overflow-hidden">
+              <h3 className="text-xl sm:text-2xl font-extrabold text-navy mb-1 leading-tight">Solicitar presupuesto gratuito</h3>
               <p className="text-muted-foreground text-sm mb-6">Sin compromiso · Respuesta en menos de 24 horas</p>
               <ContactForm light />
             </div>
