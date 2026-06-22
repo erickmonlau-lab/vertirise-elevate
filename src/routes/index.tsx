@@ -113,6 +113,8 @@ function Logo({ white = false }: { white?: boolean }) {
 
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
@@ -120,31 +122,79 @@ function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const navLinks = [
+    { href: "#servicios", label: "Servicios" },
+    { href: "#proyectos", label: "Proyectos" },
+    { href: "#proceso", label: "Proceso" },
+    { href: "#cobertura", label: "Cobertura" },
+    { href: "#contacto", label: "Contacto" },
+  ];
+
   return (
-    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "bg-white/90 backdrop-blur-xl border-b border-border shadow-soft" : "bg-transparent"}`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
-        <a href="#top">
-          <Logo white={!scrolled} />
-        </a>
-        <nav className={`hidden md:flex items-center gap-9 text-sm font-semibold ${scrolled ? "text-ink" : "text-white"}`}>
-          <a href="#servicios" className="hover:text-electric transition-colors">Servicios</a>
-          <a href="#proyectos" className="hover:text-electric transition-colors">Proyectos</a>
-          <a href="#proceso" className="hover:text-electric transition-colors">Proceso</a>
-          <a href="#cobertura" className="hover:text-electric transition-colors">Cobertura</a>
-          <a href="#contacto" className="hover:text-electric transition-colors">Contacto</a>
-        </nav>
-        {/* Always solid blue CTA button */}
-        <a
-          href={PHONE_HREF}
-          className="hidden sm:inline-flex items-center gap-2 pl-4 pr-5 h-11 rounded-full bg-electric text-white text-sm font-bold shadow-glow hover:shadow-elev hover:-translate-y-0.5 transition-all"
-        >
-          <span className="w-7 h-7 rounded-full bg-white/20 grid place-items-center">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
-          </span>
-          Llamar ahora
-        </a>
-      </div>
-    </header>
+    <>
+      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled || mobileOpen ? "bg-white/95 backdrop-blur-xl border-b border-border shadow-soft" : "bg-transparent"}`}>
+        <div className="max-w-7xl mx-auto px-5 lg:px-10 h-18 md:h-20 flex items-center justify-between gap-4">
+          <a href="#top" onClick={() => setMobileOpen(false)}>
+            <Logo white={!scrolled && !mobileOpen} />
+          </a>
+
+          {/* Desktop nav */}
+          <nav className={`hidden md:flex items-center gap-9 text-sm font-semibold ${scrolled ? "text-ink" : "text-white"}`}>
+            {navLinks.map(l => (
+              <a key={l.href} href={l.href} className="hover:text-electric transition-colors">{l.label}</a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            {/* CTA */}
+            <a
+              href={PHONE_HREF}
+              className="inline-flex items-center gap-2 pl-3.5 pr-4 h-10 md:h-11 rounded-full bg-electric text-white text-sm font-bold shadow-glow hover:shadow-elev hover:-translate-y-0.5 transition-all"
+            >
+              <span className="w-6 h-6 rounded-full bg-white/20 grid place-items-center">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
+              </span>
+              <span className="hidden sm:inline">Llamar gratis</span>
+              <span className="sm:hidden">Llamar</span>
+            </a>
+
+            {/* Hamburger — mobile only */}
+            <button
+              onClick={() => setMobileOpen(o => !o)}
+              aria-label="Abrir menú"
+              className={`md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl gap-1.5 transition-all ${scrolled || mobileOpen ? "bg-mist" : "bg-white/15 backdrop-blur-sm"}`}
+            >
+              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 ${scrolled || mobileOpen ? "bg-navy" : "bg-white"} ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 ${scrolled || mobileOpen ? "bg-navy" : "bg-white"} ${mobileOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 ${scrolled || mobileOpen ? "bg-navy" : "bg-white"} ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile menu dropdown */}
+        <div className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out ${mobileOpen ? "max-h-80 border-t border-border" : "max-h-0"}`}>
+          <nav className="flex flex-col bg-white px-5 py-4 gap-1">
+            {navLinks.map(l => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-navy font-semibold text-base hover:bg-mist hover:text-electric transition-all"
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              href={PHONE_HREF}
+              className="mt-2 flex items-center justify-center gap-2 h-12 rounded-xl bg-electric text-white font-bold shadow-glow"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
+              Llamar gratis · {PHONE}
+            </a>
+          </nav>
+        </div>
+      </header>
+    </>
   );
 }
 
@@ -152,7 +202,12 @@ function Hero() {
   return (
     <section id="top" className="relative min-h-[100svh] flex items-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroImg} alt="Operarios DISET en trabajos verticales sobre fachada de cristal en Barcelona" width={1920} height={1080} className="absolute inset-0 w-full h-full object-cover scale-105" />
+        <img
+          src={heroImg}
+          alt="Operarios DISET en trabajos verticales sobre fachada de cristal en Barcelona"
+          width={1920} height={1080}
+          className="absolute inset-0 w-full h-full object-cover object-[60%_center] md:object-center scale-105"
+        />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(13,59,102,0.92)_0%,rgba(13,59,102,0.75)_45%,rgba(13,59,102,0.25)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_20%_50%,rgba(0,150,255,0.25),transparent_70%)]" />
       </div>
@@ -298,9 +353,38 @@ function BeforeAfterSection() {
           </p>
         </Reveal>
 
-        {/* Case selector tabs — visual cards */}
+        {/* Case selector tabs — mobile horizontal scroll, desktop grid */}
         <Reveal delay={80}>
-          <div className="grid grid-cols-3 gap-4 mb-8">
+          {/* Mobile: horizontal scroll row */}
+          <div className="flex md:hidden gap-3 mb-6 overflow-x-auto pb-2 scrollbar-none -mx-2 px-2">
+            {beforeAfterCases.map((c, i) => (
+              <button
+                key={c.label}
+                onClick={() => setActiveCase(i)}
+                className={`relative shrink-0 w-28 overflow-hidden rounded-xl border-2 transition-all duration-300 text-left group ${
+                  activeCase === i
+                    ? "border-electric shadow-glow scale-[1.02]"
+                    : "border-border hover:border-electric/40"
+                }`}
+              >
+                <div className="aspect-[3/4] overflow-hidden">
+                  <img src={c.after} alt={c.label} className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${ activeCase === i ? "brightness-100" : "brightness-75" }`} />
+                </div>
+                <div className="absolute inset-0 flex flex-col justify-end p-2 bg-gradient-to-t from-navy/90 via-navy/30 to-transparent">
+                  <div className="text-white font-extrabold text-xs leading-tight">{c.label}</div>
+                  <div className="text-white/70 text-[10px] mt-0.5 leading-tight">{c.desc}</div>
+                </div>
+                {activeCase === i && (
+                  <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-electric grid place-items-center">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M20 6 9 17l-5-5"/></svg>
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Desktop: 3-col grid */}
+          <div className="hidden md:grid grid-cols-3 gap-4 mb-8">
             {beforeAfterCases.map((c, i) => (
               <button
                 key={c.label}
@@ -312,17 +396,11 @@ function BeforeAfterSection() {
                 }`}
               >
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={c.after}
-                    alt={c.label}
-                    className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${
-                      activeCase === i ? "brightness-100" : "brightness-75"
-                    }`}
-                  />
+                  <img src={c.after} alt={c.label} className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${ activeCase === i ? "brightness-100" : "brightness-75" }`} />
                 </div>
-                <div className={`absolute inset-0 flex flex-col justify-end p-3 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent`}>
-                  <div className={`text-sm font-extrabold ${activeCase === i ? "text-white" : "text-white/90"}`}>{c.label}</div>
-                  <div className="text-xs text-white/60">{c.desc}</div>
+                <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent">
+                  <div className={`text-base font-extrabold ${activeCase === i ? "text-white" : "text-white/90"}`}>{c.label}</div>
+                  <div className="text-sm text-white/70 mt-0.5">{c.desc}</div>
                 </div>
                 {activeCase === i && (
                   <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-electric grid place-items-center">
@@ -522,11 +600,11 @@ function Testimonials() {
                   ))}
                 </div>
                 {/* Large decorative quote */}
-                <div className="text-6xl leading-none text-electric/20 font-serif mb-2" aria-hidden>"</div>
-                <p className="text-base leading-relaxed text-ink flex-1">{t.quote}</p>
+                <div className="text-6xl leading-none font-bold mb-3" style={{ color: '#0096FF', opacity: 0.25 }} aria-hidden>❝</div>
+                <p className="text-lg leading-relaxed text-ink flex-1">{t.quote}</p>
                 <div className="mt-8 pt-5 border-t border-border">
                   <div className="font-extrabold text-navy">{t.name}</div>
-                  <div className="text-sm text-muted-foreground mt-0.5">{t.role}</div>
+                  <div className="text-sm text-slate-500 mt-0.5">{t.role}</div>
                 </div>
               </article>
             </Reveal>
@@ -689,23 +767,23 @@ function ContactForm({ light = false }: { light?: boolean }) {
 function CTA() {
 
   return (
-    <section id="contacto" className="py-24 lg:py-32 relative overflow-hidden bg-[#0a1628]">
+    <section id="contacto" className="py-20 lg:py-32 relative overflow-hidden bg-[#0a1628]">
       {/* Subtle background accents */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-electric/10 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-navy/60 blur-[100px] pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <div className="relative max-w-7xl mx-auto px-5 lg:px-10">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start">
 
           {/* Left: headline + contact info */}
           <Reveal>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-electric/15 border border-electric/30 text-xs font-semibold tracking-wider uppercase text-electric">
               <span className="w-2 h-2 rounded-full bg-electric animate-pulse" /> Respuesta en menos de 24h
             </span>
-            <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05]">
+            <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05] break-words">
               Solicite su presupuesto <span className="text-electric">gratuito.</span>
             </h2>
-            <p className="mt-6 text-white/70 leading-relaxed text-lg">
+            <p className="mt-6 text-white/80 leading-relaxed text-base lg:text-lg">
               Un técnico especializado revisará su caso y le enviará una propuesta cerrada, sin costes ocultos ni compromisos.
             </p>
 
