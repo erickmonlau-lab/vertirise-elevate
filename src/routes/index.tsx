@@ -513,7 +513,7 @@ function VideoSection() {
                       alt="DISET técnicos en trabajos verticales"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]"
                     />
-                    <div className="absolute inset-0 bg-navy/50 group-hover:bg-navy/30 transition-colors" />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
                     <div className="absolute inset-0 grid place-items-center">
                       <div className="w-20 h-20 rounded-full bg-electric grid place-items-center shadow-glow group-hover:scale-110 transition-transform">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="1" strokeLinejoin="round">
