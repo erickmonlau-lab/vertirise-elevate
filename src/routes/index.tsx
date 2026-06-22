@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { Counter } from "@/components/Counter";
 import { BeforeAfter } from "@/components/BeforeAfter";
@@ -9,20 +9,28 @@ import cristalesImg from "@/assets/service-cristales.jpg";
 import fachadasImg from "@/assets/service-fachadas.jpg";
 import solarImg from "@/assets/service-solar.jpg";
 import lineasImg from "@/assets/service-lineas.jpg";
-import beforeImg from "@/assets/before.jpg";
-import afterImg from "@/assets/after.jpg";
 
-export const Route = createFileRoute("/")({
+import beforeCristalesImg from "@/assets/before-cristales.png";
+import afterCristalesImg from "@/assets/after-cristales.png";
+import beforeFachadaImg from "@/assets/before-fachada.png";
+import afterFachadaImg from "@/assets/after-fachada.png";
+import beforeSolaresImg from "@/assets/before-solares.png";
+import afterSolaresImg from "@/assets/after-solares.png";
+
+export const Route = createFileRoute("/")(  {
   head: () => ({
     meta: [
       { title: "DISET · Trabajos Verticales y Limpieza en Altura en Barcelona" },
-      { name: "description", content: "Especialistas en trabajos verticales en Barcelona: limpieza de cristales, fachadas, placas solares e instalación de líneas de vida. +25 años de experiencia, +4500 proyectos." },
-      { property: "og:title", content: "DISET · Especialistas en Trabajos Verticales" },
-      { property: "og:description", content: "Limpieza en altura para empresas, industrias y comunidades en Barcelona y provincia." },
+      { name: "description", content: "Especialistas en trabajos verticales en Barcelona: limpieza de cristales, fachadas, placas solares e instalación de líneas de vida. +25 años de experiencia, +4500 proyectos. Llame al 936 556 161." },
+      { property: "og:title", content: "DISET · Especialistas en Trabajos Verticales Barcelona" },
+      { property: "og:description", content: "Limpieza en altura para empresas, industrias y comunidades en Barcelona y provincia. Presupuesto gratuito en 24h." },
     ],
   }),
   component: Index,
 });
+
+const PHONE = "936 556 161";
+const PHONE_HREF = "tel:+34936556161";
 
 const stats = [
   { value: 25, suffix: "+", label: "Años de experiencia" },
@@ -61,9 +69,35 @@ const testimonials = [
   { name: "Anna Roig", role: "Directora de Operaciones, Hotel BCN", quote: "Cristales impecables cada trimestre, personal silencioso y sin afectar a la operativa del hotel. Recomendados al 100%." },
 ];
 
-const clients = ["Acciona", "Grupo Mango", "Iberdrola", "Naturgy", "Hospital Clínic", "FCC", "Renfe", "Sanitas", "Aigües BCN", "Caixabank"];
+const beforeAfterCases = [
+  {
+    label: "Cristales",
+    before: beforeCristalesImg,
+    after: afterCristalesImg,
+    desc: "Ventanales corporativos",
+  },
+  {
+    label: "Fachadas",
+    before: beforeFachadaImg,
+    after: afterFachadaImg,
+    desc: "Fachada de piedra",
+  },
+  {
+    label: "Placas Solares",
+    before: beforeSolaresImg,
+    after: afterSolaresImg,
+    desc: "Instalación fotovoltaica",
+  },
+];
 
-function Logo() {
+const heroAvatars = [
+  "https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=80&h=80&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=80&h=80&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face",
+];
+
+function Logo({ white = false }: { white?: boolean }) {
   return (
     <div className="flex items-center gap-2.5">
       <div className="w-9 h-9 rounded-lg bg-[var(--gradient-accent)] grid place-items-center shadow-glow">
@@ -71,7 +105,7 @@ function Logo() {
           <path d="M12 2v20" /><path d="M5 8l7-6 7 6" /><circle cx="12" cy="15" r="3" />
         </svg>
       </div>
-      <span className="font-extrabold text-xl tracking-tight text-navy">DISET</span>
+      <span className={`font-extrabold text-xl tracking-tight ${white ? "text-white" : "text-navy"}`}>DISET</span>
     </div>
   );
 }
@@ -84,11 +118,12 @@ function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
   return (
-    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "bg-white/85 backdrop-blur-xl border-b border-border" : "bg-transparent"}`}>
+    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "bg-white/90 backdrop-blur-xl border-b border-border shadow-soft" : "bg-transparent"}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
-        <a href="#top" className={`transition-colors ${scrolled ? "" : "[&_span]:!text-white [&_div]:shadow-none"}`}>
-          <Logo />
+        <a href="#top">
+          <Logo white={!scrolled} />
         </a>
         <nav className={`hidden md:flex items-center gap-9 text-sm font-semibold ${scrolled ? "text-ink" : "text-white"}`}>
           <a href="#servicios" className="hover:text-electric transition-colors">Servicios</a>
@@ -97,9 +132,13 @@ function Nav() {
           <a href="#cobertura" className="hover:text-electric transition-colors">Cobertura</a>
           <a href="#contacto" className="hover:text-electric transition-colors">Contacto</a>
         </nav>
-        <a href="tel:+34900000000" className="hidden sm:inline-flex items-center gap-2 px-5 h-11 rounded-full bg-electric text-white text-sm font-bold shadow-glow hover:shadow-elev hover:-translate-y-0.5 transition-all">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
-          900 000 000
+        {/* Always solid blue CTA button */}
+        <a
+          href={PHONE_HREF}
+          className="hidden sm:inline-flex items-center gap-2 px-5 h-11 rounded-full bg-electric text-white text-sm font-bold shadow-glow hover:shadow-elev hover:-translate-y-0.5 transition-all"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
+          {PHONE}
         </a>
       </div>
     </header>
@@ -127,14 +166,27 @@ function Hero() {
           <p className="mt-7 text-lg sm:text-xl text-white/85 max-w-2xl leading-relaxed animate-[fade-up_1s_0.15s_cubic-bezier(0.22,1,0.36,1)_both]">
             Limpieza de cristales, fachadas, placas solares e instalación de líneas de vida para empresas, industrias y comunidades.
           </p>
+
+          {/* Trust badges */}
+          <div className="mt-6 flex flex-wrap gap-3 animate-[fade-up_1s_0.25s_cubic-bezier(0.22,1,0.36,1)_both]">
+            {["Presupuesto gratuito", "Técnicos certificados", "Cobertura Barcelona y provincia"].map((badge) => (
+              <div key={badge} className="inline-flex items-center gap-1.5 text-sm text-white/90 font-medium">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                {badge}
+              </div>
+            ))}
+          </div>
+
           <div className="mt-10 flex flex-wrap items-center gap-4 animate-[fade-up_1s_0.3s_cubic-bezier(0.22,1,0.36,1)_both]">
             <a href="#contacto" className="group inline-flex items-center gap-3 h-14 px-7 rounded-full bg-electric text-white font-bold shadow-glow hover:shadow-elev hover:-translate-y-0.5 transition-all">
-              Solicitar Presupuesto
+              Solicitar Presupuesto Gratuito
               <span className="w-7 h-7 rounded-full bg-white/20 grid place-items-center group-hover:translate-x-1 transition-transform">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
               </span>
             </a>
-            <a href="tel:+34900000000" className="inline-flex items-center gap-3 h-14 px-7 rounded-full bg-white/10 backdrop-blur-md text-white font-bold border border-white/25 hover:bg-white hover:text-navy transition-all">
+            <a href={PHONE_HREF} className="inline-flex items-center gap-3 h-14 px-7 rounded-full bg-white/10 backdrop-blur-md text-white font-bold border border-white/25 hover:bg-white hover:text-navy transition-all">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
               Llamar Ahora
             </a>
@@ -142,7 +194,16 @@ function Hero() {
 
           <div className="mt-16 flex items-center gap-6 text-white/70 text-sm animate-[fade-in_1s_0.6s_both]">
             <div className="flex -space-x-2">
-              {[1,2,3,4].map(i => <div key={i} className="w-9 h-9 rounded-full border-2 border-navy bg-gradient-to-br from-electric to-white" />)}
+              {heroAvatars.map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt={`Operario DISET ${i + 1}`}
+                  width={36}
+                  height={36}
+                  className="w-9 h-9 rounded-full border-2 border-navy object-cover"
+                />
+              ))}
             </div>
             <div>
               <div className="text-white font-bold">+4.500 proyectos</div>
@@ -171,28 +232,6 @@ function Stats() {
             <div className="mt-2 text-sm font-semibold text-muted-foreground uppercase tracking-wider">{s.label}</div>
           </Reveal>
         ))}
-      </div>
-    </section>
-  );
-}
-
-function ClientsMarquee() {
-  const items = [...clients, ...clients];
-  return (
-    <section className="bg-mist py-14 overflow-hidden">
-      <Reveal className="text-center mb-8">
-        <p className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground">Empresas que confían en nosotros</p>
-      </Reveal>
-      <div className="relative">
-        <div className="flex gap-16 animate-marquee whitespace-nowrap w-max">
-          {items.map((c, i) => (
-            <div key={i} className="text-2xl md:text-3xl font-extrabold text-navy/40 hover:text-navy transition-colors tracking-tight">
-              {c}
-            </div>
-          ))}
-        </div>
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-mist to-transparent pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-mist to-transparent pointer-events-none" />
       </div>
     </section>
   );
@@ -241,6 +280,8 @@ function Services() {
 }
 
 function BeforeAfterSection() {
+  const [activeCase, setActiveCase] = useState(0);
+
   return (
     <section id="proyectos" className="py-28 lg:py-36 bg-mist">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -249,10 +290,39 @@ function BeforeAfterSection() {
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
             Resultados que se<br />ven, a primera vista.
           </h2>
+          <p className="mt-5 text-muted-foreground leading-relaxed max-w-lg">
+            Deslice el control para comparar el estado de cada superficie antes y después de nuestra intervención.
+          </p>
         </Reveal>
+
+        {/* Case selector tabs */}
+        <Reveal delay={80}>
+          <div className="flex gap-2 mb-8 flex-wrap">
+            {beforeAfterCases.map((c, i) => (
+              <button
+                key={c.label}
+                onClick={() => setActiveCase(i)}
+                className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${
+                  activeCase === i
+                    ? "bg-electric text-white shadow-glow"
+                    : "bg-white text-navy border border-border hover:border-electric/50"
+                }`}
+              >
+                {c.label}
+                <span className="ml-2 text-xs font-normal opacity-70">{c.desc}</span>
+              </button>
+            ))}
+          </div>
+        </Reveal>
+
         <Reveal delay={120}>
-          <BeforeAfter before={beforeImg} after={afterImg} />
-          <p className="mt-6 text-sm text-muted-foreground text-center font-semibold">Arrastre el control deslizante para comparar</p>
+          <BeforeAfter
+            before={beforeAfterCases[activeCase].before}
+            after={beforeAfterCases[activeCase].after}
+          />
+          <p className="mt-6 text-sm text-muted-foreground text-center font-semibold">
+            Arrastre el control deslizante para comparar · {beforeAfterCases[activeCase].label}
+          </p>
         </Reveal>
       </div>
     </section>
@@ -298,6 +368,10 @@ function Benefits() {
 }
 
 function VideoSection() {
+  const [playing, setPlaying] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const VIDEO_ID = "aBf0OXTJgkA";
+
   return (
     <section className="py-28 lg:py-36 bg-ink">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -308,14 +382,37 @@ function VideoSection() {
           </h2>
         </Reveal>
         <Reveal delay={120}>
-          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-elev group cursor-pointer">
-            <img src={heroImg} alt="Vídeo corporativo DISET" loading="lazy" width={1920} height={1080} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]" />
-            <div className="absolute inset-0 bg-navy/40 group-hover:bg-navy/20 transition-colors" />
-            <div className="absolute inset-0 grid place-items-center">
-              <div className="w-24 h-24 rounded-full bg-electric grid place-items-center shadow-glow group-hover:scale-110 transition-transform">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="1" strokeLinejoin="round"><polygon points="6 4 20 12 6 20 6 4" /></svg>
-              </div>
-            </div>
+          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-elev">
+            {playing ? (
+              <iframe
+                ref={iframeRef}
+                className="absolute inset-0 w-full h-full"
+                src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
+                title="DISET Limpiezas Verticales — Vídeo corporativo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <button
+                onClick={() => setPlaying(true)}
+                className="absolute inset-0 w-full h-full group cursor-pointer"
+                aria-label="Reproducir vídeo corporativo DISET"
+              >
+                <img
+                  src={`https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
+                  alt="Vídeo corporativo DISET — Trabajos verticales Barcelona"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]"
+                />
+                <div className="absolute inset-0 bg-navy/40 group-hover:bg-navy/20 transition-colors" />
+                <div className="absolute inset-0 grid place-items-center">
+                  <div className="w-24 h-24 rounded-full bg-electric grid place-items-center shadow-glow group-hover:scale-110 transition-transform">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="1" strokeLinejoin="round">
+                      <polygon points="6 4 20 12 6 20 6 4" />
+                    </svg>
+                  </div>
+                </div>
+              </button>
+            )}
           </div>
         </Reveal>
       </div>
@@ -339,7 +436,7 @@ function Process() {
             {process.map((p, i) => (
               <Reveal key={p.n} delay={i * 100}>
                 <div className="relative">
-                  <div className="w-20 h-20 rounded-2xl bg-mist border border-border grid place-items-center text-electric font-extrabold text-xl group-hover:bg-electric group-hover:text-white transition-all relative z-10">
+                  <div className="w-20 h-20 rounded-2xl bg-mist border border-border grid place-items-center text-electric font-extrabold text-xl relative z-10">
                     {p.n}
                   </div>
                   <h3 className="mt-6 text-lg font-extrabold text-navy">{p.t}</h3>
@@ -388,6 +485,14 @@ function Testimonials() {
 }
 
 function Coverage() {
+  // Coordinates: Carrer de Cuzco, 39-41, 08030 Barcelona
+  // lat: 41.4175, lon: 2.1836
+  const LAT = 41.4175;
+  const LON = 2.1836;
+  const BBOX_OFFSET = 0.06;
+  const bbox = `${LON - BBOX_OFFSET},${LAT - BBOX_OFFSET},${LON + BBOX_OFFSET},${LAT + BBOX_OFFSET}`;
+  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${LAT},${LON}`;
+
   return (
     <section id="cobertura" className="py-28 lg:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
@@ -406,26 +511,114 @@ function Coverage() {
               </li>
             ))}
           </ul>
-        </Reveal>
-        <Reveal delay={120}>
-          <div className="relative aspect-square rounded-2xl overflow-hidden border border-border shadow-elev bg-mist">
-            <iframe
-              title="Cobertura DISET Barcelona"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=1.85,41.25,2.45,41.65&layer=mapnik"
-              className="w-full h-full grayscale-[0.4]"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-navy/10" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-              <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-electric/30 animate-ping" style={{ width: 80, height: 80, left: -40, top: -40 }} />
-                <div className="w-5 h-5 rounded-full bg-electric ring-4 ring-white shadow-glow" />
+          {/* Address & hours */}
+          <div className="mt-10 p-6 rounded-2xl bg-mist border border-border space-y-4">
+            <div className="flex items-start gap-3">
+              <svg className="text-electric mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z" /><circle cx="12" cy="10" r="3" /></svg>
+              <div>
+                <div className="font-extrabold text-navy text-sm">Dirección</div>
+                <div className="text-muted-foreground text-sm">Carrer de Cuzco, 39-41<br />08030 Barcelona</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <svg className="text-electric mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>
+              <div>
+                <div className="font-extrabold text-navy text-sm">Horario de atención</div>
+                <div className="text-muted-foreground text-sm">Lunes a Viernes: 08:00 – 19:00</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <svg className="text-electric mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
+              <div>
+                <div className="font-extrabold text-navy text-sm">Teléfono</div>
+                <a href={PHONE_HREF} className="text-electric font-bold text-sm hover:underline">{PHONE}</a>
               </div>
             </div>
           </div>
         </Reveal>
+        <Reveal delay={120}>
+          <div className="relative aspect-square rounded-2xl overflow-hidden border border-border shadow-elev bg-mist">
+            <iframe
+              title="Ubicación DISET — Carrer de Cuzco 39-41, Barcelona"
+              src={mapSrc}
+              className="w-full h-full grayscale-[0.3]"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-navy/10" />
+          </div>
+        </Reveal>
       </div>
     </section>
+  );
+}
+
+function ContactForm() {
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const nombre = data.get("nombre") as string;
+    const telefono = data.get("telefono") as string;
+    const email = data.get("email") as string;
+    const servicio = data.get("servicio") as string;
+    const mensaje = data.get("mensaje") as string;
+
+    const body = `Nombre: ${nombre}%0ATel%C3%A9fono: ${telefono}%0AEmail: ${email}%0AServicio: ${servicio}%0AMensaje: ${mensaje}`;
+    window.location.href = `mailto:info@disetlimpiezasverticales.com?subject=Solicitud%20de%20Presupuesto%20Gratuito&body=${body}`;
+    setSent(true);
+  };
+
+  return (
+    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 text-left max-w-2xl mx-auto">
+      {sent ? (
+        <div className="text-center py-8">
+          <div className="w-16 h-16 rounded-full bg-electric/20 grid place-items-center mx-auto mb-4">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+          </div>
+          <h3 className="text-2xl font-extrabold text-white mb-2">¡Solicitud enviada!</h3>
+          <p className="text-white/80">Un técnico le contactará en menos de 24 horas.</p>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="nombre" className="block text-white/80 text-sm font-semibold mb-1.5">Nombre *</label>
+              <input id="nombre" name="nombre" required type="text" placeholder="Su nombre" className="w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all" />
+            </div>
+            <div>
+              <label htmlFor="telefono" className="block text-white/80 text-sm font-semibold mb-1.5">Teléfono *</label>
+              <input id="telefono" name="telefono" required type="tel" placeholder="Su teléfono" className="w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all" />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-white/80 text-sm font-semibold mb-1.5">Email</label>
+            <input id="email" name="email" type="email" placeholder="su@email.com" className="w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all" />
+          </div>
+          <div>
+            <label htmlFor="servicio" className="block text-white/80 text-sm font-semibold mb-1.5">Servicio</label>
+            <select id="servicio" name="servicio" className="w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all appearance-none" style={{ colorScheme: "dark" }}>
+              <option value="">Seleccione un servicio…</option>
+              <option value="Limpieza de Cristales">Limpieza de Cristales</option>
+              <option value="Limpieza de Fachadas">Limpieza de Fachadas</option>
+              <option value="Limpieza de Placas Solares">Limpieza de Placas Solares</option>
+              <option value="Instalación de Líneas de Vida">Instalación de Líneas de Vida</option>
+              <option value="Otros trabajos verticales">Otros trabajos verticales</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="mensaje" className="block text-white/80 text-sm font-semibold mb-1.5">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows={3} placeholder="Describa brevemente su proyecto…" className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all resize-none" />
+          </div>
+          <button type="submit" className="w-full h-13 rounded-xl bg-electric text-white font-bold shadow-glow hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 py-3">
+            Solicitar Presupuesto Gratuito
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          </button>
+          <p className="text-white/50 text-xs text-center">Sin compromiso · Respuesta en menos de 24 horas</p>
+        </form>
+      )}
+    </div>
   );
 }
 
@@ -445,16 +638,13 @@ function CTA() {
           <p className="mt-7 text-lg md:text-xl text-white/85 max-w-2xl mx-auto">
             Cuéntenos su proyecto y un técnico le contactará con una propuesta clara, cerrada y sin compromiso.
           </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a href="mailto:info@diset.es" className="inline-flex items-center gap-3 h-14 px-8 rounded-full bg-electric text-white font-bold shadow-glow hover:-translate-y-0.5 transition-all">
-              Solicitar Presupuesto
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-            </a>
-            <a href="tel:+34900000000" className="inline-flex items-center gap-3 h-14 px-8 rounded-full bg-white text-navy font-bold hover:-translate-y-0.5 transition-all">
+          <div className="mt-4 mb-10 flex justify-center">
+            <a href={PHONE_HREF} className="inline-flex items-center gap-3 h-14 px-8 rounded-full bg-white text-navy font-bold hover:-translate-y-0.5 transition-all shadow-soft">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
-              900 000 000
+              Llamar al {PHONE}
             </a>
           </div>
+          <ContactForm />
         </Reveal>
       </div>
     </section>
@@ -467,14 +657,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20">
         <div className="grid md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg bg-[var(--gradient-accent)] grid place-items-center">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2v20" /><path d="M5 8l7-6 7 6" /><circle cx="12" cy="15" r="3" />
-                </svg>
-              </div>
-              <span className="font-extrabold text-xl tracking-tight text-white">DISET</span>
-            </div>
+            <Logo white />
             <p className="mt-5 max-w-md leading-relaxed text-white/60">
               Especialistas en trabajos verticales y limpieza en altura en Barcelona y provincia. +25 años elevando los estándares del sector.
             </p>
@@ -488,17 +671,18 @@ function Footer() {
           <div>
             <h4 className="text-white font-extrabold text-sm uppercase tracking-wider mb-5">Contacto</h4>
             <ul className="space-y-3 text-sm">
-              <li>C/ Industrial, 24<br />08018 Barcelona</li>
-              <li><a href="tel:+34900000000" className="hover:text-electric">900 000 000</a></li>
-              <li><a href="mailto:info@diset.es" className="hover:text-electric">info@diset.es</a></li>
+              <li>Carrer de Cuzco, 39-41<br />08030 Barcelona</li>
+              <li className="text-white/50 text-xs">Lun – Vie · 08:00 – 19:00</li>
+              <li><a href={PHONE_HREF} className="hover:text-electric font-semibold">{PHONE}</a></li>
+              <li><a href="mailto:info@disetlimpiezasverticales.com" className="hover:text-electric">info@disetlimpiezasverticales.com</a></li>
             </ul>
           </div>
         </div>
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-white/50">
-          <div>© {new Date().getFullYear()} DISET. Todos los derechos reservados.</div>
+          <div>© {new Date().getFullYear()} DISET Limpiezas Verticales. Todos los derechos reservados.</div>
           <div className="flex gap-6">
             <a href="#" className="hover:text-electric">Aviso legal</a>
-            <a href="#" className="hover:text-electric">Política de privacidad</a>
+            <a href="#" className="hover:text-electric">Privacidad</a>
             <a href="#" className="hover:text-electric">Cookies</a>
           </div>
         </div>
@@ -514,7 +698,6 @@ function Index() {
       <main>
         <Hero />
         <Stats />
-        <ClientsMarquee />
         <Services />
         <BeforeAfterSection />
         <Benefits />
