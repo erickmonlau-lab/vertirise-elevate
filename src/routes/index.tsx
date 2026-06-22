@@ -57,11 +57,11 @@ const benefits = [
 ];
 
 const process = [
-  { n: "01", t: "Contacto inicial", d: "Atendemos su consulta y recopilamos los datos del inmueble para evaluar el tipo de intervención necesaria.", icon: "M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" },
-  { n: "02", t: "Visita técnica", d: "Nos desplazamos sin coste para inspeccionar in situ los accesos, anclajes y posibles riesgos estructurales.", icon: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" },
-  { n: "03", t: "Propuesta detallada", d: "En menos de 24h entregamos un presupuesto cerrado con planificación temporal y plan de seguridad.", icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" },
-  { n: "04", t: "Ejecución", d: "Despliegue del equipo certificado IRATA ejecutando el trabajo bajo estricta coordinación técnica.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
-  { n: "05", t: "Entrega y garantía", d: "Revisión final conjunta, emisión de certificados y garantía de resultado por escrito.", icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" },
+  { n: "01", t: "Contacto inicial", d: "Recopilamos los datos del inmueble y evaluamos el tipo de intervención necesaria.", icon: "M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" },
+  { n: "02", t: "Visita técnica", d: "Inspeccionamos in situ los accesos, anclajes y posibles riesgos estructurales.", icon: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" },
+  { n: "03", t: "Propuesta", d: "Entregamos presupuesto cerrado con planificación temporal y plan de seguridad.", icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" },
+  { n: "04", t: "Ejecución", d: "Despliegue del equipo IRATA ejecutando el trabajo bajo estricta coordinación.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
+  { n: "05", t: "Entrega", d: "Revisión conjunta, emisión de certificados y garantía de resultado por escrito.", icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" },
 ];
 
 const testimonials = [
@@ -166,17 +166,6 @@ const clientLogos = [
   { name: "Merlin Properties", abbr: "MERLIN" },
 ];
 
-const coverageCities = [
-  { name: "Barcelona", x: "250", y: "260", projects: 1840 },
-  { name: "L'Hospitalet", x: "230", y: "275", projects: 420 },
-  { name: "Badalona", x: "275", y: "245", projects: 310 },
-  { name: "Terrassa", x: "200", y: "180", projects: 280 },
-  { name: "Sabadell", x: "230", y: "190", projects: 260 },
-  { name: "Mataró", x: "320", y: "200", projects: 195 },
-  { name: "Granollers", x: "280", y: "180", projects: 140 },
-  { name: "Vilanova", x: "140", y: "320", projects: 90 },
-];
-
 // — Counter with count-up animation —
 function AnimatedCounter({ to, suffix }: { to: number; suffix: string }) {
   const [count, setCount] = useState(0);
@@ -209,20 +198,20 @@ function AnimatedCounter({ to, suffix }: { to: number; suffix: string }) {
 }
 
 // — Logo —
-function Logo() {
+function Logo({ white }: { white: boolean }) {
   return (
     <div className="flex items-center">
       <img
         src={logoDiset}
         alt="DISET Limpiezas Verticales"
         height={48}
-        className="h-10 md:h-12 w-auto object-contain transition-all duration-300"
+        className={`h-10 md:h-12 w-auto object-contain transition-all duration-300 ${white ? 'brightness-0 invert' : ''}`}
       />
     </div>
   );
 }
 
-// — Nav (White always, Glass on scroll) —
+// — Nav (White initially, Dark Glass on scroll) —
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -244,14 +233,14 @@ function Nav() {
 
   return (
     <>
-      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-xl border-b border-border ${scrolled ? "shadow-soft" : ""}`}>
+      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "bg-navy/95 backdrop-blur-xl border-b border-white/10 shadow-soft" : "bg-white border-b border-border"}`}>
         <div className="max-w-7xl mx-auto px-5 lg:px-10 h-18 md:h-20 flex items-center justify-between gap-4">
           <a href="#top" onClick={() => setMobileOpen(false)}>
-            <Logo />
+            <Logo white={scrolled || mobileOpen} />
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-9 text-sm font-bold text-navy">
+          <nav className={`hidden md:flex items-center gap-9 text-sm font-bold ${scrolled ? "text-white" : "text-navy"}`}>
             {navLinks.map(l => (
               <a key={l.href} href={l.href} className="hover:text-electric transition-colors opacity-90 hover:opacity-100">{l.label}</a>
             ))}
@@ -260,7 +249,7 @@ function Nav() {
           <div className="flex items-center gap-3">
             <a
               href={PHONE_HREF}
-              className="inline-flex items-center gap-2 pl-3.5 pr-4 h-10 md:h-11 rounded-full bg-electric text-white text-sm font-bold shadow-glow hover:shadow-elev hover:-translate-y-0.5 transition-all"
+              className="inline-flex items-center gap-2 pl-3.5 pr-4 h-10 md:h-11 rounded-full bg-electric text-white text-sm font-bold hover:-translate-y-0.5 transition-all shadow-sm"
             >
               <span className="w-6 h-6 rounded-full bg-white/20 grid place-items-center">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
@@ -272,24 +261,24 @@ function Nav() {
             <button
               onClick={() => setMobileOpen(o => !o)}
               aria-label="Abrir menú"
-              className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl gap-1.5 bg-mist border border-border transition-all"
+              className={`md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl gap-1.5 transition-all ${scrolled || mobileOpen ? "bg-white/10" : "bg-mist border border-border"}`}
             >
-              <span className={`block w-5 h-0.5 rounded-full bg-navy transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-              <span className={`block w-5 h-0.5 rounded-full bg-navy transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-              <span className={`block w-5 h-0.5 rounded-full bg-navy transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 ${scrolled || mobileOpen ? "bg-white" : "bg-navy"} ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 ${scrolled || mobileOpen ? "bg-white" : "bg-navy"} ${mobileOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 ${scrolled || mobileOpen ? "bg-white" : "bg-navy"} ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
             </button>
           </div>
         </div>
 
         {/* Mobile menu */}
-        <div className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out ${mobileOpen ? "max-h-80 border-t border-border bg-white" : "max-h-0 bg-white"}`}>
+        <div className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out ${mobileOpen ? "max-h-80 border-t border-white/10 bg-navy" : "max-h-0 bg-navy"}`}>
           <nav className="flex flex-col px-5 py-4 gap-1">
             {navLinks.map(l => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-navy font-bold text-base hover:bg-mist hover:text-electric transition-all"
+                className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-white font-bold text-base hover:bg-white/10 hover:text-electric transition-all"
               >
                 {l.label}
               </a>
@@ -329,7 +318,7 @@ function Hero() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4 animate-[fade-up_1s_0.3s_cubic-bezier(0.22,1,0.36,1)_both]">
-            <a href="#contacto" className="group inline-flex items-center gap-3 h-14 px-7 rounded-full bg-electric text-white font-bold shadow-glow hover:shadow-elev hover:-translate-y-0.5 transition-all">
+            <a href="#contacto" className="group inline-flex items-center gap-3 h-14 px-7 rounded-full bg-electric text-white font-bold hover:shadow-elev hover:-translate-y-0.5 transition-all">
               Solicitar Presupuesto Gratuito
               <span className="w-7 h-7 rounded-full bg-white/20 grid place-items-center group-hover:translate-x-1 transition-transform">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
@@ -702,7 +691,6 @@ function VideoSection() {
 
   return (
     <section className="py-24 lg:py-32 bg-[#080f1d] overflow-hidden industrial-texture relative">
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] rounded-full bg-electric/5 blur-[120px] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <Reveal>
@@ -762,7 +750,7 @@ function VideoSection() {
   );
 }
 
-// — Process (Cards) —
+// — Process (Linear Flow) —
 function Process() {
   return (
     <section id="proceso" className="py-24 lg:py-32 bg-white">
@@ -774,23 +762,26 @@ function Process() {
           </h2>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {process.map((p, i) => (
-            <Reveal key={p.n} delay={i * 80}>
-              <div className="h-full bg-mist rounded-2xl p-8 border border-border shadow-soft hover:shadow-elev hover:border-electric/40 transition-all group flex flex-col relative overflow-hidden">
-                <div className="absolute -top-8 -right-4 text-[120px] font-black text-navy/[0.03] select-none pointer-events-none group-hover:text-electric/[0.05] transition-colors duration-500">
-                  {p.n}
+        <div className="relative">
+          {/* Progress Line */}
+          <div className="hidden lg:block absolute top-[44px] left-6 right-6 h-px bg-border z-0" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-4 relative z-10">
+            {process.map((p, i) => (
+              <Reveal key={p.n} delay={i * 80} className="bg-mist border border-border rounded-xl p-6 hover:border-electric/30 hover:shadow-soft transition-all flex flex-col group">
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="w-10 h-10 rounded-lg bg-white border border-border flex items-center justify-center shrink-0 group-hover:border-electric/50 transition-colors">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-electric">
+                      <path d={p.icon} />
+                    </svg>
+                  </div>
+                  <span className="text-xs font-black tracking-widest text-muted-foreground uppercase">Paso {p.n}</span>
                 </div>
-                <div className="w-14 h-14 rounded-xl bg-white border border-border group-hover:bg-electric group-hover:border-electric transition-colors grid place-items-center mb-6 shadow-sm">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-navy group-hover:text-white transition-colors">
-                    <path d={p.icon} />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-extrabold text-navy mb-3 group-hover:text-electric transition-colors relative z-10">{p.t}</h3>
-                <p className="text-base text-muted-foreground leading-relaxed flex-1 relative z-10">{p.d}</p>
-              </div>
-            </Reveal>
-          ))}
+                <h3 className="text-lg font-extrabold text-navy mb-2">{p.t}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{p.d}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -844,15 +835,13 @@ function Testimonials() {
   );
 }
 
-// — Coverage (Balanced 50/50 & Realistic SVG) —
+// — Coverage (Google Maps) —
 function Coverage() {
-  const [hoveredCity, setHoveredCity] = useState<string | null>(null);
-
   return (
     <section id="cobertura" className="py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         
-        {/* Left column: 50% width, Text & Mini metrics */}
+        {/* Left column: Text & Metrics */}
         <Reveal>
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Cobertura</span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
@@ -882,75 +871,28 @@ function Coverage() {
           </div>
         </Reveal>
 
-        {/* Right column: 50% width, Big Breathing SVG Map */}
+        {/* Right column: Google Maps */}
         <Reveal delay={120}>
-          <div className="relative bg-[#0a1628] rounded-[2rem] overflow-hidden border border-white/10 shadow-elev p-8 lg:p-12 h-full flex flex-col justify-center min-h-[450px]">
-            <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-6 text-center">Provincia de Barcelona</div>
-            
-            <div className="relative flex-1 w-full max-w-[400px] mx-auto">
-              <svg viewBox="0 0 500 500" className="w-full h-full drop-shadow-[0_0_30px_rgba(0,150,255,0.1)]">
-                {/* Realistic-ish Barcelona Province Silhouette */}
-                {/* Coastal outline: Sitges/Vilanova bottom left up to Maresme top right */}
-                <path
-                  d="M100,420 Q140,380 180,360 Q230,330 250,290 Q300,240 380,180 L420,130"
-                  fill="none" stroke="rgba(0,150,255,0.4)" strokeWidth="3" strokeLinecap="round"
-                />
-                
-                {/* Inland boundary */}
-                <path
-                  d="M100,420 C60,350 80,250 140,160 C200,90 280,60 350,80 C400,90 420,110 420,130 L380,180 Q300,240 250,290 Q230,330 180,360 Q140,380 100,420 Z"
-                  fill="rgba(0,150,255,0.06)" stroke="rgba(0,150,255,0.15)" strokeWidth="2" strokeDasharray="6 6"
-                />
-
-                {/* Internal comarca lines */}
-                <path d="M140,160 Q180,240 250,290" fill="none" stroke="rgba(0,150,255,0.1)" strokeWidth="1" />
-                <path d="M250,290 Q290,180 350,80" fill="none" stroke="rgba(0,150,255,0.1)" strokeWidth="1" />
-
-                {/* Cities */}
-                {coverageCities.map((city) => {
-                  const cx = parseFloat(city.x);
-                  const cy = parseFloat(city.y);
-                  const isHovered = hoveredCity === city.name;
-                  return (
-                    <g key={city.name}
-                      onMouseEnter={() => setHoveredCity(city.name)}
-                      onMouseLeave={() => setHoveredCity(null)}
-                      className="cursor-pointer"
-                    >
-                      {/* Mega Pulse ring on hover */}
-                      <circle cx={cx} cy={cy} r={isHovered ? 24 : 10} fill="rgba(0,150,255,0.1)" className="transition-all duration-500 origin-center" />
-                      {/* Constant subtle pulse */}
-                      <circle cx={cx} cy={cy} r="6" fill="none" stroke="rgba(0,150,255,0.5)" strokeWidth="1" className="animate-map-pulse origin-center" style={{ transformOrigin: `${cx}px ${cy}px` }} />
-                      
-                      <circle cx={cx} cy={cy} r={isHovered ? 7 : 4} fill="#0096FF" className="transition-all duration-300 shadow-[0_0_15px_#0096FF]" />
-
-                      {/* Label */}
-                      <text
-                        x={cx}
-                        y={cy - (isHovered ? 20 : 12)}
-                        textAnchor="middle"
-                        fill={isHovered ? "#0096FF" : "rgba(255,255,255,0.6)"}
-                        fontSize={isHovered ? "14" : "11"}
-                        fontWeight="bold"
-                        className="transition-all duration-300 select-none drop-shadow-md"
-                      >
-                        {city.name}
-                      </text>
-                      {isHovered && (
-                        <text x={cx} y={cy - 5} textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10" className="drop-shadow-sm font-semibold">
-                          {city.projects}+ proyectos
-                        </text>
-                      )}
-                    </g>
-                  );
-                })}
-              </svg>
+          <div className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-auto lg:h-[600px] rounded-2xl overflow-hidden shadow-elev border border-border group">
+            <iframe
+              title="Ubicación DISET — Carrer de Cuzco 39-41, Barcelona"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.359223363065!2d2.1814110766324225!3d41.41750007129525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a321200df13b%3A0xc319138ce3ed8966!2sCarrer%20de%20Cuzco%2C%2039%2C%20Sant%20Andreu%2C%2008030%20Barcelona!5e0!3m2!1sen!2ses!4v1700000000000!5m2!1sen!2ses"
+              className="w-full h-full grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            {/* Floating Card */}
+            <div className="absolute bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-80 p-5 rounded-xl bg-white/95 backdrop-blur-md border border-border shadow-soft flex items-center gap-4 transition-transform duration-500 group-hover:-translate-y-2">
+              <div className="w-12 h-12 rounded-full bg-mist border border-border grid place-items-center shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div className="font-bold text-navy text-sm">Cobertura en toda Barcelona y provincia</div>
+                <div className="text-xs text-muted-foreground mt-0.5">Sede: Carrer de Cuzco, 39</div>
+              </div>
             </div>
-            
-            <div className="mt-8 flex items-center justify-center gap-2 text-white/30 text-xs font-semibold">
-              <span className="w-2 h-2 rounded-full bg-electric animate-pulse shadow-[0_0_8px_#0096FF]" />
-              Pasa el cursor sobre una ciudad
-            </div>
+            <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-navy/5 rounded-2xl" />
           </div>
         </Reveal>
       </div>
@@ -958,7 +900,7 @@ function Coverage() {
   );
 }
 
-// — Certifications —
+// — Certifications (High Contrast, Solid Cards) —
 function Certifications() {
   const certs = [
     { name: "IRATA", desc: "Industrial Rope Access Trade Association", detail: "Formación continua en acceso por cuerdas de nivel internacional", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
@@ -975,37 +917,25 @@ function Certifications() {
           <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-white leading-[1.05]">
             Técnicos certificados<br />y máxima seguridad.
           </h2>
-          <p className="mt-5 text-white/50 max-w-xl mx-auto leading-relaxed">
+          <p className="mt-5 text-white/70 max-w-xl mx-auto leading-relaxed">
             Nuestro cliente compra seguridad antes que limpieza. Por eso invertimos en certificaciones y formación continua.
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-          {[
-            { label: "Seguro RC", val: "Cobertura total" },
-            { label: "Cumplimiento PRL", val: "100% normativa" },
-            { label: "Protocolos IRATA", val: "Nivel internacional" },
-            { label: "Formación continua", val: "Actualización anual" },
-          ].map(item => (
-            <div key={item.label} className="p-4 rounded-xl bg-white/[0.04] border border-white/8 text-center">
-              <div className="text-electric font-black text-sm">{item.val}</div>
-              <div className="text-white/40 text-xs mt-1">{item.label}</div>
-            </div>
-          ))}
-        </div>
-
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {certs.map((c, i) => (
-            <Reveal key={c.name} delay={i * 80}>
-              <div className="group p-6 rounded-2xl bg-white/[0.04] border border-white/8 hover:border-electric/40 hover:bg-white/[0.07] hover:-translate-y-1 transition-all duration-400 text-center h-full">
-                <div className="w-14 h-14 rounded-2xl bg-electric/10 border border-electric/20 grid place-items-center mx-auto mb-4 group-hover:bg-electric group-hover:border-electric transition-all duration-300 shadow-[0_0_15px_rgba(0,150,255,0.2)]">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-white transition-colors">
-                    <path d={c.icon} />
-                  </svg>
+            <Reveal key={c.name} delay={i * 80} className="h-full">
+              <div className="p-6 rounded-xl bg-white/[0.06] border border-white/15 hover:border-white/30 hover:bg-white/[0.08] transition-all duration-300 h-full flex flex-col group">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-electric/10 grid place-items-center shrink-0 group-hover:bg-electric/20 transition-colors">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d={c.icon} />
+                    </svg>
+                  </div>
+                  <div className="text-xl font-black text-white">{c.name}</div>
                 </div>
-                <div className="text-lg font-black text-white group-hover:text-electric transition-colors">{c.name}</div>
-                <div className="text-xs text-white/40 mt-1 font-semibold">{c.desc}</div>
-                <div className="text-xs text-white/25 mt-2 leading-relaxed">{c.detail}</div>
+                <div className="text-sm text-white/70 font-semibold mb-2">{c.desc}</div>
+                <div className="text-sm text-white/50 leading-relaxed flex-1">{c.detail}</div>
               </div>
             </Reveal>
           ))}
@@ -1107,7 +1037,7 @@ function CTA() {
       <div className="relative max-w-7xl mx-auto px-5 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start">
           <Reveal>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-electric/15 border border-electric/30 text-xs font-semibold tracking-wider uppercase text-electric shadow-[0_0_15px_rgba(0,150,255,0.2)]">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-electric/15 border border-electric/30 text-xs font-semibold tracking-wider uppercase text-electric">
               <span className="w-2 h-2 rounded-full bg-electric animate-pulse shadow-[0_0_8px_#0096FF]" /> Respuesta en menos de 24h
             </span>
             <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05] break-words">
@@ -1118,8 +1048,8 @@ function CTA() {
             </p>
 
             <div className="mt-10 space-y-4">
-              <a href={PHONE_HREF} className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
-                <div className="w-12 h-12 rounded-xl bg-electric grid place-items-center shrink-0 shadow-glow">
+              <a href={PHONE_HREF} className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group shadow-soft">
+                <div className="w-12 h-12 rounded-xl bg-electric grid place-items-center shrink-0">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
                 </div>
                 <div>
@@ -1130,8 +1060,8 @@ function CTA() {
                 <svg className="ml-auto text-white/30 group-hover:text-electric group-hover:translate-x-1 transition-all" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
 
-              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-5 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/20 hover:bg-[#25D366]/20 hover:border-[#25D366]/40 transition-all group shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
-                <div className="w-12 h-12 rounded-xl bg-[#25D366] grid place-items-center shrink-0 shadow-[0_0_15px_rgba(37,211,102,0.4)]">
+              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-5 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/20 hover:bg-[#25D366]/20 hover:border-[#25D366]/40 transition-all group shadow-soft">
+                <div className="w-12 h-12 rounded-xl bg-[#25D366] grid place-items-center shrink-0">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z"/></svg>
                 </div>
                 <div className="min-w-0 flex-1">
@@ -1147,7 +1077,7 @@ function CTA() {
                 <div className="flex-1 h-px bg-white/10" />
               </div>
 
-              <a href="mailto:info@disetlimpiezasverticales.com" className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+              <a href="mailto:info@disetlimpiezasverticales.com" className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group shadow-soft">
                 <div className="w-12 h-12 rounded-xl bg-white/10 grid place-items-center shrink-0">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </div>
