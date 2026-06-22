@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Reveal } from "@/components/Reveal";
-import { Counter } from "@/components/Counter";
 import { BeforeAfter } from "@/components/BeforeAfter";
 
 import heroImg from "@/assets/hero.webp";
@@ -32,63 +31,124 @@ export const Route = createFileRoute("/")(  {
 
 const PHONE = "936 556 161";
 const PHONE_HREF = "tel:+34936556161";
+const WA_HREF = "https://wa.me/34936556161?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20un%20presupuesto%20gratuito.";
 
 const stats = [
-  { value: 25, suffix: "+", label: "Años de experiencia" },
-  { value: 4500, suffix: "+", label: "Proyectos ejecutados" },
+  { value: 25, suffix: "+", label: "Años liderando trabajos verticales" },
+  { value: 4500, suffix: "+", label: "Proyectos completados" },
   { value: 300, suffix: "+", label: "Comunidades atendidas" },
-  { value: 98, suffix: "%", label: "Satisfacción cliente" },
+  { value: 98, suffix: "%", label: "Clientes satisfechos" },
 ];
 
 const services = [
-  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", img: cristalesImg },
-  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", img: fachadasImg },
-  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", img: solarImg },
-  { title: "Instalación de Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", img: lineasImg },
+  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", img: cristalesImg, icon: "M21 21H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2z" },
+  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", img: fachadasImg, icon: "M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" },
+  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", img: solarImg, icon: "M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4" },
+  { title: "Instalación de Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", img: lineasImg, icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
 ];
 
 const benefits = [
-  { title: "Personal certificado", desc: "Técnicos IRATA y trabajos en altura RD 2177/2004." },
-  { title: "Seguridad homologada", desc: "Equipos EPI certificados y protocolos auditados." },
-  { title: "Rapidez de ejecución", desc: "Movilización en 48h y obras coordinadas al detalle." },
-  { title: "Cobertura Barcelona", desc: "Servicio en toda la ciudad y provincia de Barcelona." },
-  { title: "Garantía de calidad", desc: "Resultado garantizado por escrito en cada proyecto." },
-  { title: "Presupuestos rápidos", desc: "Valoración técnica y oferta en menos de 24 horas." },
+  { title: "Personal certificado", desc: "Técnicos IRATA y trabajos en altura RD 2177/2004.", icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" },
+  { title: "Seguridad homologada", desc: "Equipos EPI certificados y protocolos auditados.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
+  { title: "Rapidez de ejecución", desc: "Movilización en 48h y obras coordinadas al detalle.", icon: "M13 2 3 14h9l-1 8 10-12h-9l1-8Z" },
+  { title: "Cobertura Barcelona", desc: "Servicio en toda la ciudad y provincia de Barcelona.", icon: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" },
+  { title: "Garantía de calidad", desc: "Resultado garantizado por escrito en cada proyecto.", icon: "M20 6 9 17l-5-5" },
+  { title: "Presupuestos rápidos", desc: "Valoración técnica y oferta en menos de 24 horas.", icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8" },
 ];
 
 const process = [
-  { n: "01", t: "Contacto inicial", d: "Atendemos su consulta y recopilamos los datos del inmueble." },
-  { n: "02", t: "Visita técnica", d: "Inspeccionamos in situ y evaluamos accesos y riesgos." },
-  { n: "03", t: "Propuesta detallada", d: "Presupuesto cerrado con planificación y plan de seguridad." },
-  { n: "04", t: "Ejecución", d: "Equipo certificado realiza el trabajo con coordinación total." },
-  { n: "05", t: "Entrega y garantía", d: "Certificación, documentación y garantía por escrito." },
+  { n: "01", t: "Contacto inicial", d: "Atendemos su consulta y recopilamos los datos del inmueble.", icon: "M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" },
+  { n: "02", t: "Visita técnica", d: "Inspeccionamos in situ y evaluamos accesos y riesgos.", icon: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" },
+  { n: "03", t: "Propuesta detallada", d: "Presupuesto cerrado con planificación y plan de seguridad.", icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" },
+  { n: "04", t: "Ejecución", d: "Equipo certificado realiza el trabajo con coordinación total.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
+  { n: "05", t: "Entrega y garantía", d: "Certificación, documentación y garantía por escrito.", icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" },
 ];
 
 const testimonials = [
-  { name: "Marta Vidal", role: "Administradora de Fincas, Eixample", quote: "DISET nos resolvió la limpieza de fachada del edificio en tiempo récord y con cero incidencias. Profesionalidad de primer nivel." },
-  { name: "Jordi Soler", role: "Facility Manager, Grupo Industrial", quote: "Llevamos 6 años trabajando con ellos en mantenimiento de cubiertas y líneas de vida. Imprescindibles." },
-  { name: "Anna Roig", role: "Directora de Operaciones, Hotel BCN", quote: "Cristales impecables cada trimestre, personal silencioso y sin afectar a la operativa del hotel. Recomendados al 100%." },
+  {
+    name: "Marta Vidal",
+    role: "Administradora de Fincas",
+    location: "Eixample, Barcelona",
+    project: "Limpieza de fachada · Comunidad de 64 viviendas",
+    quote: "DISET nos resolvió la limpieza de fachada del edificio en tiempo récord y con cero incidencias. Profesionalidad de primer nivel.",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face",
+    initials: "MV",
+  },
+  {
+    name: "Jordi Soler",
+    role: "Facility Manager",
+    location: "Grupo Industrial, Sant Andreu",
+    project: "Mantenimiento cubiertas · Líneas de vida",
+    quote: "Llevamos 6 años trabajando con ellos en mantenimiento de cubiertas y líneas de vida. Imprescindibles.",
+    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face",
+    initials: "JS",
+  },
+  {
+    name: "Anna Roig",
+    role: "Directora de Operaciones",
+    location: "Hotel BCN, Eixample",
+    project: "Limpieza de cristales · Mantenimiento trimestral",
+    quote: "Cristales impecables cada trimestre, personal silencioso y sin afectar a la operativa del hotel. Recomendados al 100%.",
+    avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop&crop=face",
+    initials: "AR",
+  },
+];
+
+const successCases = [
+  {
+    title: "Hotel Miramar Barcelona",
+    type: "Limpieza de Fachada",
+    location: "Barceloneta, Barcelona",
+    duration: "5 días",
+    result: "3.200 m² recuperados",
+    problem: "Fachada histórica con acumulación de depósitos calcáreos y residuos orgánicos visibles desde el paseo marítimo.",
+    solution: "Intervención con equipo de cuerdas y hidrolimpieza de presión controlada para preservar el revestimiento original.",
+    resultDesc: "Fachada completamente restaurada sin interrumpir la actividad del hotel. Cero quejas de huéspedes.",
+    img: fachadasImg,
+    featured: true,
+  },
+  {
+    title: "Comunidad Sant Gervasi",
+    type: "Limpieza de Cristales",
+    location: "Sant Gervasi, Barcelona",
+    duration: "2 días",
+    result: "280 m² de cristal",
+    problem: "Cristalería de lujo con residuos de obras y cal en 18 plantas de altura.",
+    solution: "Acceso por cuerda con sistema de limpieza en seco de precisión para acabado sin marcas.",
+    resultDesc: "Acabado de nivel premium sin una sola marca. Propietarios completamente satisfechos.",
+    img: cristalesImg,
+    featured: false,
+  },
+  {
+    title: "Nave Industrial Zona Franca",
+    type: "Placas Solares",
+    location: "Zona Franca, Barcelona",
+    duration: "1 día",
+    result: "+28% eficiencia recuperada",
+    problem: "420 paneles solares sin limpiar durante 14 meses con pérdida de rendimiento significativa.",
+    solution: "Limpieza con agua osmotizada y cepillado suave para no dañar el recubrimiento fotovoltaico.",
+    resultDesc: "Recuperación del 28% de eficiencia energética documentada. ROI para el cliente en 3 semanas.",
+    img: solarImg,
+    featured: false,
+  },
+  {
+    title: "Torre Corporativa Diagonal",
+    type: "Líneas de Vida",
+    location: "Diagonal, Barcelona",
+    duration: "3 días",
+    result: "Sistema EN 795 certificado",
+    problem: "Edificio de 22 plantas sin sistema anticaídas para futuras intervenciones de mantenimiento.",
+    solution: "Instalación de líneas de vida perimetral homologada con puntos de anclaje estructural y certificación.",
+    resultDesc: "Sistema completamente operativo y certificado, habilitando el mantenimiento futuro de forma segura.",
+    img: lineasImg,
+    featured: false,
+  },
 ];
 
 const beforeAfterCases = [
-  {
-    label: "Cristales",
-    before: beforeCristalesImg,
-    after: afterCristalesImg,
-    desc: "Ventanales corporativos",
-  },
-  {
-    label: "Fachadas",
-    before: beforeFachadaImg,
-    after: afterFachadaImg,
-    desc: "Fachada de piedra",
-  },
-  {
-    label: "Placas Solares",
-    before: beforeSolaresImg,
-    after: afterSolaresImg,
-    desc: "Instalación fotovoltaica",
-  },
+  { label: "Cristales", before: beforeCristalesImg, after: afterCristalesImg, desc: "Ventanales corporativos" },
+  { label: "Fachadas", before: beforeFachadaImg, after: afterFachadaImg, desc: "Fachada de piedra" },
+  { label: "Placas Solares", before: beforeSolaresImg, after: afterSolaresImg, desc: "Instalación fotovoltaica" },
 ];
 
 const heroAvatars = [
@@ -98,19 +158,72 @@ const heroAvatars = [
   "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face",
 ];
 
+const clientLogos = [
+  { name: "Hilton Hotels", abbr: "HILTON" },
+  { name: "CBRE Group", abbr: "CBRE" },
+  { name: "Savills España", abbr: "SAVILLS" },
+  { name: "JLL España", abbr: "JLL" },
+  { name: "Cushman & Wakefield", abbr: "C&W" },
+  { name: "Colliers International", abbr: "COLLIERS" },
+  { name: "Knight Frank", abbr: "KF" },
+  { name: "Merlin Properties", abbr: "MERLIN" },
+];
+
+const coverageCities = [
+  { name: "Barcelona", x: "52%", y: "48%", projects: 1840 },
+  { name: "L'Hospitalet", x: "45%", y: "56%", projects: 420 },
+  { name: "Badalona", x: "60%", y: "38%", projects: 310 },
+  { name: "Terrassa", x: "28%", y: "32%", projects: 280 },
+  { name: "Sabadell", x: "36%", y: "24%", projects: 260 },
+  { name: "Mataró", x: "74%", y: "30%", projects: 195 },
+];
+
+// — Counter with count-up animation —
+function AnimatedCounter({ to, suffix }: { to: number; suffix: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const animated = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !animated.current) {
+        animated.current = true;
+        const duration = 1600;
+        const start = performance.now();
+        const tick = (now: number) => {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          setCount(Math.floor(eased * to));
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
+    }, { threshold: 0.3 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [to]);
+
+  return <span ref={ref}>{count.toLocaleString("es-ES")}{suffix}</span>;
+}
+
+// — Logo —
 function Logo({ white = false }: { white?: boolean }) {
   return (
     <div className="flex items-center">
       <img
         src={logoDiset}
         alt="DISET Limpiezas Verticales"
-        height={44}
-        className={`h-11 w-auto object-contain transition-all duration-300 ${white ? "brightness-0 invert" : ""}`}
+        height={48}
+        className={`h-12 w-auto object-contain transition-all duration-300 ${white ? "brightness-0 invert" : ""}`}
       />
     </div>
   );
 }
 
+// — Nav —
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -130,23 +243,25 @@ function Nav() {
     { href: "#contacto", label: "Contacto" },
   ];
 
+  const scrolledStyle = "bg-navy/95 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_32px_-8px_rgba(0,0,0,0.4)]";
+  const transparentStyle = "bg-transparent";
+
   return (
     <>
-      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled || mobileOpen ? "bg-white/95 backdrop-blur-xl border-b border-border shadow-soft" : "bg-transparent"}`}>
+      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled || mobileOpen ? scrolledStyle : transparentStyle}`}>
         <div className="max-w-7xl mx-auto px-5 lg:px-10 h-18 md:h-20 flex items-center justify-between gap-4">
           <a href="#top" onClick={() => setMobileOpen(false)}>
-            <Logo white={!scrolled && !mobileOpen} />
+            <Logo white={!scrolled || mobileOpen ? true : false} />
           </a>
 
           {/* Desktop nav */}
-          <nav className={`hidden md:flex items-center gap-9 text-sm font-semibold ${scrolled ? "text-ink" : "text-white"}`}>
+          <nav className="hidden md:flex items-center gap-9 text-sm font-semibold text-white">
             {navLinks.map(l => (
-              <a key={l.href} href={l.href} className="hover:text-electric transition-colors">{l.label}</a>
+              <a key={l.href} href={l.href} className="hover:text-electric transition-colors opacity-80 hover:opacity-100">{l.label}</a>
             ))}
           </nav>
 
           <div className="flex items-center gap-3">
-            {/* CTA */}
             <a
               href={PHONE_HREF}
               className="inline-flex items-center gap-2 pl-3.5 pr-4 h-10 md:h-11 rounded-full bg-electric text-white text-sm font-bold shadow-glow hover:shadow-elev hover:-translate-y-0.5 transition-all"
@@ -158,28 +273,27 @@ function Nav() {
               <span className="sm:hidden">Llamar</span>
             </a>
 
-            {/* Hamburger — mobile only */}
             <button
               onClick={() => setMobileOpen(o => !o)}
               aria-label="Abrir menú"
-              className={`md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl gap-1.5 transition-all ${scrolled || mobileOpen ? "bg-mist" : "bg-white/15 backdrop-blur-sm"}`}
+              className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl gap-1.5 bg-white/15 backdrop-blur-sm transition-all"
             >
-              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 ${scrolled || mobileOpen ? "bg-navy" : "bg-white"} ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 ${scrolled || mobileOpen ? "bg-navy" : "bg-white"} ${mobileOpen ? "opacity-0" : ""}`} />
-              <span className={`block w-5 h-0.5 rounded-full transition-all duration-300 ${scrolled || mobileOpen ? "bg-navy" : "bg-white"} ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full bg-white transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full bg-white transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-5 h-0.5 rounded-full bg-white transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
             </button>
           </div>
         </div>
 
-        {/* Mobile menu dropdown */}
-        <div className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out ${mobileOpen ? "max-h-80 border-t border-border shadow-soft" : "max-h-0"}`}>
-          <nav className="flex flex-col bg-white px-5 py-4 gap-1">
+        {/* Mobile menu */}
+        <div className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out ${mobileOpen ? "max-h-80 border-t border-white/10" : "max-h-0"}`}>
+          <nav className="flex flex-col bg-navy px-5 py-4 gap-1">
             {navLinks.map(l => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-navy font-semibold text-base hover:bg-mist hover:text-electric transition-all"
+                className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-white/80 font-semibold text-base hover:bg-white/10 hover:text-electric transition-all"
               >
                 {l.label}
               </a>
@@ -191,6 +305,7 @@ function Nav() {
   );
 }
 
+// — Hero —
 function Hero() {
   return (
     <section id="top" className="relative min-h-[100svh] flex items-center overflow-hidden">
@@ -209,7 +324,7 @@ function Hero() {
         <div className="max-w-3xl text-white">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-wider uppercase animate-[fade-in_0.8s_ease-out]">
             <span className="w-2 h-2 rounded-full bg-electric animate-pulse" />
-            Trabajos verticales · Barcelona
+            25+ años de experiencia · Barcelona
           </div>
           <h1 className="mt-7 text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] text-white animate-[fade-up_1s_cubic-bezier(0.22,1,0.36,1)_both]">
             Especialistas en <span className="bg-gradient-to-r from-white to-electric bg-clip-text text-transparent">trabajos verticales</span> y limpieza en altura en Barcelona
@@ -220,7 +335,7 @@ function Hero() {
 
           {/* Trust badges */}
           <div className="mt-6 flex flex-wrap gap-3 animate-[fade-up_1s_0.25s_cubic-bezier(0.22,1,0.36,1)_both]">
-            {["Presupuesto gratuito", "Técnicos certificados", "Cobertura Barcelona y provincia"].map((badge) => (
+            {["Presupuesto gratuito", "Técnicos certificados IRATA", "Cobertura Barcelona y provincia"].map((badge) => (
               <div key={badge} className="inline-flex items-center gap-1.5 text-sm text-white/90 font-medium">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20 6 9 17l-5-5" />
@@ -257,6 +372,11 @@ function Hero() {
               ))}
             </div>
             <div>
+              <div className="flex gap-0.5 mb-1">
+                {[...Array(5)].map((_, k) => (
+                  <svg key={k} width="14" height="14" viewBox="0 0 24 24" fill="#0096FF"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>
+                ))}
+              </div>
               <div className="text-white font-bold">+4.500 proyectos</div>
               <div>completados con éxito</div>
             </div>
@@ -271,16 +391,45 @@ function Hero() {
   );
 }
 
+// — Trust Bar (15) —
+function TrustBar() {
+  const items = [
+    { icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z", text: "Técnicos certificados IRATA" },
+    { icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z", text: "25+ años de experiencia" },
+    { icon: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75", text: "+300 comunidades atendidas" },
+    { icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6", text: "Presupuesto en 24h" },
+  ];
+  return (
+    <div className="bg-navy border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-4">
+        <div className="flex flex-wrap justify-center md:justify-between items-center gap-4 md:gap-0">
+          {items.map((item, i) => (
+            <div key={i} className="flex items-center gap-2 text-white/80 text-xs sm:text-sm font-semibold">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d={item.icon} />
+              </svg>
+              <span>{item.text}</span>
+              {i < items.length - 1 && <span className="hidden md:block w-px h-4 bg-white/20 ml-4" />}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// — Stats (premium dark with count-up) —
 function Stats() {
   return (
-    <section className="bg-white border-y border-border">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 grid grid-cols-2 md:grid-cols-4 gap-10">
+    <section className="bg-[#0a1628] border-b border-white/5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 grid grid-cols-2 md:grid-cols-4">
         {stats.map((s, i) => (
-          <Reveal key={s.label} delay={i * 80} className="text-center md:text-left">
-            <div className="text-5xl md:text-6xl font-extrabold text-navy tracking-tight">
-              <Counter to={s.value} suffix={s.suffix} />
+          <Reveal key={s.label} delay={i * 80} className={`text-center px-6 py-4 ${i < stats.length - 1 ? "md:border-r border-white/10" : ""}`}>
+            <div className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
+              <AnimatedCounter to={s.value} suffix={s.suffix} />
             </div>
-            <div className="mt-2 text-sm font-semibold text-muted-foreground uppercase tracking-wider">{s.label}</div>
+            <div className="mt-2 text-xs sm:text-sm font-semibold text-white/50 uppercase tracking-wider leading-snug max-w-[140px] mx-auto">{s.label}</div>
+            <div className="mt-3 w-8 h-0.5 bg-electric mx-auto rounded-full" />
           </Reveal>
         ))}
       </div>
@@ -288,9 +437,35 @@ function Stats() {
   );
 }
 
+// — Client Logos (new) —
+function ClientLogos() {
+  const doubled = [...clientLogos, ...clientLogos];
+  return (
+    <section className="bg-[#0a1628] py-10 border-b border-white/5 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 mb-6">
+        <p className="text-center text-white/30 text-xs font-bold tracking-[0.25em] uppercase">
+          Empresas, hoteles y comunidades que confían en DISET
+        </p>
+      </div>
+      <div className="relative">
+        <div className="flex animate-marquee-slow">
+          {doubled.map((logo, i) => (
+            <div key={i} className="shrink-0 mx-8 flex items-center justify-center">
+              <span className="text-white/20 font-black text-lg tracking-widest hover:text-white/40 transition-colors duration-500 cursor-default select-none whitespace-nowrap">
+                {logo.abbr}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// — Services with premium hover —
 function Services() {
   return (
-    <section id="servicios" className="py-28 lg:py-36 bg-white">
+    <section id="servicios" className="py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
           <Reveal className="max-w-2xl">
@@ -309,16 +484,29 @@ function Services() {
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 100}>
-              <article className="group relative overflow-hidden rounded-2xl bg-mist border border-border hover:border-electric/40 hover:shadow-elev transition-all duration-500">
-                <div className="aspect-[16/10] overflow-hidden">
+              <article className="group relative overflow-hidden rounded-2xl bg-mist border border-border hover:border-electric/40 hover:shadow-elev hover:-translate-y-1 transition-all duration-500 cursor-pointer">
+                <div className="aspect-[16/10] overflow-hidden relative">
                   <img src={s.img} alt={s.title} loading="lazy" width={1024} height={640} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out" />
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/60 transition-all duration-500" />
+                  {/* Floating icon on hover */}
+                  <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                    <div className="w-16 h-16 rounded-2xl bg-electric/90 backdrop-blur-sm grid place-items-center shadow-glow">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d={s.icon} />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
                 <div className="p-8">
-                  <h3 className="text-3xl font-extrabold text-navy">{s.title}</h3>
+                  <h3 className="text-2xl font-extrabold text-navy group-hover:text-electric transition-colors duration-300">{s.title}</h3>
                   <p className="mt-4 text-base text-muted-foreground leading-relaxed">{s.desc}</p>
-                  <div className="mt-7 inline-flex items-center gap-2 text-electric font-bold text-base group-hover:gap-3 transition-all">
-                    Más información
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                  {/* CTA slides up on hover */}
+                  <div className="mt-7 overflow-hidden h-7">
+                    <div className="translate-y-0 group-hover:-translate-y-0 transition-transform duration-300 inline-flex items-center gap-2 text-electric font-bold text-base group-hover:gap-3">
+                      Más información
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                    </div>
                   </div>
                 </div>
               </article>
@@ -330,11 +518,11 @@ function Services() {
   );
 }
 
+// — Before/After —
 function BeforeAfterSection() {
   const [activeCase, setActiveCase] = useState(0);
-
   return (
-    <section id="proyectos" className="py-28 lg:py-36 bg-mist">
+    <section id="proyectos" className="py-24 lg:py-32 bg-mist">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-12">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Antes / Después</span>
@@ -346,70 +534,42 @@ function BeforeAfterSection() {
           </p>
         </Reveal>
 
-        {/* Case selector tabs — mobile horizontal scroll, desktop grid */}
         <Reveal delay={80}>
-          {/* Mobile: horizontal scroll row */}
+          {/* Mobile */}
           <div className="flex md:hidden gap-3 mb-6 overflow-x-auto pb-2 scrollbar-none -mx-2 px-2">
             {beforeAfterCases.map((c, i) => (
-              <button
-                key={c.label}
-                onClick={() => setActiveCase(i)}
-                className={`relative shrink-0 w-28 overflow-hidden rounded-xl border-2 transition-all duration-300 text-left group ${
-                  activeCase === i
-                    ? "border-electric shadow-glow scale-[1.02]"
-                    : "border-border hover:border-electric/40"
-                }`}
-              >
+              <button key={c.label} onClick={() => setActiveCase(i)} className={`relative shrink-0 w-28 overflow-hidden rounded-xl border-2 transition-all duration-300 text-left group ${activeCase === i ? "border-electric shadow-glow scale-[1.02]" : "border-border hover:border-electric/40"}`}>
                 <div className="aspect-[3/4] overflow-hidden">
-                  <img src={c.after} alt={c.label} className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${ activeCase === i ? "brightness-100" : "brightness-75" }`} />
+                  <img src={c.after} alt={c.label} className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${activeCase === i ? "brightness-100" : "brightness-75"}`} />
                 </div>
                 <div className="absolute inset-0 flex flex-col justify-end p-2 bg-gradient-to-t from-navy/90 via-navy/30 to-transparent">
                   <div className="text-white font-extrabold text-xs leading-tight">{c.label}</div>
                   <div className="text-white/70 text-[10px] mt-0.5 leading-tight">{c.desc}</div>
                 </div>
-                {activeCase === i && (
-                  <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-electric grid place-items-center">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M20 6 9 17l-5-5"/></svg>
-                  </div>
-                )}
+                {activeCase === i && <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-electric grid place-items-center"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M20 6 9 17l-5-5"/></svg></div>}
               </button>
             ))}
           </div>
 
-          {/* Desktop: 3-col grid */}
+          {/* Desktop */}
           <div className="hidden md:grid grid-cols-3 gap-4 mb-8">
             {beforeAfterCases.map((c, i) => (
-              <button
-                key={c.label}
-                onClick={() => setActiveCase(i)}
-                className={`relative overflow-hidden rounded-xl border-2 transition-all duration-300 text-left group ${
-                  activeCase === i
-                    ? "border-electric shadow-glow scale-[1.02]"
-                    : "border-border hover:border-electric/40 hover:shadow-soft"
-                }`}
-              >
+              <button key={c.label} onClick={() => setActiveCase(i)} className={`relative overflow-hidden rounded-xl border-2 transition-all duration-300 text-left group ${activeCase === i ? "border-electric shadow-glow scale-[1.02]" : "border-border hover:border-electric/40 hover:shadow-soft"}`}>
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img src={c.after} alt={c.label} className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${ activeCase === i ? "brightness-100" : "brightness-75" }`} />
+                  <img src={c.after} alt={c.label} className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${activeCase === i ? "brightness-100" : "brightness-75"}`} />
                 </div>
                 <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent">
                   <div className={`text-base font-extrabold ${activeCase === i ? "text-white" : "text-white/90"}`}>{c.label}</div>
                   <div className="text-sm text-white/70 mt-0.5">{c.desc}</div>
                 </div>
-                {activeCase === i && (
-                  <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-electric grid place-items-center">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M20 6 9 17l-5-5"/></svg>
-                  </div>
-                )}
+                {activeCase === i && <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-electric grid place-items-center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M20 6 9 17l-5-5"/></svg></div>}
               </button>
             ))}
           </div>
         </Reveal>
 
         <Reveal delay={120}>
-          <BeforeAfter
-            before={beforeAfterCases[activeCase].before}
-            after={beforeAfterCases[activeCase].after}
-          />
+          <BeforeAfter before={beforeAfterCases[activeCase].before} after={beforeAfterCases[activeCase].after} />
           <p className="mt-6 text-sm text-muted-foreground text-center font-semibold">
             Arrastre el control deslizante para comparar · {beforeAfterCases[activeCase].label}
           </p>
@@ -419,34 +579,138 @@ function BeforeAfterSection() {
   );
 }
 
-function Benefits() {
-  const icons = [
-    "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
-    "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z",
-    "M13 2 3 14h9l-1 8 10-12h-9l1-8Z",
-    "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
-    "M20 6 9 17l-5-5",
-    "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8",
-  ];
+// — Success Cases (new) —
+function SuccessCases() {
+  const [featured, ...rest] = successCases;
   return (
-    <section className="py-28 lg:py-36 bg-white">
+    <section className="py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <Reveal className="max-w-2xl mb-16">
+        <Reveal className="max-w-2xl mb-14">
+          <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Casos reales</span>
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
+            Proyectos ejecutados<br />con resultados reales.
+          </h2>
+          <p className="mt-5 text-muted-foreground leading-relaxed max-w-lg">
+            Más de 4.500 intervenciones técnicas completadas. Cada proyecto, una solución a medida.
+          </p>
+        </Reveal>
+
+        {/* Featured case — 100% width */}
+        <Reveal>
+          <article className="group relative rounded-2xl overflow-hidden border border-border hover:border-electric/40 hover:shadow-elev transition-all duration-500 mb-6 md:mb-8">
+            <div className="grid md:grid-cols-2">
+              <div className="aspect-[4/3] md:aspect-auto overflow-hidden relative">
+                <img src={featured.img} alt={featured.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]" />
+                <div className="absolute top-4 left-4 flex gap-2">
+                  <span className="px-3 py-1 rounded-full bg-electric text-white text-xs font-bold">{featured.type}</span>
+                  <span className="px-3 py-1 rounded-full bg-navy/80 text-white text-xs font-semibold backdrop-blur-sm">{featured.location}</span>
+                </div>
+              </div>
+              <div className="p-8 md:p-10 flex flex-col justify-center">
+                <div className="inline-flex items-center gap-2 text-electric text-xs font-bold tracking-widest uppercase mb-4">
+                  <span className="w-6 h-px bg-electric" />
+                  Caso Destacado
+                </div>
+                <h3 className="text-2xl md:text-3xl font-extrabold text-navy mb-2">{featured.title}</h3>
+                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-6">
+                  <span className="flex items-center gap-1.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>{featured.duration}</span>
+                  <span className="flex items-center gap-1.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>{featured.result}</span>
+                </div>
+                <div className="space-y-4">
+                  {[
+                    { label: "Problema", text: featured.problem, color: "bg-red-50 border-red-100" },
+                    { label: "Solución", text: featured.solution, color: "bg-blue-50 border-blue-100" },
+                    { label: "Resultado", text: featured.resultDesc, color: "bg-green-50 border-green-100" },
+                  ].map(item => (
+                    <div key={item.label} className={`p-4 rounded-xl border ${item.color}`}>
+                      <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">{item.label}</div>
+                      <p className="text-sm text-ink leading-relaxed">{item.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </article>
+        </Reveal>
+
+        {/* Grid of 3 */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {rest.map((c, i) => (
+            <Reveal key={c.title} delay={i * 100}>
+              <article className="group rounded-2xl border border-border hover:border-electric/40 hover:shadow-elev hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+                <div className="aspect-[16/10] overflow-hidden relative">
+                  <img src={c.img} alt={c.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]" />
+                  <div className="absolute top-3 left-3 flex gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full bg-electric text-white text-[10px] font-bold">{c.type}</span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-extrabold text-navy text-lg mb-1 group-hover:text-electric transition-colors">{c.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{c.location}</p>
+                  <div className="flex gap-3 text-xs font-semibold text-navy mb-4">
+                    <span className="flex items-center gap-1"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>{c.duration}</span>
+                    <span className="text-electric">{c.result}</span>
+                  </div>
+                  <div className="space-y-2 border-t border-border pt-4">
+                    <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Resultado</div>
+                    <p className="text-xs text-ink leading-relaxed">{c.resultDesc}</p>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// — Mid CTA (new) —
+function MidCTA() {
+  return (
+    <section className="py-14 bg-[#0a1628] border-y border-white/5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <div className="text-white/50 text-xs font-bold uppercase tracking-widest mb-1">¿Necesitas una intervención en altura?</div>
+          <div className="text-white text-xl md:text-2xl font-extrabold">Solicita una visita técnica gratuita.</div>
+          <div className="text-white/50 text-sm mt-1">Sin compromiso · Respuesta garantizada en menos de 24h</div>
+        </div>
+        <div className="flex gap-3 shrink-0">
+          <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[#25D366] text-white font-bold hover:-translate-y-0.5 transition-all shadow-glow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z"/></svg>
+            WhatsApp
+          </a>
+          <a href="#contacto" className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-electric text-white font-bold hover:-translate-y-0.5 transition-all shadow-glow">
+            Solicitar visita
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// — Benefits (premium cards) —
+function Benefits() {
+  return (
+    <section className="py-24 lg:py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <Reveal className="max-w-2xl mb-14">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Por qué DISET</span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
             La referencia técnica<br />en trabajos en altura.
           </h2>
         </Reveal>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden border border-border">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {benefits.map((b, i) => (
-            <Reveal key={b.title} delay={i * 60} className="bg-white">
-              <div className="p-10 h-full hover:bg-mist transition-colors group">
-                <div className="w-14 h-14 rounded-xl bg-navy/5 text-navy grid place-items-center group-hover:bg-electric group-hover:text-white transition-all">
+            <Reveal key={b.title} delay={i * 60}>
+              <div className="group p-8 rounded-2xl bg-mist border border-border hover:border-electric hover:shadow-elev hover:-translate-y-1 transition-all duration-400 cursor-default">
+                <div className="w-14 h-14 rounded-xl bg-navy/5 text-navy grid place-items-center group-hover:bg-electric group-hover:text-white group-hover:scale-110 transition-all duration-300">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={icons[i]} />
+                    <path d={b.icon} />
                   </svg>
                 </div>
-                <h3 className="mt-6 text-xl font-extrabold text-navy">{b.title}</h3>
+                <h3 className="mt-6 text-xl font-extrabold text-navy group-hover:text-electric transition-colors duration-300">{b.title}</h3>
                 <p className="mt-3 text-muted-foreground leading-relaxed">{b.desc}</p>
               </div>
             </Reveal>
@@ -457,43 +721,45 @@ function Benefits() {
   );
 }
 
+// — Video Section (industrial, no particles) —
 function VideoSection() {
   const [playing, setPlaying] = useState(false);
   const VIDEO_ID = "aBf0OXTJgkA";
 
   return (
-    <section className="py-28 lg:py-36 bg-ink overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section className="py-24 lg:py-32 bg-[#080f1d] overflow-hidden industrial-texture relative">
+      {/* Subtle ambient light */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] rounded-full bg-electric/5 blur-[120px] pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text column */}
           <Reveal>
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">DISET en acción</span>
             <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white">
-              Profesionales que trabajan donde otros no llegan.
+              25 años resolviendo trabajos donde otros no pueden intervenir.
             </h2>
-            <p className="mt-6 text-white/70 leading-relaxed text-lg">
-              Nuestro equipo de técnicos certificados en trabajos verticales opera con los más altos estándares de seguridad en toda la provincia de Barcelona.
+            <p className="mt-6 text-white/60 leading-relaxed text-lg">
+              Nuestro equipo de técnicos certificados opera con los más altos estándares de seguridad en toda la provincia de Barcelona. Sin subcontratas. Sin excusas.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-4">
               {[
-                { n: "+25", l: "Años de experiencia" },
+                { n: "25+", l: "Años de experiencia" },
                 { n: "+4.500", l: "Proyectos completados" },
                 { n: "IRATA", l: "Técnicos certificados" },
                 { n: "24h", l: "Respuesta garantizada" },
               ].map((s) => (
-                <div key={s.l} className="bg-white/5 border border-white/10 rounded-xl p-4">
+                <div key={s.l} className="bg-white/[0.04] border border-white/8 rounded-xl p-4 hover:border-electric/30 transition-colors">
                   <div className="text-2xl font-extrabold text-electric">{s.n}</div>
-                  <div className="text-sm text-white/60 mt-1">{s.l}</div>
+                  <div className="text-sm text-white/50 mt-1">{s.l}</div>
                 </div>
               ))}
             </div>
           </Reveal>
 
-          {/* Vertical video column */}
+          {/* Video column */}
           <Reveal delay={120}>
             <div className="flex justify-center">
-              {/* Container sized for a 9:16 vertical video, max height constrained */}
-              <div className="relative w-full max-w-[320px] lg:max-w-[360px] rounded-2xl overflow-hidden shadow-elev" style={{ aspectRatio: '9/16' }}>
+              <div className="relative w-full max-w-[320px] lg:max-w-[360px] rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(0,150,255,0.15)]" style={{ aspectRatio: '9/16' }}>
                 {playing ? (
                   <iframe
                     className="absolute inset-0 w-full h-full"
@@ -503,22 +769,12 @@ function VideoSection() {
                     allowFullScreen
                   />
                 ) : (
-                  <button
-                    onClick={() => setPlaying(true)}
-                    className="absolute inset-0 w-full h-full group cursor-pointer"
-                    aria-label="Reproducir vídeo DISET en acción"
-                  >
-                    <img
-                      src={`https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`}
-                      alt="DISET técnicos en trabajos verticales"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]"
-                    />
+                  <button onClick={() => setPlaying(true)} className="absolute inset-0 w-full h-full group cursor-pointer" aria-label="Reproducir vídeo DISET en acción">
+                    <img src={`https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`} alt="DISET técnicos en trabajos verticales" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]" />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
                     <div className="absolute inset-0 grid place-items-center">
-                      <div className="w-20 h-20 rounded-full bg-electric grid place-items-center shadow-glow group-hover:scale-110 transition-transform">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="1" strokeLinejoin="round">
-                          <polygon points="6 4 20 12 6 20 6 4" />
-                        </svg>
+                      <div className="w-20 h-20 rounded-full bg-electric grid place-items-center shadow-glow group-hover:scale-110 transition-transform animate-pulse-glow">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="1" strokeLinejoin="round"><polygon points="6 4 20 12 6 20 6 4" /></svg>
                       </div>
                     </div>
                     <div className="absolute bottom-4 left-0 right-0 text-center">
@@ -535,27 +791,81 @@ function VideoSection() {
   );
 }
 
+// — Process (horizontal timeline desktop / vertical mobile) —
 function Process() {
+  const lineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = lineRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        el.style.width = "100%";
+        obs.disconnect();
+      }
+    }, { threshold: 0.1 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <section id="proceso" className="py-28 lg:py-36 bg-white">
+    <section id="proceso" className="py-24 lg:py-32 bg-mist">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <Reveal className="max-w-2xl mb-20">
+        <Reveal className="max-w-2xl mb-16">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Proceso</span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
             Un método claro,<br />de principio a fin.
           </h2>
         </Reveal>
-        <div className="relative">
-          <div className="hidden lg:block absolute top-10 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
+
+        {/* Desktop: Horizontal timeline */}
+        <div className="hidden lg:block relative">
+          {/* Progress line */}
+          <div className="absolute top-8 left-0 right-0 h-px bg-border">
+            <div
+              ref={lineRef}
+              className="h-full bg-gradient-to-r from-electric/60 to-electric"
+              style={{ width: "0%", transition: "width 1.5s cubic-bezier(0.22,1,0.36,1) 0.3s" }}
+            />
+          </div>
+          <div className="grid grid-cols-5 gap-6">
             {process.map((p, i) => (
-              <Reveal key={p.n} delay={i * 100}>
-                <div className="relative pb-2">
-                  <div className="w-20 h-20 rounded-2xl bg-mist border border-border grid place-items-center text-electric font-extrabold text-2xl relative z-10">
-                    {p.n}
+              <Reveal key={p.n} delay={i * 120}>
+                <div className="relative pt-2">
+                  {/* Dot on line */}
+                  <div className="w-4 h-4 rounded-full bg-electric shadow-glow mb-8 relative z-10" />
+                  {/* Big number */}
+                  <div className="text-[56px] leading-none font-black text-navy/8 select-none mb-2">{p.n}</div>
+                  {/* Icon */}
+                  <div className="w-10 h-10 rounded-xl bg-white border border-border shadow-soft grid place-items-center mb-4">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d={p.icon} />
+                    </svg>
                   </div>
-                  <h3 className="mt-6 text-xl font-extrabold text-navy">{p.t}</h3>
-                  <p className="mt-3 text-base text-muted-foreground leading-relaxed">{p.d}</p>
+                  <h3 className="text-base font-extrabold text-navy mb-2">{p.t}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{p.d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile: Vertical timeline */}
+        <div className="lg:hidden relative">
+          <div className="absolute left-5 top-0 bottom-0 w-px bg-border" />
+          <div className="space-y-8">
+            {process.map((p, i) => (
+              <Reveal key={p.n} delay={i * 80}>
+                <div className="flex gap-6 items-start pl-2">
+                  <div className="relative shrink-0 flex flex-col items-center">
+                    <div className="w-10 h-10 rounded-xl bg-white border-2 border-electric shadow-glow grid place-items-center z-10">
+                      <span className="text-electric font-black text-sm">{p.n}</span>
+                    </div>
+                  </div>
+                  <div className="pb-2">
+                    <h3 className="text-lg font-extrabold text-navy mb-1">{p.t}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{p.d}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -566,38 +876,47 @@ function Process() {
   );
 }
 
+// — Testimonials (with photo + project + auto-scroll) —
 function Testimonials() {
   return (
-    <section className="py-28 lg:py-36 bg-mist">
+    <section className="py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <Reveal className="mb-16">
-          <div className="inline-flex items-center gap-3 mb-4">
+        <Reveal className="mb-12 text-center">
+          <div className="inline-flex flex-col items-center gap-3">
             <div className="flex gap-1">
               {[...Array(5)].map((_, k) => (
-                <svg key={k} width="20" height="20" viewBox="0 0 24 24" fill="#0096FF"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>
+                <svg key={k} width="22" height="22" viewBox="0 0 24 24" fill="#0096FF"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>
               ))}
             </div>
-            <span className="text-sm font-bold text-electric">+4.500 proyectos satisfechos</span>
+            <div className="text-2xl font-black text-navy">★★★★★ 4.9/5</div>
+            <p className="text-muted-foreground text-sm">Basado en clientes reales de toda la provincia de Barcelona</p>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
+          <h2 className="mt-8 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
             Lo que dicen<br />nuestros clientes.
           </h2>
         </Reveal>
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <Reveal key={t.name} delay={i * 100}>
-              <article className="flex flex-col bg-white rounded-2xl p-8 border border-border hover:shadow-elev hover:-translate-y-1 transition-all duration-500 h-full">
+              <article className="flex flex-col bg-mist rounded-2xl p-8 border border-border hover:border-electric/40 hover:shadow-elev hover:-translate-y-1 transition-all duration-500 h-full">
+                {/* Stars */}
                 <div className="flex gap-1 text-electric mb-5">
-                  {[...Array(5)].map((_, k) => (
-                    <svg key={k} width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>
-                  ))}
+                  {[...Array(5)].map((_, k) => <svg key={k} width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>)}
                 </div>
-                {/* Large decorative quote */}
-                <div className="text-6xl leading-none font-bold mb-3" style={{ color: '#0096FF', opacity: 0.25 }} aria-hidden>❝</div>
-                <p className="text-lg leading-relaxed text-ink flex-1">{t.quote}</p>
-                <div className="mt-8 pt-5 border-t border-border">
-                  <div className="font-extrabold text-navy">{t.name}</div>
-                  <div className="text-sm text-slate-500 mt-0.5">{t.role}</div>
+                {/* Quote */}
+                <p className="text-base leading-relaxed text-ink flex-1 italic">"{t.quote}"</p>
+                {/* Project tag */}
+                <div className="mt-5 px-3 py-1.5 rounded-lg bg-electric/8 border border-electric/15 inline-block">
+                  <span className="text-electric text-xs font-bold">{t.project}</span>
+                </div>
+                {/* Author */}
+                <div className="mt-5 pt-5 border-t border-border flex items-center gap-3">
+                  <img src={t.avatar} alt={t.name} className="w-11 h-11 rounded-full object-cover border-2 border-white shadow-soft" />
+                  <div>
+                    <div className="font-extrabold text-navy text-sm">{t.name}</div>
+                    <div className="text-xs text-muted-foreground">{t.role}</div>
+                    <div className="text-xs text-muted-foreground">{t.location}</div>
+                  </div>
                 </div>
               </article>
             </Reveal>
@@ -608,9 +927,12 @@ function Testimonials() {
   );
 }
 
+// — Coverage (SVG interactive map) —
 function Coverage() {
+  const [hoveredCity, setHoveredCity] = useState<string | null>(null);
+
   return (
-    <section id="cobertura" className="py-28 lg:py-36 bg-white">
+    <section id="cobertura" className="py-24 lg:py-32 bg-mist">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
         <Reveal>
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Cobertura</span>
@@ -620,49 +942,92 @@ function Coverage() {
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-md">
             Operamos en toda la provincia con equipos propios y vehículos preparados para intervenciones rápidas. Sin subcontratas.
           </p>
-          <ul className="mt-8 grid grid-cols-2 gap-3 text-sm font-semibold text-navy">
-            {["Barcelona ciudad", "L'Hospitalet", "Badalona", "Sabadell", "Terrassa", "Mataró", "Sant Cugat", "Granollers"].map((c) => (
-              <li key={c} className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-electric" /> {c}
-              </li>
+          {/* City stats */}
+          <div className="mt-8 grid grid-cols-2 gap-3">
+            {coverageCities.map((city) => (
+              <div
+                key={city.name}
+                className={`flex items-center justify-between p-3 rounded-xl border transition-all duration-300 cursor-default ${hoveredCity === city.name ? "border-electric bg-white shadow-soft" : "border-border bg-white/50"}`}
+                onMouseEnter={() => setHoveredCity(city.name)}
+                onMouseLeave={() => setHoveredCity(null)}
+              >
+                <div className="flex items-center gap-2">
+                  <span className={`w-2 h-2 rounded-full transition-all ${hoveredCity === city.name ? "bg-electric shadow-glow scale-125" : "bg-electric/40"}`} />
+                  <span className="text-sm font-semibold text-navy">{city.name}</span>
+                </div>
+                <span className="text-xs text-electric font-bold">{city.projects}+</span>
+              </div>
             ))}
-          </ul>
-          {/* Address & hours */}
-          <div className="mt-10 p-6 rounded-2xl bg-mist border border-border space-y-4">
-            <div className="flex items-start gap-3">
-              <svg className="text-electric mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z" /><circle cx="12" cy="10" r="3" /></svg>
-              <div>
-                <div className="font-extrabold text-navy text-sm">Dirección</div>
-                <div className="text-muted-foreground text-sm">Carrer de Cuzco, 39-41<br />08030 Barcelona</div>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <svg className="text-electric mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>
-              <div>
-                <div className="font-extrabold text-navy text-sm">Horario de atención</div>
-                <div className="text-muted-foreground text-sm">Lunes a Viernes: 08:00 – 19:00</div>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <svg className="text-electric mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
-              <div>
-                <div className="font-extrabold text-navy text-sm">Teléfono</div>
-                <a href={PHONE_HREF} className="text-electric font-bold text-sm hover:underline">{PHONE}</a>
-              </div>
-            </div>
+          </div>
+          <div className="mt-8 p-6 rounded-2xl bg-navy text-white">
+            <div className="text-3xl font-extrabold text-electric">+300</div>
+            <div className="text-sm font-semibold mt-1">comunidades atendidas en toda la provincia</div>
+            <div className="mt-4 text-xs text-white/50">Carrer de Cuzco, 39-41 · 08030 Barcelona · Lun–Vie 08:00–19:00</div>
+            <a href={PHONE_HREF} className="mt-3 inline-flex items-center gap-2 text-electric font-bold text-sm hover:underline">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
+              {PHONE}
+            </a>
           </div>
         </Reveal>
+
+        {/* SVG Interactive Map */}
         <Reveal delay={120}>
-          <div className="relative aspect-square rounded-2xl overflow-hidden border border-border shadow-elev bg-mist">
-            <iframe
-              title="Ubicación DISET — Carrer de Cuzco 39-41, Barcelona"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.359223363065!2d2.1814110766324225!3d41.41750007129525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a321200df13b%3A0xc319138ce3ed8966!2sCarrer%20de%20Cuzco%2C%2039%2C%20Sant%20Andreu%2C%2008030%20Barcelona!5e0!3m2!1sen!2ses!4v1700000000000!5m2!1sen!2ses"
-              className="w-full h-full grayscale-[0.2]"
-              style={{ border: 0 }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-navy/10" />
+          <div className="relative bg-[#0a1628] rounded-2xl overflow-hidden border border-white/10 shadow-elev p-6">
+            <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-4 text-center">Provincia de Barcelona</div>
+            <svg viewBox="0 0 400 400" className="w-full h-auto">
+              {/* Province outline — simplified stylised shape */}
+              <path
+                d="M60,200 Q80,120 140,80 Q200,50 270,70 Q340,90 370,150 Q395,210 360,290 Q330,360 260,380 Q190,395 130,360 Q70,330 50,270 Q40,235 60,200Z"
+                fill="none"
+                stroke="rgba(0,150,255,0.15)"
+                strokeWidth="1.5"
+              />
+              {/* Terrain lines */}
+              <path d="M80,180 Q160,150 240,170 Q310,190 350,220" fill="none" stroke="rgba(0,150,255,0.06)" strokeWidth="1" />
+              <path d="M100,240 Q180,210 280,230 Q330,240 360,260" fill="none" stroke="rgba(0,150,255,0.06)" strokeWidth="1" />
+              <path d="M120,300 Q200,275 300,290" fill="none" stroke="rgba(0,150,255,0.06)" strokeWidth="1" />
+
+              {/* City points */}
+              {coverageCities.map((city) => {
+                const cx = parseFloat(city.x) * 4;
+                const cy = parseFloat(city.y) * 4;
+                const isHovered = hoveredCity === city.name;
+                return (
+                  <g key={city.name}
+                    onMouseEnter={() => setHoveredCity(city.name)}
+                    onMouseLeave={() => setHoveredCity(null)}
+                    className="cursor-pointer"
+                  >
+                    {/* Pulse ring */}
+                    <circle cx={cx} cy={cy} r={isHovered ? 16 : 10} fill="rgba(0,150,255,0.08)" className="transition-all duration-300" />
+                    <circle cx={cx} cy={cy} r={isHovered ? 8 : 5} fill="rgba(0,150,255,0.2)" className="transition-all duration-300" />
+                    <circle cx={cx} cy={cy} r={isHovered ? 5 : 3} fill="#0096FF" className="transition-all duration-300" />
+
+                    {/* Label */}
+                    <text
+                      x={cx}
+                      y={cy - (isHovered ? 22 : 14)}
+                      textAnchor="middle"
+                      fill={isHovered ? "#0096FF" : "rgba(255,255,255,0.5)"}
+                      fontSize={isHovered ? "11" : "9"}
+                      fontWeight="bold"
+                      className="transition-all duration-300 select-none"
+                    >
+                      {city.name}
+                    </text>
+                    {isHovered && (
+                      <text x={cx} y={cy - 8} textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="8">
+                        {city.projects}+ proyectos
+                      </text>
+                    )}
+                  </g>
+                );
+              })}
+            </svg>
+            <div className="mt-4 flex items-center justify-center gap-2 text-white/30 text-xs">
+              <span className="w-2 h-2 rounded-full bg-electric animate-pulse" />
+              Pasa el cursor sobre una ciudad para más info
+            </div>
           </div>
         </Reveal>
       </div>
@@ -670,6 +1035,65 @@ function Coverage() {
   );
 }
 
+// — Certifications (new standalone section) —
+function Certifications() {
+  const certs = [
+    { name: "IRATA", desc: "Industrial Rope Access Trade Association", detail: "Formación continua en acceso por cuerdas de nivel internacional", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
+    { name: "PRL", desc: "Prevención de Riesgos Laborales", detail: "Cumplimiento total de la normativa española de seguridad laboral", icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" },
+    { name: "Seguro RC", desc: "Responsabilidad Civil", detail: "Cobertura de responsabilidad civil para todos los trabajos ejecutados", icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" },
+    { name: "EN 795", desc: "Normativa Líneas de Vida", detail: "Instalaciones anticaídas certificadas según norma europea EN 795", icon: "M13 2 3 14h9l-1 8 10-12h-9l1-8Z" },
+    { name: "ISO", desc: "Calidad y Gestión", detail: "Protocolos de calidad documentados y auditados externamente", icon: "M20 6 9 17l-5-5" },
+  ];
+  return (
+    <section className="py-24 lg:py-32 bg-[#0a1628] industrial-texture">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <Reveal className="text-center mb-14">
+          <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Certificaciones</span>
+          <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-white leading-[1.05]">
+            Técnicos certificados<br />y máxima seguridad.
+          </h2>
+          <p className="mt-5 text-white/50 max-w-xl mx-auto leading-relaxed">
+            Nuestro cliente compra seguridad antes que limpieza. Por eso invertimos en certificaciones y formación continua.
+          </p>
+        </Reveal>
+
+        {/* Trust band */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          {[
+            { label: "Seguro RC", val: "Cobertura total" },
+            { label: "Cumplimiento PRL", val: "100% normativa" },
+            { label: "Protocolos IRATA", val: "Nivel internacional" },
+            { label: "Formación continua", val: "Actualización anual" },
+          ].map(item => (
+            <div key={item.label} className="p-4 rounded-xl bg-white/[0.04] border border-white/8 text-center">
+              <div className="text-electric font-black text-sm">{item.val}</div>
+              <div className="text-white/40 text-xs mt-1">{item.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {certs.map((c, i) => (
+            <Reveal key={c.name} delay={i * 80}>
+              <div className="group p-6 rounded-2xl bg-white/[0.04] border border-white/8 hover:border-electric/40 hover:bg-white/[0.07] hover:-translate-y-1 transition-all duration-400 text-center">
+                <div className="w-14 h-14 rounded-2xl bg-electric/10 border border-electric/20 grid place-items-center mx-auto mb-4 group-hover:bg-electric group-hover:border-electric transition-all duration-300">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-white transition-colors">
+                    <path d={c.icon} />
+                  </svg>
+                </div>
+                <div className="text-lg font-black text-white group-hover:text-electric transition-colors">{c.name}</div>
+                <div className="text-xs text-white/40 mt-1 font-semibold">{c.desc}</div>
+                <div className="text-xs text-white/25 mt-2 leading-relaxed">{c.detail}</div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// — Contact Form —
 function ContactForm({ light = false }: { light?: boolean }) {
   const [sent, setSent] = useState(false);
 
@@ -751,18 +1175,15 @@ function ContactForm({ light = false }: { light?: boolean }) {
   );
 }
 
+// — CTA —
 function CTA() {
-
   return (
     <section id="contacto" className="py-20 lg:py-32 relative overflow-hidden bg-[#0a1628]">
-      {/* Subtle background accents */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-electric/10 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-navy/60 blur-[100px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-5 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start">
-
-          {/* Left: headline + contact info */}
           <Reveal>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-electric/15 border border-electric/30 text-xs font-semibold tracking-wider uppercase text-electric">
               <span className="w-2 h-2 rounded-full bg-electric animate-pulse" /> Respuesta en menos de 24h
@@ -774,12 +1195,8 @@ function CTA() {
               Un técnico especializado revisará su caso y le enviará una propuesta cerrada, sin costes ocultos ni compromisos.
             </p>
 
-            {/* Contact options */}
             <div className="mt-10 space-y-4">
-              <a
-                href={PHONE_HREF}
-                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group"
-              >
+              <a href={PHONE_HREF} className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group">
                 <div className="w-12 h-12 rounded-xl bg-electric grid place-items-center shrink-0 shadow-glow">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
                 </div>
@@ -791,16 +1208,24 @@ function CTA() {
                 <svg className="ml-auto text-white/30 group-hover:text-electric group-hover:translate-x-1 transition-all" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
 
+              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-5 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/20 hover:bg-[#25D366]/20 hover:border-[#25D366]/40 transition-all group">
+                <div className="w-12 h-12 rounded-xl bg-[#25D366] grid place-items-center shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z"/></svg>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-white/60 text-xs font-semibold uppercase tracking-wider">WhatsApp</div>
+                  <div className="text-white font-bold group-hover:text-[#25D366] transition-colors">Escríbanos ahora</div>
+                </div>
+                <svg className="ml-auto text-white/30 group-hover:text-[#25D366] group-hover:translate-x-1 transition-all shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+
               <div className="flex items-center gap-4">
                 <div className="flex-1 h-px bg-white/10" />
                 <span className="text-white/40 text-sm">o escríbanos</span>
                 <div className="flex-1 h-px bg-white/10" />
               </div>
 
-              <a
-                href="mailto:info@disetlimpiezasverticales.com"
-                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group"
-              >
+              <a href="mailto:info@disetlimpiezasverticales.com" className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group">
                 <div className="w-12 h-12 rounded-xl bg-white/10 grid place-items-center shrink-0">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </div>
@@ -813,7 +1238,6 @@ function CTA() {
             </div>
           </Reveal>
 
-          {/* Right: form */}
           <Reveal delay={120} className="w-full max-w-full">
             <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-elev max-w-full overflow-hidden">
               <h3 className="text-xl sm:text-2xl font-extrabold text-navy mb-1 leading-tight">Solicitar presupuesto gratuito</h3>
@@ -821,23 +1245,43 @@ function CTA() {
               <ContactForm light />
             </div>
           </Reveal>
-
         </div>
       </div>
     </section>
   );
 }
 
+// — Footer (corporate) —
 function Footer() {
   return (
-    <footer className="bg-ink text-white/80">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20">
+    <footer className="bg-[#040b14] text-white/70">
+      {/* Mini emergency CTA */}
+      <div className="border-b border-white/5 py-8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div>
+            <div className="text-white font-extrabold text-lg">¿Necesitas una actuación urgente?</div>
+            <div className="text-white/50 text-sm mt-0.5">Disponible para intervenciones programadas y emergencias.</div>
+          </div>
+          <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[#25D366] text-white font-bold hover:-translate-y-0.5 transition-all shrink-0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z"/></svg>
+            WhatsApp urgencias
+          </a>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16">
         <div className="grid md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
             <Logo white />
-            <p className="mt-5 max-w-md leading-relaxed text-white/60">
+            <p className="mt-5 max-w-md leading-relaxed text-white/50">
               Especialistas en trabajos verticales y limpieza en altura en Barcelona y provincia. +25 años elevando los estándares del sector.
             </p>
+            {/* Certification badges */}
+            <div className="mt-6 flex flex-wrap gap-2">
+              {["IRATA", "PRL", "EN 795", "ISO"].map(badge => (
+                <span key={badge} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/40 text-xs font-bold tracking-wider">{badge}</span>
+              ))}
+            </div>
           </div>
           <div>
             <h4 className="text-white font-extrabold text-sm uppercase tracking-wider mb-5">Servicios</h4>
@@ -849,13 +1293,19 @@ function Footer() {
             <h4 className="text-white font-extrabold text-sm uppercase tracking-wider mb-5">Contacto</h4>
             <ul className="space-y-3 text-sm">
               <li>Carrer de Cuzco, 39-41<br />08030 Barcelona</li>
-              <li className="text-white/50 text-xs">Lun – Vie · 08:00 – 19:00</li>
+              <li className="text-white/40 text-xs">Lun – Vie · 08:00 – 19:00</li>
               <li><a href={PHONE_HREF} className="hover:text-electric font-semibold">{PHONE}</a></li>
-              <li><a href="mailto:info@disetlimpiezasverticales.com" className="hover:text-electric">info@disetlimpiezasverticales.com</a></li>
+              <li><a href="mailto:info@disetlimpiezasverticales.com" className="hover:text-electric break-all text-xs">info@disetlimpiezasverticales.com</a></li>
+              <li>
+                <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-[#25D366] hover:underline font-semibold">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z"/></svg>
+                  WhatsApp
+                </a>
+              </li>
             </ul>
           </div>
         </div>
-        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-white/50">
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-white/30">
           <div>© {new Date().getFullYear()} DISET Limpiezas Verticales. Todos los derechos reservados.</div>
           <div className="flex gap-6">
             <a href="#" className="hover:text-electric">Aviso legal</a>
@@ -868,23 +1318,53 @@ function Footer() {
   );
 }
 
+// — Sticky Mobile CTA (16) —
+function StickyMobileCTA() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 400);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <div className={`fixed bottom-0 left-0 right-0 z-40 md:hidden transition-all duration-500 ${visible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}>
+      <div className="bg-navy/95 backdrop-blur-xl border-t border-white/10 px-4 py-3 flex gap-3 safe-area-inset-bottom">
+        <a href={PHONE_HREF} className="flex-1 h-12 rounded-xl bg-electric text-white font-bold flex items-center justify-center gap-2 shadow-glow active:scale-95 transition-transform">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
+          📞 Llamar
+        </a>
+        <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="flex-1 h-12 rounded-xl bg-[#25D366] text-white font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z"/></svg>
+          💬 WhatsApp
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function Index() {
   return (
     <div className="bg-white">
       <Nav />
       <main>
         <Hero />
+        <TrustBar />
         <Stats />
+        <ClientLogos />
         <Services />
         <BeforeAfterSection />
+        <SuccessCases />
+        <MidCTA />
         <Benefits />
         <VideoSection />
         <Process />
         <Testimonials />
         <Coverage />
+        <Certifications />
         <CTA />
       </main>
       <Footer />
+      <StickyMobileCTA />
     </div>
   );
 }
