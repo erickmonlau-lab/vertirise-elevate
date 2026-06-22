@@ -4,19 +4,19 @@ import { Reveal } from "@/components/Reveal";
 import { Counter } from "@/components/Counter";
 import { BeforeAfter } from "@/components/BeforeAfter";
 
-import heroImg from "@/assets/hero.jpg";
-import cristalesImg from "@/assets/service-cristales.jpg";
-import fachadasImg from "@/assets/service-fachadas.jpg";
-import solarImg from "@/assets/service-solar.jpg";
-import lineasImg from "@/assets/service-lineas.jpg";
-import logoDiset from "@/assets/logo-diset.png";
+import heroImg from "@/assets/hero.webp";
+import cristalesImg from "@/assets/service-cristales.webp";
+import fachadasImg from "@/assets/service-fachadas.webp";
+import solarImg from "@/assets/service-solar.webp";
+import lineasImg from "@/assets/service-lineas.webp";
+import logoDiset from "@/assets/logo-diset.webp";
 
-import beforeCristalesImg from "@/assets/before-cristales.png";
-import afterCristalesImg from "@/assets/after-cristales.png";
-import beforeFachadaImg from "@/assets/before-fachada.png";
-import afterFachadaImg from "@/assets/after-fachada.png";
-import beforeSolaresImg from "@/assets/before-solares.png";
-import afterSolaresImg from "@/assets/after-solares.png";
+import beforeCristalesImg from "@/assets/before-cristales.webp";
+import afterCristalesImg from "@/assets/after-cristales.webp";
+import beforeFachadaImg from "@/assets/before-fachada.webp";
+import afterFachadaImg from "@/assets/after-fachada.webp";
+import beforeSolaresImg from "@/assets/before-solares.webp";
+import afterSolaresImg from "@/assets/after-solares.webp";
 
 export const Route = createFileRoute("/")(  {
   head: () => ({
@@ -509,7 +509,7 @@ function VideoSection() {
                     aria-label="Reproducir vídeo DISET en acción"
                   >
                     <img
-                      src={`https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
+                      src={`https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.webp`}
                       alt="DISET técnicos en trabajos verticales"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]"
                     />
