@@ -509,7 +509,7 @@ function VideoSection() {
                     aria-label="Reproducir vídeo DISET en acción"
                   >
                     <img
-                      src={`https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.webp`}
+                      src={`https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`}
                       alt="DISET técnicos en trabajos verticales"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]"
                     />
