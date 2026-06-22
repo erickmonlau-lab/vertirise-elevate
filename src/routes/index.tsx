@@ -9,6 +9,7 @@ import cristalesImg from "@/assets/service-cristales.jpg";
 import fachadasImg from "@/assets/service-fachadas.jpg";
 import solarImg from "@/assets/service-solar.jpg";
 import lineasImg from "@/assets/service-lineas.jpg";
+import logoDiset from "@/assets/logo-diset.png";
 
 import beforeCristalesImg from "@/assets/before-cristales.png";
 import afterCristalesImg from "@/assets/after-cristales.png";
@@ -99,13 +100,13 @@ const heroAvatars = [
 
 function Logo({ white = false }: { white?: boolean }) {
   return (
-    <div className="flex items-center gap-2.5">
-      <div className="w-9 h-9 rounded-lg bg-[var(--gradient-accent)] grid place-items-center shadow-glow">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2v20" /><path d="M5 8l7-6 7 6" /><circle cx="12" cy="15" r="3" />
-        </svg>
-      </div>
-      <span className={`font-extrabold text-xl tracking-tight ${white ? "text-white" : "text-navy"}`}>DISET</span>
+    <div className="flex items-center">
+      <img
+        src={logoDiset}
+        alt="DISET Limpiezas Verticales"
+        height={44}
+        className={`h-11 w-auto object-contain transition-all duration-300 ${white ? "brightness-0 invert" : ""}`}
+      />
     </div>
   );
 }
@@ -186,7 +187,7 @@ function Hero() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
               </span>
             </a>
-            <a href={PHONE_HREF} className="inline-flex items-center gap-3 h-14 px-7 rounded-full bg-white/10 backdrop-blur-md text-white font-bold border border-white/25 hover:bg-white hover:text-navy transition-all">
+            <a href={PHONE_HREF} className="inline-flex items-center gap-3 h-14 px-7 rounded-full bg-white text-navy font-bold shadow-soft hover:shadow-elev hover:-translate-y-0.5 transition-all">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
               Llamar Ahora
             </a>
@@ -295,21 +296,37 @@ function BeforeAfterSection() {
           </p>
         </Reveal>
 
-        {/* Case selector tabs */}
+        {/* Case selector tabs — visual cards */}
         <Reveal delay={80}>
-          <div className="flex gap-2 mb-8 flex-wrap">
+          <div className="grid grid-cols-3 gap-4 mb-8">
             {beforeAfterCases.map((c, i) => (
               <button
                 key={c.label}
                 onClick={() => setActiveCase(i)}
-                className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${
+                className={`relative overflow-hidden rounded-xl border-2 transition-all duration-300 text-left group ${
                   activeCase === i
-                    ? "bg-electric text-white shadow-glow"
-                    : "bg-white text-navy border border-border hover:border-electric/50"
+                    ? "border-electric shadow-glow scale-[1.02]"
+                    : "border-border hover:border-electric/40 hover:shadow-soft"
                 }`}
               >
-                {c.label}
-                <span className="ml-2 text-xs font-normal opacity-70">{c.desc}</span>
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={c.after}
+                    alt={c.label}
+                    className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${
+                      activeCase === i ? "brightness-100" : "brightness-75"
+                    }`}
+                  />
+                </div>
+                <div className={`absolute inset-0 flex flex-col justify-end p-3 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent`}>
+                  <div className={`text-sm font-extrabold ${activeCase === i ? "text-white" : "text-white/90"}`}>{c.label}</div>
+                  <div className="text-xs text-white/60">{c.desc}</div>
+                </div>
+                {activeCase === i && (
+                  <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-electric grid place-items-center">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M20 6 9 17l-5-5"/></svg>
+                  </div>
+                )}
               </button>
             ))}
           </div>
@@ -369,52 +386,77 @@ function Benefits() {
 
 function VideoSection() {
   const [playing, setPlaying] = useState(false);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
   const VIDEO_ID = "aBf0OXTJgkA";
 
   return (
-    <section className="py-28 lg:py-36 bg-ink">
+    <section className="py-28 lg:py-36 bg-ink overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <Reveal className="text-center mb-12 max-w-2xl mx-auto">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Vídeo corporativo</span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white">
-            Conozca a DISET en movimiento.
-          </h2>
-        </Reveal>
-        <Reveal delay={120}>
-          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-elev">
-            {playing ? (
-              <iframe
-                ref={iframeRef}
-                className="absolute inset-0 w-full h-full"
-                src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
-                title="DISET Limpiezas Verticales — Vídeo corporativo"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            ) : (
-              <button
-                onClick={() => setPlaying(true)}
-                className="absolute inset-0 w-full h-full group cursor-pointer"
-                aria-label="Reproducir vídeo corporativo DISET"
-              >
-                <img
-                  src={`https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
-                  alt="Vídeo corporativo DISET — Trabajos verticales Barcelona"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]"
-                />
-                <div className="absolute inset-0 bg-navy/40 group-hover:bg-navy/20 transition-colors" />
-                <div className="absolute inset-0 grid place-items-center">
-                  <div className="w-24 h-24 rounded-full bg-electric grid place-items-center shadow-glow group-hover:scale-110 transition-transform">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="1" strokeLinejoin="round">
-                      <polygon points="6 4 20 12 6 20 6 4" />
-                    </svg>
-                  </div>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Text column */}
+          <Reveal>
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">DISET en acción</span>
+            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white">
+              Profesionales que trabajan donde otros no llegan.
+            </h2>
+            <p className="mt-6 text-white/70 leading-relaxed text-lg">
+              Nuestro equipo de técnicos certificados en trabajos verticales opera con los más altos estándares de seguridad en toda la provincia de Barcelona.
+            </p>
+            <div className="mt-8 grid grid-cols-2 gap-4">
+              {[
+                { n: "+25", l: "Años de experiencia" },
+                { n: "+4.500", l: "Proyectos completados" },
+                { n: "IRATA", l: "Técnicos certificados" },
+                { n: "24h", l: "Respuesta garantizada" },
+              ].map((s) => (
+                <div key={s.l} className="bg-white/5 border border-white/10 rounded-xl p-4">
+                  <div className="text-2xl font-extrabold text-electric">{s.n}</div>
+                  <div className="text-sm text-white/60 mt-1">{s.l}</div>
                 </div>
-              </button>
-            )}
-          </div>
-        </Reveal>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* Vertical video column */}
+          <Reveal delay={120}>
+            <div className="flex justify-center">
+              {/* Container sized for a 9:16 vertical video, max height constrained */}
+              <div className="relative w-full max-w-[320px] lg:max-w-[360px] rounded-2xl overflow-hidden shadow-elev" style={{ aspectRatio: '9/16' }}>
+                {playing ? (
+                  <iframe
+                    className="absolute inset-0 w-full h-full"
+                    src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
+                    title="DISET Limpiezas Verticales — equipo en acción"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <button
+                    onClick={() => setPlaying(true)}
+                    className="absolute inset-0 w-full h-full group cursor-pointer"
+                    aria-label="Reproducir vídeo DISET en acción"
+                  >
+                    <img
+                      src={`https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
+                      alt="DISET técnicos en trabajos verticales"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]"
+                    />
+                    <div className="absolute inset-0 bg-navy/50 group-hover:bg-navy/30 transition-colors" />
+                    <div className="absolute inset-0 grid place-items-center">
+                      <div className="w-20 h-20 rounded-full bg-electric grid place-items-center shadow-glow group-hover:scale-110 transition-transform">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="1" strokeLinejoin="round">
+                          <polygon points="6 4 20 12 6 20 6 4" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="absolute bottom-4 left-0 right-0 text-center">
+                      <span className="text-white/80 text-xs font-semibold tracking-wider uppercase">Ver vídeo</span>
+                    </div>
+                  </button>
+                )}
+              </div>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
@@ -455,25 +497,34 @@ function Testimonials() {
   return (
     <section className="py-28 lg:py-36 bg-mist">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <Reveal className="max-w-2xl mb-16">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Testimonios</span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
+        <Reveal className="mb-16">
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="flex gap-1">
+              {[...Array(5)].map((_, k) => (
+                <svg key={k} width="20" height="20" viewBox="0 0 24 24" fill="#0096FF"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>
+              ))}
+            </div>
+            <span className="text-sm font-bold text-electric">+4.500 proyectos satisfechos</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
             Lo que dicen<br />nuestros clientes.
           </h2>
         </Reveal>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 items-stretch">
           {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={i * 100}>
-              <article className="h-full bg-white rounded-2xl p-8 border border-border hover:shadow-elev hover:-translate-y-1 transition-all duration-500">
-                <div className="flex gap-1 text-electric">
+            <Reveal key={t.name} delay={i * 100} className="h-full">
+              <article className="flex flex-col h-full bg-white rounded-2xl p-8 border border-border hover:shadow-elev hover:-translate-y-1 transition-all duration-500">
+                <div className="flex gap-1 text-electric mb-5">
                   {[...Array(5)].map((_, k) => (
                     <svg key={k} width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>
                   ))}
                 </div>
-                <p className="mt-5 text-lg leading-relaxed text-ink">"{t.quote}"</p>
-                <div className="mt-7 pt-6 border-t border-border">
+                {/* Large decorative quote */}
+                <div className="text-6xl leading-none text-electric/20 font-serif mb-2" aria-hidden>"</div>
+                <p className="text-base leading-relaxed text-ink flex-1">{t.quote}</p>
+                <div className="mt-8 pt-5 border-t border-border">
                   <div className="font-extrabold text-navy">{t.name}</div>
-                  <div className="text-sm text-muted-foreground">{t.role}</div>
+                  <div className="text-sm text-muted-foreground mt-0.5">{t.role}</div>
                 </div>
               </article>
             </Reveal>
@@ -552,7 +603,7 @@ function Coverage() {
   );
 }
 
-function ContactForm() {
+function ContactForm({ light = false }: { light?: boolean }) {
   const [sent, setSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -570,35 +621,46 @@ function ContactForm() {
     setSent(true);
   };
 
+  const lbl = light ? "block text-navy text-sm font-semibold mb-1.5" : "block text-white/80 text-sm font-semibold mb-1.5";
+  const inp = light
+    ? "w-full h-12 px-4 rounded-xl bg-mist border border-border text-ink placeholder-muted-foreground text-sm focus:outline-none focus:border-electric transition-all"
+    : "w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all";
+  const sel = light
+    ? "w-full h-12 px-4 rounded-xl bg-mist border border-border text-ink text-sm focus:outline-none focus:border-electric transition-all appearance-none"
+    : "w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all appearance-none";
+  const ta = light
+    ? "w-full px-4 py-3 rounded-xl bg-mist border border-border text-ink placeholder-muted-foreground text-sm focus:outline-none focus:border-electric transition-all resize-none"
+    : "w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all resize-none";
+
   return (
-    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 text-left max-w-2xl mx-auto">
+    <div>
       {sent ? (
         <div className="text-center py-8">
-          <div className="w-16 h-16 rounded-full bg-electric/20 grid place-items-center mx-auto mb-4">
+          <div className="w-16 h-16 rounded-full bg-electric/15 grid place-items-center mx-auto mb-4">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
           </div>
-          <h3 className="text-2xl font-extrabold text-white mb-2">¡Solicitud enviada!</h3>
-          <p className="text-white/80">Un técnico le contactará en menos de 24 horas.</p>
+          <h3 className={`text-2xl font-extrabold mb-2 ${light ? "text-navy" : "text-white"}`}>¡Solicitud enviada!</h3>
+          <p className={light ? "text-muted-foreground" : "text-white/80"}>Un técnico le contactará en menos de 24 horas.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="nombre" className="block text-white/80 text-sm font-semibold mb-1.5">Nombre *</label>
-              <input id="nombre" name="nombre" required type="text" placeholder="Su nombre" className="w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all" />
+              <label htmlFor="nombre" className={lbl}>Nombre *</label>
+              <input id="nombre" name="nombre" required type="text" placeholder="Su nombre" className={inp} />
             </div>
             <div>
-              <label htmlFor="telefono" className="block text-white/80 text-sm font-semibold mb-1.5">Teléfono *</label>
-              <input id="telefono" name="telefono" required type="tel" placeholder="Su teléfono" className="w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all" />
+              <label htmlFor="telefono" className={lbl}>Teléfono *</label>
+              <input id="telefono" name="telefono" required type="tel" placeholder="Su teléfono" className={inp} />
             </div>
           </div>
           <div>
-            <label htmlFor="email" className="block text-white/80 text-sm font-semibold mb-1.5">Email</label>
-            <input id="email" name="email" type="email" placeholder="su@email.com" className="w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all" />
+            <label htmlFor="email" className={lbl}>Email</label>
+            <input id="email" name="email" type="email" placeholder="su@email.com" className={inp} />
           </div>
           <div>
-            <label htmlFor="servicio" className="block text-white/80 text-sm font-semibold mb-1.5">Servicio</label>
-            <select id="servicio" name="servicio" className="w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all appearance-none" style={{ colorScheme: "dark" }}>
+            <label htmlFor="servicio" className={lbl}>Servicio</label>
+            <select id="servicio" name="servicio" className={sel} style={light ? undefined : { colorScheme: "dark" }}>
               <option value="">Seleccione un servicio…</option>
               <option value="Limpieza de Cristales">Limpieza de Cristales</option>
               <option value="Limpieza de Fachadas">Limpieza de Fachadas</option>
@@ -608,14 +670,14 @@ function ContactForm() {
             </select>
           </div>
           <div>
-            <label htmlFor="mensaje" className="block text-white/80 text-sm font-semibold mb-1.5">Mensaje</label>
-            <textarea id="mensaje" name="mensaje" rows={3} placeholder="Describa brevemente su proyecto…" className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:border-electric focus:bg-white/15 transition-all resize-none" />
+            <label htmlFor="mensaje" className={lbl}>Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows={3} placeholder="Describa brevemente su proyecto…" className={ta} />
           </div>
-          <button type="submit" className="w-full h-13 rounded-xl bg-electric text-white font-bold shadow-glow hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 py-3">
+          <button type="submit" className="w-full rounded-xl bg-electric text-white font-bold shadow-glow hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 py-3.5">
             Solicitar Presupuesto Gratuito
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
           </button>
-          <p className="text-white/50 text-xs text-center">Sin compromiso · Respuesta en menos de 24 horas</p>
+          {!light && <p className="text-white/50 text-xs text-center">Sin compromiso · Respuesta en menos de 24 horas</p>}
         </form>
       )}
     </div>
@@ -623,29 +685,77 @@ function ContactForm() {
 }
 
 function CTA() {
+
   return (
-    <section id="contacto" className="py-28 lg:py-36 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[var(--gradient-hero)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(50%_60%_at_80%_30%,rgba(0,150,255,0.4),transparent_70%)]" />
-      <div className="relative max-w-5xl mx-auto px-6 lg:px-10 text-center text-white">
-        <Reveal>
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/20 text-xs font-semibold tracking-wider uppercase">
-            <span className="w-2 h-2 rounded-full bg-electric animate-pulse" /> Disponibles ahora
-          </span>
-          <h2 className="mt-7 text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.02]">
-            Solicite su presupuesto<br /><span className="bg-gradient-to-r from-white to-electric bg-clip-text text-transparent">en menos de 24 horas.</span>
-          </h2>
-          <p className="mt-7 text-lg md:text-xl text-white/85 max-w-2xl mx-auto">
-            Cuéntenos su proyecto y un técnico le contactará con una propuesta clara, cerrada y sin compromiso.
-          </p>
-          <div className="mt-4 mb-10 flex justify-center">
-            <a href={PHONE_HREF} className="inline-flex items-center gap-3 h-14 px-8 rounded-full bg-white text-navy font-bold hover:-translate-y-0.5 transition-all shadow-soft">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
-              Llamar al {PHONE}
-            </a>
-          </div>
-          <ContactForm />
-        </Reveal>
+    <section id="contacto" className="py-24 lg:py-32 relative overflow-hidden bg-[#0a1628]">
+      {/* Subtle background accents */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-electric/10 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-navy/60 blur-[100px] pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+          {/* Left: headline + contact info */}
+          <Reveal>
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-electric/15 border border-electric/30 text-xs font-semibold tracking-wider uppercase text-electric">
+              <span className="w-2 h-2 rounded-full bg-electric animate-pulse" /> Respuesta en menos de 24h
+            </span>
+            <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05]">
+              Solicite su presupuesto <span className="text-electric">gratuito.</span>
+            </h2>
+            <p className="mt-6 text-white/70 leading-relaxed text-lg">
+              Un técnico especializado revisará su caso y le enviará una propuesta cerrada, sin costes ocultos ni compromisos.
+            </p>
+
+            {/* Contact options */}
+            <div className="mt-10 space-y-4">
+              <a
+                href={PHONE_HREF}
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-electric grid place-items-center shrink-0 shadow-glow">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
+                </div>
+                <div>
+                  <div className="text-white/60 text-xs font-semibold uppercase tracking-wider">Llámenos directamente</div>
+                  <div className="text-white font-extrabold text-xl group-hover:text-electric transition-colors">{PHONE}</div>
+                  <div className="text-white/40 text-xs mt-0.5">Lun – Vie · 08:00 – 19:00</div>
+                </div>
+                <svg className="ml-auto text-white/30 group-hover:text-electric group-hover:translate-x-1 transition-all" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+
+              <div className="flex items-center gap-4">
+                <div className="flex-1 h-px bg-white/10" />
+                <span className="text-white/40 text-sm">o escríbanos</span>
+                <div className="flex-1 h-px bg-white/10" />
+              </div>
+
+              <a
+                href="mailto:info@disetlimpiezasverticales.com"
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-electric/40 transition-all group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-white/10 grid place-items-center shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div>
+                  <div className="text-white/60 text-xs font-semibold uppercase tracking-wider">Email</div>
+                  <div className="text-white font-bold group-hover:text-electric transition-colors">info@disetlimpiezasverticales.com</div>
+                </div>
+                <svg className="ml-auto text-white/30 group-hover:text-electric group-hover:translate-x-1 transition-all" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </Reveal>
+
+          {/* Right: form */}
+          <Reveal delay={120}>
+            <div className="bg-white rounded-2xl p-8 shadow-elev">
+              <h3 className="text-2xl font-extrabold text-navy mb-1">Solicitar presupuesto gratuito</h3>
+              <p className="text-muted-foreground text-sm mb-6">Sin compromiso · Respuesta en menos de 24 horas</p>
+              <ContactForm light />
+            </div>
+          </Reveal>
+
+        </div>
       </div>
     </section>
   );
