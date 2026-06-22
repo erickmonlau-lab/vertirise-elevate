@@ -4,7 +4,7 @@ type Props = {
   children: ReactNode;
   className?: string;
   delay?: number;
-  as?: keyof JSX.IntrinsicElements;
+  as?: "div" | "section" | "article" | "header" | "footer" | "h1" | "h2" | "h3" | "p" | "span" | "li";
 };
 
 export function Reveal({ children, className = "", delay = 0, as: Tag = "div" }: Props) {
