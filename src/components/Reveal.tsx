@@ -23,7 +23,7 @@ export function Reveal({ children, className = "", delay = 0, as: Tag = "div" }:
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px 0px 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();

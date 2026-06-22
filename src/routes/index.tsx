@@ -136,10 +136,12 @@ function Nav() {
         {/* Always solid blue CTA button */}
         <a
           href={PHONE_HREF}
-          className="hidden sm:inline-flex items-center gap-2 px-5 h-11 rounded-full bg-electric text-white text-sm font-bold shadow-glow hover:shadow-elev hover:-translate-y-0.5 transition-all"
+          className="hidden sm:inline-flex items-center gap-2 pl-4 pr-5 h-11 rounded-full bg-electric text-white text-sm font-bold shadow-glow hover:shadow-elev hover:-translate-y-0.5 transition-all"
         >
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
-          {PHONE}
+          <span className="w-7 h-7 rounded-full bg-white/20 grid place-items-center">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
+          </span>
+          Llamar ahora
         </a>
       </div>
     </header>
@@ -264,9 +266,9 @@ function Services() {
                   <img src={s.img} alt={s.title} loading="lazy" width={1024} height={640} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out" />
                 </div>
                 <div className="p-8">
-                  <h3 className="text-2xl font-extrabold text-navy">{s.title}</h3>
-                  <p className="mt-3 text-muted-foreground leading-relaxed">{s.desc}</p>
-                  <div className="mt-6 inline-flex items-center gap-2 text-electric font-bold text-sm group-hover:gap-3 transition-all">
+                  <h3 className="text-3xl font-extrabold text-navy">{s.title}</h3>
+                  <p className="mt-4 text-base text-muted-foreground leading-relaxed">{s.desc}</p>
+                  <div className="mt-7 inline-flex items-center gap-2 text-electric font-bold text-base group-hover:gap-3 transition-all">
                     Más información
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                   </div>
@@ -477,12 +479,12 @@ function Process() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
             {process.map((p, i) => (
               <Reveal key={p.n} delay={i * 100}>
-                <div className="relative">
-                  <div className="w-20 h-20 rounded-2xl bg-mist border border-border grid place-items-center text-electric font-extrabold text-xl relative z-10">
+                <div className="relative pb-2">
+                  <div className="w-20 h-20 rounded-2xl bg-mist border border-border grid place-items-center text-electric font-extrabold text-2xl relative z-10">
                     {p.n}
                   </div>
-                  <h3 className="mt-6 text-lg font-extrabold text-navy">{p.t}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.d}</p>
+                  <h3 className="mt-6 text-xl font-extrabold text-navy">{p.t}</h3>
+                  <p className="mt-3 text-base text-muted-foreground leading-relaxed">{p.d}</p>
                 </div>
               </Reveal>
             ))}
@@ -510,10 +512,10 @@ function Testimonials() {
             Lo que dicen<br />nuestros clientes.
           </h2>
         </Reveal>
-        <div className="grid md:grid-cols-3 gap-6 items-stretch">
+        <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={i * 100} className="h-full">
-              <article className="flex flex-col h-full bg-white rounded-2xl p-8 border border-border hover:shadow-elev hover:-translate-y-1 transition-all duration-500">
+            <Reveal key={t.name} delay={i * 100}>
+              <article className="flex flex-col bg-white rounded-2xl p-8 border border-border hover:shadow-elev hover:-translate-y-1 transition-all duration-500 h-full">
                 <div className="flex gap-1 text-electric mb-5">
                   {[...Array(5)].map((_, k) => (
                     <svg key={k} width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>
