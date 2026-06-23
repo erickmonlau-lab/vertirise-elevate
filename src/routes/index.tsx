@@ -482,14 +482,14 @@ function Services() {
 function BeforeAfterSection() {
   const [activeCase, setActiveCase] = useState(0);
   return (
-    <section id="proyectos" className="py-24 lg:py-32 bg-mist border-y border-border scroll-mt-20 md:scroll-mt-24">
+    <section id="proyectos" className="py-24 lg:py-32 bg-[#0a1628] industrial-texture border-y border-white/5 scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-12">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Antes / Después</span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05]">
             Resultados que se<br />ven, a primera vista.
           </h2>
-          <p className="mt-5 text-muted-foreground leading-relaxed max-w-lg">
+          <p className="mt-5 text-white/70 leading-relaxed max-w-lg">
             Deslice el control para comparar el estado de cada superficie antes y después de nuestra intervención.
           </p>
         </Reveal>
@@ -530,7 +530,7 @@ function BeforeAfterSection() {
 
         <Reveal delay={120}>
           <BeforeAfter before={beforeAfterCases[activeCase].before} after={beforeAfterCases[activeCase].after} />
-          <p className="mt-6 text-sm text-muted-foreground text-center font-semibold">
+          <p className="mt-6 text-sm text-white/50 text-center font-semibold">
             Arrastre el control deslizante para comparar · {beforeAfterCases[activeCase].label}
           </p>
         </Reveal>
@@ -786,7 +786,7 @@ function Process() {
 // — Testimonials —
 function Testimonials() {
   return (
-    <section className="py-24 lg:py-32 bg-mist border-y border-border">
+    <section className="py-24 lg:py-32 bg-[#0a1628] border-y border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="mb-12 text-center">
           <div className="inline-flex flex-col items-center gap-3">
@@ -795,32 +795,32 @@ function Testimonials() {
                 <svg key={k} width="22" height="22" viewBox="0 0 24 24" fill="#0096FF"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>
               ))}
             </div>
-            <div className="text-2xl font-black text-navy">★★★★★ 4.9/5</div>
-            <p className="text-muted-foreground text-sm">Basado en clientes reales de toda la provincia de Barcelona</p>
+            <div className="text-2xl font-black text-white">★★★★★ 4.9/5</div>
+            <p className="text-white/70 text-sm">Basado en clientes reales de toda la provincia de Barcelona</p>
           </div>
-          <h2 className="mt-8 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
+          <h2 className="mt-8 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05]">
             Lo que dicen<br />nuestros clientes.
           </h2>
         </Reveal>
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <Reveal key={t.name} delay={i * 100}>
-              <article className="flex flex-col bg-white rounded-2xl p-8 border border-border hover:border-electric/40 hover:shadow-elev hover:-translate-y-1 transition-all duration-500 h-full">
+              <article className="flex flex-col bg-white/5 rounded-2xl p-8 border border-white/10 hover:border-electric/40 hover:bg-white/10 hover:-translate-y-1 transition-all duration-500 h-full">
                 <div className="flex gap-1 text-electric mb-5">
                   {[...Array(5)].map((_, k) => <svg key={k} width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>)}
                 </div>
-                <p className="text-base leading-relaxed text-ink flex-1 italic">"{t.quote}"</p>
-                <div className="mt-5 px-3 py-1.5 rounded-lg bg-mist border border-border inline-block self-start">
+                <p className="text-base leading-relaxed text-white/90 flex-1 italic">"{t.quote}"</p>
+                <div className="mt-5 px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 inline-block self-start">
                   <span className="text-electric text-xs font-bold">{t.project}</span>
                 </div>
-                <div className="mt-5 pt-5 border-t border-border flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-full bg-mist border border-border text-navy font-bold flex items-center justify-center shrink-0">
+                <div className="mt-5 pt-5 border-t border-white/10 flex items-center gap-4">
+                  <div className="w-11 h-11 rounded-full bg-white/10 border border-white/20 text-white font-bold flex items-center justify-center shrink-0">
                     {t.initials}
                   </div>
                   <div>
-                    <div className="font-extrabold text-navy text-sm">{t.name}</div>
-                    <div className="text-xs text-muted-foreground">{t.role}</div>
-                    <div className="text-xs text-muted-foreground">{t.location}</div>
+                    <div className="font-extrabold text-white text-sm">{t.name}</div>
+                    <div className="text-xs text-white/50">{t.role}</div>
+                    <div className="text-xs text-white/50">{t.location}</div>
                   </div>
                 </div>
               </article>
