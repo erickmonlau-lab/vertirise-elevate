@@ -29,17 +29,16 @@ export function CinematicShowcase() {
       }
     });
 
-    // 1. Background "Falling" Animation
+    // 1. Background "Flying Up" Animation
+    // Start zoomed in (near street), zoom out to simulate flying UP the building
+    gsap.set(".vertigo-bg", { scale: 3, yPercent: -15 });
+    
     tl.to(".vertigo-bg", {
-      scale: 3,
-      yPercent: -15,
+      scale: 1.1,
+      yPercent: 0,
       duration: 8,
-      ease: "power2.inOut"
+      ease: "power1.inOut"
     }, 0);
-
-    // 2. Speed lines
-    tl.to(".speed-lines", { opacity: 0.4, duration: 1 }, 0.5);
-    tl.to(".speed-lines", { opacity: 0, duration: 1 }, 7);
 
     // 3. Typography Sequence (Flies past)
     tl.to(".word-1", { scale: 1, opacity: 1, duration: 1.5, ease: "power2.inOut" }, 0.5);
@@ -50,12 +49,6 @@ export function CinematicShowcase() {
 
     tl.to(".word-3", { scale: 1, opacity: 1, duration: 1.5, ease: "power2.inOut" }, 4.5);
     tl.to(".word-3", { scale: 15, opacity: 0, duration: 1, ease: "power3.in" }, 6.0);
-
-    // 4. Workers falling alongside / being passed by
-    // Worker 1
-    tl.to(".worker-1", { y: "-120vh", duration: 3, ease: "none" }, 1.0);
-    // Worker 2
-    tl.to(".worker-2", { y: "-120vh", duration: 3.5, ease: "none" }, 3.5);
 
     // 5. Final Fade to Black & CTA
     tl.to(".bg-overlay", { opacity: 0.95, duration: 1.5 }, 6.5);
@@ -68,39 +61,15 @@ export function CinematicShowcase() {
     <section ref={containerRef} className="relative h-screen w-full bg-[#02040a] overflow-hidden" id="proceso">
       {/* BACKGROUND LAYER */}
       <div className="absolute inset-0 z-0 origin-[50%_20%]">
-        <div className="vertigo-bg absolute inset-0 w-full h-full scale-110">
+        <div className="vertigo-bg absolute inset-0 w-full h-full">
           <img 
             src={vertigoImg} 
             alt="Fachada de cristal" 
             className="w-full h-full object-cover object-top"
           />
           {/* The overlay gets extremely dark at the end so text is readable */}
-          <div className="bg-overlay absolute inset-0 bg-gradient-to-b from-[#02040a]/40 via-[#02040a]/70 to-[#02040a]/90 transition-opacity" />
+          <div className="bg-overlay absolute inset-0 bg-gradient-to-b from-[#02040a]/20 via-[#02040a]/60 to-[#02040a]/90 transition-opacity" />
         </div>
-      </div>
-
-      {/* WORKERS AND ROPES */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        {/* Worker 1 */}
-        <div className="worker-group worker-1 absolute left-[20%] w-[100px] flex flex-col items-center">
-          <div className="w-[1px] h-[300vh] bg-black opacity-80 absolute bottom-[50px]" /> {/* Rope going up */}
-          <div className="w-[1px] h-[300vh] bg-black opacity-80 absolute top-[50px]" /> {/* Rope going down */}
-          <img src={workerPhotoImg} className="w-full relative z-10" style={{ mixBlendMode: 'darken' }} alt="Trabajador vertical" />
-        </div>
-
-        {/* Worker 2 */}
-        <div className="worker-group worker-2 absolute right-[25%] w-[80px] flex flex-col items-center">
-          <div className="w-[1px] h-[300vh] bg-black opacity-80 absolute bottom-[40px]" />
-          <div className="w-[1px] h-[300vh] bg-black opacity-80 absolute top-[40px]" />
-          <img src={workerPhotoImg} className="w-full relative z-10" style={{ mixBlendMode: 'darken', transform: 'scaleX(-1)' }} alt="Trabajador vertical" />
-        </div>
-      </div>
-
-      {/* SPEED LINES */}
-      <div className="speed-lines absolute inset-0 z-15 pointer-events-none opacity-0 overflow-hidden flex justify-center gap-[20vw]">
-        <div className="w-[1px] h-[200vh] bg-white/20 animate-[slide-up_1s_linear_infinite]" />
-        <div className="w-[2px] h-[150vh] bg-electric/20 animate-[slide-up_0.8s_linear_infinite]" style={{ animationDelay: '0.2s' }} />
-        <div className="w-[1px] h-[250vh] bg-white/10 animate-[slide-up_1.2s_linear_infinite]" style={{ animationDelay: '0.5s' }} />
       </div>
 
       {/* 3D TYPOGRAPHY SEQUENCE */}
@@ -136,8 +105,8 @@ export function CinematicShowcase() {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-2 opacity-50 animate-pulse pointer-events-none">
-        <span className="text-[10px] uppercase tracking-[0.3em] text-white font-bold">Haz Scroll</span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent" />
+        <span className="text-[10px] uppercase tracking-[0.3em] text-white font-bold">Asciende</span>
+        <div className="w-[1px] h-12 bg-gradient-to-t from-white to-transparent" />
       </div>
     </section>
   );
