@@ -497,91 +497,7 @@ function Services() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="bg-[#0b1121] text-white pt-20 pb-10 relative overflow-hidden">
-      {/* Scattered background icons for premium effect */}
-      <div className="absolute top-10 right-10 opacity-10 w-48 h-48 rotate-12 pointer-events-none mix-blend-screen invert">
-        <img src={iconLineas} alt="" className="w-full h-full object-contain" />
-      </div>
-      <div className="absolute bottom-20 right-40 opacity-10 w-32 h-32 -rotate-12 pointer-events-none mix-blend-screen invert">
-        <img src={iconCristales} alt="" className="w-full h-full object-contain" />
-      </div>
-      <div className="absolute top-40 right-1/4 opacity-10 w-24 h-24 rotate-45 pointer-events-none mix-blend-screen invert">
-        <img src={iconFachadas} alt="" className="w-full h-full object-contain" />
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
-          
-          {/* Brand Info */}
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <img src={logoDiset} alt="Diset Control de Plagas" className="h-10 w-auto invert brightness-0" />
-            </div>
-            <p className="text-slate-400 text-sm mb-2">Carrer de Cuzco, 39-41, 08030 Barcelona</p>
-            <p className="text-slate-400 text-sm mb-6">info@vertirise.com</p>
-            <div className="text-slate-400 text-sm">
-              <p className="font-semibold text-slate-300 mb-1">Horario:</p>
-              <p>L-V de 8h a 18h</p>
-              <p className="mt-1 font-bold text-white text-lg">935 22 43 05</p>
-            </div>
-          </div>
 
-          {/* Empresa */}
-          <div>
-            <h4 className="font-bold text-lg mb-6 tracking-wide">Empresa</h4>
-            <ul className="space-y-4 text-sm text-slate-400 font-medium">
-              <li><a href="#" className="hover:text-electric transition-colors">Presentación</a></li>
-              <li><a href="#" className="hover:text-electric transition-colors">Trabaja con nosotros</a></li>
-              <li><a href="#" className="hover:text-electric transition-colors">Política de cancelación, reembolso y devolución</a></li>
-            </ul>
-          </div>
-
-          {/* Políticas */}
-          <div>
-            <h4 className="font-bold text-lg mb-6 tracking-wide">Políticas</h4>
-            <ul className="space-y-4 text-sm text-slate-400 font-medium">
-              <li><a href="#" className="hover:text-electric transition-colors">Aviso Legal</a></li>
-              <li><a href="#" className="hover:text-electric transition-colors">Política de Cookies</a></li>
-              <li><a href="#" className="hover:text-electric transition-colors">Política de Privacidad</a></li>
-            </ul>
-          </div>
-
-          {/* Zonas de Trabajo */}
-          <div>
-            <h4 className="font-bold text-lg mb-6 tracking-wide">Trabajamos en toda Cataluña</h4>
-            <ul className="space-y-4 text-sm text-slate-400 font-medium">
-              <li>Limpieza en Barcelona</li>
-              <li>Limpieza en Maresme</li>
-              <li>Limpieza en Girona</li>
-              <li>Limpieza en Tarragona</li>
-              <li>Limpieza en Lleida</li>
-            </ul>
-          </div>
-
-        </div>
-        
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-slate-500 text-sm">
-            © {new Date().getFullYear()} Vertirise Elevate. Grupo Diset. Todos los derechos reservados.
-          </p>
-          <div className="flex gap-4">
-            <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-electric hover:text-white transition-colors cursor-pointer text-slate-400">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-            </div>
-            <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-electric hover:text-white transition-colors cursor-pointer text-slate-400">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.20 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            </div>
-            <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-electric hover:text-white transition-colors cursor-pointer text-slate-400">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
 // — Before/After —
 function BeforeAfterSection() {
@@ -1234,25 +1150,76 @@ function CTA() {
 // — Footer —
 function Footer() {
   return (
-    <footer className="bg-[#040b14] text-white/70">
-      <div className="border-b border-white/5 py-8">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-4">
+    <footer className="bg-[#0b1121] text-white pt-20 pb-10 relative overflow-hidden">
+      {/* Scattered background icons for premium effect */}
+      <div className="absolute top-10 right-10 w-48 h-48 opacity-[0.03] rotate-12 pointer-events-none">
+        <img src={iconLineas} alt="" className="w-full h-full object-contain" />
+      </div>
+      <div className="absolute bottom-20 right-40 w-32 h-32 opacity-[0.03] -rotate-12 pointer-events-none">
+        <img src={iconCristales} alt="" className="w-full h-full object-contain" />
+      </div>
+      <div className="absolute top-40 right-1/4 w-24 h-24 opacity-[0.03] rotate-45 pointer-events-none">
+        <img src={iconFachadas} alt="" className="w-full h-full object-contain" />
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+          
+          {/* Brand Info */}
           <div>
-            <div className="text-white font-extrabold text-lg">¿Necesitas una actuación urgente?</div>
-            <div className="text-white/50 text-sm mt-0.5">Disponible para intervenciones programadas y emergencias.</div>
+            <div className="flex items-center gap-3 mb-6">
+              <img src={logoDiset} alt="Vertirise Elevate" className="h-10 w-auto invert brightness-0 opacity-90" />
+            </div>
+            <p className="text-slate-400 text-sm mb-2">Carrer de Cuzco, 39-41, 08030 Barcelona</p>
+            <p className="text-slate-400 text-sm mb-6">info@vertirise.com</p>
+            <div className="text-slate-400 text-sm">
+              <p className="font-semibold text-slate-300 mb-1">Horario:</p>
+              <p>L-V de 8h a 18h</p>
+              <p className="mt-1 font-bold text-white text-lg">935 22 43 05</p>
+            </div>
           </div>
-          <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-[#25D366] text-white font-bold hover:-translate-y-0.5 transition-all shrink-0">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z"/></svg>
-            WhatsApp urgencias
-          </a>
+
+          {/* Empresa */}
+          <div>
+            <h4 className="font-bold text-lg mb-6 tracking-wide text-white">Empresa</h4>
+            <ul className="space-y-4 text-sm text-slate-400 font-medium">
+              <li><a href="#" className="hover:text-electric transition-colors">Presentación</a></li>
+              <li><a href="#" className="hover:text-electric transition-colors">Trabaja con nosotros</a></li>
+              <li><a href="#" className="hover:text-electric transition-colors flex items-center gap-2">Política de cancelación, reembolso y devolución</a></li>
+            </ul>
+          </div>
+
+          {/* Políticas */}
+          <div>
+            <h4 className="font-bold text-lg mb-6 tracking-wide text-white">Políticas</h4>
+            <ul className="space-y-4 text-sm text-slate-400 font-medium">
+              <li><a href="#" className="hover:text-electric transition-colors">Aviso Legal</a></li>
+              <li><a href="#" className="hover:text-electric transition-colors">Política de Cookies</a></li>
+              <li><a href="#" className="hover:text-electric transition-colors">Política de Privacidad</a></li>
+            </ul>
+          </div>
+
+          {/* Zonas de Trabajo */}
+          <div>
+            <h4 className="font-bold text-lg mb-6 tracking-wide text-white">Trabajamos en toda Cataluña</h4>
+            <ul className="space-y-4 text-sm text-slate-400 font-medium">
+              <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-electric"></div>Limpieza en Barcelona</li>
+              <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-electric"></div>Limpieza en Maresme</li>
+              <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-electric"></div>Limpieza en Girona</li>
+              <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-electric"></div>Limpieza en Tarragona</li>
+              <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-electric"></div>Limpieza en Lleida</li>
+            </ul>
+          </div>
+
+        </div>
+        
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-slate-500 text-sm">
+            © {new Date().getFullYear()} Vertirise Elevate. Todos los derechos reservados.
+          </p>
         </div>
       </div>
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16">
-        <div className="grid md:grid-cols-4 gap-12">
-          <div className="md:col-span-2">
-            <div className="flex items-center">
-              <img src={logoDiset} alt="DISET Limpiezas Verticales" height={48} className="h-10 md:h-12 w-auto object-contain brightness-0 invert" />
+    </footer>
   );
 }
 
