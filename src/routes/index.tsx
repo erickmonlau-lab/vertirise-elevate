@@ -47,10 +47,10 @@ const stats = [
 ];
 
 const services = [
-  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", img: cristalesImg, customIcon: iconCristales, color: "bg-[#ffafcc]" },
-  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", img: fachadasImg, customIcon: iconFachadas, color: "bg-[#a2d2ff]" },
-  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", img: solarImg, customIcon: iconSolar, color: "bg-[#fdf0d5]" },
-  { title: "Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", img: lineasImg, customIcon: iconLineas, color: "bg-[#81b29a]" },
+  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", img: cristalesImg, customIcon: iconCristales, color: "bg-[#FF007F]" },
+  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", img: fachadasImg, customIcon: iconFachadas, color: "bg-[#00E5FF]" },
+  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", img: solarImg, customIcon: iconSolar, color: "bg-[#FFEA00]" },
+  { title: "Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", img: lineasImg, customIcon: iconLineas, color: "bg-[#39FF14]" },
 ];
 
 const benefits = [
@@ -236,32 +236,41 @@ function Nav() {
 
   return (
     <>
-      <div className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none transition-all duration-300">
-        <header className={`pointer-events-auto w-full max-w-6xl transition-all duration-500 bg-white rounded-2xl md:rounded-full px-5 md:px-8 py-3.5 md:py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-slate-100 ${scrolled ? "shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] translate-y-0" : "shadow-lg md:translate-y-2"}`}>
+      <div className="fixed top-2 md:top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none transition-all duration-300">
+        <header className={`pointer-events-auto w-full max-w-6xl transition-all duration-500 bg-white rounded-2xl md:rounded-full px-4 md:px-6 py-2 md:py-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4 border border-slate-100 ${scrolled ? "shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] translate-y-0" : "shadow-lg md:translate-y-2"}`}>
           
-          <div className="flex items-center justify-between">
-            <a href="#top" onClick={() => setMobileOpen(false)}>
+          <div className="flex items-center justify-between w-full md:w-auto">
+            <a href="#top" onClick={() => setMobileOpen(false)} className="scale-90 md:scale-100 origin-left">
               <Logo white={false} />
             </a>
             
-            <button
-              onClick={() => setMobileOpen(o => !o)}
-              aria-label="Abrir menú"
-              className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl gap-1.5 transition-all hover:bg-slate-50"
-            >
-              <span className={`block w-5 h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-              <span className={`block w-5 h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "opacity-0" : ""}`} />
-              <span className={`block w-5 h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
-            </button>
+            <div className="flex items-center gap-3 md:hidden">
+              <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 tracking-wider bg-slate-50 px-2 py-1 rounded-md">
+                <button className="text-navy">ES</button>
+                <span className="text-slate-200">|</span>
+                <button className="hover:text-navy">CA</button>
+                <span className="text-slate-200">|</span>
+                <button className="hover:text-navy">EN</button>
+              </div>
+              <button
+                onClick={() => setMobileOpen(o => !o)}
+                aria-label="Abrir menú"
+                className="flex flex-col justify-center items-center w-8 h-8 rounded-lg gap-1 transition-all hover:bg-slate-50"
+              >
+                <span className={`block w-4 h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "rotate-45 translate-y-[6px]" : ""}`} />
+                <span className={`block w-4 h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "opacity-0" : ""}`} />
+                <span className={`block w-4 h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "-rotate-45 -translate-y-[6px]" : ""}`} />
+              </button>
+            </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm font-bold text-navy">
+          <nav className="hidden md:flex items-center gap-6 text-sm font-bold text-navy">
             {navLinks.map(l => (
               <a key={l.href} href={l.href} className="hover:text-electric transition-colors">{l.label}</a>
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-5">
             <div className="flex items-center gap-2 text-xs font-bold text-slate-400 tracking-wider">
               <button className="text-navy transition-colors">ES</button>
               <span className="text-slate-200">|</span>
@@ -272,32 +281,25 @@ function Nav() {
             
             <a
               href={PHONE_HREF}
-              className="inline-flex items-center gap-2 px-5 h-10 rounded-full bg-electric text-white text-sm font-bold hover:shadow-[0_0_15px_rgba(0,150,255,0.4)] hover:-translate-y-0.5 transition-all"
+              className="inline-flex items-center gap-2 px-5 h-9 rounded-full bg-electric text-white text-sm font-bold hover:shadow-[0_0_15px_rgba(0,150,255,0.4)] hover:-translate-y-0.5 transition-all"
             >
               Llamar
             </a>
           </div>
 
           {/* Mobile menu */}
-          <div className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out ${mobileOpen ? "max-h-80 opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
-            <nav className="flex flex-col gap-2 border-t border-slate-100 pt-4 pb-2">
+          <div className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out w-full ${mobileOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"}`}>
+            <nav className="flex flex-col gap-1 border-t border-slate-100 pt-2 pb-1 mt-2">
               {navLinks.map(l => (
                 <a
                   key={l.href}
                   href={l.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-2 py-2 text-navy font-bold text-base hover:text-electric transition-all"
+                  className="px-2 py-2 text-navy font-bold text-sm hover:text-electric transition-all rounded-md hover:bg-slate-50"
                 >
                   {l.label}
                 </a>
               ))}
-              <div className="flex items-center gap-3 px-2 py-4 mt-2 border-t border-slate-50 text-sm font-bold text-slate-400">
-                <button className="text-navy">ES</button>
-                <span className="text-slate-200">|</span>
-                <button className="hover:text-navy">CA</button>
-                <span className="text-slate-200">|</span>
-                <button className="hover:text-navy">EN</button>
-              </div>
             </nav>
           </div>
         </header>
@@ -467,7 +469,7 @@ function Services() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 100}>
-              <article className={`group ${s.color} rounded-3xl p-8 lg:p-10 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col cursor-pointer overflow-hidden relative`}>
+              <article className={`group ${s.color} rounded-3xl p-8 lg:p-10 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col cursor-pointer relative`}>
                 
                 <div className="w-32 h-32 mb-6 group-hover:scale-110 transition-transform duration-500 group-hover:-rotate-6 origin-bottom-left">
                   <img src={s.customIcon} alt={s.title} className="w-full h-full object-contain mix-blend-multiply" />
@@ -1151,16 +1153,6 @@ function CTA() {
 function Footer() {
   return (
     <footer className="bg-[#0b1121] text-white pt-20 pb-10 relative overflow-hidden">
-      {/* Scattered background icons for premium effect */}
-      <div className="absolute top-10 right-10 w-48 h-48 opacity-[0.03] rotate-12 pointer-events-none">
-        <img src={iconLineas} alt="" className="w-full h-full object-contain" />
-      </div>
-      <div className="absolute bottom-20 right-40 w-32 h-32 opacity-[0.03] -rotate-12 pointer-events-none">
-        <img src={iconCristales} alt="" className="w-full h-full object-contain" />
-      </div>
-      <div className="absolute top-40 right-1/4 w-24 h-24 opacity-[0.03] rotate-45 pointer-events-none">
-        <img src={iconFachadas} alt="" className="w-full h-full object-contain" />
-      </div>
       
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
@@ -1250,20 +1242,6 @@ function StickyMobileCTA() {
 function VibrantCTA() {
   return (
     <section className="relative bg-[#00a8e8] py-24 md:py-32 overflow-hidden border-b-[20px] border-navy">
-      {/* Floating scattered background icons */}
-      <div className="absolute top-0 right-10 w-[300px] h-[300px] opacity-[0.15] -rotate-12 pointer-events-none mix-blend-overlay">
-        <img src={iconCristales} alt="" className="w-full h-full object-contain" />
-      </div>
-      <div className="absolute bottom-0 left-20 w-[400px] h-[400px] opacity-[0.15] rotate-45 pointer-events-none mix-blend-overlay">
-        <img src={iconLineas} alt="" className="w-full h-full object-contain" />
-      </div>
-      <div className="absolute top-20 left-1/2 w-[250px] h-[250px] opacity-[0.15] rotate-12 pointer-events-none mix-blend-overlay">
-        <img src={iconFachadas} alt="" className="w-full h-full object-contain" />
-      </div>
-      <div className="absolute bottom-10 right-1/4 w-[200px] h-[200px] opacity-[0.15] -rotate-45 pointer-events-none mix-blend-overlay">
-        <img src={iconSolar} alt="" className="w-full h-full object-contain" />
-      </div>
-
       <div className="relative max-w-4xl mx-auto px-6 lg:px-10 text-center z-10">
         <h2 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-navy tracking-tight mb-8">
           Tu seguridad en altura es nuestra prioridad. <br className="hidden md:block"/><span className="text-white">Adiós suciedad.</span>
@@ -1293,6 +1271,7 @@ function Index() {
         <SuccessCases />
         <MidCTA />
         <Benefits />
+        <CinematicShowcase />
         <VibrantCTA />
         <VideoSection />
         <Process />
