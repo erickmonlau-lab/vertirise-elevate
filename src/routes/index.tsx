@@ -47,10 +47,10 @@ const stats = [
 ];
 
 const services = [
-  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", customIcon: iconCristales, color: "bg-white", filter: "saturate(10) contrast(1.5) hue-rotate(-10deg)" },
-  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", customIcon: iconFachadas, color: "bg-white", filter: "saturate(10) contrast(1.5) hue-rotate(10deg)" },
-  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", customIcon: iconSolar, color: "bg-white", filter: "saturate(10) contrast(1.5)" },
-  { title: "Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", customIcon: iconLineas, color: "bg-white", filter: "saturate(10) contrast(1.5) hue-rotate(20deg)" },
+  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", customIcon: iconCristales, color: "bg-white", filter: "saturate(3.5) hue-rotate(-5deg)", clip: "none" },
+  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", customIcon: iconFachadas, color: "bg-white", filter: "saturate(3.5) hue-rotate(5deg)", clip: "none" },
+  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", customIcon: iconSolar, color: "bg-white", filter: "saturate(3.5)", clip: "none" },
+  { title: "Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", customIcon: iconLineas, color: "bg-white", filter: "saturate(3.5) hue-rotate(15deg)", clip: "inset(0 0 24% 0)" },
 ];
 
 const benefits = [
@@ -477,8 +477,8 @@ function Services() {
             <Reveal key={s.title} delay={i * 100}>
               <article className={`group ${s.color} rounded-3xl p-8 lg:p-10 shadow-sm border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col cursor-pointer relative`}>
                 
-                <div className="w-32 h-32 mb-6 group-hover:scale-110 transition-transform duration-500 origin-bottom-left overflow-hidden relative">
-                  <img src={s.customIcon} alt={s.title} className="w-[120%] h-[120%] absolute -top-[10%] -left-[10%] object-contain mix-blend-multiply" style={{ filter: s.filter }} />
+                <div className="w-32 h-32 mb-6 group-hover:scale-110 transition-transform duration-500 origin-bottom-left">
+                  <img src={s.customIcon} alt={s.title} className="w-full h-full object-contain object-left-top mix-blend-multiply" style={{ filter: s.filter, clipPath: s.clip }} />
                 </div>
                 
                 <h3 className="text-2xl font-extrabold text-navy mb-3 tracking-tight z-10">
