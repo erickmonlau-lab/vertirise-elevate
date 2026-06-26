@@ -10,18 +10,9 @@ gsap.registerPlugin(ScrollTrigger);
 export function CinematicShowcase() {
   const containerRef = useRef<HTMLElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mediaQuery.matches);
-    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
-  }, []);
 
   useGSAP(() => {
-    if (!containerRef.current || !stickyRef.current || prefersReducedMotion) return;
+    if (!containerRef.current || !stickyRef.current) return;
 
     gsap.set([".word-1", ".word-2", ".word-3"], { scale: 0.01, opacity: 0, transformOrigin: "center center" });
     gsap.set(".final-content", { opacity: 0 });
@@ -70,26 +61,9 @@ export function CinematicShowcase() {
     tl.to(".vertigo-bg", { filter: "blur(20px)", duration: 1.5 }, 6.5);
     tl.to(".final-content", { opacity: 1, duration: 1.5, pointerEvents: "auto" }, 6.5);
 
-  }, { scope: containerRef, dependencies: [prefersReducedMotion] });
+  }, { scope: containerRef });
 
-  // Fallback for users with reduced motion preferences
-  if (prefersReducedMotion) {
-    return (
-      <section className="bg-[#02040a] py-32 px-6" id="proceso">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tight mb-6">
-            Cuidamos <span className="text-electric">Cada Detalle</span><br/>A Cualquier Altura.
-          </h2>
-          <p className="text-xl text-white/70 mb-10">
-            Nuestros técnicos especializados combinan precisión y seguridad para devolverle el brillo a su edificio. Sin andamios, sin límites.
-          </p>
-          <a href="#contacto" className="inline-flex items-center justify-center h-14 px-10 rounded-full bg-electric text-white font-bold hover:bg-electric/90">
-            Solicitar Presupuesto
-          </a>
-        </div>
-      </section>
-    );
-  }
+
 
   return (
     <section ref={containerRef} className="relative h-[800vh] bg-[#02040a]" id="proceso">
