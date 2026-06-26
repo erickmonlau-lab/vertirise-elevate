@@ -244,11 +244,11 @@ function Nav() {
             
             <div className="flex items-center gap-1 md:hidden">
               <div className="flex items-center text-[10px] sm:text-xs font-bold text-slate-400 tracking-wider bg-slate-50 rounded-md shadow-sm border border-slate-100">
-                <button type="button" onClick={() => setLanguage('es')} className={`px-2.5 py-2 transition-colors rounded-l-md ${language === 'es' ? "text-navy bg-slate-200" : "hover:text-navy active:bg-slate-200"}`}>ES</button>
+                <button type="button" onClick={() => setLanguage('es')} className={`w-9 py-2 text-center transition-colors rounded-l-md ${language === 'es' ? "text-navy bg-slate-200" : "hover:text-navy active:bg-slate-200"}`}>ES</button>
                 <span className="w-px h-3 bg-slate-300"></span>
-                <button type="button" onClick={() => setLanguage('ca')} className={`px-2.5 py-2 transition-colors ${language === 'ca' ? "text-navy bg-slate-200" : "hover:text-navy active:bg-slate-200"}`}>CA</button>
+                <button type="button" onClick={() => setLanguage('ca')} className={`w-9 py-2 text-center transition-colors ${language === 'ca' ? "text-navy bg-slate-200" : "hover:text-navy active:bg-slate-200"}`}>CA</button>
                 <span className="w-px h-3 bg-slate-300"></span>
-                <button type="button" onClick={() => setLanguage('en')} className={`px-2.5 py-2 transition-colors rounded-r-md ${language === 'en' ? "text-navy bg-slate-200" : "hover:text-navy active:bg-slate-200"}`}>EN</button>
+                <button type="button" onClick={() => setLanguage('en')} className={`w-9 py-2 text-center transition-colors rounded-r-md ${language === 'en' ? "text-navy bg-slate-200" : "hover:text-navy active:bg-slate-200"}`}>EN</button>
               </div>
               <button
                 onClick={() => setMobileOpen(o => !o)}
@@ -270,11 +270,11 @@ function Nav() {
 
           <div className="hidden md:flex items-center gap-5">
             <div className="flex items-center gap-1 text-xs font-bold text-slate-400 tracking-wider bg-slate-50 rounded-md shadow-sm border border-slate-100">
-              <button type="button" onClick={() => setLanguage('es')} className={`px-3 py-2 transition-colors rounded-l-md ${language === 'es' ? 'text-navy bg-slate-200' : 'hover:text-navy active:bg-slate-200'}`}>ES</button>
+              <button type="button" onClick={() => setLanguage('es')} className={`w-10 py-2 text-center transition-colors rounded-l-md ${language === 'es' ? 'text-navy bg-slate-200' : 'hover:text-navy active:bg-slate-200'}`}>ES</button>
               <span className="w-px h-3 bg-slate-300"></span>
-              <button type="button" onClick={() => setLanguage('ca')} className={`px-3 py-2 transition-colors ${language === 'ca' ? 'text-navy bg-slate-200' : 'hover:text-navy active:bg-slate-200'}`}>CA</button>
+              <button type="button" onClick={() => setLanguage('ca')} className={`w-10 py-2 text-center transition-colors ${language === 'ca' ? 'text-navy bg-slate-200' : 'hover:text-navy active:bg-slate-200'}`}>CA</button>
               <span className="w-px h-3 bg-slate-300"></span>
-              <button type="button" onClick={() => setLanguage('en')} className={`px-3 py-2 transition-colors rounded-r-md ${language === 'en' ? 'text-navy bg-slate-200' : 'hover:text-navy active:bg-slate-200'}`}>EN</button>
+              <button type="button" onClick={() => setLanguage('en')} className={`w-10 py-2 text-center transition-colors rounded-r-md ${language === 'en' ? 'text-navy bg-slate-200' : 'hover:text-navy active:bg-slate-200'}`}>EN</button>
             </div>
             
             <a
