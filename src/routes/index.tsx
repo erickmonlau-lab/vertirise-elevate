@@ -5,10 +5,10 @@ import { BeforeAfter } from "@/components/BeforeAfter";
 import { CinematicShowcase } from "@/components/CinematicShowcase";
 
 import heroImg from "@/assets/hero.webp";
-import cristalesImg from "@/assets/service-cristales-pastel.png";
-import fachadasImg from "@/assets/service-fachadas-pastel.png";
-import solarImg from "@/assets/service-solares-pastel.png";
-import lineasImg from "@/assets/service-lineas-pastel.png";
+import cristalesImg from "@/assets/service-cristales.webp";
+import fachadasImg from "@/assets/service-fachadas.webp";
+import solarImg from "@/assets/service-solar.webp";
+import lineasImg from "@/assets/service-lineas.webp";
 import logoDiset from "@/assets/logo-diset.webp";
 
 import beforeCristalesImg from "@/assets/before-cristales.webp";
@@ -429,59 +429,47 @@ function Sectors() {
 // — Services —
 function Services() {
   return (
-    <section id="servicios" className="py-24 lg:py-32 bg-slate-50 scroll-mt-20 md:scroll-mt-24">
+    <section id="servicios" className="py-24 lg:py-32 bg-white scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
           <Reveal className="max-w-2xl">
-            <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Servicios Especializados</span>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-navy tracking-tight">
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Servicios</span>
+            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
               Todo lo que su edificio<br />necesita, <span className="text-electric">en altura</span>.
             </h2>
           </Reveal>
           <Reveal delay={120}>
-            <p className="text-slate-500 max-w-md leading-relaxed text-lg">
-              Soluciones integrales con personal homologado y la garantía de más de 25 años de experiencia.
+            <p className="text-muted-foreground max-w-md leading-relaxed">
+              Un único proveedor técnico para todos los trabajos en altura, con personal homologado y la garantía de más de 25 años de experiencia.
             </p>
           </Reveal>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 100}>
-              <article className="group bg-white rounded-[2rem] border border-slate-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 overflow-hidden flex flex-col sm:flex-row items-center p-6 md:p-8 gap-8">
-                
-                {/* Illustration Container */}
-                <div className="w-full sm:w-2/5 shrink-0 bg-[#f8fafc] rounded-3xl p-6 aspect-square flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                  <img 
-                    src={s.img} 
-                    alt={s.title} 
-                    loading="lazy" 
-                    className="w-full h-full object-contain mix-blend-multiply" 
-                  />
-                </div>
-                
-                {/* Content Container */}
-                <div className="flex-1 flex flex-col justify-center">
-                  <div className="w-12 h-12 rounded-2xl bg-electric/10 text-electric flex items-center justify-center mb-6">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d={s.icon} />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl lg:text-3xl font-extrabold text-navy tracking-tight mb-4 group-hover:text-electric transition-colors duration-300">
-                    {s.title}
-                  </h3>
-                  <p className="text-base lg:text-lg text-slate-500 leading-relaxed mb-6 font-medium">
-                    {s.desc}
-                  </p>
-                  
-                  <div className="mt-auto inline-flex items-center gap-2 text-electric font-bold text-base group-hover:gap-4 transition-all duration-300">
-                    Saber más
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-                    </svg>
+              <article className="group relative overflow-hidden rounded-2xl bg-mist border border-border hover:border-electric/40 hover:shadow-elev hover:-translate-y-1 transition-all duration-500 cursor-pointer">
+                <div className="aspect-[16/10] overflow-hidden relative">
+                  <img src={s.img} alt={s.title} loading="lazy" width={1024} height={640} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out" />
+                  <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/60 transition-all duration-500" />
+                  <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                    <div className="w-16 h-16 rounded-2xl bg-electric/90 backdrop-blur-sm grid place-items-center shadow-glow">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d={s.icon} />
+                      </svg>
+                    </div>
                   </div>
                 </div>
-
+                <div className="p-8">
+                  <h3 className="text-2xl font-extrabold text-navy group-hover:text-electric transition-colors duration-300">{s.title}</h3>
+                  <p className="mt-4 text-base text-muted-foreground leading-relaxed">{s.desc}</p>
+                  <div className="mt-7 overflow-hidden h-7">
+                    <div className="translate-y-0 group-hover:-translate-y-0 transition-transform duration-300 inline-flex items-center gap-2 text-electric font-bold text-base group-hover:gap-3">
+                      Más información
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                    </div>
+                  </div>
+                </div>
               </article>
             </Reveal>
           ))}
