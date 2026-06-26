@@ -55,15 +55,15 @@ const services = [
 
 const benefits = [
   { title: "+30", desc: "Años de experiencia técnica", icon: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 9.36l-7.1 7.1a1 1 0 0 1-1.41-1.41l7.1-7.1a6 6 0 0 1 9.36-7.94l-3.77 3.77a1 1 0 0 0-.11 1.3z", color: "bg-[#e91e63]" },
-  { title: "+10.000", desc: "Clientes satisfechos", icon: "M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3", color: "bg-[#03a9f4]" },
-  { title: "+29.560", desc: "Controles de plagas", icon: "M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm10 16-5-5", color: "bg-[#cddc39]" },
+  { title: "+10.000", desc: "Proyectos completados", icon: "M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3", color: "bg-[#03a9f4]" },
+  { title: "+29.560", desc: "Horas de trabajo seguro", icon: "M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm10 16-5-5", color: "bg-[#cddc39]" },
   { title: "+2.900", desc: "Empresas asistidas", icon: "M3 21h18M5 21V7l8-4v18M13 3l8 4v14M7 11h2M7 15h2M15 11h2M15 15h2", color: "bg-[#3f51b5]" },
 ];
 
 const process = [
-  { n: "1", t: "Atendemos tu consulta", d: "Se concretará una inspección gratuita, para poder evaluar de forma específica.", shape: "triangle", color: "bg-[#e91e63]" },
-  { n: "2", t: "Concertamos una visita", d: "Llámanos y un especialista atenderá tu consulta de manera inmediata.", shape: "square", color: "bg-[#e91e63]" },
-  { n: "3", t: "Realizamos el tratamiento", d: "Acordaremos una fecha en la que el técnico se desplazará para realizar el tratamiento acordado.", shape: "circle", color: "bg-[#e91e63]" },
+  { n: "1", t: "Atendemos tu consulta", d: "Se concretará una evaluación técnica gratuita de la fachada o cubierta para poder planificar de forma específica.", shape: "triangle", color: "bg-[#e91e63]" },
+  { n: "2", t: "Concertamos una visita", d: "Llámanos y un especialista vertical atenderá tu consulta de manera inmediata para coordinar el acceso.", shape: "square", color: "bg-[#e91e63]" },
+  { n: "3", t: "Realizamos la limpieza", d: "Acordaremos una fecha en la que nuestros técnicos se colgarán para realizar el trabajo de limpieza o mantenimiento.", shape: "circle", color: "bg-[#e91e63]" },
 ];
 
 const testimonials = [
@@ -682,12 +682,12 @@ function Benefits() {
   return (
     <section className="py-24 lg:py-32 bg-[#0b1121] border-y border-white/5 relative overflow-hidden" id="beneficios">
       <div className="max-w-4xl mx-auto px-6 lg:px-10">
-        <div className="mb-14 relative z-10">
+        <div className="mb-14 relative z-10 pt-4 md:pt-0">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] text-white tracking-tight">
-            Proveedor de soluciones inteligentes y eficaces
+            La referencia técnica en trabajos verticales
           </h2>
           <p className="mt-6 text-white/70 text-lg max-w-2xl">
-            Los productos y sistemas utilizados en nuestros tratamientos son de alta efectividad siempre garantizando la seguridad de nuestros clientes.
+            Los equipos y protocolos utilizados en nuestras intervenciones son de máxima seguridad, garantizando resultados impecables en todos nuestros proyectos.
           </p>
         </div>
 
@@ -788,7 +788,7 @@ function Process() {
       <div className="max-w-4xl mx-auto px-6 lg:px-10">
         <Reveal className="mb-16 text-center md:text-left">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] text-navy tracking-tight">
-            Nuestro proceso de control
+            Nuestro proceso de trabajo
           </h2>
         </Reveal>
 
