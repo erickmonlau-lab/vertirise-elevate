@@ -101,6 +101,10 @@
   0% { transform: translateY(-50px); }
   90%, 100% { transform: translateY(500px); }
 }
+@keyframes grow-down {
+  0% { transform: scaleY(0); }
+  90%, 100% { transform: scaleY(1); }
+}
 @keyframes wipe {
   0%, 100% { transform: rotate(-25deg); }
   50% { transform: rotate(25deg); }
@@ -112,6 +116,22 @@
 @keyframes clean-glass {
   0%, 20% { opacity: 0.8; }
   60%, 100% { opacity: 0; }
+}
+
+@utility animate-rappel {
+  animation: rappel 8s infinite linear;
+}
+@utility animate-grow-down {
+  animation: grow-down 8s infinite linear;
+}
+@utility animate-wipe {
+  animation: wipe 0.8s infinite;
+}
+@utility animate-wipe-alt {
+  animation: wipe-alt 0.8s infinite;
+}
+@utility animate-clean-glass {
+  animation: clean-glass 8s infinite both;
 }
 @keyframes shine {
   0% { background-position: -200% 0; }

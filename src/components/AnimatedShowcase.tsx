@@ -1,29 +1,11 @@
 import { useEffect, useState } from "react";
 import { Reveal } from "./Reveal";
+import buildingFacadeImg from "@/assets/building-facade.png";
 
 export function AnimatedShowcase() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  // Window grid: 4 columns, 6 rows
-  const cols = 4;
-  const rows = 6;
-  const windowWidth = 60;
-  const windowHeight = 80;
-  const gapX = 10;
-  const gapY = 15;
-  const startX = 25; // to center the 4 columns in a 320 width facade
-  const startY = 60;
-
-  // Total building width: 4 * 60 + 3 * 10 = 270. Centered in 320 -> startX = 25
-  const windows = [];
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      windows.push({ r, c });
-    }
-  }
-
-  // Animation duration
   const duration = 8; // seconds for full rappel cycle
 
   return (
@@ -41,7 +23,7 @@ export function AnimatedShowcase() {
               Cuidamos cada <span className="text-electric">detalle</span><br />a cualquier altura.
             </h2>
             <p className="mt-6 text-white/70 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Nuestros técnicos especializados combinan precisión y seguridad para devolverle el brillo a su edificio. Observa cómo desaparece la suciedad, ventana a ventana.
+              Nuestros técnicos especializados combinan precisión y seguridad para devolverle el brillo a su edificio. Observa cómo desaparece la suciedad a su paso.
             </p>
           </Reveal>
         </div>
@@ -52,113 +34,86 @@ export function AnimatedShowcase() {
           {/* SVG Canvas */}
           <svg viewBox="0 0 400 500" className="w-full h-full" preserveAspectRatio="xMidYMax meet">
             <defs>
-              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#0a1628" />
-                <stop offset="100%" stopColor="#040b14" />
-              </linearGradient>
-              <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#0D3B66" />
-                <stop offset="50%" stopColor="#0096FF" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#0a1628" />
-              </linearGradient>
+              <mask id="clean-mask">
+                <rect width="400" height="500" fill="black" />
+                {mounted && (
+                  <>
+                    <rect x="90" y="0" width="60" height="500" fill="white" className="origin-top animate-grow-down" style={{ animationDuration: `${duration}s`, animationIterationCount: 'infinite', animationTimingFunction: 'linear' }} />
+                    <rect x="250" y="0" width="60" height="500" fill="white" className="origin-top animate-grow-down" style={{ animationDuration: `${duration}s`, animationDelay: '2s', animationIterationCount: 'infinite', animationTimingFunction: 'linear' }} />
+                  </>
+                )}
+              </mask>
             </defs>
 
-            {/* Sky Background */}
-            <rect width="400" height="500" fill="url(#sky)" />
+            {/* Dirty Background Layer */}
+            <image href={buildingFacadeImg} width="400" height="500" preserveAspectRatio="xMidYMid slice" opacity="0.4" filter="sepia(0.8) brightness(0.6)" />
 
-            {/* Building Structure */}
-            <g transform="translate(40, 50)">
-              {/* Facade base */}
-              <rect width="320" height="450" fill="#060e1a" stroke="#0096FF" strokeOpacity="0.3" strokeWidth="2" rx="4" />
-              
-              {/* Roof line */}
-              <rect width="330" height="10" x="-5" y="-10" fill="#0D3B66" rx="2" />
-              
-              {/* Windows */}
-              {windows.map(({ r, c }) => {
-                const x = startX + c * (windowWidth + gapX);
-                const y = startY + r * (windowHeight + gapY);
-                let cleanDelay = 0;
-                let willClean = false;
-                if (c === 0 || c === 1) {
-                  cleanDelay = (r / rows) * (duration * 0.7); 
-                  willClean = true;
-                } else if (c === 2 || c === 3) {
-                  cleanDelay = 2 + (r / rows) * (duration * 0.7);
-                  willClean = true;
-                }
+            {/* Clean Background Layer (Revealed by Mask) */}
+            <image href={buildingFacadeImg} width="400" height="500" preserveAspectRatio="xMidYMid slice" mask="url(#clean-mask)" />
 
-                return (
-                  <g key={`${r}-${c}`} transform={`translate(${x}, ${y})`}>
-                    <rect width={windowWidth} height={windowHeight} fill="url(#glass)" rx="2" stroke="#ffffff" strokeOpacity="0.05" />
-                    <polygon points={`0,0 ${windowWidth},0 0,${windowHeight}`} fill="#ffffff" opacity="0.03" />
-                    
-                    {mounted && willClean ? (
-                      <rect 
-                        width={windowWidth} 
-                        height={windowHeight} 
-                        fill="#332d22" 
-                        opacity="0.8" 
-                        rx="2"
-                        className="animate-clean-glass"
-                        style={{ 
-                          animationDuration: `${duration}s`, 
-                          animationDelay: `${cleanDelay}s`,
-                          animationIterationCount: 'infinite',
-                          animationFillMode: 'both'
-                        }}
-                      />
-                    ) : (
-                      <rect width={windowWidth} height={windowHeight} fill="#332d22" opacity="0.8" rx="2" />
-                    )}
-                  </g>
-                );
-              })}
+            {mounted && (
+              <>
+                {/* Ropes */}
+                <line x1="120" y1="-10" x2="120" y2="500" stroke="#1e293b" strokeWidth="1.5" />
+                <line x1="280" y1="-10" x2="280" y2="500" stroke="#1e293b" strokeWidth="1.5" />
 
-              {/* Ropes */}
-              {mounted && (
-                <>
-                  <line x1="120" y1="-10" x2="120" y2="450" stroke="#4a5568" strokeWidth="1.5" />
-                  <line x1="200" y1="-10" x2="200" y2="450" stroke="#4a5568" strokeWidth="1.5" />
-
-                  {/* Worker 1 */}
-                  <g className="animate-rappel" style={{ animationDuration: `${duration}s`, animationIterationCount: 'infinite', animationTimingFunction: 'linear' }}>
-                    <g transform="translate(120, -20)">
-                      <circle cx="0" cy="5" r="8" fill="#e2e8f0" />
-                      <rect x="-6" y="8" width="12" height="18" rx="4" fill="#0096FF" />
-                      <rect x="-4" y="24" width="8" height="12" rx="3" fill="#1e293b" />
-                      <path d="M -7 5 A 7 7 0 0 1 7 5 Z" fill="#fbbf24" />
-                      <g className="animate-wipe" style={{ animationDuration: '0.8s', animationIterationCount: 'infinite' }}>
-                        <line x1="0" y1="12" x2="-25" y2="0" stroke="#e2e8f0" strokeWidth="3" strokeLinecap="round" />
-                        <line x1="-25" y1="-5" x2="-25" y2="5" stroke="#fbbf24" strokeWidth="2" />
-                      </g>
-                      <g className="animate-wipe-alt" style={{ animationDuration: '0.8s', animationIterationCount: 'infinite', animationDelay: '0.4s' }}>
-                        <line x1="0" y1="12" x2="25" y2="0" stroke="#e2e8f0" strokeWidth="3" strokeLinecap="round" />
-                        <line x1="25" y1="-5" x2="25" y2="5" stroke="#fbbf24" strokeWidth="2" />
-                      </g>
+                {/* Worker 1 */}
+                <g className="animate-rappel" style={{ animationDuration: `${duration}s`, animationIterationCount: 'infinite', animationTimingFunction: 'linear' }}>
+                  <g transform="translate(120, -10)">
+                    {/* Detailed Worker Silhouette */}
+                    <g fill="#e2e8f0">
+                      {/* Helmet */}
+                      <path d="M-6,2 C-6,-2 6,-2 6,2 L7,4 L-7,4 Z" fill="#fbbf24" />
+                      <circle cx="0" cy="5" r="4" fill="#fbbf24" />
+                      {/* Body/Harness */}
+                      <path d="M-5,10 C-6,14 -6,18 -4,22 L4,22 C6,18 6,14 5,10 Z" fill="#0096FF" />
+                      {/* Legs */}
+                      <path d="M-4,22 L-5,32 L-2,32 L-1,22 Z" fill="#1e293b" />
+                      <path d="M4,22 L5,32 L2,32 L1,22 Z" fill="#1e293b" />
+                      {/* Harness details */}
+                      <path d="M-4,12 L4,16 M-4,16 L4,12" stroke="#1e293b" strokeWidth="1.5" />
+                    </g>
+                    {/* Wiping Arms */}
+                    <g className="animate-wipe" style={{ animationDuration: '0.8s', animationIterationCount: 'infinite' }}>
+                      <line x1="0" y1="12" x2="-25" y2="0" stroke="#e2e8f0" strokeWidth="3" strokeLinecap="round" />
+                      <line x1="-25" y1="-5" x2="-25" y2="5" stroke="#fbbf24" strokeWidth="2" />
+                    </g>
+                    <g className="animate-wipe-alt" style={{ animationDuration: '0.8s', animationIterationCount: 'infinite', animationDelay: '0.4s' }}>
+                      <line x1="0" y1="12" x2="25" y2="0" stroke="#e2e8f0" strokeWidth="3" strokeLinecap="round" />
+                      <line x1="25" y1="-5" x2="25" y2="5" stroke="#fbbf24" strokeWidth="2" />
                     </g>
                   </g>
+                </g>
 
-                  {/* Worker 2 */}
-                  <g className="animate-rappel" style={{ animationDuration: `${duration}s`, animationDelay: '2s', animationIterationCount: 'infinite', animationTimingFunction: 'linear' }}>
-                    <g transform="translate(200, -20)">
-                      <circle cx="0" cy="5" r="8" fill="#e2e8f0" />
-                      <rect x="-6" y="8" width="12" height="18" rx="4" fill="#0096FF" />
-                      <rect x="-4" y="24" width="8" height="12" rx="3" fill="#1e293b" />
-                      <path d="M -7 5 A 7 7 0 0 1 7 5 Z" fill="#fbbf24" />
-                      <g className="animate-wipe" style={{ animationDuration: '0.8s', animationIterationCount: 'infinite' }}>
-                        <line x1="0" y1="12" x2="-25" y2="0" stroke="#e2e8f0" strokeWidth="3" strokeLinecap="round" />
-                        <line x1="-25" y1="-5" x2="-25" y2="5" stroke="#fbbf24" strokeWidth="2" />
-                      </g>
-                      <g className="animate-wipe-alt" style={{ animationDuration: '0.8s', animationIterationCount: 'infinite', animationDelay: '0.4s' }}>
-                        <line x1="0" y1="12" x2="25" y2="0" stroke="#e2e8f0" strokeWidth="3" strokeLinecap="round" />
-                        <line x1="25" y1="-5" x2="25" y2="5" stroke="#fbbf24" strokeWidth="2" />
-                      </g>
+                {/* Worker 2 */}
+                <g className="animate-rappel" style={{ animationDuration: `${duration}s`, animationDelay: '2s', animationIterationCount: 'infinite', animationTimingFunction: 'linear' }}>
+                  <g transform="translate(280, -10)">
+                    {/* Detailed Worker Silhouette */}
+                    <g fill="#e2e8f0">
+                      {/* Helmet */}
+                      <path d="M-6,2 C-6,-2 6,-2 6,2 L7,4 L-7,4 Z" fill="#fbbf24" />
+                      <circle cx="0" cy="5" r="4" fill="#fbbf24" />
+                      {/* Body/Harness */}
+                      <path d="M-5,10 C-6,14 -6,18 -4,22 L4,22 C6,18 6,14 5,10 Z" fill="#0096FF" />
+                      {/* Legs */}
+                      <path d="M-4,22 L-5,32 L-2,32 L-1,22 Z" fill="#1e293b" />
+                      <path d="M4,22 L5,32 L2,32 L1,22 Z" fill="#1e293b" />
+                      {/* Harness details */}
+                      <path d="M-4,12 L4,16 M-4,16 L4,12" stroke="#1e293b" strokeWidth="1.5" />
+                    </g>
+                    {/* Wiping Arms */}
+                    <g className="animate-wipe" style={{ animationDuration: '0.8s', animationIterationCount: 'infinite' }}>
+                      <line x1="0" y1="12" x2="-25" y2="0" stroke="#e2e8f0" strokeWidth="3" strokeLinecap="round" />
+                      <line x1="-25" y1="-5" x2="-25" y2="5" stroke="#fbbf24" strokeWidth="2" />
+                    </g>
+                    <g className="animate-wipe-alt" style={{ animationDuration: '0.8s', animationIterationCount: 'infinite', animationDelay: '0.4s' }}>
+                      <line x1="0" y1="12" x2="25" y2="0" stroke="#e2e8f0" strokeWidth="3" strokeLinecap="round" />
+                      <line x1="25" y1="-5" x2="25" y2="5" stroke="#fbbf24" strokeWidth="2" />
                     </g>
                   </g>
-                </>
-              )}
-            </g>
+                </g>
+              </>
+            )}
           </svg>
         </div>
       </div>
