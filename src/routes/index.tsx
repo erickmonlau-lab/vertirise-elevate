@@ -47,10 +47,10 @@ const stats = [
 ];
 
 const services = [
-  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", customIcon: iconCristales, color: "bg-white", filter: "hue-rotate(270deg) saturate(1.5)", clip: "none", objectClass: "object-contain object-center scale-95" },
-  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", customIcon: iconFachadas, color: "bg-white", filter: "hue-rotate(80deg) saturate(1.5)", clip: "none", objectClass: "object-contain object-bottom" },
-  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", customIcon: iconSolar, color: "bg-white", filter: "none", clip: "none", objectClass: "object-contain object-bottom" },
-  { title: "Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", customIcon: iconLineas, color: "bg-white", filter: "hue-rotate(15deg) saturate(1.2)", clip: "inset(0 0 11% 0)", objectClass: "object-contain object-bottom scale-105 origin-bottom" },
+  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", customIcon: iconCristales, color: "bg-white", filter: "hue-rotate(270deg) saturate(2.5)", clip: "none", objectClass: "object-contain object-center scale-95" },
+  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", customIcon: iconFachadas, color: "bg-white", filter: "hue-rotate(80deg) saturate(2.5)", clip: "none", objectClass: "object-contain object-bottom" },
+  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", customIcon: iconSolar, color: "bg-white", filter: "saturate(2.5)", clip: "none", objectClass: "object-contain object-bottom" },
+  { title: "Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", customIcon: iconLineas, color: "bg-white", filter: "hue-rotate(90deg) saturate(2.5)", clip: "inset(0 0 11% 0)", objectClass: "object-contain object-bottom scale-105 origin-bottom" },
 ];
 
 const benefits = [
@@ -832,45 +832,77 @@ function Process() {
   );
 }
 
-// — Testimonials —
 function Testimonials() {
+  const bgColors = ["bg-[#E65100]", "bg-[#0F9D58]", "bg-[#4285F4]"];
+  
   return (
-    <section className="py-24 lg:py-32 bg-[#0a1628] border-y border-white/5">
+    <section className="py-24 lg:py-32 bg-[#eef2f6]">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <Reveal className="mb-12 text-center">
-          <div className="inline-flex flex-col items-center gap-3">
-            <div className="flex gap-1">
+        <Reveal className="mb-14 text-center">
+          <h2 className="mb-8 text-3xl md:text-4xl lg:text-5xl font-extrabold text-navy leading-tight tracking-tight">
+            Particulares satisfechos<br />con nuestros servicios
+          </h2>
+          
+          <div className="inline-flex flex-col items-center gap-2">
+            <div className="text-xl font-bold text-navy tracking-widest">EXCELENTE</div>
+            <div className="flex gap-1 mb-1">
               {[...Array(5)].map((_, k) => (
-                <svg key={k} width="22" height="22" viewBox="0 0 24 24" fill="#0096FF"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>
+                <svg key={k} width="28" height="28" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>
               ))}
             </div>
-            <div className="text-2xl font-black text-white">★★★★★ 4.9/5</div>
-            <p className="text-white/70 text-sm">Basado en clientes reales de toda la provincia de Barcelona</p>
+            <p className="text-navy text-sm mb-1">A base de <strong className="font-bold">987 reseñas</strong></p>
+            <div className="text-[28px] font-bold tracking-tighter" style={{ fontFamily: 'sans-serif' }}>
+              <span className="text-[#4285F4]">G</span>
+              <span className="text-[#EA4335]">o</span>
+              <span className="text-[#FBBC05]">o</span>
+              <span className="text-[#4285F4]">g</span>
+              <span className="text-[#34A853]">l</span>
+              <span className="text-[#EA4335]">e</span>
+            </div>
           </div>
-          <h2 className="mt-8 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05]">
-            Lo que dicen<br />nuestros clientes.
-          </h2>
         </Reveal>
+        
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <Reveal key={t.name} delay={i * 100}>
-              <article className="flex flex-col bg-white/5 rounded-2xl p-8 border border-white/10 hover:border-electric/40 hover:bg-white/10 hover:-translate-y-1 transition-all duration-500 h-full">
-                <div className="flex gap-1 text-electric mb-5">
-                  {[...Array(5)].map((_, k) => <svg key={k} width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>)}
+              <article className="flex flex-col bg-white rounded-[24px] p-6 lg:p-8 border border-slate-200/80 shadow-sm h-full relative hover:shadow-md transition-shadow">
+                
+                {/* Google G icon absolute top right */}
+                <div className="absolute top-6 lg:top-8 right-6 lg:right-8">
+                  <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                  </svg>
                 </div>
-                <p className="text-base leading-relaxed text-white/90 flex-1 italic">"{t.quote}"</p>
-                <div className="mt-5 px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 inline-block self-start">
-                  <span className="text-electric text-xs font-bold">{t.project}</span>
-                </div>
-                <div className="mt-5 pt-5 border-t border-white/10 flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-full bg-white/10 border border-white/20 text-white font-bold flex items-center justify-center shrink-0">
-                    {t.initials}
+
+                <div className="flex gap-4 items-center mb-4 pr-10">
+                  <div className={`w-12 h-12 rounded-full ${bgColors[i % 3]} text-white font-medium text-xl flex items-center justify-center shrink-0`}>
+                    {t.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="font-extrabold text-white text-sm">{t.name}</div>
-                    <div className="text-xs text-white/50">{t.role}</div>
-                    <div className="text-xs text-white/50">{t.location}</div>
+                    <div className="font-semibold text-navy text-[17px] leading-tight truncate">{t.name}</div>
+                    <div className="text-[13px] text-slate-500 mt-0.5">hace {i + 1} semana{i !== 0 && 's'}</div>
                   </div>
+                </div>
+
+                <div className="flex items-center gap-[2px] mb-4">
+                  {[...Array(5)].map((_, k) => (
+                    <svg key={k} width="16" height="16" viewBox="0 0 24 24" fill="#FBBC05"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>
+                  ))}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#4285F4"/>
+                    <path d="M16.5 8L10.5 14.5L7.5 11.5" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+
+                <p className="text-[15px] leading-relaxed text-navy flex-1">
+                  {t.quote}
+                </p>
+
+                <div className="mt-8">
+                  <span className="text-slate-500 text-sm hover:underline cursor-pointer">Leer más</span>
                 </div>
               </article>
             </Reveal>
