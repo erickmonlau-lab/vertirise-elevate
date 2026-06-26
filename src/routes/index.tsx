@@ -9,6 +9,11 @@ import cristalesImg from "@/assets/service-cristales.webp";
 import fachadasImg from "@/assets/service-fachadas.webp";
 import solarImg from "@/assets/service-solar.webp";
 import lineasImg from "@/assets/service-lineas.webp";
+
+import iconCristales from "@/assets/icon-cristales-pastel.png";
+import iconFachadas from "@/assets/icon-fachadas-pastel.png";
+import iconSolar from "@/assets/icon-solar-pastel.png";
+import iconLineas from "@/assets/icon-lineas-pastel.png";
 import logoDiset from "@/assets/logo-diset.webp";
 
 import beforeCristalesImg from "@/assets/before-cristales.webp";
@@ -42,10 +47,10 @@ const stats = [
 ];
 
 const services = [
-  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", img: cristalesImg, icon: "M21 21H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2z" },
-  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", img: fachadasImg, icon: "M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" },
-  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", img: solarImg, icon: "M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4" },
-  { title: "Instalación de Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", img: lineasImg, icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
+  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", img: cristalesImg, customIcon: iconCristales },
+  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", img: fachadasImg, customIcon: iconFachadas },
+  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", img: solarImg, customIcon: iconSolar },
+  { title: "Instalación de Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", img: lineasImg, customIcon: iconLineas },
 ];
 
 const benefits = [
@@ -453,10 +458,8 @@ function Services() {
                   <img src={s.img} alt={s.title} loading="lazy" width={1024} height={640} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out" />
                   <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/60 transition-all duration-500" />
                   <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                    <div className="w-16 h-16 rounded-2xl bg-electric/90 backdrop-blur-sm grid place-items-center shadow-glow">
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d={s.icon} />
-                      </svg>
+                    <div className="w-24 h-24 rounded-3xl bg-white/95 backdrop-blur-md grid place-items-center shadow-[0_10px_30px_rgba(0,0,0,0.2)] p-3">
+                      <img src={s.customIcon} alt={s.title} className="w-full h-full object-contain mix-blend-multiply" />
                     </div>
                   </div>
                 </div>
