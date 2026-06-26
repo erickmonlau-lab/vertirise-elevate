@@ -680,7 +680,7 @@ function MidCTA() {
 // — Benefits —
 function Benefits() {
   return (
-    <section className="py-24 lg:py-32 bg-[#0b1121] border-y border-white/5 relative overflow-hidden" id="beneficios">
+    <section className="py-24 lg:py-32 bg-[#0b1121] border-y border-white/5 relative overflow-hidden scroll-mt-20 md:scroll-mt-24" id="beneficios">
       <div className="max-w-4xl mx-auto px-6 lg:px-10">
         <div className="mb-14 relative z-10 pt-4 md:pt-0">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] text-white tracking-tight">
