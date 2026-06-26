@@ -456,9 +456,11 @@ function Services() {
               <article className="group relative overflow-hidden rounded-2xl bg-mist border border-border hover:border-electric/40 hover:shadow-elev hover:-translate-y-1 transition-all duration-500 cursor-pointer">
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <img src={s.img} alt={s.title} loading="lazy" width={1024} height={640} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out" />
-                  <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/60 transition-all duration-500" />
-                  <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                    <div className="w-24 h-24 rounded-3xl bg-white/95 backdrop-blur-md grid place-items-center shadow-[0_10px_30px_rgba(0,0,0,0.2)] p-3">
+                  <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/40 transition-all duration-500" />
+                  
+                  {/* Custom SVG Symbol - Always Visible Badge */}
+                  <div className="absolute top-4 right-4 z-10 transition-transform duration-500 group-hover:scale-110">
+                    <div className="w-20 h-20 rounded-2xl bg-white/95 backdrop-blur-md grid place-items-center shadow-[0_10px_30px_rgba(0,0,0,0.15)] p-3 border border-white/20">
                       <img src={s.customIcon} alt={s.title} className="w-full h-full object-contain mix-blend-multiply" />
                     </div>
                   </div>
