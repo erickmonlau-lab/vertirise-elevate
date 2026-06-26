@@ -434,47 +434,46 @@ function Sectors() {
 // — Services —
 function Services() {
   return (
-    <section id="servicios" className="py-24 lg:py-32 bg-white scroll-mt-20 md:scroll-mt-24">
+    <section id="servicios" className="py-20 bg-slate-50 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <Reveal className="max-w-2xl">
-            <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Servicios</span>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
-              Todo lo que su edificio<br />necesita, <span className="text-electric">en altura</span>.
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Servicios Especializados</span>
+            <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-navy tracking-tight">
+              Soluciones integrales, <span className="text-electric">en altura</span>.
             </h2>
           </Reveal>
           <Reveal delay={120}>
-            <p className="text-muted-foreground max-w-md leading-relaxed">
-              Un único proveedor técnico para todos los trabajos en altura, con personal homologado y la garantía de más de 25 años de experiencia.
+            <p className="text-slate-500 max-w-sm leading-relaxed text-sm md:text-base">
+              Toda la capacidad técnica de un único proveedor para el mantenimiento integral de su edificio.
             </p>
           </Reveal>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 100}>
-              <article className="group relative overflow-hidden rounded-2xl bg-mist border border-border hover:border-electric/40 hover:shadow-elev hover:-translate-y-1 transition-all duration-500 cursor-pointer">
-                <div className="aspect-[16/10] overflow-hidden relative">
-                  <img src={s.img} alt={s.title} loading="lazy" width={1024} height={640} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out" />
-                  <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/40 transition-all duration-500" />
-                  
-                  {/* Custom SVG Symbol - Always Visible Badge */}
-                  <div className="absolute top-4 right-4 z-10 transition-transform duration-500 group-hover:scale-110">
-                    <div className="w-20 h-20 rounded-2xl bg-white/95 backdrop-blur-md grid place-items-center shadow-[0_10px_30px_rgba(0,0,0,0.15)] p-3 border border-white/20">
-                      <img src={s.customIcon} alt={s.title} className="w-full h-full object-contain mix-blend-multiply" />
-                    </div>
-                  </div>
+              <article className="group bg-white rounded-3xl p-8 border border-slate-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 h-full flex flex-col cursor-pointer">
+                
+                <div className="w-24 h-24 mb-8 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
+                  <img src={s.customIcon} alt={s.title} className="w-full h-full object-contain mix-blend-multiply" />
                 </div>
-                <div className="p-8">
-                  <h3 className="text-2xl font-extrabold text-navy group-hover:text-electric transition-colors duration-300">{s.title}</h3>
-                  <p className="mt-4 text-base text-muted-foreground leading-relaxed">{s.desc}</p>
-                  <div className="mt-7 overflow-hidden h-7">
-                    <div className="translate-y-0 group-hover:-translate-y-0 transition-transform duration-300 inline-flex items-center gap-2 text-electric font-bold text-base group-hover:gap-3">
-                      Más información
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-                    </div>
-                  </div>
+                
+                <h3 className="text-xl font-bold text-navy mb-4 group-hover:text-electric transition-colors duration-300">
+                  {s.title}
+                </h3>
+                
+                <p className="text-sm text-slate-500 leading-relaxed mb-8 flex-1">
+                  {s.desc}
+                </p>
+                
+                <div className="mt-auto flex items-center gap-2 text-electric font-bold text-sm">
+                  Saber más
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-1 transition-transform">
+                    <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                  </svg>
                 </div>
+
               </article>
             </Reveal>
           ))}
