@@ -47,10 +47,10 @@ const stats = [
 ];
 
 const services = [
-  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", customIcon: iconCristales, color: "bg-white", filter: "brightness(0) saturate(100%) invert(31%) sepia(93%) saturate(3501%) hue-rotate(317deg) brightness(103%) contrast(101%)" },
-  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", customIcon: iconFachadas, color: "bg-white", filter: "brightness(0) saturate(100%) invert(75%) sepia(61%) saturate(5185%) hue-rotate(143deg) brightness(104%) contrast(104%)" },
-  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", customIcon: iconSolar, color: "bg-white", filter: "brightness(0) saturate(100%) invert(86%) sepia(92%) saturate(3048%) hue-rotate(352deg) brightness(104%) contrast(104%)" },
-  { title: "Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", customIcon: iconLineas, color: "bg-white", filter: "brightness(0) saturate(100%) invert(67%) sepia(74%) saturate(2975%) hue-rotate(69deg) brightness(104%) contrast(110%)" },
+  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", customIcon: iconCristales, color: "bg-white", filter: "saturate(10) contrast(1.5) hue-rotate(-10deg)" },
+  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", customIcon: iconFachadas, color: "bg-white", filter: "saturate(10) contrast(1.5) hue-rotate(10deg)" },
+  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", customIcon: iconSolar, color: "bg-white", filter: "saturate(10) contrast(1.5)" },
+  { title: "Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", customIcon: iconLineas, color: "bg-white", filter: "saturate(10) contrast(1.5) hue-rotate(20deg)" },
 ];
 
 const benefits = [
