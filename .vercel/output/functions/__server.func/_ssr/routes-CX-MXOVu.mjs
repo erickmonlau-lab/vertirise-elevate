@@ -1,8 +1,9 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { n as gsapWithCSS, r as require_react, t as useGSAP } from "../_libs/gsap+gsap__react+react.mjs";
 import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
+import { n as useTranslation } from "./I18nContext-DX2YFmY2.mjs";
 import { t as ScrollTrigger } from "../_libs/gsap.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-CqCg4zrn.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-CX-MXOVu.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function Reveal({ children, className = "", delay = 0, as: Tag = "div" }) {
@@ -583,6 +584,7 @@ function Logo({ white }) {
 	});
 }
 function Nav() {
+	const { t, setLanguage, language } = useTranslation();
 	const [scrolled, setScrolled] = (0, import_react.useState)(false);
 	const [mobileOpen, setMobileOpen] = (0, import_react.useState)(false);
 	(0, import_react.useEffect)(() => {
@@ -594,23 +596,23 @@ function Nav() {
 	const navLinks = [
 		{
 			href: "#servicios",
-			label: "Servicios"
+			label: t("nav.services")
 		},
 		{
 			href: "#proyectos",
-			label: "Proyectos"
+			label: t("nav.projects")
 		},
 		{
 			href: "#proceso",
-			label: "Proceso"
+			label: t("nav.process")
 		},
 		{
 			href: "#cobertura",
-			label: "Cobertura"
+			label: t("nav.coverage")
 		},
 		{
 			href: "#contacto",
-			label: "Contacto"
+			label: t("nav.contact")
 		}
 	];
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
@@ -631,7 +633,8 @@ function Nav() {
 							className: "flex items-center gap-1.5 text-[10px] font-bold text-slate-400 tracking-wider bg-slate-50 px-2 py-1 rounded-md",
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-									className: "text-navy",
+									onClick: () => setLanguage("es"),
+									className: language === "es" ? "text-navy" : "hover:text-navy",
 									children: "ES"
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
@@ -639,7 +642,8 @@ function Nav() {
 									children: "|"
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-									className: "hover:text-navy",
+									onClick: () => setLanguage("ca"),
+									className: language === "ca" ? "text-navy" : "hover:text-navy",
 									children: "CA"
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
@@ -647,7 +651,8 @@ function Nav() {
 									children: "|"
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-									className: "hover:text-navy",
+									onClick: () => setLanguage("en"),
+									className: language === "en" ? "text-navy" : "hover:text-navy",
 									children: "EN"
 								})
 							]
@@ -677,7 +682,8 @@ function Nav() {
 						className: "flex items-center gap-2 text-xs font-bold text-slate-400 tracking-wider",
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-								className: "text-navy transition-colors",
+								onClick: () => setLanguage("es"),
+								className: `transition-colors ${language === "es" ? "text-navy" : "hover:text-navy"}`,
 								children: "ES"
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
@@ -685,7 +691,8 @@ function Nav() {
 								children: "|"
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-								className: "hover:text-navy transition-colors",
+								onClick: () => setLanguage("ca"),
+								className: `transition-colors ${language === "ca" ? "text-navy" : "hover:text-navy"}`,
 								children: "CA"
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
@@ -693,14 +700,15 @@ function Nav() {
 								children: "|"
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-								className: "hover:text-navy transition-colors",
+								onClick: () => setLanguage("en"),
+								className: `transition-colors ${language === "en" ? "text-navy" : "hover:text-navy"}`,
 								children: "EN"
 							})
 						]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
 						href: PHONE_HREF,
 						className: "inline-flex items-center gap-2 px-5 h-9 rounded-full bg-electric text-white text-sm font-bold hover:shadow-[0_0_15px_rgba(0,150,255,0.4)] hover:-translate-y-0.5 transition-all",
-						children: "Llamar"
+						children: t("nav.call")
 					})]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
@@ -720,6 +728,7 @@ function Nav() {
 	}) });
 }
 function Hero() {
+	const { t } = useTranslation();
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 		id: "top",
 		className: "relative min-h-[100svh] flex items-center overflow-hidden",
@@ -743,29 +752,31 @@ function Hero() {
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-wider uppercase animate-[fade-in_0.8s_ease-out]",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "w-2 h-2 rounded-full bg-electric animate-pulse" }), "25+ años de experiencia · Barcelona"]
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "w-2 h-2 rounded-full bg-electric animate-pulse" }), t("hero.badge")]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
 						className: "mt-7 text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] text-white animate-[fade-up_1s_cubic-bezier(0.22,1,0.36,1)_both]",
 						children: [
-							"Especialistas en ",
+							t("hero.title1"),
+							" ",
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "text-electric",
-								children: "trabajos verticales"
+								children: t("hero.title2")
 							}),
-							" y limpieza en altura en Barcelona"
+							" ",
+							t("hero.title3")
 						]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "mt-7 text-lg sm:text-xl text-white/85 max-w-2xl leading-relaxed animate-[fade-up_1s_0.15s_cubic-bezier(0.22,1,0.36,1)_both]",
-						children: "Limpieza de cristales, fachadas, placas solares e instalación de líneas de vida para empresas, industrias y comunidades."
+						children: t("hero.desc")
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "mt-10 flex flex-wrap items-center gap-4 animate-[fade-up_1s_0.3s_cubic-bezier(0.22,1,0.36,1)_both]",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
 							href: "#contacto",
 							className: "group inline-flex items-center gap-3 h-14 px-7 rounded-full bg-electric text-white font-bold hover:shadow-elev hover:-translate-y-0.5 transition-all",
-							children: "Solicitar Presupuesto"
+							children: t("hero.btn.quote")
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
 							href: PHONE_HREF,
 							className: "inline-flex items-center gap-3 h-14 px-7 rounded-full bg-white text-navy font-bold shadow-soft hover:shadow-elev hover:-translate-y-0.5 transition-all",
@@ -779,7 +790,7 @@ function Hero() {
 								strokeLinecap: "round",
 								strokeLinejoin: "round",
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" })
-							}), "Llamar Ahora"]
+							}), t("hero.btn.call")]
 						})]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -952,6 +963,7 @@ function Sectors() {
 	});
 }
 function Services() {
+	const { t } = useTranslation();
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
 		id: "servicios",
 		className: "py-20 bg-slate-50 scroll-mt-20",
@@ -963,70 +975,73 @@ function Services() {
 					className: "max-w-2xl",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 						className: "text-xs font-bold tracking-[0.2em] uppercase text-electric",
-						children: "Servicios Especializados"
+						children: t("services.badge")
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
 						className: "mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-navy tracking-tight",
 						children: [
-							"Soluciones integrales, ",
+							t("services.title1"),
+							" ",
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "text-electric",
-								children: "en altura"
-							}),
-							"."
+								children: t("services.title2")
+							})
 						]
 					})]
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Reveal, {
 					delay: 120,
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "text-slate-500 max-w-sm leading-relaxed text-sm md:text-base",
-						children: "Toda la capacidad técnica de un único proveedor para el mantenimiento integral de su edificio."
+						children: t("services.desc")
 					})
 				})]
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 				className: "grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6",
-				children: services.map((s, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Reveal, {
-					delay: i * 100,
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
-						className: `group ${s.color} rounded-3xl p-8 lg:p-10 shadow-sm border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col cursor-pointer relative`,
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "w-32 h-32 mb-6 group-hover:scale-110 transition-transform duration-500 origin-bottom-left",
-								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-									src: s.customIcon,
-									alt: s.title,
-									className: `w-full h-full mix-blend-multiply ${s.objectClass || "object-contain object-bottom"}`,
-									style: {
-										filter: s.filter,
-										clipPath: s.clip
-									}
+				children: services.map((s, i) => {
+					const prefix = `services.${i + 1}`;
+					return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Reveal, {
+						delay: i * 100,
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
+							className: `group ${s.color} rounded-3xl p-8 lg:p-10 shadow-sm border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col cursor-pointer relative`,
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "w-32 h-32 mb-6 group-hover:scale-110 transition-transform duration-500 origin-bottom-left",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+										src: s.customIcon,
+										alt: t(`${prefix}.title`),
+										className: `w-full h-full mix-blend-multiply ${s.objectClass || "object-contain object-bottom"}`,
+										style: {
+											filter: s.filter,
+											clipPath: s.clip
+										}
+									})
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+									className: "text-2xl font-extrabold text-navy mb-3 tracking-tight z-10",
+									children: t(`${prefix}.title`)
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-navy/80 font-medium leading-relaxed mb-8 flex-1 z-10",
+									children: t(`${prefix}.desc`)
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "mt-auto flex items-center gap-2 text-navy font-bold text-sm z-10",
+									children: ["Más información", /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", {
+										width: "16",
+										height: "16",
+										viewBox: "0 0 24 24",
+										fill: "none",
+										stroke: "currentColor",
+										strokeWidth: "2.5",
+										strokeLinecap: "round",
+										strokeLinejoin: "round",
+										className: "group-hover:translate-x-1 transition-transform",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M5 12h14" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "m12 5 7 7-7 7" })]
+									})]
 								})
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-								className: "text-2xl font-extrabold text-navy mb-3 tracking-tight z-10",
-								children: s.title
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "text-navy/80 font-medium leading-relaxed mb-8 flex-1 z-10",
-								children: s.desc
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "mt-auto flex items-center gap-2 text-navy font-bold text-sm z-10",
-								children: ["Más información", /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", {
-									width: "16",
-									height: "16",
-									viewBox: "0 0 24 24",
-									fill: "none",
-									stroke: "currentColor",
-									strokeWidth: "2.5",
-									strokeLinecap: "round",
-									strokeLinejoin: "round",
-									className: "group-hover:translate-x-1 transition-transform",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M5 12h14" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "m12 5 7 7-7 7" })]
-								})]
-							})
-						]
-					})
-				}, s.title))
+							]
+						})
+					}, s.title);
+				})
 			})]
 		})
 	});
@@ -1408,6 +1423,7 @@ function MidCTA() {
 	});
 }
 function Benefits() {
+	const { t } = useTranslation();
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
 		className: "py-24 lg:py-32 bg-[#0b1121] border-y border-white/5 relative overflow-hidden scroll-mt-20 md:scroll-mt-24",
 		id: "beneficios",
@@ -1424,30 +1440,33 @@ function Benefits() {
 				})]
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 				className: "flex flex-col gap-6",
-				children: benefits.map((b, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Reveal, {
-					delay: i * 100,
-					className: "flex items-center gap-6",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: `w-20 h-20 rounded-2xl flex items-center justify-center shrink-0 shadow-lg ${b.color}`,
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("svg", {
-							width: "32",
-							height: "32",
-							viewBox: "0 0 24 24",
-							fill: "none",
-							stroke: "white",
-							strokeWidth: "2",
-							strokeLinecap: "round",
-							strokeLinejoin: "round",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: b.icon })
-						})
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-						className: "text-3xl font-extrabold text-white tracking-tight mb-1",
-						children: b.title
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "text-sm font-medium text-white/70",
-						children: b.desc
-					})] })]
-				}, b.title))
+				children: benefits.map((b, i) => {
+					const prefix = `benefits.${i + 1}`;
+					return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Reveal, {
+						delay: i * 100,
+						className: "flex items-center gap-6",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: `w-20 h-20 rounded-2xl flex items-center justify-center shrink-0 shadow-lg ${b.color}`,
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("svg", {
+								width: "32",
+								height: "32",
+								viewBox: "0 0 24 24",
+								fill: "none",
+								stroke: "white",
+								strokeWidth: "2",
+								strokeLinecap: "round",
+								strokeLinejoin: "round",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: b.icon })
+							})
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+							className: "text-3xl font-extrabold text-white tracking-tight mb-1",
+							children: t(`${prefix}.title`) || b.title
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-sm font-medium text-white/70",
+							children: t(`${prefix}.desc`) || b.desc
+						})] })]
+					}, b.title);
+				})
 			})]
 		})
 	});
@@ -1961,108 +1980,66 @@ function Coverage() {
 	});
 }
 function Certifications() {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+	const { t } = useTranslation();
+	const certs = [
+		{
+			name: "IRATA",
+			desc: t("certs.1.desc"),
+			detail: t("certs.1.detail"),
+			icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"
+		},
+		{
+			name: "PRL",
+			desc: t("certs.2.desc"),
+			detail: t("certs.2.detail"),
+			icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+		},
+		{
+			name: t("certs.3.title"),
+			desc: t("certs.3.desc"),
+			detail: t("certs.3.detail"),
+			icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6"
+		},
+		{
+			name: "EN 795",
+			desc: t("certs.4.desc"),
+			detail: t("certs.4.detail"),
+			icon: "M13 2 3 14h9l-1 8 10-12h-9l1-8Z"
+		},
+		{
+			name: "ISO",
+			desc: t("certs.5.desc"),
+			detail: t("certs.5.detail"),
+			icon: "M20 6 9 17l-5-5"
+		}
+	];
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
 		className: "py-24 lg:py-32 bg-[#D52374] relative overflow-hidden",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "absolute inset-0 overflow-hidden pointer-events-none",
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "absolute -top-10 -left-10 w-72 h-72 opacity-[0.12] rotate-12 mix-blend-multiply",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-						src: icon_cristales_pastel_default,
-						alt: "",
-						className: "w-full h-full object-contain"
-					})
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "absolute top-[45%] left-[10%] w-56 h-56 opacity-[0.12] -rotate-[15deg] mix-blend-multiply",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-						src: icon_lineas_pastel_default,
-						alt: "",
-						className: "w-full h-full object-contain"
-					})
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "absolute bottom-10 left-[35%] w-64 h-64 opacity-[0.12] rotate-45 mix-blend-multiply",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-						src: icon_fachadas_pastel_default,
-						alt: "",
-						className: "w-full h-full object-contain"
-					})
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "absolute top-10 right-[5%] w-80 h-80 opacity-[0.12] -rotate-6 mix-blend-multiply",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-						src: icon_solar_pastel_default,
-						alt: "",
-						className: "w-full h-full object-contain"
-					})
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "absolute -bottom-20 right-[15%] w-72 h-72 opacity-[0.12] rotate-[25deg] mix-blend-multiply",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-						src: icon_cristales_pastel_default,
-						alt: "",
-						className: "w-full h-full object-contain"
-					})
-				})
-			]
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "max-w-7xl mx-auto px-6 lg:px-10 relative z-10",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Reveal, {
 				className: "text-center mb-16",
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 						className: "text-[13px] font-black tracking-[0.2em] uppercase text-[#0B2163]",
-						children: "Certificaciones"
+						children: t("certs.badge")
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
 						className: "mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0B2163] leading-tight tracking-tight",
 						children: [
-							"Técnicos certificados",
+							t("certs.title1"),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("br", {}),
-							"y máxima seguridad."
+							t("certs.title2")
 						]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "mt-6 text-[#0B2163]/80 max-w-2xl mx-auto leading-relaxed text-lg md:text-xl font-medium",
-						children: "Nuestro cliente compra seguridad antes que limpieza. Por eso invertimos en certificaciones y formación continua."
+						children: t("certs.desc")
 					})
 				]
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 				className: "grid sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5",
-				children: [
-					{
-						name: "IRATA",
-						desc: "Industrial Rope Access Trade Association",
-						detail: "Formación continua en acceso por cuerdas de nivel internacional",
-						icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"
-					},
-					{
-						name: "PRL",
-						desc: "Prevención de Riesgos Laborales",
-						detail: "Cumplimiento total de la normativa española de seguridad laboral",
-						icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-					},
-					{
-						name: "Seguro RC",
-						desc: "Responsabilidad Civil",
-						detail: "Cobertura de responsabilidad civil para todos los trabajos ejecutados",
-						icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6"
-					},
-					{
-						name: "EN 795",
-						desc: "Normativa Líneas de Vida",
-						detail: "Instalaciones anticaídas certificadas según norma europea EN 795",
-						icon: "M13 2 3 14h9l-1 8 10-12h-9l1-8Z"
-					},
-					{
-						name: "ISO",
-						desc: "Calidad y Gestión",
-						detail: "Protocolos de calidad documentados y auditados externamente",
-						icon: "M20 6 9 17l-5-5"
-					}
-				].map((c, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Reveal, {
+				children: certs.map((c, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Reveal, {
 					delay: i * 80,
 					className: "h-full",
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -2100,7 +2077,7 @@ function Certifications() {
 					})
 				}, c.name))
 			})]
-		})]
+		})
 	});
 }
 function ContactForm({ light = false }) {

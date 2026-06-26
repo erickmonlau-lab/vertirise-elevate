@@ -1,12 +1,13 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { r as require_react } from "../_libs/gsap+gsap__react+react.mjs";
-import { c as HeadContent, d as Outlet, f as lazyRouteComponent, g as useRouter, h as Link, m as createRootRouteWithContext, p as createFileRoute, s as Scripts, u as createRouter } from "../_libs/@tanstack/react-router+[...].mjs";
 import { n as require_jsx_runtime, t as QueryClientProvider } from "../_libs/react+tanstack__react-query.mjs";
+import { t as I18nProvider } from "./I18nContext-DX2YFmY2.mjs";
+import { c as HeadContent, d as Outlet, f as lazyRouteComponent, g as useRouter, h as Link, m as createRootRouteWithContext, p as createFileRoute, s as Scripts, u as createRouter } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-CPk-XdXI.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-Cz2rrDrv.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
-var styles_default = "/assets/styles-7jojN28h.css";
+var styles_default = "/assets/styles-ybSos9l8.css";
 function reportLovableError(error, context = {}) {
 	if (typeof window === "undefined") return;
 	window.__lovableEvents?.captureException?.(error, {
@@ -157,10 +158,10 @@ function RootComponent() {
 	const { queryClient } = Route$1.useRouteContext();
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(QueryClientProvider, {
 		client: queryClient,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {})
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(I18nProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {}) })
 	});
 }
-var $$splitComponentImporter = () => import("./routes-CqCg4zrn.mjs");
+var $$splitComponentImporter = () => import("./routes-CX-MXOVu.mjs");
 var rootRouteChildren = { IndexRoute: createFileRoute("/")({
 	head: () => ({ meta: [
 		{ title: "DISET · Trabajos Verticales y Limpieza en Altura en Barcelona" },

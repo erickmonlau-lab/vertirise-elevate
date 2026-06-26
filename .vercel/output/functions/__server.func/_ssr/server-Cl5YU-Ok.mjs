@@ -1,9 +1,9 @@
 import "../_runtime.mjs";
 import { r as require_react } from "../_libs/gsap+gsap__react+react.mjs";
+import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
 import { C as resolveManifestAssetLink, D as isResolvedRedirect, E as isRedirect, O as rootRouteId, S as getStylesheetHref, T as executeRewriteInput, a as replaceSsrResponse, i as normalizeSsrResponse, j as invariant, k as isNotFound, l as RouterProvider, n as defineHandlerCallback, o as stripSsrResponseBody, r as isSsrResponse, t as renderRouterToStream, w as resolveManifestCssLink, x as getScriptPreloadAttrs } from "../_libs/@tanstack/react-router+[...].mjs";
 import { n as createMemoryHistory } from "../_libs/tanstack__history.mjs";
 import { a as defaultSerovalPlugins, c as makeSerovalPlugin, d as su, i as getOrigin, l as Pu, n as attachRouterServerSsrUtils, o as createRawStreamRPCPlugin, r as getNormalizedURL, s as createSerializationAdapter, t as mergeHeaders, u as iu } from "../_libs/@tanstack/router-core+[...].mjs";
-import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
 import { t as createMiddleware } from "./createStart-Dt05N14y.mjs";
 import { n as toResponse, t as H3Event } from "../_libs/h3-v2.mjs";
 import { AsyncLocalStorage } from "node:async_hooks";
@@ -82,7 +82,7 @@ var HEADERS = { TSS_SHELL: "X-TSS_SHELL" };
 * the dev styles URL for route-scoped CSS collection.
 */
 async function getStartManifest(matchedRoutes) {
-	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-CzRJBnns.mjs");
+	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-CA511Sf9.mjs");
 	const startManifest = tsrStartManifest();
 	let routes = startManifest.routes;
 	routes[rootRouteId];
@@ -1163,7 +1163,7 @@ var getBaseManifest = getProdBaseManifest;
 var createEarlyHintsForRequest = createEarlyHintsCollector;
 async function loadEntries() {
 	const [routerEntry, startEntry, pluginAdapters] = await Promise.all([
-		import("./router-CPk-XdXI.mjs"),
+		import("./router-Cz2rrDrv.mjs"),
 		import("./start-Ok9K6Nid.mjs"),
 		import("./empty-plugin-adapters-D9UWiqvJ.mjs")
 	]);

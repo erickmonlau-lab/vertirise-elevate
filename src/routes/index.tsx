@@ -241,13 +241,13 @@ function Nav() {
               <Logo white={false} />
             </a>
             
-            <div className="flex items-center gap-3 md:hidden">
-              <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 tracking-wider bg-slate-50 px-2 py-1 rounded-md">
-                <button onClick={() => setLanguage('es')} className={language === 'es' ? "text-navy" : "hover:text-navy"}>ES</button>
-                <span className="text-slate-200">|</span>
-                <button onClick={() => setLanguage('ca')} className={language === 'ca' ? "text-navy" : "hover:text-navy"}>CA</button>
-                <span className="text-slate-200">|</span>
-                <button onClick={() => setLanguage('en')} className={language === 'en' ? "text-navy" : "hover:text-navy"}>EN</button>
+            <div className="flex items-center gap-1 md:hidden">
+              <div className="flex items-center text-[10px] sm:text-xs font-bold text-slate-400 tracking-wider bg-slate-50 rounded-md shadow-sm border border-slate-100">
+                <button type="button" onClick={() => setLanguage('es')} className={`px-2.5 py-2 transition-colors rounded-l-md ${language === 'es' ? "text-navy bg-slate-200" : "hover:text-navy active:bg-slate-200"}`}>ES</button>
+                <span className="w-px h-3 bg-slate-300"></span>
+                <button type="button" onClick={() => setLanguage('ca')} className={`px-2.5 py-2 transition-colors ${language === 'ca' ? "text-navy bg-slate-200" : "hover:text-navy active:bg-slate-200"}`}>CA</button>
+                <span className="w-px h-3 bg-slate-300"></span>
+                <button type="button" onClick={() => setLanguage('en')} className={`px-2.5 py-2 transition-colors rounded-r-md ${language === 'en' ? "text-navy bg-slate-200" : "hover:text-navy active:bg-slate-200"}`}>EN</button>
               </div>
               <button
                 onClick={() => setMobileOpen(o => !o)}
@@ -268,12 +268,12 @@ function Nav() {
           </nav>
 
           <div className="hidden md:flex items-center gap-5">
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-400 tracking-wider">
-              <button onClick={() => setLanguage('es')} className={`transition-colors ${language === 'es' ? 'text-navy' : 'hover:text-navy'}`}>ES</button>
-              <span className="text-slate-200">|</span>
-              <button onClick={() => setLanguage('ca')} className={`transition-colors ${language === 'ca' ? 'text-navy' : 'hover:text-navy'}`}>CA</button>
-              <span className="text-slate-200">|</span>
-              <button onClick={() => setLanguage('en')} className={`transition-colors ${language === 'en' ? 'text-navy' : 'hover:text-navy'}`}>EN</button>
+            <div className="flex items-center gap-1 text-xs font-bold text-slate-400 tracking-wider bg-slate-50 rounded-md shadow-sm border border-slate-100">
+              <button type="button" onClick={() => setLanguage('es')} className={`px-3 py-2 transition-colors rounded-l-md ${language === 'es' ? 'text-navy bg-slate-200' : 'hover:text-navy active:bg-slate-200'}`}>ES</button>
+              <span className="w-px h-3 bg-slate-300"></span>
+              <button type="button" onClick={() => setLanguage('ca')} className={`px-3 py-2 transition-colors ${language === 'ca' ? 'text-navy bg-slate-200' : 'hover:text-navy active:bg-slate-200'}`}>CA</button>
+              <span className="w-px h-3 bg-slate-300"></span>
+              <button type="button" onClick={() => setLanguage('en')} className={`px-3 py-2 transition-colors rounded-r-md ${language === 'en' ? 'text-navy bg-slate-200' : 'hover:text-navy active:bg-slate-200'}`}>EN</button>
             </div>
             
             <a
@@ -505,7 +505,8 @@ function Services() {
 
               </article>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
