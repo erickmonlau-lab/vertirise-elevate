@@ -995,22 +995,22 @@ function Certifications() {
   return (
     <section className="py-24 lg:py-32 bg-[#D52374] relative overflow-hidden">
       
-      {/* Scattered Icons Background */}
+      {/* Scattered Vibrant Green Icons Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-10 -left-10 w-72 h-72 opacity-[0.12] rotate-12 mix-blend-multiply">
-          <img src={iconCristales} alt="" className="w-full h-full object-contain" />
+        <div className="absolute -top-10 -left-10 w-72 h-72 opacity-60 mix-blend-screen">
+          <img src={iconCristales} alt="" className="w-full h-full object-contain" style={{ filter: 'invert(1) sepia(1) saturate(15) hue-rotate(50deg) brightness(1.2)' }} />
         </div>
-        <div className="absolute top-[45%] left-[10%] w-56 h-56 opacity-[0.12] -rotate-[15deg] mix-blend-multiply">
-          <img src={iconLineas} alt="" className="w-full h-full object-contain" />
+        <div className="absolute top-[45%] left-[10%] w-56 h-56 opacity-60 -rotate-[15deg] mix-blend-screen">
+          <img src={iconLineas} alt="" className="w-full h-full object-contain" style={{ filter: 'invert(1) sepia(1) saturate(15) hue-rotate(50deg) brightness(1.2)' }} />
         </div>
-        <div className="absolute bottom-10 left-[35%] w-64 h-64 opacity-[0.12] rotate-45 mix-blend-multiply">
-          <img src={iconFachadas} alt="" className="w-full h-full object-contain" />
+        <div className="absolute bottom-10 left-[35%] w-64 h-64 opacity-60 rotate-45 mix-blend-screen">
+          <img src={iconFachadas} alt="" className="w-full h-full object-contain" style={{ filter: 'invert(1) sepia(1) saturate(15) hue-rotate(50deg) brightness(1.2)' }} />
         </div>
-        <div className="absolute top-10 right-[5%] w-80 h-80 opacity-[0.12] -rotate-6 mix-blend-multiply">
-          <img src={iconSolar} alt="" className="w-full h-full object-contain" />
+        <div className="absolute top-10 right-[5%] w-80 h-80 opacity-60 -rotate-6 mix-blend-screen">
+          <img src={iconSolar} alt="" className="w-full h-full object-contain" style={{ filter: 'invert(1) sepia(1) saturate(15) hue-rotate(50deg) brightness(1.2)' }} />
         </div>
-        <div className="absolute -bottom-20 right-[15%] w-72 h-72 opacity-[0.12] rotate-[25deg] mix-blend-multiply">
-          <img src={iconCristales} alt="" className="w-full h-full object-contain" />
+        <div className="absolute -bottom-20 right-[15%] w-72 h-72 opacity-60 rotate-[25deg] mix-blend-screen">
+          <img src={iconCristales} alt="" className="w-full h-full object-contain" style={{ filter: 'invert(1) sepia(1) saturate(15) hue-rotate(50deg) brightness(1.2)' }} />
         </div>
       </div>
 
