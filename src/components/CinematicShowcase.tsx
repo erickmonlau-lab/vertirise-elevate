@@ -18,16 +18,7 @@ export function CinematicShowcase() {
     gsap.set(".speed-lines", { opacity: 0 });
     gsap.set(".worker-group", { y: "120vh" }); // Start below screen
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        pin: true,
-        start: "top top",
-        end: "+=5000", // 5000px of scroll distance
-        scrub: 1, // Smooth scrubbing
-        anticipatePin: 1,
-      }
-    });
+    const tl = gsap.timeline({ paused: true });
 
     // 1. Background "Flying Up" Animation
     // Start zoomed in (near street), zoom out to simulate flying UP the building
@@ -53,6 +44,28 @@ export function CinematicShowcase() {
     // 5. Final Fade to Solid Background & CTA
     tl.to(".final-bg", { opacity: 1, duration: 1.5 }, 6.5);
     tl.to(".final-content", { opacity: 1, duration: 1.5, pointerEvents: "auto" }, 6.5);
+
+    let maxProgress = 0;
+
+    ScrollTrigger.create({
+      trigger: containerRef.current,
+      pin: true,
+      start: "top top",
+      end: "+=3500", // Reduced slightly so it's less tedious to scroll past when fixed
+      anticipatePin: 1,
+      onUpdate: (self) => {
+        if (self.progress > maxProgress) {
+          maxProgress = self.progress;
+          // Smoothly catch up to the scroll position
+          gsap.to(tl, { progress: maxProgress, duration: 0.5, ease: "power2.out", overwrite: "auto" });
+        }
+      },
+      onLeaveBack: () => {
+        // Reset the animation if the user scrolls completely ABOVE the section
+        maxProgress = 0;
+        gsap.to(tl, { progress: 0, duration: 0.5, overwrite: "auto" });
+      }
+    });
 
   }, { scope: containerRef });
 
