@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { BeforeAfter } from "@/components/BeforeAfter";
+import { AnimatedShowcase } from "@/components/AnimatedShowcase";
 
 import heroImg from "@/assets/hero.webp";
 import cristalesImg from "@/assets/service-cristales.webp";
@@ -1218,6 +1219,7 @@ function Index() {
         <SuccessCases />
         <MidCTA />
         <Benefits />
+        <AnimatedShowcase />
         <VideoSection />
         <Process />
         <Testimonials />
