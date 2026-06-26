@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "../i18n/I18nContext";
+import type { Language } from "../i18n/translations";
 import { Reveal } from "@/components/Reveal";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { CinematicShowcase } from "@/components/CinematicShowcase";
@@ -210,6 +212,7 @@ function Logo({ white }: { white: boolean }) {
 
 // — Nav (White initially, Dark Glass on scroll) —
 function Nav() {
+  const { t, setLanguage, language } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -240,11 +243,11 @@ function Nav() {
             
             <div className="flex items-center gap-3 md:hidden">
               <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 tracking-wider bg-slate-50 px-2 py-1 rounded-md">
-                <button className="text-navy">ES</button>
+                <button onClick={() => setLanguage('es')} className={language === 'es' ? "text-navy" : "hover:text-navy"}>ES</button>
                 <span className="text-slate-200">|</span>
-                <button className="hover:text-navy">CA</button>
+                <button onClick={() => setLanguage('ca')} className={language === 'ca' ? "text-navy" : "hover:text-navy"}>CA</button>
                 <span className="text-slate-200">|</span>
-                <button className="hover:text-navy">EN</button>
+                <button onClick={() => setLanguage('en')} className={language === 'en' ? "text-navy" : "hover:text-navy"}>EN</button>
               </div>
               <button
                 onClick={() => setMobileOpen(o => !o)}
@@ -266,18 +269,18 @@ function Nav() {
 
           <div className="hidden md:flex items-center gap-5">
             <div className="flex items-center gap-2 text-xs font-bold text-slate-400 tracking-wider">
-              <button className="text-navy transition-colors">ES</button>
+              <button onClick={() => setLanguage('es')} className={`transition-colors ${language === 'es' ? 'text-navy' : 'hover:text-navy'}`}>ES</button>
               <span className="text-slate-200">|</span>
-              <button className="hover:text-navy transition-colors">CA</button>
+              <button onClick={() => setLanguage('ca')} className={`transition-colors ${language === 'ca' ? 'text-navy' : 'hover:text-navy'}`}>CA</button>
               <span className="text-slate-200">|</span>
-              <button className="hover:text-navy transition-colors">EN</button>
+              <button onClick={() => setLanguage('en')} className={`transition-colors ${language === 'en' ? 'text-navy' : 'hover:text-navy'}`}>EN</button>
             </div>
             
             <a
               href={PHONE_HREF}
               className="inline-flex items-center gap-2 px-5 h-9 rounded-full bg-electric text-white text-sm font-bold hover:shadow-[0_0_15px_rgba(0,150,255,0.4)] hover:-translate-y-0.5 transition-all"
             >
-              Llamar
+              {t('nav.call')}
             </a>
           </div>
 
@@ -304,6 +307,7 @@ function Nav() {
 
 // — Hero —
 function Hero() {
+  const { t } = useTranslation();
   return (
     <section id="top" className="relative min-h-[100svh] flex items-center overflow-hidden">
       <div className="absolute inset-0">
@@ -321,22 +325,22 @@ function Hero() {
         <div className="max-w-3xl text-white">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-wider uppercase animate-[fade-in_0.8s_ease-out]">
             <span className="w-2 h-2 rounded-full bg-electric animate-pulse" />
-            25+ años de experiencia · Barcelona
+            {t('hero.badge')}
           </div>
           <h1 className="mt-7 text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] text-white animate-[fade-up_1s_cubic-bezier(0.22,1,0.36,1)_both]">
-            Especialistas en <span className="text-electric">trabajos verticales</span> y limpieza en altura en Barcelona
+            {t('hero.title1')} <span className="text-electric">{t('hero.title2')}</span> {t('hero.title3')}
           </h1>
           <p className="mt-7 text-lg sm:text-xl text-white/85 max-w-2xl leading-relaxed animate-[fade-up_1s_0.15s_cubic-bezier(0.22,1,0.36,1)_both]">
-            Limpieza de cristales, fachadas, placas solares e instalación de líneas de vida para empresas, industrias y comunidades.
+            {t('hero.desc')}
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4 animate-[fade-up_1s_0.3s_cubic-bezier(0.22,1,0.36,1)_both]">
             <a href="#contacto" className="group inline-flex items-center gap-3 h-14 px-7 rounded-full bg-electric text-white font-bold hover:shadow-elev hover:-translate-y-0.5 transition-all">
-              Solicitar Presupuesto
+              {t('hero.btn.quote')}
             </a>
             <a href={PHONE_HREF} className="inline-flex items-center gap-3 h-14 px-7 rounded-full bg-white text-navy font-bold shadow-soft hover:shadow-elev hover:-translate-y-0.5 transition-all">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
-              Llamar Ahora
+              {t('hero.btn.call')}
             </a>
           </div>
 
@@ -455,38 +459,41 @@ function Sectors() {
 
 // — Services —
 function Services() {
+  const { t } = useTranslation();
   return (
     <section id="servicios" className="py-20 bg-slate-50 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <Reveal className="max-w-2xl">
-            <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Servicios Especializados</span>
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">{t('services.badge')}</span>
             <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-navy tracking-tight">
-              Soluciones integrales, <span className="text-electric">en altura</span>.
+              {t('services.title1')} <span className="text-electric">{t('services.title2')}</span>
             </h2>
           </Reveal>
           <Reveal delay={120}>
             <p className="text-slate-500 max-w-sm leading-relaxed text-sm md:text-base">
-              Toda la capacidad técnica de un único proveedor para el mantenimiento integral de su edificio.
+              {t('services.desc')}
             </p>
           </Reveal>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-          {services.map((s, i) => (
+          {services.map((s, i) => {
+            const prefix = `services.${i + 1}`;
+            return (
             <Reveal key={s.title} delay={i * 100}>
               <article className={`group ${s.color} rounded-3xl p-8 lg:p-10 shadow-sm border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col cursor-pointer relative`}>
                 
                 <div className="w-32 h-32 mb-6 group-hover:scale-110 transition-transform duration-500 origin-bottom-left">
-                  <img src={s.customIcon} alt={s.title} className={`w-full h-full mix-blend-multiply ${s.objectClass || 'object-contain object-bottom'}`} style={{ filter: s.filter, clipPath: s.clip }} />
+                  <img src={s.customIcon} alt={t(`${prefix}.title` as TranslationKey)} className={`w-full h-full mix-blend-multiply ${s.objectClass || 'object-contain object-bottom'}`} style={{ filter: s.filter, clipPath: s.clip }} />
                 </div>
                 
                 <h3 className="text-2xl font-extrabold text-navy mb-3 tracking-tight z-10">
-                  {s.title}
+                  {t(`${prefix}.title` as TranslationKey)}
                 </h3>
                 
                 <p className="text-navy/80 font-medium leading-relaxed mb-8 flex-1 z-10">
-                  {s.desc}
+                  {t(`${prefix}.desc` as TranslationKey)}
                 </p>
                 
                 <div className="mt-auto flex items-center gap-2 text-navy font-bold text-sm z-10">
@@ -679,6 +686,7 @@ function MidCTA() {
 
 // — Benefits —
 function Benefits() {
+  const { t } = useTranslation();
   return (
     <section className="py-24 lg:py-32 bg-[#0b1121] border-y border-white/5 relative overflow-hidden scroll-mt-20 md:scroll-mt-24" id="beneficios">
       <div className="max-w-4xl mx-auto px-6 lg:px-10">
@@ -692,7 +700,9 @@ function Benefits() {
         </div>
 
         <div className="flex flex-col gap-6">
-          {benefits.map((b, i) => (
+          {benefits.map((b, i) => {
+            const prefix = `benefits.${i + 1}`;
+            return (
             <Reveal key={b.title} delay={i * 100} className="flex items-center gap-6">
               <div className={`w-20 h-20 rounded-2xl flex items-center justify-center shrink-0 shadow-lg ${b.color}`}>
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -701,14 +711,15 @@ function Benefits() {
               </div>
               <div>
                 <h3 className="text-3xl font-extrabold text-white tracking-tight mb-1">
-                  {b.title}
+                  {t(`${prefix}.title` as TranslationKey) || b.title}
                 </h3>
                 <p className="text-sm font-medium text-white/70">
-                  {b.desc}
+                  {t(`${prefix}.desc` as TranslationKey) || b.desc}
                 </p>
               </div>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -984,44 +995,25 @@ function Coverage() {
 
 // — Certifications (High Contrast, Solid Cards) —
 function Certifications() {
+  const { t } = useTranslation();
   const certs = [
-    { name: "IRATA", desc: "Industrial Rope Access Trade Association", detail: "Formación continua en acceso por cuerdas de nivel internacional", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
-    { name: "PRL", desc: "Prevención de Riesgos Laborales", detail: "Cumplimiento total de la normativa española de seguridad laboral", icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" },
-    { name: "Seguro RC", desc: "Responsabilidad Civil", detail: "Cobertura de responsabilidad civil para todos los trabajos ejecutados", icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" },
-    { name: "EN 795", desc: "Normativa Líneas de Vida", detail: "Instalaciones anticaídas certificadas según norma europea EN 795", icon: "M13 2 3 14h9l-1 8 10-12h-9l1-8Z" },
-    { name: "ISO", desc: "Calidad y Gestión", detail: "Protocolos de calidad documentados y auditados externamente", icon: "M20 6 9 17l-5-5" },
+    { name: "IRATA", desc: t('certs.1.desc'), detail: t('certs.1.detail'), icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
+    { name: "PRL", desc: t('certs.2.desc'), detail: t('certs.2.detail'), icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" },
+    { name: t('certs.3.title'), desc: t('certs.3.desc'), detail: t('certs.3.detail'), icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" },
+    { name: "EN 795", desc: t('certs.4.desc'), detail: t('certs.4.detail'), icon: "M13 2 3 14h9l-1 8 10-12h-9l1-8Z" },
+    { name: "ISO", desc: t('certs.5.desc'), detail: t('certs.5.detail'), icon: "M20 6 9 17l-5-5" },
   ];
 
   return (
     <section className="py-24 lg:py-32 bg-[#D52374] relative overflow-hidden">
-      
-      {/* Scattered Vibrant Green Icons Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-10 -left-10 w-72 h-72 opacity-60 mix-blend-screen">
-          <img src={iconCristales} alt="" className="w-full h-full object-contain" style={{ filter: 'invert(1) sepia(1) saturate(15) hue-rotate(50deg) brightness(1.2)' }} />
-        </div>
-        <div className="absolute top-[45%] left-[10%] w-56 h-56 opacity-60 -rotate-[15deg] mix-blend-screen">
-          <img src={iconLineas} alt="" className="w-full h-full object-contain" style={{ filter: 'invert(1) sepia(1) saturate(15) hue-rotate(50deg) brightness(1.2)' }} />
-        </div>
-        <div className="absolute bottom-10 left-[35%] w-64 h-64 opacity-60 rotate-45 mix-blend-screen">
-          <img src={iconFachadas} alt="" className="w-full h-full object-contain" style={{ filter: 'invert(1) sepia(1) saturate(15) hue-rotate(50deg) brightness(1.2)' }} />
-        </div>
-        <div className="absolute top-10 right-[5%] w-80 h-80 opacity-60 -rotate-6 mix-blend-screen">
-          <img src={iconSolar} alt="" className="w-full h-full object-contain" style={{ filter: 'invert(1) sepia(1) saturate(15) hue-rotate(50deg) brightness(1.2)' }} />
-        </div>
-        <div className="absolute -bottom-20 right-[15%] w-72 h-72 opacity-60 rotate-[25deg] mix-blend-screen">
-          <img src={iconCristales} alt="" className="w-full h-full object-contain" style={{ filter: 'invert(1) sepia(1) saturate(15) hue-rotate(50deg) brightness(1.2)' }} />
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <Reveal className="text-center mb-16">
-          <span className="text-[13px] font-black tracking-[0.2em] uppercase text-[#0B2163]">Certificaciones</span>
+          <span className="text-[13px] font-black tracking-[0.2em] uppercase text-[#0B2163]">{t('certs.badge')}</span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0B2163] leading-tight tracking-tight">
-            Técnicos certificados<br />y máxima seguridad.
+            {t('certs.title1')}<br />{t('certs.title2')}
           </h2>
           <p className="mt-6 text-[#0B2163]/80 max-w-2xl mx-auto leading-relaxed text-lg md:text-xl font-medium">
-            Nuestro cliente compra seguridad antes que limpieza. Por eso invertimos en certificaciones y formación continua.
+            {t('certs.desc')}
           </p>
         </Reveal>
 
