@@ -50,9 +50,8 @@ export function CinematicShowcase() {
     tl.to(".word-3", { scale: 1, opacity: 1, duration: 1.5, ease: "power2.inOut" }, 4.5);
     tl.to(".word-3", { scale: 15, opacity: 0, duration: 1, ease: "power3.in" }, 6.0);
 
-    // 5. Final Fade to Black & CTA
-    tl.to(".bg-overlay", { opacity: 0.95, duration: 1.5 }, 6.5);
-    tl.to(".vertigo-bg", { filter: "blur(20px)", duration: 1.5 }, 6.5);
+    // 5. Final Fade to Solid Background & CTA
+    tl.to(".final-bg", { opacity: 1, duration: 1.5 }, 6.5);
     tl.to(".final-content", { opacity: 1, duration: 1.5, pointerEvents: "auto" }, 6.5);
 
   }, { scope: containerRef });
@@ -67,8 +66,10 @@ export function CinematicShowcase() {
             alt="Fachada de cristal" 
             className="w-full h-full object-cover object-top"
           />
-          {/* The overlay gets extremely dark at the end so text is readable */}
-          <div className="bg-overlay absolute inset-0 bg-gradient-to-b from-[#02040a]/20 via-[#02040a]/60 to-[#02040a]/90 transition-opacity" />
+          {/* Base overlay for readability during the fall */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#02040a]/30 via-[#02040a]/60 to-[#02040a]/90" />
+          {/* Final solid background that fades in to hide the image completely at the end */}
+          <div className="final-bg absolute inset-0 bg-[#02040a] opacity-0" />
         </div>
       </div>
 
@@ -87,10 +88,13 @@ export function CinematicShowcase() {
         </h2>
       </div>
 
-      {/* FINAL CONTENT (Fades in on dark background at the end of the scroll) */}
+      {/* FINAL CONTENT (Fades in on pure dark background at the end of the scroll) */}
       <div className="final-content absolute inset-0 z-30 flex flex-col items-center justify-center px-6 pointer-events-none">
-        <p className="text-lg md:text-2xl text-white/80 font-medium max-w-3xl text-center mb-12 leading-relaxed text-shadow-md">
-          Nuestros técnicos especializados combinan precisión y seguridad para devolverle el brillo a su edificio. Sin andamios, sin límites.
+        <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight text-center mb-5 drop-shadow-sm">
+          Precisión sin límites.
+        </h3>
+        <p className="text-lg md:text-xl text-white/60 font-medium max-w-2xl text-center mb-12 leading-relaxed">
+          Nuestros técnicos especializados combinan técnica y seguridad para devolverle el brillo a su edificio. Sin andamios, sin complicaciones.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-5 items-center">
