@@ -991,33 +991,54 @@ function Certifications() {
     { name: "EN 795", desc: "Normativa Líneas de Vida", detail: "Instalaciones anticaídas certificadas según norma europea EN 795", icon: "M13 2 3 14h9l-1 8 10-12h-9l1-8Z" },
     { name: "ISO", desc: "Calidad y Gestión", detail: "Protocolos de calidad documentados y auditados externamente", icon: "M20 6 9 17l-5-5" },
   ];
+
   return (
-    <section className="py-24 lg:py-32 bg-[#0a1628] industrial-texture">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <Reveal className="text-center mb-14">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Certificaciones</span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-white leading-[1.05]">
+    <section className="py-24 lg:py-32 bg-[#D52374] relative overflow-hidden">
+      
+      {/* Scattered Icons Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-10 -left-10 w-72 h-72 opacity-[0.12] rotate-12 mix-blend-multiply">
+          <img src={iconCristales} alt="" className="w-full h-full object-contain" />
+        </div>
+        <div className="absolute top-[45%] left-[10%] w-56 h-56 opacity-[0.12] -rotate-[15deg] mix-blend-multiply">
+          <img src={iconLineas} alt="" className="w-full h-full object-contain" />
+        </div>
+        <div className="absolute bottom-10 left-[35%] w-64 h-64 opacity-[0.12] rotate-45 mix-blend-multiply">
+          <img src={iconFachadas} alt="" className="w-full h-full object-contain" />
+        </div>
+        <div className="absolute top-10 right-[5%] w-80 h-80 opacity-[0.12] -rotate-6 mix-blend-multiply">
+          <img src={iconSolar} alt="" className="w-full h-full object-contain" />
+        </div>
+        <div className="absolute -bottom-20 right-[15%] w-72 h-72 opacity-[0.12] rotate-[25deg] mix-blend-multiply">
+          <img src={iconCristales} alt="" className="w-full h-full object-contain" />
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+        <Reveal className="text-center mb-16">
+          <span className="text-[13px] font-black tracking-[0.2em] uppercase text-[#0B2163]">Certificaciones</span>
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0B2163] leading-tight tracking-tight">
             Técnicos certificados<br />y máxima seguridad.
           </h2>
-          <p className="mt-5 text-white/70 max-w-xl mx-auto leading-relaxed">
+          <p className="mt-6 text-[#0B2163]/80 max-w-2xl mx-auto leading-relaxed text-lg md:text-xl font-medium">
             Nuestro cliente compra seguridad antes que limpieza. Por eso invertimos en certificaciones y formación continua.
           </p>
         </Reveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5">
           {certs.map((c, i) => (
             <Reveal key={c.name} delay={i * 80} className="h-full">
-              <div className="p-6 rounded-xl bg-white/[0.06] border border-white/15 hover:border-white/30 hover:bg-white/[0.08] transition-all duration-300 h-full flex flex-col group">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-electric/10 grid place-items-center shrink-0 group-hover:bg-electric/20 transition-colors">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0096FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="p-6 lg:p-8 rounded-[24px] bg-white shadow-xl shadow-[#0B2163]/10 hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col group">
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="w-12 h-12 rounded-full bg-[#D52374]/10 grid place-items-center shrink-0">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D52374" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d={c.icon} />
                     </svg>
                   </div>
-                  <div className="text-xl font-black text-white">{c.name}</div>
+                  <div className="text-xl font-extrabold text-[#0B2163] tracking-tight">{c.name}</div>
                 </div>
-                <div className="text-sm text-white/70 font-semibold mb-2">{c.desc}</div>
-                <div className="text-sm text-white/50 leading-relaxed flex-1">{c.detail}</div>
+                <div className="text-[15px] text-[#0B2163]/90 font-bold mb-2 leading-snug">{c.desc}</div>
+                <div className="text-[14px] text-[#0B2163]/70 leading-relaxed flex-1">{c.detail}</div>
               </div>
             </Reveal>
           ))}
