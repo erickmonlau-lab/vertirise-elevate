@@ -651,29 +651,95 @@ function MidCTA() {
 
 // — Benefits —
 function Benefits() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % benefits.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
   return (
-    <section className="py-24 lg:py-32 bg-mist border-y border-border">
+    <section className="py-24 lg:py-32 bg-[#02040a] border-y border-white/5 relative overflow-hidden" id="beneficios">
+      {/* Subtle background glow */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-electric/5 rounded-full blur-[150px] pointer-events-none" />
+      
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <Reveal className="max-w-2xl mb-14">
+        <div className="max-w-2xl mb-16 lg:mb-24 relative z-10">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Por qué DISET</span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white tracking-tight">
             La referencia técnica<br />en trabajos en altura.
           </h2>
-        </Reveal>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {benefits.map((b, i) => (
-            <Reveal key={b.title} delay={i * 60}>
-              <div className="group p-8 rounded-2xl bg-white border border-border hover:border-electric hover:shadow-elev hover:-translate-y-1 transition-all duration-400 cursor-default">
-                <div className="w-14 h-14 rounded-xl bg-mist border border-border text-navy grid place-items-center group-hover:bg-electric group-hover:border-electric group-hover:text-white group-hover:scale-110 transition-all duration-300">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={b.icon} />
-                  </svg>
-                </div>
-                <h3 className="mt-6 text-xl font-extrabold text-navy group-hover:text-electric transition-colors duration-300">{b.title}</h3>
-                <p className="mt-3 text-muted-foreground leading-relaxed">{b.desc}</p>
-              </div>
-            </Reveal>
-          ))}
+        </div>
+
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
+          {/* Left Column: Interactive List */}
+          <div 
+            className="lg:col-span-5 flex flex-col gap-2 relative z-10"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            {benefits.map((b, i) => {
+              const isActive = activeIndex === i;
+              return (
+                <button
+                  key={b.title}
+                  onClick={() => setActiveIndex(i)}
+                  className={`text-left px-6 py-5 rounded-2xl transition-all duration-300 flex items-center justify-between group ${
+                    isActive 
+                      ? "bg-white/[0.08] border border-white/10 shadow-[0_0_30px_rgba(0,150,255,0.05)]" 
+                      : "hover:bg-white/[0.03] border border-transparent"
+                  }`}
+                >
+                  <span className={`text-lg md:text-xl font-bold transition-colors duration-300 ${isActive ? "text-white" : "text-white/40 group-hover:text-white/70"}`}>
+                    {b.title}
+                  </span>
+                  <div className={`w-8 h-8 rounded-full border grid place-items-center transition-all duration-300 ${isActive ? "border-electric bg-electric/20 text-electric scale-100" : "border-white/10 text-transparent scale-90"}`}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right Column: Active Content Display */}
+          <div className="lg:col-span-7 relative flex items-center">
+            <div className="w-full relative h-[380px] lg:h-[450px]">
+              {benefits.map((b, i) => {
+                const isActive = activeIndex === i;
+                return (
+                  <div
+                    key={b.title}
+                    className={`absolute inset-0 w-full h-full p-8 md:p-12 rounded-[2rem] border border-white/10 bg-gradient-to-br from-[#0a1628]/90 to-[#02040a]/90 backdrop-blur-xl transition-all duration-700 ease-out flex flex-col justify-center overflow-hidden ${
+                      isActive ? "opacity-100 translate-y-0 pointer-events-auto scale-100 z-10" : "opacity-0 translate-y-8 pointer-events-none scale-95 z-0"
+                    }`}
+                  >
+                    {/* Abstract decorative shape inside card */}
+                    <div className="absolute -top-20 -right-20 w-64 h-64 bg-electric/20 rounded-full blur-[80px] transition-opacity duration-700" style={{ opacity: isActive ? 1 : 0 }} />
+                    
+                    <div className="relative z-10">
+                      <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br from-electric/20 to-transparent border border-electric/30 text-electric flex items-center justify-center mb-8 shadow-[0_0_40px_rgba(0,150,255,0.2)] transition-all duration-700 delay-100 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d={b.icon} />
+                        </svg>
+                      </div>
+                      <h3 className={`text-3xl md:text-4xl font-extrabold text-white mb-6 tracking-tight transition-all duration-700 delay-200 ${isActive ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
+                        {b.title}
+                      </h3>
+                      <p className={`text-xl md:text-2xl text-white/60 leading-relaxed font-medium transition-all duration-700 delay-300 ${isActive ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
+                        {b.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
