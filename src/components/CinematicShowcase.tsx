@@ -68,8 +68,8 @@ export function CinematicShowcase() {
           />
           {/* Base overlay for readability during the fall */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#02040a]/30 via-[#02040a]/60 to-[#02040a]/90" />
-          {/* Final solid background that fades in to hide the image completely at the end */}
-          <div className="final-bg absolute inset-0 bg-[#02040a] opacity-0" />
+          {/* Final solid background with a deep blue glow that fades in */}
+          <div className="final-bg absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,150,255,0.15)_0%,#02040a_80%)] opacity-0" />
         </div>
       </div>
 
@@ -90,10 +90,10 @@ export function CinematicShowcase() {
 
       {/* FINAL CONTENT (Fades in on pure dark background at the end of the scroll) */}
       <div className="final-content absolute inset-0 z-30 flex flex-col items-center justify-center px-6 pointer-events-none">
-        <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight text-center mb-5 drop-shadow-sm">
+        <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight text-center mb-6 drop-shadow-sm">
           Precisión sin límites.
         </h3>
-        <p className="text-lg md:text-xl text-white/60 font-medium max-w-2xl text-center mb-12 leading-relaxed">
+        <p className="text-lg md:text-xl text-white/90 font-medium max-w-2xl text-center mb-12 leading-relaxed">
           Nuestros técnicos especializados combinan técnica y seguridad para devolverle el brillo a su edificio. Sin andamios, sin complicaciones.
         </p>
         
