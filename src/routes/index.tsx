@@ -47,26 +47,23 @@ const stats = [
 ];
 
 const services = [
-  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", img: cristalesImg, customIcon: iconCristales, color: "bg-[#FF007F]" },
-  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", img: fachadasImg, customIcon: iconFachadas, color: "bg-[#00E5FF]" },
-  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", img: solarImg, customIcon: iconSolar, color: "bg-[#FFEA00]" },
-  { title: "Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", img: lineasImg, customIcon: iconLineas, color: "bg-[#39FF14]" },
+  { title: "Limpieza de Cristales", desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.", customIcon: iconCristales, color: "bg-white", filter: "brightness(0) saturate(100%) invert(31%) sepia(93%) saturate(3501%) hue-rotate(317deg) brightness(103%) contrast(101%)" },
+  { title: "Limpieza de Fachadas", desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.", customIcon: iconFachadas, color: "bg-white", filter: "brightness(0) saturate(100%) invert(75%) sepia(61%) saturate(5185%) hue-rotate(143deg) brightness(104%) contrast(104%)" },
+  { title: "Limpieza de Placas Solares", desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.", customIcon: iconSolar, color: "bg-white", filter: "brightness(0) saturate(100%) invert(86%) sepia(92%) saturate(3048%) hue-rotate(352deg) brightness(104%) contrast(104%)" },
+  { title: "Líneas de Vida", desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.", customIcon: iconLineas, color: "bg-white", filter: "brightness(0) saturate(100%) invert(67%) sepia(74%) saturate(2975%) hue-rotate(69deg) brightness(104%) contrast(110%)" },
 ];
 
 const benefits = [
-  { title: "Personal certificado", desc: "Técnicos IRATA y trabajos en altura RD 2177/2004.", icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" },
-  { title: "Seguridad homologada", desc: "Equipos EPI certificados y protocolos auditados.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
-  { title: "Rapidez de ejecución", desc: "Movilización en 48h y obras coordinadas al detalle.", icon: "M13 2 3 14h9l-1 8 10-12h-9l1-8Z" },
-  { title: "Cobertura Barcelona", desc: "Servicio en toda la ciudad y provincia de Barcelona.", icon: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" },
-  { title: "Garantía de calidad", desc: "Resultado garantizado por escrito en cada proyecto.", icon: "M20 6 9 17l-5-5" },
-  { title: "Presupuestos rápidos", desc: "Valoración técnica y oferta en menos de 24 horas.", icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8" },
+  { title: "+30", desc: "Años de experiencia técnica", icon: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 9.36l-7.1 7.1a1 1 0 0 1-1.41-1.41l7.1-7.1a6 6 0 0 1 9.36-7.94l-3.77 3.77a1 1 0 0 0-.11 1.3z", color: "bg-[#e91e63]" },
+  { title: "+10.000", desc: "Clientes satisfechos", icon: "M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3", color: "bg-[#03a9f4]" },
+  { title: "+29.560", desc: "Controles de plagas", icon: "M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm10 16-5-5", color: "bg-[#cddc39]" },
+  { title: "+2.900", desc: "Empresas asistidas", icon: "M3 21h18M5 21V7l8-4v18M13 3l8 4v14M7 11h2M7 15h2M15 11h2M15 15h2", color: "bg-[#3f51b5]" },
 ];
 
 const process = [
-  { n: "01", t: "Contacto", d: "Recopilamos los datos y requisitos técnicos de su proyecto.", icon: "M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" },
-  { n: "02", t: "Inspección", d: "Evaluamos accesos, anclajes y riesgos estructurales in situ.", icon: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" },
-  { n: "03", t: "Presupuesto", d: "Entregamos valoración cerrada y planificación detallada.", icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" },
-  { n: "04", t: "Ejecución", d: "Intervención del equipo técnico y entrega con garantía.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
+  { n: "1", t: "Atendemos tu consulta", d: "Se concretará una inspección gratuita, para poder evaluar de forma específica.", shape: "triangle", color: "bg-[#e91e63]" },
+  { n: "2", t: "Concertamos una visita", d: "Llámanos y un especialista atenderá tu consulta de manera inmediata.", shape: "square", color: "bg-[#e91e63]" },
+  { n: "3", t: "Realizamos el tratamiento", d: "Acordaremos una fecha en la que el técnico se desplazará para realizar el tratamiento acordado.", shape: "circle", color: "bg-[#e91e63]" },
 ];
 
 const testimonials = [
@@ -161,12 +158,9 @@ const heroAvatars = [
 ];
 
 const sectors = [
-  { name: "Comunidades", icon: "M4 21h16 M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14 M10 21v-4a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4 M9 9h2 M13 9h2 M9 13h2 M13 13h2" },
-  { name: "Oficinas", icon: "M8 21V3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v18 M4 21h16 M10 6h4 M10 10h4 M10 14h4 M10 18h4" },
-  { name: "Hoteles", icon: "M4 21h16 M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16 M12 7l1 2.5 2.5.5-2 1.5.5 2.5-2-1.5-2 1.5.5-2.5-2-1.5 2.5-.5z M9 17h6 M9 14h6" },
-  { name: "Fachadas de vidrio", icon: "M4 4h16v16H4z M4 9h16 M4 14h16 M4 19h16 M9 4v16 M14 4v16 M19 4v16 M6 4l12 12 M14 4l6 6" },
-  { name: "Centros comerciales", icon: "M3 21h18 M4 21V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13 M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2 M10 14h4 M10 18h4" },
-  { name: "Naves industriales", icon: "M2 21h20 M4 21V9l4-3 4 3v-2l4-3 4 3v12 M9 21v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5 M18 9V4h2v5" },
+  { name: "Comunidades de propietarios", desc: "Mantenimiento y limpiezas en altura de patios de luces, medianeras y fachadas en edificios de comunidades de vecinos, evitando costosos andamiajes.", icon: "M4 21h16 M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14 M10 21v-4a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4 M9 9h2 M13 9h2 M9 13h2 M13 13h2", color: "text-[#FF007F]" },
+  { name: "Hoteles y Hostales", desc: "La imagen exterior es vital. Realizamos limpiezas integrales de muros cortina, cristales y fachadas en hoteles sin interrumpir su actividad diaria comercial.", icon: "M4 21h16 M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16 M12 7l1 2.5 2.5.5-2 1.5.5 2.5-2-1.5-2 1.5.5-2.5-2-1.5 2.5-.5z M9 17h6 M9 14h6", color: "text-[#00E5FF]" },
+  { name: "Naves y centros logísticos", desc: "Limpieza especializada de cubiertas, claraboyas y estructuras industriales complejas. Aplicamos tratamientos específicos y sistemas anticaídas certificados.", icon: "M2 21h20 M4 21V9l4-3 4 3v-2l4-3 4 3v12 M9 21v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5 M18 9V4h2v5", color: "text-[#39FF14]" },
 ];
 
 // — Counter with count-up animation —
@@ -424,21 +418,33 @@ function Stats() {
 // — Sectors (Replaces Client Logos) —
 function Sectors() {
   return (
-    <section className="bg-mist pt-10 pb-16 border-b border-border overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="text-center mb-10">
-          <span className="text-electric text-sm md:text-base font-extrabold tracking-widest uppercase mb-3 block">Experiencia en los entornos más exigentes</span>
-          <div className="w-12 h-1 bg-electric mx-auto rounded-full opacity-60" />
+    <section className="bg-[#eef2f6] pt-20 pb-24 border-y border-border overflow-hidden relative">
+      <div className="max-w-4xl mx-auto px-6 lg:px-10">
+        <div className="mb-14">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-navy tracking-tight text-center md:text-left">
+            Servicios verticales para empresas
+          </h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
+        <div className="flex flex-col gap-6">
           {sectors.map((sector, i) => (
-            <Reveal key={sector.name} delay={i * 50} className="flex flex-col items-center text-center group">
-              <div className="w-20 h-20 rounded-2xl bg-white border border-border shadow-sm grid place-items-center mb-4 group-hover:border-electric/50 group-hover:shadow-soft transition-all duration-300">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-navy group-hover:text-electric transition-colors">
-                  <path d={sector.icon} />
-                </svg>
-              </div>
-              <h3 className="text-navy font-bold text-base tracking-wide leading-tight group-hover:text-electric transition-colors">{sector.name}</h3>
+            <Reveal key={sector.name} delay={i * 100}>
+              <article className="bg-[#f5f8fa] border border-[#dce4ec] rounded-2xl p-8 md:p-10 hover:shadow-xl transition-all duration-300 group relative">
+                <div className={`w-16 h-16 md:w-20 md:h-20 mb-6 ${sector.color}`}>
+                  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d={sector.icon} />
+                  </svg>
+                </div>
+                <h3 className="text-navy font-bold text-2xl md:text-3xl mb-4 tracking-tight group-hover:text-electric transition-colors">{sector.name}</h3>
+                <p className="text-slate-600 leading-relaxed mb-6 text-sm md:text-base max-w-2xl">
+                  {sector.desc}
+                </p>
+                <div className="flex items-center gap-2 text-slate-500 font-medium text-sm hover:text-electric transition-colors cursor-pointer w-fit">
+                  Más información
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-1 transition-transform">
+                    <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                  </svg>
+                </div>
+              </article>
             </Reveal>
           ))}
         </div>
@@ -469,10 +475,10 @@ function Services() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 100}>
-              <article className={`group ${s.color} rounded-3xl p-8 lg:p-10 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col cursor-pointer relative`}>
+              <article className={`group ${s.color} rounded-3xl p-8 lg:p-10 shadow-sm border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col cursor-pointer relative`}>
                 
-                <div className="w-32 h-32 mb-6 group-hover:scale-110 transition-transform duration-500 group-hover:-rotate-6 origin-bottom-left">
-                  <img src={s.customIcon} alt={s.title} className="w-full h-full object-contain mix-blend-multiply" />
+                <div className="w-32 h-32 mb-6 group-hover:scale-110 transition-transform duration-500 origin-bottom-left overflow-hidden relative">
+                  <img src={s.customIcon} alt={s.title} className="w-[120%] h-[120%] absolute -top-[10%] -left-[10%] object-contain mix-blend-multiply" style={{ filter: s.filter }} />
                 </div>
                 
                 <h3 className="text-2xl font-extrabold text-navy mb-3 tracking-tight z-10">
@@ -674,51 +680,35 @@ function MidCTA() {
 // — Benefits —
 function Benefits() {
   return (
-    <section className="py-24 lg:py-32 bg-[#02040a] border-y border-white/5 relative overflow-hidden" id="beneficios">
-      {/* Subtle background glow */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-electric/5 rounded-full blur-[150px] pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="max-w-2xl mb-14 relative z-10">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Por qué DISET</span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white tracking-tight">
-            La referencia técnica<br />en trabajos en altura.
+    <section className="py-24 lg:py-32 bg-[#0b1121] border-y border-white/5 relative overflow-hidden" id="beneficios">
+      <div className="max-w-4xl mx-auto px-6 lg:px-10">
+        <div className="mb-14 relative z-10">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] text-white tracking-tight">
+            Proveedor de soluciones inteligentes y eficaces
           </h2>
+          <p className="mt-6 text-white/70 text-lg max-w-2xl">
+            Los productos y sistemas utilizados en nuestros tratamientos son de alta efectividad siempre garantizando la seguridad de nuestros clientes.
+          </p>
         </div>
 
-        {/* Mobile: Horizontal Snap Scroll. Desktop: Bento Grid */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pb-8 -mx-6 px-6 lg:mx-0 lg:px-0 lg:pb-0 lg:grid lg:grid-cols-3 gap-5">
+        <div className="flex flex-col gap-6">
           {benefits.map((b, i) => (
-            <div 
-              key={b.title} 
-              className="snap-center shrink-0 w-[85vw] sm:w-[300px] lg:w-auto group relative p-8 md:p-10 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-electric/40 hover:bg-white/[0.05] transition-all duration-500 overflow-hidden"
-            >
-              {/* Subtle hover glow inside the card */}
-              <div className="absolute inset-0 bg-gradient-to-br from-electric/0 to-electric/0 group-hover:from-electric/10 group-hover:to-transparent transition-all duration-500 opacity-0 group-hover:opacity-100" />
-              
-              <div className="relative z-10">
-                <div className="w-16 h-16 rounded-2xl bg-white/[0.05] border border-white/10 text-white grid place-items-center group-hover:bg-electric/20 group-hover:border-electric/50 group-hover:text-electric transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(0,150,255,0.3)] mb-8">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={b.icon} />
-                  </svg>
-                </div>
-                <h3 className="text-2xl md:text-3xl font-extrabold text-white group-hover:text-electric transition-colors duration-300 tracking-tight mb-4">
+            <Reveal key={b.title} delay={i * 100} className="flex items-center gap-6">
+              <div className={`w-20 h-20 rounded-2xl flex items-center justify-center shrink-0 shadow-lg ${b.color}`}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d={b.icon} />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-3xl font-extrabold text-white tracking-tight mb-1">
                   {b.title}
                 </h3>
-                <p className="text-lg text-white/60 leading-relaxed font-medium">
+                <p className="text-sm font-medium text-white/70">
                   {b.desc}
                 </p>
               </div>
-            </div>
+            </Reveal>
           ))}
-        </div>
-        
-        {/* Mobile Swipe Indicator */}
-        <div className="mt-4 flex justify-center gap-2 lg:hidden opacity-50">
-           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse-glow">
-             <path d="m11 17-5-5 5-5"/><path d="m18 17-5-5 5-5"/>
-           </svg>
-           <span className="text-sm font-semibold text-white uppercase tracking-widest">Desliza</span>
         </div>
       </div>
     </section>
@@ -794,32 +784,41 @@ function VideoSection() {
 // — Process (Linear Flow) —
 function Process() {
   return (
-    <section id="proceso" className="py-24 lg:py-32 bg-white scroll-mt-20 md:scroll-mt-24">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <Reveal className="max-w-2xl mb-14">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">Proceso</span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
-            Un método claro,<br />de principio a fin.
+    <section id="proceso" className="py-24 lg:py-32 bg-[#eef2f6] scroll-mt-20 md:scroll-mt-24">
+      <div className="max-w-4xl mx-auto px-6 lg:px-10">
+        <Reveal className="mb-16 text-center md:text-left">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] text-navy tracking-tight">
+            Nuestro proceso de control
           </h2>
         </Reveal>
 
-        <div className="relative">
-          {/* Progress Line */}
-          <div className="hidden lg:block absolute top-[44px] left-6 right-6 h-px bg-border z-0" />
+        <div className="relative pl-8 md:pl-12">
+          {/* Vertical Line */}
+          <div className="absolute top-8 bottom-8 left-[11px] md:left-[19px] w-px bg-navy/20 z-0" />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 relative z-10">
+          <div className="flex flex-col gap-12 relative z-10">
             {process.map((p, i) => (
-              <Reveal key={p.n} delay={i * 80} className="bg-mist border border-border rounded-xl p-6 hover:border-electric/30 hover:shadow-soft transition-all flex flex-col group">
-                <div className="flex items-center gap-4 mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-white border border-border flex items-center justify-center shrink-0 group-hover:border-electric/50 transition-colors">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-electric">
-                      <path d={p.icon} />
-                    </svg>
-                  </div>
-                  <span className="text-xs font-black tracking-widest text-muted-foreground uppercase">Paso {p.n}</span>
+              <Reveal key={p.n} delay={i * 80} className="relative">
+                {/* Shape Icon */}
+                <div className="absolute -left-[45px] md:-left-[57px] top-1">
+                  {p.shape === "triangle" && (
+                    <div className="w-8 h-8 md:w-10 md:h-10 text-[#e91e63] border-2 border-navy relative">
+                      <div className="w-full h-full bg-[#e91e63]" style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)" }}></div>
+                    </div>
+                  )}
+                  {p.shape === "square" && (
+                    <div className="w-8 h-8 md:w-10 md:h-10 bg-[#e91e63] border-2 border-navy"></div>
+                  )}
+                  {p.shape === "circle" && (
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#e91e63] border-2 border-navy"></div>
+                  )}
                 </div>
-                <h3 className="text-lg font-extrabold text-navy mb-2">{p.t}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{p.d}</p>
+                
+                <div>
+                  <span className="text-xs font-medium tracking-widest text-navy uppercase mb-2 block">Paso {p.n}</span>
+                  <h3 className="text-xl md:text-2xl font-bold text-navy mb-3 tracking-tight">{p.t}</h3>
+                  <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-xl">{p.d}</p>
+                </div>
               </Reveal>
             ))}
           </div>
