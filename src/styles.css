@@ -105,6 +105,10 @@
   0% { transform: scaleY(0); }
   90%, 100% { transform: scaleY(1); }
 }
+@keyframes slide-up {
+  0% { transform: translateY(100vh); }
+  100% { transform: translateY(-100vh); }
+}
 @keyframes wipe {
   0%, 100% { transform: rotate(-25deg); }
   50% { transform: rotate(25deg); }

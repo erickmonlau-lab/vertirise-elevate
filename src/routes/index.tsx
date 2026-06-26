@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { AnimatedShowcase } from "@/components/AnimatedShowcase";
+import { HeroVertigo } from "@/components/HeroVertigo";
 
 import heroImg from "@/assets/hero.webp";
 import cristalesImg from "@/assets/service-cristales.webp";
@@ -287,72 +288,7 @@ function Nav() {
   );
 }
 
-// — Hero —
-function Hero() {
-  return (
-    <section id="top" className="relative min-h-[100svh] flex items-center overflow-hidden">
-      <div className="absolute inset-0">
-        <img
-          src={heroImg}
-          alt="Operarios DISET en trabajos verticales sobre fachada de cristal en Barcelona"
-          width={1920} height={1080}
-          className="absolute inset-0 w-full h-full object-cover object-[55%_10%] md:object-center scale-105"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(10,22,40,0.95)_0%,rgba(10,22,40,0.85)_40%,rgba(10,22,40,0.4)_100%)]" />
-        <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-[#040b14]/90 to-transparent pointer-events-none" />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-32 pb-20 w-full mt-10">
-        <div className="max-w-3xl text-white">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-wider uppercase animate-[fade-in_0.8s_ease-out]">
-            <span className="w-2 h-2 rounded-full bg-electric animate-pulse" />
-            25+ años de experiencia · Barcelona
-          </div>
-          <h1 className="mt-7 text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] text-white animate-[fade-up_1s_cubic-bezier(0.22,1,0.36,1)_both]">
-            Especialistas en <span className="text-electric">trabajos verticales</span> y limpieza en altura en Barcelona
-          </h1>
-          <p className="mt-7 text-lg sm:text-xl text-white/85 max-w-2xl leading-relaxed animate-[fade-up_1s_0.15s_cubic-bezier(0.22,1,0.36,1)_both]">
-            Limpieza de cristales, fachadas, placas solares e instalación de líneas de vida para empresas, industrias y comunidades.
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center gap-4 animate-[fade-up_1s_0.3s_cubic-bezier(0.22,1,0.36,1)_both]">
-            <a href="#contacto" className="group inline-flex items-center gap-3 h-14 px-7 rounded-full bg-electric text-white font-bold hover:shadow-elev hover:-translate-y-0.5 transition-all">
-              Solicitar Presupuesto
-            </a>
-            <a href={PHONE_HREF} className="inline-flex items-center gap-3 h-14 px-7 rounded-full bg-white text-navy font-bold shadow-soft hover:shadow-elev hover:-translate-y-0.5 transition-all">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
-              Llamar Ahora
-            </a>
-          </div>
-
-          <div className="mt-16 flex items-center gap-6 text-white/70 text-sm animate-[fade-in_1s_0.6s_both]">
-            <div className="flex -space-x-2">
-              {heroAvatars.map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt={`Operario DISET ${i + 1}`}
-                  width={36}
-                  height={36}
-                  className="w-9 h-9 rounded-full border-2 border-navy object-cover"
-                />
-              ))}
-            </div>
-            <div>
-              <div className="flex gap-0.5 mb-1">
-                {[...Array(5)].map((_, k) => (
-                  <svg key={k} width="14" height="14" viewBox="0 0 24 24" fill="#0096FF"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9 12 2" /></svg>
-                ))}
-              </div>
-              <div className="text-white font-bold">+4.500 proyectos</div>
-              <div>completados con éxito</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+// — Hero removed in favor of HeroVertigo —
 
 // — Trust Bar —
 function TrustBar() {
@@ -1210,7 +1146,7 @@ function Index() {
     <div className="bg-white overflow-x-hidden">
       <Nav />
       <main>
-        <Hero />
+        <HeroVertigo />
         <TrustBar />
         <Stats />
         <Sectors />
