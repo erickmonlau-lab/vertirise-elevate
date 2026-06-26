@@ -224,11 +224,11 @@ function Nav() {
   }, []);
 
   const navLinks = [
-    { href: "#servicios", label: "Servicios" },
-    { href: "#proyectos", label: "Proyectos" },
-    { href: "#proceso", label: "Proceso" },
-    { href: "#cobertura", label: "Cobertura" },
-    { href: "#contacto", label: "Contacto" },
+    { href: "#servicios", label: t('nav.services') },
+    { href: "#proyectos", label: t('nav.projects') },
+    { href: "#proceso", label: t('nav.process') },
+    { href: "#cobertura", label: t('nav.coverage') },
+    { href: "#contacto", label: t('nav.contact') },
   ];
 
   return (

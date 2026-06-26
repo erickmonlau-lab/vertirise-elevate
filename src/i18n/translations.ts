@@ -4,6 +4,11 @@ export const translations = {
   es: {
     // Nav
     'nav.call': 'Llamar',
+    'nav.services': 'Servicios',
+    'nav.projects': 'Proyectos',
+    'nav.process': 'Proceso',
+    'nav.coverage': 'Cobertura',
+    'nav.contact': 'Contacto',
     
     // Hero
     'hero.badge': '25+ AÑOS DE EXPERIENCIA · BARCELONA',
@@ -94,6 +99,11 @@ export const translations = {
   ca: {
     // Nav
     'nav.call': 'Trucar',
+    'nav.services': 'Serveis',
+    'nav.projects': 'Projectes',
+    'nav.process': 'Procés',
+    'nav.coverage': 'Cobertura',
+    'nav.contact': 'Contacte',
     
     // Hero
     'hero.badge': '25+ ANYS D\'EXPERIÈNCIA · BARCELONA',
@@ -184,6 +194,11 @@ export const translations = {
   en: {
     // Nav
     'nav.call': 'Call',
+    'nav.services': 'Services',
+    'nav.projects': 'Projects',
+    'nav.process': 'Process',
+    'nav.coverage': 'Coverage',
+    'nav.contact': 'Contact',
     
     // Hero
     'hero.badge': '25+ YEARS OF EXPERIENCE · BARCELONA',
