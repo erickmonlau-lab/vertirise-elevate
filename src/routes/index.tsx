@@ -802,15 +802,19 @@ function Process() {
                 {/* Shape Icon */}
                 <div className="absolute -left-[45px] md:-left-[57px] top-1">
                   {p.shape === "triangle" && (
-                    <div className="w-8 h-8 md:w-10 md:h-10 text-[#e91e63] border-2 border-navy relative">
-                      <div className="w-full h-full bg-[#e91e63]" style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)" }}></div>
-                    </div>
+                    <svg className="w-8 h-8 md:w-10 md:h-10 text-navy overflow-visible" viewBox="0 0 24 24">
+                      <polygon points="12,2 2,22 22,22" fill="#e91e63" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                    </svg>
                   )}
                   {p.shape === "square" && (
-                    <div className="w-8 h-8 md:w-10 md:h-10 bg-[#e91e63] border-2 border-navy"></div>
+                    <svg className="w-8 h-8 md:w-10 md:h-10 text-navy overflow-visible" viewBox="0 0 24 24">
+                      <rect x="2" y="2" width="20" height="20" fill="#e91e63" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                    </svg>
                   )}
                   {p.shape === "circle" && (
-                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#e91e63] border-2 border-navy"></div>
+                    <svg className="w-8 h-8 md:w-10 md:h-10 text-navy overflow-visible" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" fill="#e91e63" stroke="currentColor" strokeWidth="2" />
+                    </svg>
                   )}
                 </div>
                 
