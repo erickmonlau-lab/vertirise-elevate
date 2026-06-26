@@ -2,7 +2,8 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import buildingFacadeImg from "@/assets/building-facade.png";
+import buildingBcnImg from "@/assets/building-bcn.png";
+import workerPhotoImg from "@/assets/worker-photo.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,68 +18,37 @@ export function AnimatedShowcase() {
   useGSAP(() => {
     if (!containerRef.current || !rightColRef.current) return;
 
-    // 1. Reveal Timeline on Scroll into view
+    // 1. Reveal Timeline on Scroll into view (Animate only once)
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top 75%", // Starts animating when the top of the section hits 75% down the viewport
-        toggleActions: "play none none reverse",
+        start: "top 75%",
+        toggleActions: "play none none none", // Play once
       }
     });
     
     tl.fromTo(".anim-text", 
-      { y: 40, opacity: 0 }, 
-      { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out" }
+      { y: 20, opacity: 0 }, 
+      { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power2.out" }
     );
     
     tl.fromTo(rightColRef.current,
-      { scale: 1.15, filter: "blur(10px)", opacity: 0 },
-      { scale: 1, filter: "blur(0px)", opacity: 1, duration: 1.5, ease: "power3.out" },
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" },
       "-=1.0"
     );
 
-    // 2. Scroll Animations
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    
-    if (!prefersReducedMotion) {
-      gsap.to(rightColRef.current, {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-        },
-        y: 60,
-        rotateX: 8,
-        rotateY: -4,
-        scale: 0.98,
-        ease: "none"
-      });
-
-      gsap.to(".bg-parallax", {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-        y: 80,
-        ease: "none"
-      });
-    }
-
-    // 3. Worker Cleaning Scroll Animation
-    // We want the workers to scrub down as the user scrolls past the section
+    // 2. Worker Cleaning Scroll Animation (Directly connected to scroll)
     gsap.fromTo(".anim-worker", 
-      { y: 0 }, // Start at the top of the building
+      { y: 0 },
       {
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top center", // Start scrubbing when section hits middle of screen
-          end: "bottom center", // Finish when bottom hits middle of screen
-          scrub: 1,
+          start: "top center",
+          end: "bottom center",
+          scrub: 0.5, // Extremely smooth
         },
-        y: 430, // End near the bottom of the building
+        y: 400,
         ease: "none"
       }
     );
@@ -90,19 +60,20 @@ export function AnimatedShowcase() {
           trigger: containerRef.current,
           start: "top center",
           end: "bottom center",
-          scrub: 1,
+          scrub: 0.5,
         },
         scaleY: 1,
         ease: "none"
       }
     );
 
+    // Subtle diagonal light sweep
     gsap.to(".anim-reflection", {
       x: 600,
       y: 600,
-      duration: 3,
+      duration: 4,
       repeat: -1,
-      repeatDelay: 2,
+      repeatDelay: 3,
       ease: "power1.inOut",
     });
 
@@ -113,34 +84,15 @@ export function AnimatedShowcase() {
     const { clientX, clientY } = e;
     const { innerWidth, innerHeight } = window;
     
-    const x = (clientX / innerWidth - 0.5) * 20;
-    const y = (clientY / innerHeight - 0.5) * 20;
+    // Very subtle reaction to mouse movement (max 8px)
+    const x = (clientX / innerWidth - 0.5) * 16;
+    const y = (clientY / innerHeight - 0.5) * 16;
     
     gsap.to(rightColRef.current, { x: -x, y: -y, duration: 1.5, ease: "power2.out" });
-
-    const handleMagnetic = (ref: React.RefObject<HTMLAnchorElement>) => {
-      if (!ref.current) return;
-      const rect = ref.current.getBoundingClientRect();
-      const btnCenterX = rect.left + rect.width / 2;
-      const btnCenterY = rect.top + rect.height / 2;
-      const distanceX = clientX - btnCenterX;
-      const distanceY = clientY - btnCenterY;
-      
-      if (Math.abs(distanceX) < 100 && Math.abs(distanceY) < 60) {
-        gsap.to(ref.current, { x: distanceX * 0.2, y: distanceY * 0.2, duration: 0.4, ease: "power2.out" });
-      } else {
-        gsap.to(ref.current, { x: 0, y: 0, duration: 0.6, ease: "power2.out" });
-      }
-    };
-
-    handleMagnetic(btn1Ref);
-    handleMagnetic(btn2Ref);
   };
 
   const handleMouseLeave = () => {
     if (rightColRef.current) gsap.to(rightColRef.current, { x: 0, y: 0, duration: 1.5, ease: "power2.out" });
-    if (btn1Ref.current) gsap.to(btn1Ref.current, { x: 0, y: 0, duration: 0.6, ease: "power2.out" });
-    if (btn2Ref.current) gsap.to(btn2Ref.current, { x: 0, y: 0, duration: 0.6, ease: "power2.out" });
   };
 
   return (
@@ -148,18 +100,22 @@ export function AnimatedShowcase() {
       ref={containerRef} 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative py-32 flex items-center justify-center bg-[#02040a] overflow-hidden perspective-[1200px]"
+      className="relative py-32 flex items-center justify-center bg-[#02040a] overflow-hidden"
     >
-      {/* 1. LAYERED BACKGROUND */}
+      {/* 1. LAYERED BACKGROUND (Elegant, atmospheric, no flashy particles) */}
       <div className="absolute inset-0 z-0 bg-parallax pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,#0a1628_0%,#02040a_70%)] opacity-80" />
-        <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px]" />
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-electric/10 blur-[120px] rounded-full mix-blend-screen" />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-navy/40 blur-[150px] rounded-full mix-blend-screen" />
+        {/* Soft deep blue gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#0a1628_0%,#02040a_80%)] opacity-90" />
+        {/* Subtle vignette */}
+        <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.9)]" />
+        {/* Light atmospheric noise */}
+        <div 
+          className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-overlay" 
+          style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} 
+        />
       </div>
 
-      {/* 2. MAIN CONTENT (TWO COLUMNS) */}
+      {/* 2. MAIN CONTENT */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         
         {/* LEFT COLUMN: Typography */}
@@ -172,11 +128,11 @@ export function AnimatedShowcase() {
 
           <h1 className="text-5xl md:text-6xl lg:text-[76px] font-extrabold text-white leading-[1.05] tracking-tight mb-8">
             <div className="anim-text overflow-hidden">
-              <span>Restauramos</span>
+              <span>Cuidamos cada</span>
             </div>
             <div className="anim-text overflow-hidden py-1">
-              <span className="bg-gradient-to-r from-electric to-[#60b6ff] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(0,150,255,0.4)]">
-                claridad
+              <span className="bg-gradient-to-r from-electric to-[#60b6ff] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(0,150,255,0.2)]">
+                detalle
               </span>
             </div>
             <div className="anim-text overflow-hidden">
@@ -185,7 +141,7 @@ export function AnimatedShowcase() {
           </h1>
 
           <p className="anim-text text-lg md:text-xl text-white/60 font-medium leading-relaxed max-w-[520px] mb-12">
-            La referencia técnica en Barcelona para la limpieza y mantenimiento de fachadas de cristal mediante acceso por cuerdas. Precisión, seguridad y resultados impecables.
+            Nuestros técnicos especializados combinan precisión y seguridad para devolverle el brillo a su edificio. Observa cómo desaparece la suciedad a su paso.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-5 items-center w-full sm:w-auto">
@@ -193,10 +149,9 @@ export function AnimatedShowcase() {
               <a 
                 ref={btn1Ref}
                 href="#contacto" 
-                className="group relative inline-flex items-center justify-center h-14 px-8 rounded-full bg-electric text-white font-bold text-sm tracking-wide shadow-[0_0_20px_rgba(0,150,255,0.3)] hover:shadow-[0_0_40px_rgba(0,150,255,0.6)] transition-all duration-300 overflow-hidden"
+                className="group relative inline-flex items-center justify-center h-14 px-8 rounded-full bg-electric text-white font-bold text-sm tracking-wide shadow-[0_0_20px_rgba(0,150,255,0.2)] hover:shadow-[0_0_30px_rgba(0,150,255,0.4)] transition-all duration-300 overflow-hidden"
               >
                 <span className="relative z-10">Solicitar Presupuesto</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
               </a>
             </div>
             <div className="anim-text">
@@ -212,86 +167,56 @@ export function AnimatedShowcase() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN: 3D Building Container */}
+        {/* RIGHT COLUMN: Cinematic Building Container */}
         <div 
           ref={rightColRef} 
-          className="flex-1 w-full max-w-[500px] aspect-[4/5] relative rounded-[36px] overflow-hidden bg-[#040b14] border border-white/10 shadow-[inset_0_0_80px_rgba(0,150,255,0.05),0_30px_100px_-20px_rgba(0,0,0,0.8)] shrink-0 z-10 flex items-start justify-center transform-gpu"
+          className="flex-1 w-full max-w-[500px] aspect-[4/5] relative rounded-[36px] overflow-hidden bg-[#040b14] border border-white/10 shadow-[inset_0_0_60px_rgba(0,0,0,0.8),0_30px_100px_-20px_rgba(0,0,0,0.9)] shrink-0 z-10 flex items-start justify-center transform-gpu"
         >
-          <div className="absolute inset-0 rounded-[36px] border border-white/20 opacity-50 mix-blend-overlay pointer-events-none z-30" />
-          <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent z-30" />
-
+          <div className="absolute inset-0 rounded-[36px] border border-white/10 opacity-30 mix-blend-overlay pointer-events-none z-30" />
+          
           <svg viewBox="0 0 400 500" className="w-full h-full relative z-20" preserveAspectRatio="xMidYMax meet">
             <defs>
               <mask id="clean-mask">
                 <rect width="400" height="500" fill="black" />
-                <rect x="90" y="0" width="60" height="500" fill="white" className="anim-mask origin-top" style={{ transform: 'scaleY(0)' }} />
-                <rect x="250" y="0" width="60" height="500" fill="white" className="anim-mask origin-top" style={{ transform: 'scaleY(0)' }} />
+                <rect x="135" y="0" width="50" height="500" fill="white" className="anim-mask origin-top" style={{ transform: 'scaleY(0)' }} />
+                <rect x="215" y="0" width="50" height="500" fill="white" className="anim-mask origin-top" style={{ transform: 'scaleY(0)' }} />
               </mask>
 
               <linearGradient id="reflection-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="transparent" />
                 <stop offset="45%" stopColor="rgba(255,255,255,0)" />
-                <stop offset="50%" stopColor="rgba(255,255,255,0.5)" />
+                <stop offset="50%" stopColor="rgba(255,255,255,0.3)" />
                 <stop offset="55%" stopColor="rgba(255,255,255,0)" />
                 <stop offset="100%" stopColor="transparent" />
               </linearGradient>
             </defs>
 
-            {/* Dirty Background Layer */}
-            <image href={buildingFacadeImg} width="400" height="500" preserveAspectRatio="xMidYMid slice" opacity="0.5" filter="sepia(0.6) brightness(0.5) contrast(0.9)" />
+            {/* Dirty Background Layer (Slightly dirty, enough to notice) */}
+            <image href={buildingBcnImg} width="400" height="500" preserveAspectRatio="xMidYMid slice" opacity="0.95" filter="sepia(0.2) brightness(0.85) contrast(0.95)" />
 
-            {/* Clean Background Layer */}
+            {/* Clean Background Layer (Brighter, sharper reflections, more saturated) */}
             <g mask="url(#clean-mask)">
-              <image href={buildingFacadeImg} width="400" height="500" preserveAspectRatio="xMidYMid slice" filter="brightness(1.15) saturate(1.2)" />
+              <image href={buildingBcnImg} width="400" height="500" preserveAspectRatio="xMidYMid slice" filter="brightness(1.1) saturate(1.2) contrast(1.05)" />
               <rect x="-400" y="-400" width="800" height="800" fill="url(#reflection-grad)" className="anim-reflection mix-blend-overlay pointer-events-none" />
             </g>
 
-            {/* Ropes & Workers */}
+            {/* Ropes & Photorealistic Workers */}
             <g>
-              <line x1="120" y1="0" x2="120" y2="500" stroke="#1e293b" strokeWidth="1.5" opacity="0.6" />
-              <line x1="280" y1="0" x2="280" y2="500" stroke="#1e293b" strokeWidth="1.5" opacity="0.6" />
+              <line x1="160" y1="0" x2="160" y2="500" stroke="#000" strokeWidth="1" opacity="0.8" />
+              <line x1="240" y1="0" x2="240" y2="500" stroke="#000" strokeWidth="1" opacity="0.8" />
 
               {/* Worker 1 */}
               <g className="anim-worker">
-                <g transform="translate(120, 20)">
-                  <g fill="#e2e8f0">
-                    <path d="M-6,2 C-6,-2 6,-2 6,2 L7,4 L-7,4 Z" fill="#fbbf24" />
-                    <circle cx="0" cy="5" r="4" fill="#fbbf24" />
-                    <path d="M-5,10 C-6,14 -6,18 -4,22 L4,22 C6,18 6,14 5,10 Z" fill="#0096FF" />
-                    <path d="M-4,22 L-5,32 L-2,32 L-1,22 Z" fill="#1e293b" />
-                    <path d="M4,22 L5,32 L2,32 L1,22 Z" fill="#1e293b" />
-                    <path d="M-4,12 L4,16 M-4,16 L4,12" stroke="#1e293b" strokeWidth="1.5" />
-                  </g>
-                  <g className="animate-wipe">
-                    <line x1="0" y1="12" x2="-25" y2="0" stroke="#e2e8f0" strokeWidth="3" strokeLinecap="round" />
-                    <line x1="-25" y1="-5" x2="-25" y2="5" stroke="#fbbf24" strokeWidth="2" />
-                  </g>
-                  <g className="animate-wipe-alt">
-                    <line x1="0" y1="12" x2="25" y2="0" stroke="#e2e8f0" strokeWidth="3" strokeLinecap="round" />
-                    <line x1="25" y1="-5" x2="25" y2="5" stroke="#fbbf24" strokeWidth="2" />
-                  </g>
+                <g transform="translate(140, 20)">
+                  {/* Using mixBlendMode darken/multiply to remove the white background of the generated image */}
+                  <image href={workerPhotoImg} width="40" height="60" style={{ mixBlendMode: 'darken' }} />
                 </g>
               </g>
 
               {/* Worker 2 */}
-              <g className="anim-worker" style={{ transform: 'translateY(-30px)' }}>
-                <g transform="translate(280, 20)">
-                  <g fill="#e2e8f0">
-                    <path d="M-6,2 C-6,-2 6,-2 6,2 L7,4 L-7,4 Z" fill="#fbbf24" />
-                    <circle cx="0" cy="5" r="4" fill="#fbbf24" />
-                    <path d="M-5,10 C-6,14 -6,18 -4,22 L4,22 C6,18 6,14 5,10 Z" fill="#0096FF" />
-                    <path d="M-4,22 L-5,32 L-2,32 L-1,22 Z" fill="#1e293b" />
-                    <path d="M4,22 L5,32 L2,32 L1,22 Z" fill="#1e293b" />
-                    <path d="M-4,12 L4,16 M-4,16 L4,12" stroke="#1e293b" strokeWidth="1.5" />
-                  </g>
-                  <g className="animate-wipe">
-                    <line x1="0" y1="12" x2="-25" y2="0" stroke="#e2e8f0" strokeWidth="3" strokeLinecap="round" />
-                    <line x1="-25" y1="-5" x2="-25" y2="5" stroke="#fbbf24" strokeWidth="2" />
-                  </g>
-                  <g className="animate-wipe-alt">
-                    <line x1="0" y1="12" x2="25" y2="0" stroke="#e2e8f0" strokeWidth="3" strokeLinecap="round" />
-                    <line x1="25" y1="-5" x2="25" y2="5" stroke="#fbbf24" strokeWidth="2" />
-                  </g>
+              <g className="anim-worker" style={{ transform: 'translateY(-40px)' }}>
+                <g transform="translate(220, 20)">
+                  <image href={workerPhotoImg} width="40" height="60" style={{ mixBlendMode: 'darken' }} />
                 </g>
               </g>
             </g>
