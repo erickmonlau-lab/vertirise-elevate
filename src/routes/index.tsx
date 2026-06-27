@@ -259,20 +259,20 @@ const heroAvatars = [
 
 const sectors = [
   {
-    name: "Comunidades de propietarios",
-    desc: "Mantenimiento y limpiezas en altura de patios de luces, medianeras y fachadas en edificios de comunidades de vecinos, evitando costosos andamiajes.",
+    name: "{t('sectors.1.title') || 'Comunidades de propietarios'}",
+    desc: "{t('sectors.1.desc') || 'Mantenimiento y limpiezas en altura...'}",
     icon: "M4 21h16 M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14 M10 21v-4a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4 M9 9h2 M13 9h2 M9 13h2 M13 13h2",
     color: "text-[#FF007F]",
   },
   {
-    name: "Hoteles y Hostales",
-    desc: "La imagen exterior es vital. Realizamos limpiezas integrales de muros cortina, cristales y fachadas en hoteles sin interrumpir su actividad diaria comercial.",
+    name: "{t('sectors.2.title') || 'Hoteles y Hostales'}",
+    desc: "{t('sectors.2.desc') || 'La imagen exterior es vital...'}",
     icon: "M4 21h16 M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16 M12 7l1 2.5 2.5.5-2 1.5.5 2.5-2-1.5-2 1.5.5-2.5-2-1.5 2.5-.5z M9 17h6 M9 14h6",
     color: "text-[#00E5FF]",
   },
   {
-    name: "Naves y centros logísticos",
-    desc: "Limpieza especializada de cubiertas, claraboyas y estructuras industriales complejas. Aplicamos tratamientos específicos y sistemas anticaídas certificados.",
+    name: "{t('sectors.3.title') || 'Naves y centros logísticos'}",
+    desc: "{t('sectors.3.desc') || 'Limpieza especializada de cubiertas...'}",
     icon: "M2 21h20 M4 21V9l4-3 4 3v-2l4-3 4 3v12 M9 21v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5 M18 9V4h2v5",
     color: "text-[#39FF14]",
   },
@@ -659,6 +659,7 @@ function TrustBar() {
 
 // — Stats —
 function Stats() {
+  const { t } = useTranslation();
   return (
     <section className="bg-[#0a1628] border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 grid grid-cols-2 md:grid-cols-4">
@@ -684,6 +685,7 @@ function Stats() {
 
 // — Sectors (Replaces Client Logos) —
 function Sectors() {
+  const { t } = useTranslation();
   return (
     <section className="bg-[#eef2f6] pt-20 pb-24 border-y border-border overflow-hidden relative">
       <div className="max-w-4xl mx-auto px-6 lg:px-10">
@@ -818,6 +820,7 @@ function Services() {
 
 // — Before/After —
 function BeforeAfterSection() {
+  const { t } = useTranslation();
   const [activeCase, setActiveCase] = useState(0);
   return (
     <section
@@ -827,7 +830,7 @@ function BeforeAfterSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-12">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">
-            Antes / Después
+            {t("beforeafter.badge") || "Antes / Después"}
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05]">
             Resultados que se
@@ -942,13 +945,14 @@ function BeforeAfterSection() {
 
 // — Success Cases —
 function SuccessCases() {
+  const { t } = useTranslation();
   const [featured, ...rest] = successCases;
   return (
     <section className="py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-14">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">
-            Casos reales
+            {t("cases.badge") || "Casos reales"}
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
             Proyectos ejecutados
@@ -956,7 +960,8 @@ function SuccessCases() {
             con resultados reales.
           </h2>
           <p className="mt-5 text-muted-foreground leading-relaxed max-w-lg">
-            Más de 4.500 intervenciones técnicas completadas. Cada proyecto, una solución a medida.
+            {t("stats.2") || "Más de 4.500"} intervenciones técnicas completadas. Cada proyecto, una
+            solución a medida.
           </p>
         </Reveal>
 
@@ -1102,61 +1107,6 @@ function SuccessCases() {
     </section>
   );
 }
-
-// — Mid CTA —
-function MidCTA() {
-  return (
-    <section className="py-14 bg-[#0a1628] border-y border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
-        <div className="text-center md:text-left">
-          <div className="text-white/80 text-xs font-bold uppercase tracking-widest mb-2">
-            ¿Necesitas una intervención en altura?
-          </div>
-          <div className="text-white text-2xl md:text-3xl font-extrabold text-balance">
-            Solicita una visita técnica gratuita.
-          </div>
-          <div className="text-white/80 text-sm mt-3 text-balance">
-            Sin compromiso · Respuesta garantizada en menos de&nbsp;24h
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row w-full md:w-auto gap-3 shrink-0">
-          <a
-            href={WA_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 md:flex-none inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-[#25D366] text-white font-bold hover:-translate-y-0.5 transition-all shadow-glow"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-              <path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z" />
-            </svg>
-            WhatsApp
-          </a>
-          <a
-            href="#contacto"
-            className="flex-1 md:flex-none inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-electric text-white font-bold hover:-translate-y-0.5 transition-all shadow-glow"
-          >
-            Solicitar visita
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // — Benefits —
 function Benefits() {
   const { t } = useTranslation();
@@ -1165,22 +1115,79 @@ function Benefits() {
       className="py-24 lg:py-32 bg-[#0b1121] border-y border-white/5 relative overflow-hidden scroll-mt-20 md:scroll-mt-24"
       id="beneficios"
     >
-      <div className="max-w-4xl mx-auto px-6 lg:px-10">
-        <div className="mb-14 relative z-10 pt-4 md:pt-0">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] text-white tracking-tight">
-            La referencia técnica en trabajos verticales
-          </h2>
-          <p className="mt-6 text-white/70 text-lg max-w-2xl">
-            Los equipos y protocolos utilizados en nuestras intervenciones son de máxima seguridad,
-            garantizando resultados impecables en todos nuestros proyectos.
-          </p>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col lg:flex-row gap-16 lg:gap-24">
+        <div className="flex-1 lg:sticky top-32 h-fit">
+          <Reveal>
+            <div className="mb-12 relative z-10 pt-4 md:pt-0">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] text-white tracking-tight">
+                La referencia técnica en trabajos verticales
+              </h2>
+              <p className="mt-6 text-white/70 text-lg max-w-2xl leading-relaxed">
+                Los equipos y protocolos utilizados en nuestras intervenciones son de máxima
+                seguridad, garantizando resultados impecables en todos nuestros proyectos.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className="p-8 bg-white/5 border border-white/10 rounded-2xl relative overflow-hidden max-w-xl">
+              <div className="absolute top-0 left-0 w-full h-1 bg-electric" />
+              <div className="text-electric text-xs font-bold uppercase tracking-widest mb-3">
+                Intervención Técnica
+              </div>
+              <h3 className="text-2xl font-bold text-white tracking-tight mb-3">
+                ¿Necesitas una intervención en altura?
+              </h3>
+              <p className="text-white/70 text-sm leading-relaxed mb-8 max-w-[400px]">
+                Solicita una visita técnica gratuita. Sin compromiso. Respuesta garantizada en menos
+                de 24 horas.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href={WA_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-[#25D366] text-white font-bold hover:bg-[#20b858] transition-colors shadow-glow text-sm"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                    <path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z" />
+                  </svg>
+                  WhatsApp
+                </a>
+                <a
+                  href="#contacto"
+                  className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-electric text-white font-bold hover:-translate-y-0.5 transition-all shadow-glow text-sm"
+                >
+                  Solicitar visita
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </Reveal>
         </div>
 
-        <div className="flex flex-col gap-6">
+        <div className="flex-1 flex flex-col gap-6">
           {benefits.map((b, i) => {
             const prefix = `benefits.${i + 1}`;
             return (
-              <Reveal key={b.title} delay={i * 100} className="flex items-center gap-6">
+              <Reveal
+                key={b.title}
+                delay={i * 100}
+                className="flex items-center gap-6 p-6 rounded-2xl hover:bg-white/5 border border-transparent hover:border-white/10 transition-colors"
+              >
                 <div
                   className={`w-20 h-20 rounded-2xl flex items-center justify-center shrink-0 shadow-lg ${b.color}`}
                 >
@@ -1216,6 +1223,7 @@ function Benefits() {
 
 // — Video Section —
 function VideoSection() {
+  const { t } = useTranslation();
   const [playing, setPlaying] = useState(false);
   const VIDEO_ID = "aBf0OXTJgkA";
 
@@ -1225,7 +1233,7 @@ function VideoSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <Reveal>
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">
-              DISET en acción
+              {t("video.badge") || "DISET en acción"}
             </span>
             <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white">
               25 años resolviendo trabajos donde otros no pueden intervenir.
@@ -1311,12 +1319,13 @@ function VideoSection() {
 
 // — Process (Linear Flow) —
 function Process() {
+  const { t } = useTranslation();
   return (
     <section id="proceso" className="py-24 lg:py-32 bg-[#eef2f6] scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-4xl mx-auto px-6 lg:px-10">
         <Reveal className="mb-16 text-center md:text-left">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] text-navy tracking-tight">
-            Nuestro proceso de trabajo
+            {t("process.title") || "Nuestro proceso de trabajo"}
           </h2>
         </Reveal>
 
@@ -1398,6 +1407,7 @@ function Process() {
 }
 
 function Testimonials() {
+  const { t } = useTranslation();
   const bgColors = ["bg-[#E65100]", "bg-[#0F9D58]", "bg-[#4285F4]"];
 
   return (
@@ -1529,6 +1539,7 @@ function Testimonials() {
 
 // — Coverage (Google Maps) —
 function Coverage() {
+  const { t } = useTranslation();
   return (
     <section id="cobertura" className="py-24 lg:py-32 bg-white scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -1875,6 +1886,7 @@ function ContactForm({ light = false }: { light?: boolean }) {
 
 // — CTA —
 function CTA() {
+  const { t } = useTranslation();
   return (
     <section
       id="contacto"
@@ -2194,6 +2206,7 @@ function StickyMobileCTA() {
 }
 
 function VibrantCTA() {
+  const { t } = useTranslation();
   return (
     <section className="relative bg-[#00a8e8] py-24 md:py-32 overflow-hidden border-b-[20px] border-navy">
       <div className="relative max-w-4xl mx-auto px-6 lg:px-10 text-center z-10">
