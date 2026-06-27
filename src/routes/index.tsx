@@ -2,10 +2,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, ReactNode } from "react";
 import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslation } from "../i18n/I18nContext";
 import type { Language, TranslationKey } from "../i18n/translations";
+
+gsap.registerPlugin(ScrollTrigger);
 import { BeforeAfter } from "@/components/BeforeAfter";
-import { CinematicShowcase } from "@/components/CinematicShowcase";
+import { FAQ } from "@/components/FAQ";
 
 import heroImg from "@/assets/hero.webp";
 import cristalesImg from "@/assets/service-cristales.webp";
@@ -2236,19 +2240,18 @@ function Index() {
       <Nav />
       <main>
         <Hero />
+        <TrustBar />
         <Stats />
-        <Sectors />
         <Services />
         <BeforeAfterSection />
-        <SuccessCases />
+        <Sectors />
         <Benefits />
-        <CinematicShowcase />
-        <VibrantCTA />
-        <VideoSection />
         <Process />
+        <Certifications />
+        <SuccessCases />
         <Testimonials />
         <Coverage />
-        <Certifications />
+        <FAQ />
         <CTA />
       </main>
       {/* Footer */}

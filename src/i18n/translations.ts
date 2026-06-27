@@ -64,6 +64,18 @@ export const translations = {
     'certs.5.desc': 'Calidad y Gestión',
     'certs.5.detail': 'Protocols de calidad documentados y auditados externamente',
     
+    // FAQ
+    'faq.badge': 'Preguntas Frecuentes',
+    'faq.title': 'Resolvemos sus dudas',
+    'faq.1.q': '¿Por qué elegir trabajos verticales en lugar de andamios?',
+    'faq.1.a': 'Los trabajos verticales ofrecen mayor rapidez de instalación, menor coste al evitar alquiler de estructuras, y nula interrupción del tránsito peatonal o del negocio, manteniendo la estética de la fachada durante la intervención.',
+    'faq.2.q': '¿Es seguro el sistema de cuerdas para los operarios y el edificio?',
+    'faq.2.a': 'Absolutamente. Utilizamos sistemas de doble cuerda (trabajo y seguridad) certificados bajo la normativa IRATA y EN 795. Nuestros anclajes no dañan la estructura y garantizamos cero riesgo de caídas.',
+    'faq.3.q': '¿Cuánto tiempo tardan en iniciar un proyecto?',
+    'faq.3.a': 'Al no requerir montaje de andamios pesados, podemos iniciar la mayoría de las intervenciones de limpieza y mantenimiento en 24-48 horas tras la aprobación del presupuesto y la evaluación de riesgos.',
+    'faq.4.q': '¿Qué productos químicos utilizan en la limpieza de cristales y fachadas?',
+    'faq.4.a': 'Priorizamos sistemas de agua pura osmotizada que limpian sin dejar residuos ni marcas, siendo 100% ecológicos. Para suciedad muy incrustada o grafitis, usamos disolventes biodegradables específicos según el material.',
+
     // Footer
     'footer.desc': 'Especialistas en trabajos verticales y limpieza en altura en la provincia de Barcelona.',
     'footer.services': 'Servicios',
@@ -134,6 +146,18 @@ export const translations = {
     'certs.4.detail': 'Instal·lacions anticaigudes certificades segons norma europea EN 795',
     'certs.5.desc': 'Qualitat i Gestió',
     'certs.5.detail': 'Protocols de qualitat documentats i auditats externament',
+
+    // FAQ
+    'faq.badge': 'Preguntes Freqüents',
+    'faq.title': 'Resolem els seus dubtes',
+    'faq.1.q': 'Per què triar treballs verticals en lloc de bastides?',
+    'faq.1.a': 'Els treballs verticals ofereixen major rapidesa d\'instal·lació, menor cost en evitar el lloguer d\'estructures, i nul·la interrupció del trànsit de vianants o del negoci, mantenint l\'estètica de la façana durant la intervenció.',
+    'faq.2.q': 'És segur el sistema de cordes per als operaris i l\'edifici?',
+    'faq.2.a': 'Absolutament. Utilitzem sistemes de doble corda (treball i seguretat) certificats sota la normativa IRATA i EN 795. Els nostres ancoratges no danyen l\'estructura i garantim zero risc de caigudes.',
+    'faq.3.q': 'Quant temps triguen a iniciar un projecte?',
+    'faq.3.a': 'Al no requerir muntatge de bastides pesades, podem iniciar la majoria de les intervencions de neteja i manteniment en 24-48 hores un cop aprovat el pressupost i avaluats els riscos.',
+    'faq.4.q': 'Quins productes químics utilitzen en la neteja de vidres i façanes?',
+    'faq.4.a': 'Prioritzem sistemes d\'aigua pura osmotitzada que netegen sense deixar residus ni marques, sent 100% ecològics. Per brutícia molt incrustada o grafitis, fem servir dissolvents biodegradables específics segons el material.',
 
     // Footer
     'footer.desc': 'Especialistes en treballs verticals i neteja en alçada a la província de Barcelona.',
@@ -206,8 +230,20 @@ export const translations = {
     'certs.5.desc': 'Quality and Management',
     'certs.5.detail': 'Quality protocols documented and externally audited',
 
+    // FAQ
+    'faq.badge': 'Frequently Asked Questions',
+    'faq.title': 'We resolve your doubts',
+    'faq.1.q': 'Why choose rope access instead of scaffolding?',
+    'faq.1.a': 'Rope access offers faster installation, lower costs by avoiding structure rentals, and zero interruption of pedestrian traffic or business, maintaining the aesthetics of the facade during the intervention.',
+    'faq.2.q': 'Is the rope system safe for the workers and the building?',
+    'faq.2.a': 'Absolutely. We use double rope systems (work and safety) certified under IRATA and EN 795 standards. Our anchors do not damage the structure and we guarantee zero risk of falls.',
+    'faq.3.q': 'How long does it take to start a project?',
+    'faq.3.a': 'Since we do not require the assembly of heavy scaffolding, we can start most cleaning and maintenance interventions within 24-48 hours after the quote is approved and risks are evaluated.',
+    'faq.4.q': 'What chemical products do you use for window and facade cleaning?',
+    'faq.4.a': 'We prioritize osmotized pure water systems that clean without leaving residues or marks, being 100% ecological. For heavily encrusted dirt or graffiti, we use specific biodegradable solvents depending on the material.',
+
     // Footer
-    'footer.desc': 'Specialists in rope access and high-level cleaning in the province of Barcelona.',
+    'footer.desc': 'Specialists in rope access works and high-altitude cleaning in the province of Barcelona.',
     'footer.services': 'Services',
     'footer.legal': 'Legal',
     'footer.contact': 'Contact',
