@@ -1,62 +1,32 @@
-import { useCallback, useRef } from "react";
+import { useRef } from "react";
 
 export function BeforeAfter({ before, after }: { before: string; after: string }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const beforeImgRef = useRef<HTMLImageElement | null>(null);
-  const dividerRef = useRef<HTMLDivElement | null>(null);
-  const dragging = useRef(false);
 
-  const move = useCallback((clientX: number) => {
-    const el = containerRef.current;
-    if (!el) return;
-    
-    // Calculate percentage position
-    const rect = el.getBoundingClientRect();
-    const p = Math.max(2, Math.min(98, ((clientX - rect.left) / rect.width) * 100));
-    
-    // Direct DOM manipulation for 60fps performance (bypassing React state)
-    if (beforeImgRef.current) {
-      beforeImgRef.current.style.clipPath = `inset(0 ${100 - p}% 0 0)`;
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (containerRef.current) {
+      // Use CSS variable for high performance, zero-react-render updates
+      containerRef.current.style.setProperty("--position", `${e.target.value}%`);
     }
-    if (dividerRef.current) {
-      dividerRef.current.style.left = `${p}%`;
-    }
-  }, []);
+  };
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[4/5] sm:aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-2xl shadow-elev select-none cursor-ew-resize"
-      onMouseDown={(e) => { dragging.current = true; move(e.clientX); }}
-      onMouseMove={(e) => {
-        if (dragging.current) {
-          // Use requestAnimationFrame for smoother updates on some devices
-          requestAnimationFrame(() => move(e.clientX));
-        }
-      }}
-      onMouseUp={() => (dragging.current = false)}
-      onMouseLeave={() => (dragging.current = false)}
-      onTouchStart={(e) => { dragging.current = true; move(e.touches[0].clientX); }}
-      onTouchMove={(e) => { 
-        e.preventDefault(); 
-        if (dragging.current) {
-          requestAnimationFrame(() => move(e.touches[0].clientX));
-        }
-      }}
-      onTouchEnd={() => (dragging.current = false)}
+      className="relative w-full aspect-[4/5] sm:aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-2xl shadow-elev select-none"
+      style={{ "--position": "50%" } as React.CSSProperties}
     >
       {/* After image (full width background) */}
-      <img src={after} alt="Después" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+      <img src={after} alt="Después" loading="eager" decoding="sync" className="absolute inset-0 w-full h-full object-cover" />
 
-      {/* Before image (clipped directly using CSS clip-path for high performance) */}
+      {/* Before image (clipped directly using CSS variable for high performance) */}
       <img
-        ref={beforeImgRef}
         src={before}
         alt="Antes"
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 w-full h-full object-cover z-10"
-        style={{ clipPath: "inset(0 50% 0 0)", willChange: "clip-path" }}
+        loading="eager"
+        decoding="sync"
+        className="absolute inset-0 w-full h-full object-cover z-10 pointer-events-none"
+        style={{ clipPath: "polygon(0 0, var(--position) 0, var(--position) 100%, 0 100%)", willChange: "clip-path" }}
       />
 
       {/* Labels */}
@@ -65,9 +35,8 @@ export function BeforeAfter({ before, after }: { before: string; after: string }
 
       {/* Divider line */}
       <div
-        ref={dividerRef}
-        className="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_20px_rgba(0,150,255,0.7)] z-30"
-        style={{ left: "50%", willChange: "left" }}
+        className="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_20px_rgba(0,150,255,0.7)] z-30 pointer-events-none"
+        style={{ left: "var(--position)", willChange: "left" }}
       >
         {/* Handle */}
         <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-elev grid place-items-center border-2 border-electric/20">
@@ -77,6 +46,16 @@ export function BeforeAfter({ before, after }: { before: string; after: string }
           </svg>
         </div>
       </div>
+
+      {/* Invisible Range Slider for Native Interaction */}
+      <input
+        type="range"
+        min="0"
+        max="100"
+        defaultValue="50"
+        onInput={handleInput}
+        className="absolute inset-0 w-full h-full opacity-0 z-40 cursor-ew-resize m-0 p-0 touch-pan-y"
+      />
     </div>
   );
 }
