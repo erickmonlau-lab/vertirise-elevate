@@ -1473,7 +1473,7 @@ function Testimonials() {
 
 // — Coverage (Google Maps) —
 function Coverage() {
-  const { t, i18n } = useTranslation();
+  const { t, language } = useTranslation();
   return (
     <section id="cobertura" className="py-24 lg:py-32 bg-white scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -1523,7 +1523,7 @@ function Coverage() {
           <div className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-auto lg:h-[600px] rounded-2xl overflow-hidden shadow-elev border border-border group">
             <iframe
               title="Ubicación DISET — Carrer de Cuzco 39-41, Barcelona"
-              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.359223363065!2d2.1814110766324225!3d41.41750007129525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a321200df13b%3A0xc319138ce3ed8966!2sCarrer%20de%20Cuzco%2C%2039%2C%20Sant%20Andreu%2C%2008030%20Barcelona!5e0!3m2!1s${i18n.language}!2ses!4v1700000000000!5m2!1s${i18n.language}!2ses&hl=${i18n.language}`}
+              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.359223363065!2d2.1814110766324225!3d41.41750007129525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a321200df13b%3A0xc319138ce3ed8966!2sCarrer%20de%20Cuzco%2C%2039%2C%20Sant%20Andreu%2C%2008030%20Barcelona!5e0!3m2!1s${language}!2ses!4v1700000000000!5m2!1s${language}!2ses&hl=${language}`}
               className="w-full h-full transition-all duration-1000"
               style={{ border: 0 }}
               loading="lazy"
