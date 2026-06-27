@@ -1356,21 +1356,6 @@ function Testimonials() {
   const bgColors = ["bg-[#E65100]", "bg-[#0F9D58]", "bg-[#4285F4]"];
 
   return (
-    <section className="py-24 lg:py-32 bg-[#eef2f6]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <Reveal className="mb-14 text-center">
-          <h2 className="mb-8 text-3xl md:text-4xl lg:text-5xl font-extrabold text-navy leading-tight tracking-tight">
-            {t("testimonials.title")}
-            <br />
-            {t("testimonials.title2")}
-          </h2>
-
-          <div className="inline-flex flex-col items-center gap-2">
-            <div className="text-xl font-bold text-navy tracking-widest">{t("testimonials.excellent")}</div>
-            <div className="flex gap-1 mb-1">
-              {[...Array(5)].map((_, k) => (
-                <svg key={k} width="28" height="28" viewBox="0 0 24 24" fill="#FBBC05">
-  return (
     <section className="py-24 lg:py-32 bg-[#0a1628] overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 lg:px-10">
         <Reveal className="mb-16 flex flex-col items-center text-center gap-6">
