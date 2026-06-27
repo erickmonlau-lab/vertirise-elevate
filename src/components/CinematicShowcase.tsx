@@ -16,7 +16,7 @@ export function CinematicShowcase() {
 
     gsap.set([".word-1", ".word-2", ".word-3"], { scale: 0.01, opacity: 0, transformOrigin: "center center" });
     gsap.set(".final-content", { opacity: 0 });
-    gsap.set(".speed-lines", { opacity: 0 });
+
 
     const tl = gsap.timeline({ paused: true });
 
@@ -59,7 +59,7 @@ export function CinematicShowcase() {
       // Removed onLeaveBack completely so the section stays in its final state once completed!
     });
 
-  }, { scope: containerRef });
+  }, { scope: containerRef, dependencies: [] });
 
   return (
     <section ref={containerRef} className="relative h-screen w-full bg-[#02040a] overflow-hidden" id="proceso">
