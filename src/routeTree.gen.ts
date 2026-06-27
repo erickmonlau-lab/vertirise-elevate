@@ -10,33 +10,89 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServiciosPlacasSolaresRouteImport } from './routes/servicios/placas-solares'
+import { Route as ServiciosLineasDeVidaRouteImport } from './routes/servicios/lineas-de-vida'
+import { Route as ServiciosFachadasRouteImport } from './routes/servicios/fachadas'
+import { Route as ServiciosCristalesRouteImport } from './routes/servicios/cristales'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServiciosPlacasSolaresRoute = ServiciosPlacasSolaresRouteImport.update({
+  id: '/servicios/placas-solares',
+  path: '/servicios/placas-solares',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosLineasDeVidaRoute = ServiciosLineasDeVidaRouteImport.update({
+  id: '/servicios/lineas-de-vida',
+  path: '/servicios/lineas-de-vida',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosFachadasRoute = ServiciosFachadasRouteImport.update({
+  id: '/servicios/fachadas',
+  path: '/servicios/fachadas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosCristalesRoute = ServiciosCristalesRouteImport.update({
+  id: '/servicios/cristales',
+  path: '/servicios/cristales',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/servicios/cristales': typeof ServiciosCristalesRoute
+  '/servicios/fachadas': typeof ServiciosFachadasRoute
+  '/servicios/lineas-de-vida': typeof ServiciosLineasDeVidaRoute
+  '/servicios/placas-solares': typeof ServiciosPlacasSolaresRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/servicios/cristales': typeof ServiciosCristalesRoute
+  '/servicios/fachadas': typeof ServiciosFachadasRoute
+  '/servicios/lineas-de-vida': typeof ServiciosLineasDeVidaRoute
+  '/servicios/placas-solares': typeof ServiciosPlacasSolaresRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/servicios/cristales': typeof ServiciosCristalesRoute
+  '/servicios/fachadas': typeof ServiciosFachadasRoute
+  '/servicios/lineas-de-vida': typeof ServiciosLineasDeVidaRoute
+  '/servicios/placas-solares': typeof ServiciosPlacasSolaresRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/servicios/cristales'
+    | '/servicios/fachadas'
+    | '/servicios/lineas-de-vida'
+    | '/servicios/placas-solares'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/servicios/cristales'
+    | '/servicios/fachadas'
+    | '/servicios/lineas-de-vida'
+    | '/servicios/placas-solares'
+  id:
+    | '__root__'
+    | '/'
+    | '/servicios/cristales'
+    | '/servicios/fachadas'
+    | '/servicios/lineas-de-vida'
+    | '/servicios/placas-solares'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ServiciosCristalesRoute: typeof ServiciosCristalesRoute
+  ServiciosFachadasRoute: typeof ServiciosFachadasRoute
+  ServiciosLineasDeVidaRoute: typeof ServiciosLineasDeVidaRoute
+  ServiciosPlacasSolaresRoute: typeof ServiciosPlacasSolaresRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +104,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/servicios/placas-solares': {
+      id: '/servicios/placas-solares'
+      path: '/servicios/placas-solares'
+      fullPath: '/servicios/placas-solares'
+      preLoaderRoute: typeof ServiciosPlacasSolaresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios/lineas-de-vida': {
+      id: '/servicios/lineas-de-vida'
+      path: '/servicios/lineas-de-vida'
+      fullPath: '/servicios/lineas-de-vida'
+      preLoaderRoute: typeof ServiciosLineasDeVidaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios/fachadas': {
+      id: '/servicios/fachadas'
+      path: '/servicios/fachadas'
+      fullPath: '/servicios/fachadas'
+      preLoaderRoute: typeof ServiciosFachadasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios/cristales': {
+      id: '/servicios/cristales'
+      path: '/servicios/cristales'
+      fullPath: '/servicios/cristales'
+      preLoaderRoute: typeof ServiciosCristalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ServiciosCristalesRoute: ServiciosCristalesRoute,
+  ServiciosFachadasRoute: ServiciosFachadasRoute,
+  ServiciosLineasDeVidaRoute: ServiciosLineasDeVidaRoute,
+  ServiciosPlacasSolaresRoute: ServiciosPlacasSolaresRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

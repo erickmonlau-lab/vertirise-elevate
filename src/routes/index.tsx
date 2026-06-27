@@ -1,5 +1,5 @@
 "use client";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, ReactNode } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -71,6 +71,7 @@ const services = [
     filter: "hue-rotate(270deg) saturate(2.5)",
     clip: "none",
     objectClass: "object-contain object-center scale-95",
+    link: "/servicios/cristales",
   },
   {
     titleKey: "services.2.title" as const,
@@ -80,6 +81,7 @@ const services = [
     filter: "hue-rotate(80deg) saturate(2.5)",
     clip: "none",
     objectClass: "object-contain object-bottom",
+    link: "/servicios/fachadas",
   },
   {
     titleKey: "services.3.title" as const,
@@ -89,6 +91,7 @@ const services = [
     filter: "saturate(2.5)",
     clip: "none",
     objectClass: "object-contain object-bottom",
+    link: "/servicios/placas-solares",
   },
   {
     titleKey: "services.4.title" as const,
@@ -98,6 +101,7 @@ const services = [
     filter: "hue-rotate(90deg) saturate(2.5)",
     clip: "inset(0 0 11% 0)",
     objectClass: "object-contain object-bottom scale-105 origin-bottom",
+    link: "/servicios/lineas-de-vida",
   },
 ];
 
@@ -760,44 +764,46 @@ function Services() {
           {services.map((s, i) => {
             return (
               <Reveal key={s.titleKey} delay={i * 100}>
-                <article
-                  className={`group ${s.color} rounded-3xl p-8 lg:p-10 shadow-sm border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col cursor-pointer relative`}
-                >
-                  <div className="w-32 h-32 mb-6 group-hover:scale-110 transition-transform duration-500 origin-bottom-left">
-                    <img
-                      src={s.customIcon}
-                      alt={t(s.titleKey as TranslationKey)}
-                      className={`w-full h-full mix-blend-multiply ${s.objectClass || "object-contain object-bottom"}`}
-                      style={{ filter: s.filter, clipPath: s.clip }}
-                    />
-                  </div>
+                <Link to={s.link} className="block h-full">
+                  <article
+                    className={`group ${s.color} rounded-3xl p-8 lg:p-10 shadow-sm border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col cursor-pointer relative`}
+                  >
+                    <div className="w-32 h-32 mb-6 group-hover:scale-110 transition-transform duration-500 origin-bottom-left">
+                      <img
+                        src={s.customIcon}
+                        alt={t(s.titleKey as TranslationKey)}
+                        className={`w-full h-full mix-blend-multiply ${s.objectClass || "object-contain object-bottom"}`}
+                        style={{ filter: s.filter, clipPath: s.clip }}
+                      />
+                    </div>
 
-                  <h3 className="text-2xl font-extrabold text-navy mb-3 tracking-tight z-10">
-                    {t(s.titleKey as TranslationKey)}
-                  </h3>
+                    <h3 className="text-2xl font-extrabold text-navy mb-3 tracking-tight z-10">
+                      {t(s.titleKey as TranslationKey)}
+                    </h3>
 
-                  <p className="text-navy/80 font-medium leading-relaxed mb-8 flex-1 z-10">
-                    {t(s.descKey as TranslationKey)}
-                  </p>
+                    <p className="text-navy/80 font-medium leading-relaxed mb-8 flex-1 z-10">
+                      {t(s.descKey as TranslationKey)}
+                    </p>
 
-                  <div className="mt-auto flex items-center gap-2 text-navy font-bold text-sm z-10">
-                    {t("services.more")}
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="group-hover:translate-x-1 transition-transform"
-                    >
-                      <path d="M5 12h14" />
-                      <path d="m12 5 7 7-7 7" />
-                    </svg>
-                  </div>
-                </article>
+                    <div className="mt-auto flex items-center gap-2 text-navy font-bold text-sm z-10">
+                      {t("services.more")}
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="group-hover:translate-x-1 transition-transform"
+                      >
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                      </svg>
+                    </div>
+                  </article>
+                </Link>
               </Reveal>
             );
           })}
