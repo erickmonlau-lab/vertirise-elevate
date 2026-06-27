@@ -883,7 +883,7 @@ function BeforeAfterSection() {
                   <div
                     className={`text-base font-extrabold ${activeCase === i ? "text-white" : "text-white/90"}`}
                   >
-                    {c.labelKey}
+                    {t(c.labelKey)}
                   </div>
                   <div className="text-sm text-white/70 mt-0.5">{t(c.descKey)}</div>
                 </div>
