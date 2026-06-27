@@ -9,7 +9,8 @@ export const translations = {
     'nav.process': 'Proceso',
     'nav.coverage': 'Cobertura',
     'nav.contact': 'Contacto',
-    
+    'nav.faq': 'FAQ',
+
     // Hero
     'hero.badge': '25+ AÑOS DE EXPERIENCIA · BARCELONA',
     'hero.title1': 'Especialistas en',
@@ -18,18 +19,37 @@ export const translations = {
     'hero.desc': 'Limpieza de cristales, fachadas, placas solares e instalación de líneas de vida para empresas, industrias y comunidades.',
     'hero.btn.quote': 'Solicitar Presupuesto',
     'hero.btn.call': 'Llamar Ahora',
-    
-    // Cinematic
-    'cinematic.badge': 'Cuidamos',
-    'cinematic.title': 'Precisión sin límites.',
-    'cinematic.desc': 'Nuestros técnicos especializados combinan técnica y seguridad para devolverle el brillo a su edificio. Sin andamios, sin complicaciones.',
-    'cinematic.btn': 'Solicitar Presupuesto',
-    
+    'hero.projects': '+4.500 proyectos',
+    'hero.projects.desc': 'completados con éxito',
+
+    // Trust bar
+    'trust.irata': 'Técnicos certificados IRATA',
+    'trust.experience': '25+ años de experiencia',
+    'trust.communities': '+300 comunidades atendidas',
+    'trust.quote': 'Presupuesto en 24h',
+
+    // Stats
+    'stats.1': 'Años liderando trabajos verticales',
+    'stats.2': 'Proyectos completados',
+    'stats.3': 'Comunidades atendidas',
+    'stats.4': 'Clientes satisfechos',
+
+    // Sectors
+    'sectors.title': 'Servicios verticales para empresas',
+    'sectors.more': 'Más información',
+    'sectors.1.title': 'Comunidades de propietarios',
+    'sectors.1.desc': 'Mantenimiento y limpiezas en altura sin cortar accesos ni molestar a los vecinos. Presupuesto sin compromiso.',
+    'sectors.2.title': 'Hoteles y Hostales',
+    'sectors.2.desc': 'La imagen exterior es vital en hostelería. Cristales, fachadas y cubiertas siempre impecables sin interrumpir la actividad.',
+    'sectors.3.title': 'Naves y centros logísticos',
+    'sectors.3.desc': 'Limpieza especializada de cubiertas, lucernarios y placas fotovoltaicas industriales con técnicas de seguridad avanzadas.',
+
     // Services
     'services.badge': 'Servicios Especializados',
     'services.title1': 'Soluciones integrales,',
     'services.title2': 'en altura.',
     'services.desc': 'Toda la capacidad técnica de un único proveedor para el mantenimiento integral de su edificio.',
+    'services.more': 'Más información',
     'services.1.title': 'Limpieza de Cristales',
     'services.1.desc': 'Sistema de agua osmotizada y técnicas de acceso por cuerdas para cristales impecables sin marcas de agua ni andamios.',
     'services.2.title': 'Limpieza de Fachadas',
@@ -39,13 +59,76 @@ export const translations = {
     'services.4.title': 'Líneas de Vida',
     'services.4.desc': 'Instalación, revisión y certificación de sistemas anticaídas permanentes o temporales cumpliendo la normativa EN 795.',
 
+    // Before/After
+    'beforeafter.badge': 'Antes y Después',
+    'beforeafter.title': 'Resultados que se',
+    'beforeafter.title2': 'ven, a primera vista.',
+    'beforeafter.desc': 'Deslice el control para comparar el estado de cada superficie antes y después de nuestra intervención.',
+    'beforeafter.drag': 'Arrastre el control deslizante para comparar',
+    'beforeafter.before': 'ANTES',
+    'beforeafter.after': 'DESPUÉS',
+    'beforeafter.case1.label': 'Cristales',
+    'beforeafter.case1.desc': 'Ventanales corporativos',
+    'beforeafter.case2.label': 'Fachadas',
+    'beforeafter.case2.desc': 'Fachada de piedra',
+    'beforeafter.case3.label': 'Placas Solares',
+    'beforeafter.case3.desc': 'Instalación fotovoltaica',
+
     // Benefits
+    'benefits.header': 'La referencia técnica en trabajos verticales',
+    'benefits.subheader': 'Los equipos y protocolos utilizados en nuestras intervenciones son de máxima seguridad, garantizando resultados impecables en todos nuestros proyectos.',
+    'benefits.cta.badge': 'Intervención Técnica',
+    'benefits.cta.title': '¿Necesitas una intervención en altura?',
+    'benefits.cta.desc': 'Solicita una visita técnica gratuita. Sin compromiso. Respuesta garantizada en menos de 24 horas.',
+    'benefits.cta.wa': 'WhatsApp',
+    'benefits.cta.visit': 'Solicitar visita',
     'benefits.1.title': 'Ahorro Económico',
     'benefits.1.desc': 'Evite el enorme coste de alquiler y montaje de andamios y grúas.',
     'benefits.2.title': 'Cero Molestias',
     'benefits.2.desc': 'Acceso directo sin bloquear las entradas ni interrumpir su negocio.',
     'benefits.3.title': 'Agilidad y Velocidad',
     'benefits.3.desc': 'Despliegue e inicio de los trabajos en horas, no en días.',
+    'benefits.4.title': 'Máxima Seguridad',
+    'benefits.4.desc': 'Técnicos certificados IRATA con seguro de responsabilidad civil y equipos homologados.',
+
+    // Process
+    'process.title': 'Nuestro proceso de trabajo',
+    'process.step': 'Paso',
+    'process.1.title': 'Atendemos tu consulta',
+    'process.1.desc': 'Se concretará una evaluación técnica gratuita de la fachada o cubierta para poder planificar de forma específica.',
+    'process.2.title': 'Concertamos una visita',
+    'process.2.desc': 'Llámanos y un especialista vertical atenderá tu consulta de manera inmediata para coordinar el acceso.',
+    'process.3.title': 'Realizamos la limpieza',
+    'process.3.desc': 'Acordaremos una fecha en la que nuestros técnicos se colgarán para realizar el trabajo de limpieza o mantenimiento.',
+
+    // Cases
+    'cases.badge': 'Casos de Éxito',
+    'cases.title': 'Proyectos ejecutados',
+    'cases.title2': 'con resultados reales.',
+    'cases.desc': 'intervenciones técnicas completadas. Cada proyecto, una solución a medida.',
+    'cases.featured': 'Caso Destacado',
+    'cases.problem': 'Problema',
+    'cases.solution': 'Solución',
+    'cases.result': 'Resultado',
+
+    // Testimonials
+    'testimonials.title': 'Particulares satisfechos',
+    'testimonials.title2': 'con nuestros servicios',
+    'testimonials.excellent': 'EXCELENTE',
+    'testimonials.rating': 'Valoración 5/5 · Google Business',
+
+    // Coverage
+    'coverage.badge': 'Área de Cobertura',
+    'coverage.title': 'Trabajamos en toda',
+    'coverage.title2': 'la provincia de Barcelona',
+    'coverage.desc': 'Equipo propio en toda el área metropolitana, Maresme, Vallès, Baix Llobregat y Costa Daurada.',
+    'coverage.metro': 'Área Metropolitana',
+    'coverage.maresme': 'Maresme',
+    'coverage.valles': 'Vallès',
+    'coverage.baix': 'Baix Llobregat',
+    'coverage.costa': 'Costa Daurada',
+    'coverage.phone': 'Llamar ahora',
+    'coverage.quote': 'Solicitar presupuesto',
 
     // Certifications
     'certs.badge': 'Certificaciones',
@@ -63,7 +146,30 @@ export const translations = {
     'certs.4.detail': 'Instalaciones anticaídas certificadas según norma europea EN 795',
     'certs.5.desc': 'Calidad y Gestión',
     'certs.5.detail': 'Protocols de calidad documentados y auditados externamente',
-    
+
+    // Contact / CTA
+    'cta.badge': 'Presupuesto Gratuito',
+    'cta.title': 'Solicita tu presupuesto',
+    'cta.title2': 'sin compromiso',
+    'cta.desc': 'Respondemos en menos de 24 horas. Sin compromiso. Visita técnica gratuita.',
+    'cta.phone': 'Llamar ahora',
+    'cta.wa': 'WhatsApp',
+    'contact.name': 'Nombre',
+    'contact.email': 'Email',
+    'contact.phone': 'Teléfono',
+    'contact.service': 'Servicio',
+    'contact.service.placeholder': 'Seleccione un servicio',
+    'contact.service.cristales': 'Limpieza de Cristales',
+    'contact.service.fachadas': 'Limpieza de Fachadas',
+    'contact.service.solares': 'Placas Solares',
+    'contact.service.lineas': 'Líneas de Vida',
+    'contact.service.other': 'Otro',
+    'contact.message': 'Mensaje',
+    'contact.message.placeholder': 'Describa su proyecto o necesidad...',
+    'contact.submit': 'Solicitar Presupuesto Gratuito',
+    'contact.success': '¡Mensaje enviado! Le contactaremos en menos de 24 horas.',
+    'contact.privacy': 'Sus datos están protegidos. Nunca compartiremos su información.',
+
     // FAQ
     'faq.badge': 'Preguntas Frecuentes',
     'faq.title': 'Resolvemos sus dudas',
@@ -94,25 +200,47 @@ export const translations = {
     'nav.process': 'Procés',
     'nav.coverage': 'Cobertura',
     'nav.contact': 'Contacte',
-    
+    'nav.faq': 'FAQ',
+
     // Hero
     'hero.badge': '25+ ANYS D\'EXPERIÈNCIA · BARCELONA',
     'hero.title1': 'Especialistes en',
     'hero.title2': 'treballs verticals',
-    'hero.desc': 'Realitzem tot tipus de neteja, rehabilitació i instal·lació en alçada. Sense bastides, amb la màxima seguretat.',
-    'hero.btn': 'Sol·licitar pressupost',
+    'hero.title3': 'i neteja en alçada a Barcelona',
+    'hero.desc': 'Neteja de vidres, façanes, plaques solars i instal·lació de línies de vida per a empreses, indústries i comunitats.',
+    'hero.btn.quote': 'Sol·licitar Pressupost',
+    'hero.btn.call': 'Trucar Ara',
+    'hero.projects': '+4.500 projectes',
+    'hero.projects.desc': 'completats amb èxit',
 
-    // Cinematic
-    'cinematic.badge': 'Cuidem',
-    'cinematic.title': 'Precisió sense límits.',
-    'cinematic.desc': 'Els nostres tècnics especialitzats combinen tècnica i seguretat per retornar la brillantor al seu edifici. Sense bastides, sense complicacions.',
-    'cinematic.btn': 'Sol·licitar Pressupost',
-    
+    // Trust bar
+    'trust.irata': 'Tècnics certificats IRATA',
+    'trust.experience': '25+ anys d\'experiència',
+    'trust.communities': '+300 comunitats ateses',
+    'trust.quote': 'Pressupost en 24h',
+
+    // Stats
+    'stats.1': 'Anys liderant treballs verticals',
+    'stats.2': 'Projectes completats',
+    'stats.3': 'Comunitats ateses',
+    'stats.4': 'Clients satisfets',
+
+    // Sectors
+    'sectors.title': 'Serveis verticals per a empreses',
+    'sectors.more': 'Més informació',
+    'sectors.1.title': 'Comunitats de propietaris',
+    'sectors.1.desc': 'Manteniment i neteges en alçada sense tallar accessos ni molestar els veïns. Pressupost sense compromís.',
+    'sectors.2.title': 'Hotels i Hostals',
+    'sectors.2.desc': 'La imatge exterior és vital en hostaleria. Vidres, façanes i cobertes sempre impecables sense interrompre l\'activitat.',
+    'sectors.3.title': 'Naus i centres logístics',
+    'sectors.3.desc': 'Neteja especialitzada de cobertes, lluernaris i plaques fotovoltaiques industrials amb tècniques de seguretat avançades.',
+
     // Services
     'services.badge': 'Serveis Especialitzats',
     'services.title1': 'Solucions integrals,',
     'services.title2': 'en alçada.',
     'services.desc': 'Tota la capacitat tècnica d\'un únic proveïdor per al manteniment integral del seu edifici.',
+    'services.more': 'Més informació',
     'services.1.title': 'Neteja de Vidres',
     'services.1.desc': 'Sistema d\'aigua osmotitzada i tècniques d\'accés per cordes per a vidres impecables sense marques d\'aigua ni bastides.',
     'services.2.title': 'Neteja de Façanes',
@@ -122,13 +250,76 @@ export const translations = {
     'services.4.title': 'Línies de Vida',
     'services.4.desc': 'Instal·lació, revisió i certificació de sistemes anticaigudes permanents o temporals complint la normativa EN 795.',
 
+    // Before/After
+    'beforeafter.badge': 'Abans i Després',
+    'beforeafter.title': 'Resultats que es',
+    'beforeafter.title2': 'veuen, a primera vista.',
+    'beforeafter.desc': 'Llisqueu el control per comparar l\'estat de cada superfície abans i després de la nostra intervenció.',
+    'beforeafter.drag': 'Arrossegueu el control lliscant per comparar',
+    'beforeafter.before': 'ABANS',
+    'beforeafter.after': 'DESPRÉS',
+    'beforeafter.case1.label': 'Vidres',
+    'beforeafter.case1.desc': 'Vidrieres corporatives',
+    'beforeafter.case2.label': 'Façanes',
+    'beforeafter.case2.desc': 'Façana de pedra',
+    'beforeafter.case3.label': 'Plaques Solars',
+    'beforeafter.case3.desc': 'Instal·lació fotovoltaica',
+
     // Benefits
+    'benefits.header': 'La referència tècnica en treballs verticals',
+    'benefits.subheader': 'Els equips i protocols utilitzats en les nostres intervencions són de màxima seguretat, garantint resultats impecables en tots els nostres projectes.',
+    'benefits.cta.badge': 'Intervenció Tècnica',
+    'benefits.cta.title': 'Necessiteu una intervenció en alçada?',
+    'benefits.cta.desc': 'Sol·liciteu una visita tècnica gratuïta. Sense compromís. Resposta garantida en menys de 24 hores.',
+    'benefits.cta.wa': 'WhatsApp',
+    'benefits.cta.visit': 'Sol·licitar visita',
     'benefits.1.title': 'Estalvi Econòmic',
-    'benefits.1.desc': 'Eviti l\'enorme cost de lloguer i muntatge de bastides i grues.',
+    'benefits.1.desc': 'Eviteu l\'enorme cost de lloguer i muntatge de bastides i grues.',
     'benefits.2.title': 'Zero Molèsties',
     'benefits.2.desc': 'Accés directe sense bloquejar les entrades ni interrompre el seu negoci.',
     'benefits.3.title': 'Agilitat i Velocitat',
     'benefits.3.desc': 'Desplegament i inici dels treballs en hores, no en dies.',
+    'benefits.4.title': 'Màxima Seguretat',
+    'benefits.4.desc': 'Tècnics certificats IRATA amb assegurança de responsabilitat civil i equips homologats.',
+
+    // Process
+    'process.title': 'El nostre procés de treball',
+    'process.step': 'Pas',
+    'process.1.title': 'Atenem la seva consulta',
+    'process.1.desc': 'Es concretarà una avaluació tècnica gratuïta de la façana o coberta per poder planificar de forma específica.',
+    'process.2.title': 'Concertem una visita',
+    'process.2.desc': 'Truqueu-nos i un especialista vertical atendrà la seva consulta de manera immediata per coordinar l\'accés.',
+    'process.3.title': 'Realitzem la neteja',
+    'process.3.desc': 'Acordarem una data en la qual els nostres tècnics s\'enfilaran per realitzar el treball de neteja o manteniment.',
+
+    // Cases
+    'cases.badge': 'Casos d\'Èxit',
+    'cases.title': 'Projectes executats',
+    'cases.title2': 'amb resultats reals.',
+    'cases.desc': 'intervencions tècniques completades. Cada projecte, una solució a mida.',
+    'cases.featured': 'Cas Destacat',
+    'cases.problem': 'Problema',
+    'cases.solution': 'Solució',
+    'cases.result': 'Resultat',
+
+    // Testimonials
+    'testimonials.title': 'Particulars satisfets',
+    'testimonials.title2': 'amb els nostres serveis',
+    'testimonials.excellent': 'EXCEL·LENT',
+    'testimonials.rating': 'Valoració 5/5 · Google Business',
+
+    // Coverage
+    'coverage.badge': 'Àrea de Cobertura',
+    'coverage.title': 'Treballem a tota',
+    'coverage.title2': 'la província de Barcelona',
+    'coverage.desc': 'Equip propi a tota l\'àrea metropolitana, Maresme, Vallès, Baix Llobregat i Costa Daurada.',
+    'coverage.metro': 'Àrea Metropolitana',
+    'coverage.maresme': 'Maresme',
+    'coverage.valles': 'Vallès',
+    'coverage.baix': 'Baix Llobregat',
+    'coverage.costa': 'Costa Daurada',
+    'coverage.phone': 'Trucar ara',
+    'coverage.quote': 'Sol·licitar pressupost',
 
     // Certifications
     'certs.badge': 'Certificacions',
@@ -146,6 +337,29 @@ export const translations = {
     'certs.4.detail': 'Instal·lacions anticaigudes certificades segons norma europea EN 795',
     'certs.5.desc': 'Qualitat i Gestió',
     'certs.5.detail': 'Protocols de qualitat documentats i auditats externament',
+
+    // Contact / CTA
+    'cta.badge': 'Pressupost Gratuït',
+    'cta.title': 'Sol·licita el teu pressupost',
+    'cta.title2': 'sense compromís',
+    'cta.desc': 'Responem en menys de 24 hores. Sense compromís. Visita tècnica gratuïta.',
+    'cta.phone': 'Trucar ara',
+    'cta.wa': 'WhatsApp',
+    'contact.name': 'Nom',
+    'contact.email': 'Email',
+    'contact.phone': 'Telèfon',
+    'contact.service': 'Servei',
+    'contact.service.placeholder': 'Seleccioneu un servei',
+    'contact.service.cristales': 'Neteja de Vidres',
+    'contact.service.fachadas': 'Neteja de Façanes',
+    'contact.service.solares': 'Plaques Solars',
+    'contact.service.lineas': 'Línies de Vida',
+    'contact.service.other': 'Altre',
+    'contact.message': 'Missatge',
+    'contact.message.placeholder': 'Descriviu el vostre projecte o necessitat...',
+    'contact.submit': 'Sol·licitar Pressupost Gratuït',
+    'contact.success': 'Missatge enviat! Us contactarem en menys de 24 hores.',
+    'contact.privacy': 'Les seves dades estan protegides. Mai compartim la seva informació.',
 
     // FAQ
     'faq.badge': 'Preguntes Freqüents',
@@ -177,25 +391,47 @@ export const translations = {
     'nav.process': 'Process',
     'nav.coverage': 'Coverage',
     'nav.contact': 'Contact',
-    
+    'nav.faq': 'FAQ',
+
     // Hero
     'hero.badge': '25+ YEARS OF EXPERIENCE · BARCELONA',
     'hero.title1': 'Specialists in',
     'hero.title2': 'rope access works',
-    'hero.desc': 'We carry out all types of cleaning, rehabilitation, and installation at height. No scaffolding, with maximum security.',
-    'hero.btn': 'Request a quote',
+    'hero.title3': 'and high-altitude cleaning in Barcelona',
+    'hero.desc': 'Window cleaning, facade cleaning, solar panels, and lifeline installation for businesses, industries, and communities.',
+    'hero.btn.quote': 'Request a Quote',
+    'hero.btn.call': 'Call Now',
+    'hero.projects': '+4,500 projects',
+    'hero.projects.desc': 'successfully completed',
 
-    // Cinematic
-    'cinematic.badge': 'We Care',
-    'cinematic.title': 'Limitless Precision.',
-    'cinematic.desc': 'Our specialized technicians combine technique and safety to bring the shine back to your building. No scaffolding, no complications.',
-    'cinematic.btn': 'Request a Quote',
-    
+    // Trust bar
+    'trust.irata': 'IRATA certified technicians',
+    'trust.experience': '25+ years of experience',
+    'trust.communities': '+300 communities served',
+    'trust.quote': 'Quote within 24h',
+
+    // Stats
+    'stats.1': 'Years leading rope access works',
+    'stats.2': 'Projects completed',
+    'stats.3': 'Communities served',
+    'stats.4': 'Satisfied clients',
+
+    // Sectors
+    'sectors.title': 'Vertical services for businesses',
+    'sectors.more': 'Learn more',
+    'sectors.1.title': 'Homeowners associations',
+    'sectors.1.desc': 'Maintenance and high-altitude cleaning without blocking access or disturbing residents. No-obligation quote.',
+    'sectors.2.title': 'Hotels and Hostels',
+    'sectors.2.desc': 'Exterior image is vital in hospitality. Windows, facades and roofs always spotless without interrupting operations.',
+    'sectors.3.title': 'Industrial units and logistics centres',
+    'sectors.3.desc': 'Specialised cleaning of roofs, skylights and industrial photovoltaic panels with advanced safety techniques.',
+
     // Services
     'services.badge': 'Specialized Services',
     'services.title1': 'Comprehensive solutions,',
     'services.title2': 'at height.',
     'services.desc': 'The full technical capacity of a single provider for the integral maintenance of your building.',
+    'services.more': 'Learn more',
     'services.1.title': 'Window Cleaning',
     'services.1.desc': 'Osmotized water system and rope access techniques for spotless windows without water marks or scaffolding.',
     'services.2.title': 'Facade Cleaning',
@@ -205,13 +441,76 @@ export const translations = {
     'services.4.title': 'Lifelines',
     'services.4.desc': 'Installation, inspection, and certification of permanent or temporary fall arrest systems complying with EN 795 standards.',
 
+    // Before/After
+    'beforeafter.badge': 'Before & After',
+    'beforeafter.title': 'Results that are',
+    'beforeafter.title2': 'seen, at first glance.',
+    'beforeafter.desc': 'Slide the control to compare the state of each surface before and after our intervention.',
+    'beforeafter.drag': 'Drag the slider to compare',
+    'beforeafter.before': 'BEFORE',
+    'beforeafter.after': 'AFTER',
+    'beforeafter.case1.label': 'Windows',
+    'beforeafter.case1.desc': 'Corporate glazing',
+    'beforeafter.case2.label': 'Facades',
+    'beforeafter.case2.desc': 'Stone facade',
+    'beforeafter.case3.label': 'Solar Panels',
+    'beforeafter.case3.desc': 'Photovoltaic installation',
+
     // Benefits
+    'benefits.header': 'The technical benchmark in rope access works',
+    'benefits.subheader': 'The equipment and protocols used in our interventions are of the highest safety standards, guaranteeing flawless results on every project.',
+    'benefits.cta.badge': 'Technical Intervention',
+    'benefits.cta.title': 'Need a high-altitude intervention?',
+    'benefits.cta.desc': 'Request a free technical visit. No obligation. Guaranteed response within 24 hours.',
+    'benefits.cta.wa': 'WhatsApp',
+    'benefits.cta.visit': 'Request visit',
     'benefits.1.title': 'Cost Savings',
     'benefits.1.desc': 'Avoid the huge cost of renting and assembling scaffolding and cranes.',
     'benefits.2.title': 'Zero Disruption',
     'benefits.2.desc': 'Direct access without blocking entrances or interrupting your business.',
     'benefits.3.title': 'Agility and Speed',
     'benefits.3.desc': 'Deployment and start of work in hours, not days.',
+    'benefits.4.title': 'Maximum Safety',
+    'benefits.4.desc': 'IRATA-certified technicians with public liability insurance and approved equipment.',
+
+    // Process
+    'process.title': 'Our work process',
+    'process.step': 'Step',
+    'process.1.title': 'We handle your enquiry',
+    'process.1.desc': 'A free technical assessment of the facade or roof will be arranged to plan the intervention specifically.',
+    'process.2.title': 'We schedule a visit',
+    'process.2.desc': 'Call us and a vertical specialist will handle your enquiry immediately to coordinate access.',
+    'process.3.title': 'We carry out the work',
+    'process.3.desc': 'We will agree a date on which our technicians will abseil to carry out the cleaning or maintenance work.',
+
+    // Cases
+    'cases.badge': 'Success Cases',
+    'cases.title': 'Projects executed',
+    'cases.title2': 'with real results.',
+    'cases.desc': 'technical interventions completed. Every project, a tailor-made solution.',
+    'cases.featured': 'Featured Case',
+    'cases.problem': 'Problem',
+    'cases.solution': 'Solution',
+    'cases.result': 'Result',
+
+    // Testimonials
+    'testimonials.title': 'Happy clients',
+    'testimonials.title2': 'who trust our services',
+    'testimonials.excellent': 'EXCELLENT',
+    'testimonials.rating': 'Rating 5/5 · Google Business',
+
+    // Coverage
+    'coverage.badge': 'Coverage Area',
+    'coverage.title': 'We operate across',
+    'coverage.title2': 'the province of Barcelona',
+    'coverage.desc': 'Own team across the entire metropolitan area, Maresme, Vallès, Baix Llobregat and Costa Daurada.',
+    'coverage.metro': 'Metropolitan Area',
+    'coverage.maresme': 'Maresme',
+    'coverage.valles': 'Vallès',
+    'coverage.baix': 'Baix Llobregat',
+    'coverage.costa': 'Costa Daurada',
+    'coverage.phone': 'Call now',
+    'coverage.quote': 'Request a quote',
 
     // Certifications
     'certs.badge': 'Certifications',
@@ -222,13 +521,36 @@ export const translations = {
     'certs.1.detail': 'Continuous training in international level rope access',
     'certs.2.desc': 'Occupational Risk Prevention',
     'certs.2.detail': 'Full compliance with Spanish occupational safety regulations',
-    'certs.3.title': 'Liability Insurance',
+    'certs.3.title': 'Public Liability Insurance',
     'certs.3.desc': 'Civil Liability',
-    'certs.3.detail': 'Civil liability coverage for all executed works',
-    'certs.4.desc': 'Lifeline Regulations',
-    'certs.4.detail': 'Fall arrest installations certified according to European standard EN 795',
+    'certs.3.detail': 'Public liability coverage for all work carried out',
+    'certs.4.desc': 'Lifeline Standards',
+    'certs.4.detail': 'Fall arrest installations certified to European standard EN 795',
     'certs.5.desc': 'Quality and Management',
     'certs.5.detail': 'Quality protocols documented and externally audited',
+
+    // Contact / CTA
+    'cta.badge': 'Free Quote',
+    'cta.title': 'Request your quote',
+    'cta.title2': 'with no obligation',
+    'cta.desc': 'We respond within 24 hours. No obligation. Free technical visit.',
+    'cta.phone': 'Call now',
+    'cta.wa': 'WhatsApp',
+    'contact.name': 'Name',
+    'contact.email': 'Email',
+    'contact.phone': 'Phone',
+    'contact.service': 'Service',
+    'contact.service.placeholder': 'Select a service',
+    'contact.service.cristales': 'Window Cleaning',
+    'contact.service.fachadas': 'Facade Cleaning',
+    'contact.service.solares': 'Solar Panels',
+    'contact.service.lineas': 'Lifelines',
+    'contact.service.other': 'Other',
+    'contact.message': 'Message',
+    'contact.message.placeholder': 'Describe your project or need...',
+    'contact.submit': 'Request Free Quote',
+    'contact.success': 'Message sent! We will contact you within 24 hours.',
+    'contact.privacy': 'Your data is protected. We never share your information.',
 
     // FAQ
     'faq.badge': 'Frequently Asked Questions',
@@ -251,7 +573,7 @@ export const translations = {
     'footer.legal.privacy': 'Privacy Policy',
     'footer.legal.cookies': 'Cookies Policy',
     'footer.rights': 'All rights reserved.',
-  }
+  },
 } as const;
 
-export type TranslationKey = string;
+export type TranslationKey = keyof typeof translations['es'];

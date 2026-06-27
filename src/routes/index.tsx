@@ -55,11 +55,11 @@ const PHONE_HREF = "tel:+34936556161";
 const WA_HREF =
   "https://wa.me/34936556161?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20un%20presupuesto%20gratuito.";
 
-const stats = [
-  { value: 25, suffix: "+", label: "Años liderando trabajos verticales" },
-  { value: 4500, suffix: "+", label: "Proyectos completados" },
-  { value: 300, suffix: "+", label: "Comunidades atendidas" },
-  { value: 98, suffix: "%", label: "Clientes satisfechos" },
+const statsData = [
+  { value: 25, suffix: "+", labelKey: "stats.1" as const },
+  { value: 4500, suffix: "+", labelKey: "stats.2" as const },
+  { value: 300, suffix: "+", labelKey: "stats.3" as const },
+  { value: 98, suffix: "%", labelKey: "stats.4" as const },
 ];
 
 const services = [
@@ -101,55 +101,37 @@ const services = [
   },
 ];
 
-const benefits = [
+const benefitsData = [
   {
-    title: "+30",
-    desc: "Años de experiencia técnica",
+    titleKey: "benefits.1.title" as const,
+    descKey: "benefits.1.desc" as const,
     icon: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 9.36l-7.1 7.1a1 1 0 0 1-1.41-1.41l7.1-7.1a6 6 0 0 1 9.36-7.94l-3.77 3.77a1 1 0 0 0-.11 1.3z",
     color: "bg-[#e91e63]",
   },
   {
-    title: "+10.000",
-    desc: "Proyectos completados",
+    titleKey: "benefits.2.title" as const,
+    descKey: "benefits.2.desc" as const,
     icon: "M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3",
     color: "bg-[#03a9f4]",
   },
   {
-    title: "+29.560",
-    desc: "Horas de trabajo seguro",
+    titleKey: "benefits.3.title" as const,
+    descKey: "benefits.3.desc" as const,
     icon: "M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm10 16-5-5",
     color: "bg-[#cddc39]",
   },
   {
-    title: "+2.900",
-    desc: "Empresas asistidas",
+    titleKey: "benefits.4.title" as const,
+    descKey: "benefits.4.desc" as const,
     icon: "M3 21h18M5 21V7l8-4v18M13 3l8 4v14M7 11h2M7 15h2M15 11h2M15 15h2",
     color: "bg-[#3f51b5]",
   },
 ];
 
-const process = [
-  {
-    n: "1",
-    t: "Atendemos tu consulta",
-    d: "Se concretará una evaluación técnica gratuita de la fachada o cubierta para poder planificar de forma específica.",
-    shape: "triangle",
-    color: "bg-[#e91e63]",
-  },
-  {
-    n: "2",
-    t: "Concertamos una visita",
-    d: "Llámanos y un especialista vertical atenderá tu consulta de manera inmediata para coordinar el acceso.",
-    shape: "square",
-    color: "bg-[#e91e63]",
-  },
-  {
-    n: "3",
-    t: "Realizamos la limpieza",
-    d: "Acordaremos una fecha en la que nuestros técnicos se colgarán para realizar el trabajo de limpieza o mantenimiento.",
-    shape: "circle",
-    color: "bg-[#e91e63]",
-  },
+const processData = [
+  { n: "1", titleKey: "process.1.title" as const, descKey: "process.1.desc" as const, shape: "triangle" },
+  { n: "2", titleKey: "process.2.title" as const, descKey: "process.2.desc" as const, shape: "square" },
+  { n: "3", titleKey: "process.3.title" as const, descKey: "process.3.desc" as const, shape: "circle" },
 ];
 
 const testimonials = [
@@ -261,22 +243,22 @@ const heroAvatars = [
   "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face",
 ];
 
-const sectors = [
+const sectorsData = [
   {
-    name: "{t('sectors.1.title') || 'Comunidades de propietarios'}",
-    desc: "{t('sectors.1.desc') || 'Mantenimiento y limpiezas en altura...'}",
+    nameKey: "sectors.1.title" as const,
+    descKey: "sectors.1.desc" as const,
     icon: "M4 21h16 M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14 M10 21v-4a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4 M9 9h2 M13 9h2 M9 13h2 M13 13h2",
     color: "text-[#FF007F]",
   },
   {
-    name: "{t('sectors.2.title') || 'Hoteles y Hostales'}",
-    desc: "{t('sectors.2.desc') || 'La imagen exterior es vital...'}",
+    nameKey: "sectors.2.title" as const,
+    descKey: "sectors.2.desc" as const,
     icon: "M4 21h16 M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16 M12 7l1 2.5 2.5.5-2 1.5.5 2.5-2-1.5-2 1.5.5-2.5-2-1.5 2.5-.5z M9 17h6 M9 14h6",
     color: "text-[#00E5FF]",
   },
   {
-    name: "{t('sectors.3.title') || 'Naves y centros logísticos'}",
-    desc: "{t('sectors.3.desc') || 'Limpieza especializada de cubiertas...'}",
+    nameKey: "sectors.3.title" as const,
+    descKey: "sectors.3.desc" as const,
     icon: "M2 21h20 M4 21V9l4-3 4 3v-2l4-3 4 3v12 M9 21v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5 M18 9V4h2v5",
     color: "text-[#39FF14]",
   },
@@ -617,17 +599,12 @@ function Hero() {
 
 // — Trust Bar —
 function TrustBar() {
+  const { t } = useTranslation();
   const items = [
-    { icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z", text: "Técnicos certificados IRATA" },
-    { icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z", text: "25+ años de experiencia" },
-    {
-      icon: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75",
-      text: "+300 comunidades atendidas",
-    },
-    {
-      icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6",
-      text: "Presupuesto en 24h",
-    },
+    { icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z", textKey: "trust.irata" as const },
+    { icon: "M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z", textKey: "trust.experience" as const },
+    { icon: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75", textKey: "trust.communities" as const },
+    { icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6", textKey: "trust.quote" as const },
   ];
   return (
     <div className="bg-navy border-b border-white/10">
@@ -650,7 +627,7 @@ function TrustBar() {
               >
                 <path d={item.icon} />
               </svg>
-              <span>{item.text}</span>
+              <span>{t(item.textKey)}</span>
               {i < items.length - 1 && (
                 <span className="hidden md:block w-px h-4 bg-white/20 ml-4" />
               )}
@@ -668,17 +645,17 @@ function Stats() {
   return (
     <section className="bg-[#0a1628] border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 grid grid-cols-2 md:grid-cols-4">
-        {stats.map((s, i) => (
+        {statsData.map((s, i) => (
           <Reveal
-            key={s.label}
+            key={s.labelKey}
             delay={i * 80}
-            className={`text-center px-4 md:px-6 py-8 md:py-4 border-white/10 ${i % 2 === 0 ? "border-r md:border-r-0" : ""} ${i < 2 ? "border-b md:border-b-0" : ""} ${i < stats.length - 1 ? "md:border-r" : ""}`}
+            className={`text-center px-4 md:px-6 py-8 md:py-4 border-white/10 ${i % 2 === 0 ? "border-r md:border-r-0" : ""} ${i < 2 ? "border-b md:border-b-0" : ""} ${i < statsData.length - 1 ? "md:border-r" : ""}`}
           >
             <div className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
               <AnimatedCounter to={s.value} suffix={s.suffix} />
             </div>
             <div className="mt-2 text-xs sm:text-sm font-semibold text-white/50 uppercase tracking-wider leading-snug max-w-[140px] mx-auto">
-              {s.label}
+              {t(s.labelKey)}
             </div>
             <div className="mt-3 w-8 h-0.5 bg-electric mx-auto rounded-full" />
           </Reveal>
@@ -696,12 +673,12 @@ function Sectors() {
       <div className="max-w-4xl mx-auto px-6 lg:px-10">
         <div className="mb-14">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-navy tracking-tight text-center md:text-left">
-            Servicios verticales para empresas
+            {t("sectors.title")}
           </h2>
         </div>
         <div className="flex flex-col gap-6">
-          {sectors.map((sector, i) => (
-            <Reveal key={sector.name} delay={i * 100}>
+          {sectorsData.map((sector, i) => (
+            <Reveal key={sector.nameKey} delay={i * 100}>
               <article className="bg-[#f5f8fa] border border-[#dce4ec] rounded-2xl p-8 md:p-10 hover:shadow-xl transition-all duration-300 group relative">
                 <div className={`w-16 h-16 md:w-20 md:h-20 mb-6 ${sector.color}`}>
                   <svg
@@ -718,13 +695,13 @@ function Sectors() {
                   </svg>
                 </div>
                 <h3 className="text-navy font-bold text-2xl md:text-3xl mb-4 tracking-tight group-hover:text-electric transition-colors">
-                  {sector.name}
+                  {t(sector.nameKey)}
                 </h3>
                 <p className="text-slate-600 leading-relaxed mb-6 text-sm md:text-base max-w-2xl">
-                  {sector.desc}
+                  {t(sector.descKey)}
                 </p>
                 <div className="flex items-center gap-2 text-slate-500 font-medium text-sm hover:text-electric transition-colors cursor-pointer w-fit">
-                  Más información
+                  {t("sectors.more")}
                   <svg
                     width="16"
                     height="16"
@@ -797,7 +774,7 @@ function Services() {
                   </p>
 
                   <div className="mt-auto flex items-center gap-2 text-navy font-bold text-sm z-10">
-                    Más información
+                    {t("services.more")}
                     <svg
                       width="16"
                       height="16"
@@ -835,16 +812,15 @@ function BeforeAfterSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-12">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">
-            {t("beforeafter.badge") || "Antes / Después"}
+            {t("beforeafter.badge")}
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05]">
-            Resultados que se
+            {t("beforeafter.title")}
             <br />
-            ven, a primera vista.
+            {t("beforeafter.title2")}
           </h2>
           <p className="mt-5 text-white/70 leading-relaxed max-w-lg">
-            Deslice el control para comparar el estado de cada superficie antes y después de nuestra
-            intervención.
+            {t("beforeafter.desc")}
           </p>
         </Reveal>
 
@@ -957,16 +933,15 @@ function SuccessCases() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-14">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">
-            {t("cases.badge") || "Casos reales"}
+            {t("cases.badge")}
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
-            Proyectos ejecutados
+            {t("cases.title")}
             <br />
-            con resultados reales.
+            {t("cases.title2")}
           </h2>
           <p className="mt-5 text-muted-foreground leading-relaxed max-w-lg">
-            {t("stats.2") || "Más de 4.500"} intervenciones técnicas completadas. Cada proyecto, una
-            solución a medida.
+            {t("stats.2")} {t("cases.desc")}
           </p>
         </Reveal>
 
@@ -992,7 +967,7 @@ function SuccessCases() {
               <div className="p-8 md:p-10 flex flex-col justify-center">
                 <div className="inline-flex items-center gap-2 text-electric text-xs font-bold tracking-widest uppercase mb-4">
                   <span className="w-6 h-px bg-electric" />
-                  Caso Destacado
+                  {t("cases.featured")}
                 </div>
                 <h3 className="text-2xl md:text-3xl font-extrabold text-navy mb-2">
                   {featured.title}
@@ -1030,17 +1005,17 @@ function SuccessCases() {
                 <div className="space-y-4">
                   {[
                     {
-                      label: "Problema",
+                      label: t("cases.problem"),
                       text: featured.problem,
                       color: "bg-red-50 border-red-100",
                     },
                     {
-                      label: "Solución",
+                      label: t("cases.solution"),
                       text: featured.solution,
                       color: "bg-blue-50 border-blue-100",
                     },
                     {
-                      label: "Resultado",
+                      label: t("cases.result"),
                       text: featured.resultDesc,
                       color: "bg-green-50 border-green-100",
                     },
@@ -1099,7 +1074,7 @@ function SuccessCases() {
                   </div>
                   <div className="space-y-2 border-t border-border pt-4 mt-auto">
                     <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
-                      Resultado
+                      {t("cases.result")}
                     </div>
                     <p className="text-xs text-ink leading-relaxed">{c.resultDesc}</p>
                   </div>
@@ -1125,11 +1100,10 @@ function Benefits() {
           <Reveal>
             <div className="mb-12 relative z-10 pt-4 md:pt-0">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] text-white tracking-tight">
-                La referencia técnica en trabajos verticales
+                {t("benefits.header")}
               </h2>
               <p className="mt-6 text-white/70 text-lg max-w-2xl leading-relaxed">
-                Los equipos y protocolos utilizados en nuestras intervenciones son de máxima
-                seguridad, garantizando resultados impecables en todos nuestros proyectos.
+                {t("benefits.subheader")}
               </p>
             </div>
           </Reveal>
@@ -1138,14 +1112,13 @@ function Benefits() {
             <div className="p-8 bg-white/5 border border-white/10 rounded-2xl relative overflow-hidden max-w-xl">
               <div className="absolute top-0 left-0 w-full h-1 bg-electric" />
               <div className="text-electric text-xs font-bold uppercase tracking-widest mb-3">
-                Intervención Técnica
+                {t("benefits.cta.badge")}
               </div>
               <h3 className="text-2xl font-bold text-white tracking-tight mb-3">
-                ¿Necesitas una intervención en altura?
+                {t("benefits.cta.title")}
               </h3>
               <p className="text-white/70 text-sm leading-relaxed mb-8 max-w-[400px]">
-                Solicita una visita técnica gratuita. Sin compromiso. Respuesta garantizada en menos
-                de 24 horas.
+                {t("benefits.cta.desc")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
@@ -1158,13 +1131,13 @@ function Benefits() {
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
                     <path d="M12.004 2C6.456 2 1.953 6.503 1.953 12.051c0 1.884.522 3.648 1.426 5.158L2 22l4.946-1.355a10.022 10.022 0 0 0 5.058 1.356C17.55 22 22.051 17.497 22.051 11.95 22.051 6.403 17.55 2 12.004 2zm0 18.316a8.278 8.278 0 0 1-4.228-1.157l-.303-.18-3.136.859.842-3.088-.197-.314A8.265 8.265 0 0 1 3.738 12.05c0-4.564 3.71-8.274 8.266-8.274 4.555 0 8.266 3.71 8.266 8.274 0 4.564-3.71 8.266-8.266 8.266z" />
                   </svg>
-                  WhatsApp
+                  {t("benefits.cta.wa")}
                 </a>
                 <a
                   href="#contacto"
                   className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-electric text-white font-bold hover:-translate-y-0.5 transition-all shadow-glow text-sm"
                 >
-                  Solicitar visita
+                  {t("benefits.cta.visit")}
                   <svg
                     width="14"
                     height="14"
@@ -1185,41 +1158,38 @@ function Benefits() {
         </div>
 
         <div className="flex-1 flex flex-col gap-6">
-          {benefits.map((b, i) => {
-            const prefix = `benefits.${i + 1}`;
-            return (
-              <Reveal
-                key={b.title}
-                delay={i * 100}
-                className="flex items-center gap-6 p-6 rounded-2xl hover:bg-white/5 border border-transparent hover:border-white/10 transition-colors"
+          {benefitsData.map((b, i) => (
+            <Reveal
+              key={b.titleKey}
+              delay={i * 100}
+              className="flex items-center gap-6 p-6 rounded-2xl hover:bg-white/5 border border-transparent hover:border-white/10 transition-colors"
+            >
+              <div
+                className={`w-20 h-20 rounded-2xl flex items-center justify-center shrink-0 shadow-lg ${b.color}`}
               >
-                <div
-                  className={`w-20 h-20 rounded-2xl flex items-center justify-center shrink-0 shadow-lg ${b.color}`}
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
-                  <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d={b.icon} />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-3xl font-extrabold text-white tracking-tight mb-1">
-                    {t(`${prefix}.title` as TranslationKey) || b.title}
-                  </h3>
-                  <p className="text-sm font-medium text-white/70">
-                    {t(`${prefix}.desc` as TranslationKey) || b.desc}
-                  </p>
-                </div>
-              </Reveal>
-            );
-          })}
+                  <path d={b.icon} />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-3xl font-extrabold text-white tracking-tight mb-1">
+                  {t(b.titleKey)}
+                </h3>
+                <p className="text-sm font-medium text-white/70">
+                  {t(b.descKey)}
+                </p>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
@@ -1339,7 +1309,7 @@ function Process() {
           <div className="absolute top-8 bottom-8 left-[11px] md:left-[19px] w-px bg-navy/20 z-0" />
 
           <div className="flex flex-col gap-12 relative z-10">
-            {process.map((p, i) => (
+            {processData.map((p, i) => (
               <Reveal key={p.n} delay={i * 80} className="relative">
                 {/* Shape Icon */}
                 <div className="absolute -left-[45px] md:-left-[57px] top-1">
@@ -1393,13 +1363,13 @@ function Process() {
 
                 <div>
                   <span className="text-xs font-medium tracking-widest text-navy uppercase mb-2 block">
-                    Paso {p.n}
+                    {t("process.step")} {p.n}
                   </span>
                   <h3 className="text-xl md:text-2xl font-bold text-navy mb-3 tracking-tight">
-                    {p.t}
+                    {t(p.titleKey)}
                   </h3>
                   <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-xl">
-                    {p.d}
+                    {t(p.descKey)}
                   </p>
                 </div>
               </Reveal>
@@ -1420,13 +1390,13 @@ function Testimonials() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="mb-14 text-center">
           <h2 className="mb-8 text-3xl md:text-4xl lg:text-5xl font-extrabold text-navy leading-tight tracking-tight">
-            Particulares satisfechos
+            {t("testimonials.title")}
             <br />
-            con nuestros servicios
+            {t("testimonials.title2")}
           </h2>
 
           <div className="inline-flex flex-col items-center gap-2">
-            <div className="text-xl font-bold text-navy tracking-widest">EXCELENTE</div>
+            <div className="text-xl font-bold text-navy tracking-widest">{t("testimonials.excellent")}</div>
             <div className="flex gap-1 mb-1">
               {[...Array(5)].map((_, k) => (
                 <svg key={k} width="28" height="28" viewBox="0 0 24 24" fill="#FBBC05">
@@ -1551,15 +1521,14 @@ function Coverage() {
         {/* Left column: Text & Metrics */}
         <Reveal>
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">
-            Cobertura
+            {t("coverage.badge")}
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
-            Toda Barcelona
-            <br />y provincia.
+            {t("coverage.title")}
+            <br />{t("coverage.title2")}
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-md mb-12">
-            Operamos en toda la provincia con equipos propios y vehículos preparados para
-            intervenciones rápidas. Sin subcontratas.
+            {t("coverage.desc")}
           </p>
 
           <div className="grid grid-cols-2 gap-y-8 gap-x-6">
@@ -1627,7 +1596,7 @@ function Coverage() {
               </div>
               <div>
                 <div className="font-bold text-navy text-sm">
-                  Cobertura en toda Barcelona y provincia
+                  {t("coverage.metro")}
                 </div>
                 <div className="text-xs text-muted-foreground mt-0.5">
                   Sede: Carrer de Cuzco, 39-41
