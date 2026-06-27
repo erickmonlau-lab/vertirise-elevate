@@ -14,7 +14,8 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>('es');
 
   const t = (key: TranslationKey): string => {
-    return translations[language][key] || translations['es'][key] || key;
+    const trans = translations as any;
+    return trans[language][key] || trans['es'][key] || key;
   };
 
   return (
