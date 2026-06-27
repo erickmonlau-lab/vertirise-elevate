@@ -33,8 +33,26 @@ export function ServiceLayout({ title, description, benefits }: ServiceLayoutPro
     "w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/50 transition-all resize-none";
 
   return (
-    <div className="bg-[#f8fafc] min-h-screen py-24 lg:py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <>
+      {/* Hero Section */}
+      <section className="bg-[#0a1628] pt-32 pb-20 px-6 lg:px-10 text-center">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-white/50 text-sm font-medium mb-6 flex items-center justify-center gap-2">
+            <a href="/" className="hover:text-white transition-colors">{t("nav.home", "Inicio")}</a>
+            <span>&gt;</span>
+            <a href="/#servicios" className="hover:text-white transition-colors">{t("nav.services", "Servicios")}</a>
+            <span>&gt;</span>
+            <span className="text-white">{title}</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight">
+            {title}
+          </h1>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <div className="bg-[#f8fafc] py-20 lg:py-28">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left Column */}
           <Reveal>
@@ -131,5 +149,6 @@ export function ServiceLayout({ title, description, benefits }: ServiceLayoutPro
         </div>
       </div>
     </div>
+    </>
   );
 }
