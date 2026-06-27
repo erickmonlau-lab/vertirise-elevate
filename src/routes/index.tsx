@@ -1348,13 +1348,11 @@ function Index() {
       <Nav />
       <main>
         <Hero />
-        <TrustBar />
         <Stats />
         <Sectors />
         <Services />
         <BeforeAfterSection />
         <SuccessCases />
-        <MidCTA />
         <Benefits />
         <CinematicShowcase />
         <VibrantCTA />
