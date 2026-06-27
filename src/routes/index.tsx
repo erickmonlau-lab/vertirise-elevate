@@ -803,6 +803,9 @@ function Services() {
 function BeforeAfterSection() {
   const { t } = useTranslation();
   const [activeCase, setActiveCase] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
   return (
     <section
       id="proyectos"
