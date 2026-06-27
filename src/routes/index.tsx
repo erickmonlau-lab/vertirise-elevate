@@ -742,7 +742,7 @@ function Services() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <Reveal className="max-w-2xl">
-            <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">
+            <span className="text-sm font-bold tracking-[0.15em] uppercase text-electric">
               {t("services.badge")}
             </span>
             <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-navy tracking-tight">
@@ -821,7 +821,7 @@ function BeforeAfterSection() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-12">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">
+          <span className="text-sm font-bold tracking-[0.15em] uppercase text-electric">
             {t("beforeafter.badge")}
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05]">
@@ -942,7 +942,7 @@ function SuccessCases() {
     <section className="py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-14">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">
+          <span className="text-sm font-bold tracking-[0.15em] uppercase text-electric">
             {t("cases.badge")}
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
@@ -1170,16 +1170,18 @@ function Benefits() {
       </div>
       
       {/* Full-width CTA strip at the bottom */}
-      <div className="w-full bg-electric py-12 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
-          <div>
-            <div className="text-white/80 text-xs font-bold uppercase tracking-widest mb-2">
-              {t("benefits.cta.badge")}
-            </div>
-            <h3 className="text-2xl font-bold text-white tracking-tight">
+      <div className="w-full bg-[#0a1628] border-y border-electric py-16 px-6 mt-16">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 text-center lg:text-left">
+          <div className="text-electric shrink-0">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m13 2-2 9h9l-11 11 2-9H2l11-11z"/>
+            </svg>
+          </div>
+          <div className="flex-1">
+            <h3 className="text-3xl font-black text-white tracking-tight">
               {t("benefits.cta.title")}
             </h3>
-            <p className="text-white/80 text-sm leading-relaxed max-w-xl mt-2">
+            <p className="text-white/60 text-lg leading-relaxed max-w-2xl mt-2">
               {t("benefits.cta.desc")}
             </p>
           </div>
@@ -1188,7 +1190,7 @@ function Benefits() {
               href={WA_HREF}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-white text-navy font-bold hover:bg-slate-100 transition-colors text-sm shadow-sm"
+              className="inline-flex items-center justify-center gap-2 h-12 px-8 rounded-xl bg-electric text-white font-bold hover:bg-electric/80 transition-colors text-sm shadow-sm"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
@@ -1198,7 +1200,7 @@ function Benefits() {
             </a>
             <a
               href="#contacto"
-              className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl border border-white text-white font-bold hover:bg-white/10 transition-colors text-sm"
+              className="inline-flex items-center justify-center gap-2 h-12 px-8 rounded-xl border-2 border-white text-white font-bold hover:bg-white/10 transition-colors text-sm"
             >
               {t("benefits.cta.visit")}
             </a>
@@ -1220,7 +1222,7 @@ function VideoSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <Reveal>
-            <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">
+            <span className="text-sm font-bold tracking-[0.15em] uppercase text-electric">
               {t("video.badge") || "DISET en acción"}
             </span>
             <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white">
@@ -1398,7 +1400,7 @@ function Testimonials() {
               {t("testimonials.title")}
             </h2>
             <p className="mt-5 text-slate-600 leading-relaxed">
-              {t("testimonials.subtitle")}
+              {t("testimonials.title2")}
             </p>
           </div>
         </Reveal>
@@ -1407,10 +1409,6 @@ function Testimonials() {
           {testimonials.map((item, i) => (
             <Reveal key={item.name} delay={i * 100}>
               <article className="flex flex-col bg-white border border-slate-200 shadow-sm rounded-[24px] p-6 lg:p-8 h-full relative hover:shadow-md transition-shadow">
-                <div className="absolute top-2 left-4 text-[80px] text-slate-100 font-black leading-none select-none">
-                  "
-                </div>
-
                 <div className="flex gap-4 items-center mb-4 pr-10 relative z-10">
                   <div
                     className={`w-12 h-12 rounded-full ${bgColors[i % 3]} text-white font-medium text-xl flex items-center justify-center shrink-0`}
@@ -1475,7 +1473,7 @@ function Coverage() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Left column: Text & Metrics */}
         <Reveal>
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">
+          <span className="text-sm font-bold tracking-[0.15em] uppercase text-electric">
             {t("coverage.badge")}
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
@@ -1609,7 +1607,7 @@ function Certifications() {
     <section className="py-24 lg:py-32 bg-[#0a1628] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <Reveal className="text-center mb-16">
-          <span className="text-[13px] font-black tracking-[0.2em] uppercase text-electric">
+          <span className="text-sm font-black tracking-[0.15em] uppercase text-electric">
             {t("certs.badge")}
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
@@ -1622,34 +1620,26 @@ function Certifications() {
           </p>
         </Reveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5">
+        <div className="flex flex-wrap justify-center gap-4">
           {certs.map((c, i) => (
-            <Reveal key={c.name} delay={i * 80} className="h-full">
-              <div className="p-6 lg:p-8 rounded-[24px] bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-300 h-full flex flex-col group backdrop-blur shadow-soft">
-                <div className="flex items-center gap-4 mb-5">
-                  <div className="w-12 h-12 rounded-full bg-electric grid place-items-center shrink-0">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="white"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d={c.icon} />
-                    </svg>
-                  </div>
-                  <div className="text-xl font-bold text-white tracking-tight">
-                    {c.name}
-                  </div>
+            <Reveal key={c.name} delay={i * 80}>
+              <div className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-electric text-white shadow-lg hover:-translate-y-1 transition-transform">
+                <div className="shrink-0">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d={c.icon} />
+                  </svg>
                 </div>
-                <div className="text-[15px] text-white/80 font-semibold mb-2 leading-snug">
-                  {c.desc}
-                </div>
-                <div className="text-[14px] text-white/60 leading-relaxed flex-1">
-                  {c.detail}
+                <div className="text-lg font-black tracking-tight">
+                  {c.name}
                 </div>
               </div>
             </Reveal>
