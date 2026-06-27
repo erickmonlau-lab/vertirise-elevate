@@ -197,6 +197,27 @@ function AnimatedCounter({ to, suffix }: { to: number; suffix: string }) {
   return <span ref={ref}>{count.toLocaleString("es-ES")}{suffix}</span>;
 }
 
+// — Reveal Component (Optimized to run once) —
+function Reveal({ children, className = "", delay = 0 }: { children: ReactNode, className?: string, delay?: number }) {
+  const ref = useRef(null);
+  useGSAP(() => {
+    gsap.from(ref.current, {
+      scrollTrigger: {
+        trigger: ref.current,
+        start: "top 85%",
+        once: true
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      delay: delay / 1000,
+      ease: "power3.out"
+    });
+  }, { scope: ref });
+
+  return <div ref={ref} className={className}>{children}</div>;
+}
+
 // — Logo —
 function Logo({ white }: { white: boolean }) {
   return (
@@ -218,10 +239,18 @@ function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
@@ -567,7 +596,13 @@ function BeforeAfterSection() {
         </Reveal>
 
         <Reveal delay={120}>
-          <BeforeAfter before={beforeAfterCases[activeCase].before} after={beforeAfterCases[activeCase].after} />
+          <div className="relative">
+            {beforeAfterCases.map((c, i) => (
+              <div key={`ba-${i}`} className={activeCase === i ? "block animate-in fade-in duration-500" : "hidden"}>
+                <BeforeAfter before={c.before} after={c.after} />
+              </div>
+            ))}
+          </div>
           <p className="mt-6 text-sm text-white/50 text-center font-semibold">
             Arrastre el control deslizante para comparar · {beforeAfterCases[activeCase].label}
           </p>
