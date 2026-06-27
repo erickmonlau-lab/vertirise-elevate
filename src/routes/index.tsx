@@ -684,7 +684,7 @@ function Sectors() {
           {sectorsData.map((sector, i) => (
             <Reveal key={sector.nameKey} delay={i * 100}>
               <article className="bg-white border border-slate-200 rounded-2xl p-8 md:p-10 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden h-full flex flex-col">
-                <div className="absolute top-2 right-4 text-[80px] font-black text-slate-100 leading-none z-0 select-none">
+                <div className="absolute top-2 right-4 text-[100px] font-black text-slate-200 leading-none z-0 select-none">
                   0{i + 1}
                 </div>
                 
@@ -1119,21 +1119,21 @@ function Benefits() {
       className="py-24 lg:py-32 bg-[#f8fafc] relative overflow-hidden scroll-mt-20 md:scroll-mt-24"
       id="beneficios"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col lg:flex-row gap-16 lg:gap-24 mb-20">
-        <div className="flex-1 lg:sticky top-32 h-fit">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col gap-20 mb-24">
+        <div className="text-center max-w-3xl mx-auto">
           <Reveal>
             <div className="relative z-10 pt-4 md:pt-0">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] text-navy tracking-tight">
                 {t("benefits.header")}
               </h2>
-              <p className="mt-6 text-slate-600 text-lg max-w-2xl leading-relaxed">
+              <p className="mt-6 text-slate-600 text-lg leading-relaxed">
                 {t("benefits.subheader")}
               </p>
             </div>
           </Reveal>
         </div>
 
-        <div className="flex-1 grid sm:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto w-full">
           {benefitsData.map((b, i) => (
             <Reveal
               key={b.titleKey}
@@ -1356,10 +1356,10 @@ function Testimonials() {
   const bgColors = ["bg-[#E65100]", "bg-[#0F9D58]", "bg-[#4285F4]"];
 
   return (
-    <section className="py-24 lg:py-32 bg-[#0a1628] overflow-hidden">
+    <section className="py-24 lg:py-32 bg-[#eef2f6] overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 lg:px-10">
         <Reveal className="mb-16 flex flex-col items-center text-center gap-6">
-          <div className="flex items-center gap-4 bg-white/10 rounded-full px-4 py-2">
+          <div className="flex items-center gap-4 bg-white shadow-sm border border-slate-200 rounded-full px-4 py-2">
             <svg
               viewBox="0 0 24 24"
               width="22"
@@ -1394,10 +1394,10 @@ function Testimonials() {
           </div>
           
           <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] text-white tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] text-navy tracking-tight">
               {t("testimonials.title")}
             </h2>
-            <p className="mt-5 text-white/70 leading-relaxed">
+            <p className="mt-5 text-slate-600 leading-relaxed">
               {t("testimonials.subtitle")}
             </p>
           </div>
@@ -1406,8 +1406,8 @@ function Testimonials() {
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((item, i) => (
             <Reveal key={item.name} delay={i * 100}>
-              <article className="flex flex-col bg-white/5 border border-white/10 backdrop-blur rounded-[24px] p-6 lg:p-8 h-full relative hover:bg-white/10 transition-colors">
-                <div className="absolute top-2 left-4 text-[80px] text-electric/20 font-black leading-none select-none">
+              <article className="flex flex-col bg-white border border-slate-200 shadow-sm rounded-[24px] p-6 lg:p-8 h-full relative hover:shadow-md transition-shadow">
+                <div className="absolute top-2 left-4 text-[80px] text-slate-100 font-black leading-none select-none">
                   "
                 </div>
 
@@ -1418,10 +1418,10 @@ function Testimonials() {
                     {item.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="font-bold text-white text-[17px] leading-tight truncate">
+                    <div className="font-bold text-navy text-[17px] leading-tight truncate">
                       {item.name}
                     </div>
-                    <div className="text-[13px] text-white/40 mt-0.5">
+                    <div className="text-[13px] text-slate-500 mt-0.5">
                       {t(`testimonials.ago.${i + 1}` as any)}
                     </div>
                   </div>
@@ -1455,14 +1455,8 @@ function Testimonials() {
                   </svg>
                 </div>
 
-                <div className="text-[15px] leading-relaxed text-white/70 flex-1 relative z-10">
+                <div className="text-[15px] leading-relaxed text-slate-600 flex-1 relative z-10">
                   {t(`testimonials.${i + 1}.text` as any)}
-                </div>
-
-                <div className="mt-8 relative z-10">
-                  <span className="text-white/40 text-sm hover:text-white transition-colors cursor-pointer">
-                    {t("testimonials.readmore")}
-                  </span>
                 </div>
               </article>
             </Reveal>
@@ -1633,13 +1627,13 @@ function Certifications() {
             <Reveal key={c.name} delay={i * 80} className="h-full">
               <div className="p-6 lg:p-8 rounded-[24px] bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-300 h-full flex flex-col group backdrop-blur shadow-soft">
                 <div className="flex items-center gap-4 mb-5">
-                  <div className="w-12 h-12 rounded-full bg-electric/20 grid place-items-center shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-electric grid place-items-center shrink-0">
                     <svg
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#0096FF"
+                      stroke="white"
                       strokeWidth="2.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -1647,14 +1641,14 @@ function Certifications() {
                       <path d={c.icon} />
                     </svg>
                   </div>
-                  <div className="text-xl font-extrabold text-white tracking-tight">
+                  <div className="text-xl font-bold text-white tracking-tight">
                     {c.name}
                   </div>
                 </div>
-                <div className="text-[15px] text-white/60 font-bold mb-2 leading-snug">
+                <div className="text-[15px] text-white/80 font-semibold mb-2 leading-snug">
                   {c.desc}
                 </div>
-                <div className="text-[14px] text-white/40 leading-relaxed flex-1">
+                <div className="text-[14px] text-white/60 leading-relaxed flex-1">
                   {c.detail}
                 </div>
               </div>
@@ -1928,8 +1922,7 @@ function CTA() {
               <p className="text-slate-500 text-sm mb-6 text-balance">
                 {t("cta.desc")}
               </p>
-              {/* Note: Ensure ContactForm fields have border-slate-300 and blue button in its own code if not already. */}
-              <ContactForm />
+              <ContactForm light />
             </div>
           </Reveal>
         </div>
