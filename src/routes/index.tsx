@@ -56,16 +56,16 @@ const WA_HREF =
   "https://wa.me/34936556161?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20un%20presupuesto%20gratuito.";
 
 const statsData = [
-  { value: 25, suffix: "+", labelKey: "stats.1" as const },
-  { value: 4500, suffix: "+", labelKey: "stats.2" as const },
-  { value: 300, suffix: "+", labelKey: "stats.3" as const },
-  { value: 98, suffix: "%", labelKey: "stats.4" as const },
+  { value: 25, suffix: "+", labelKey: "benefits.stat1.label" as const },
+  { value: 4500, suffix: "+", labelKey: "benefits.stat2.label" as const },
+  { value: 300, suffix: "+", labelKey: "benefits.stat3.label" as const },
+  { value: 98, suffix: "%", labelKey: "benefits.stat4.label" as const },
 ];
 
 const services = [
   {
-    title: "Limpieza de Cristales",
-    desc: "Cristaleras, ventanales y escaparates en altura con acabado profesional sin marcas ni residuos.",
+    titleKey: "services.1.title" as const,
+    descKey: "services.1.desc" as const,
     customIcon: iconCristales,
     color: "bg-white",
     filter: "hue-rotate(270deg) saturate(2.5)",
@@ -73,8 +73,8 @@ const services = [
     objectClass: "object-contain object-center scale-95",
   },
   {
-    title: "Limpieza de Fachadas",
-    desc: "Hidrolimpieza y tratamiento de fachadas de hormigón, piedra, panel composite y revestimientos técnicos.",
+    titleKey: "services.2.title" as const,
+    descKey: "services.2.desc" as const,
     customIcon: iconFachadas,
     color: "bg-white",
     filter: "hue-rotate(80deg) saturate(2.5)",
@@ -82,8 +82,8 @@ const services = [
     objectClass: "object-contain object-bottom",
   },
   {
-    title: "Limpieza de Placas Solares",
-    desc: "Mantenimiento especializado que recupera hasta un 30% de eficiencia energética de sus instalaciones.",
+    titleKey: "services.3.title" as const,
+    descKey: "services.3.desc" as const,
     customIcon: iconSolar,
     color: "bg-white",
     filter: "saturate(2.5)",
@@ -91,8 +91,8 @@ const services = [
     objectClass: "object-contain object-bottom",
   },
   {
-    title: "Líneas de Vida",
-    desc: "Diseño, instalación y certificación de sistemas anticaídas homologados según norma EN 795.",
+    titleKey: "services.4.title" as const,
+    descKey: "services.4.desc" as const,
     customIcon: iconLineas,
     color: "bg-white",
     filter: "hue-rotate(90deg) saturate(2.5)",
@@ -166,50 +166,50 @@ const testimonials = [
 
 const successCases = [
   {
-    title: "Hotel Miramar Barcelona",
-    type: "Limpieza de Fachada",
-    location: "Barceloneta, Barcelona",
-    duration: "5 días",
-    result: "3.200 m² recuperados",
-    problem: "Pérdida de imagen por acumulación de depósitos y residuos orgánicos.",
-    solution: "Hidrolimpieza vertical de presión controlada sin andamios.",
-    resultDesc: "Restauración completa sin interrumpir la actividad del hotel.",
+    titleKey: "cases.1.title" as const,
+    typeKey: "cases.type.fachada" as const,
+    locationKey: "cases.1.location" as const,
+    durationKey: "cases.1.duration" as const,
+    resultKey: "cases.1.result" as const,
+    problemKey: "cases.1.problem" as const,
+    solutionKey: "cases.1.solution" as const,
+    resultDescKey: "cases.1.resultDesc" as const,
     img: fachadasImg,
     featured: true,
   },
   {
-    title: "Comunidad Sant Gervasi",
-    type: "Limpieza de Cristales",
-    location: "Sant Gervasi, Barcelona",
-    duration: "2 días",
-    result: "280 m² de cristal",
-    problem: "Residuos de cal y obra en cristalería a gran altura.",
-    solution: "Acceso por cuerdas con sistema de limpieza en seco.",
-    resultDesc: "Acabado impecable sin marcas en tiempo récord.",
+    titleKey: "cases.2.title" as const,
+    typeKey: "cases.type.cristales" as const,
+    locationKey: "cases.2.location" as const,
+    durationKey: "cases.2.duration" as const,
+    resultKey: "cases.2.result" as const,
+    problemKey: "cases.2.problem" as const,
+    solutionKey: "cases.2.solution" as const,
+    resultDescKey: "cases.2.resultDesc" as const,
     img: cristalesImg,
     featured: false,
   },
   {
-    title: "Nave Industrial Zona Franca",
-    type: "Placas Solares",
-    location: "Zona Franca, Barcelona",
-    duration: "1 día",
-    result: "+28% eficiencia",
-    problem: "Pérdida de rendimiento por suciedad de 14 meses.",
-    solution: "Limpieza con agua osmotizada y cepillado fotovoltaico.",
-    resultDesc: "Recuperación del 28% de eficiencia energética demostrada.",
+    titleKey: "cases.3.title" as const,
+    typeKey: "cases.type.solares" as const,
+    locationKey: "cases.3.location" as const,
+    durationKey: "cases.3.duration" as const,
+    resultKey: "cases.3.result" as const,
+    problemKey: "cases.3.problem" as const,
+    solutionKey: "cases.3.solution" as const,
+    resultDescKey: "cases.3.resultDesc" as const,
     img: solarImg,
     featured: false,
   },
   {
-    title: "Torre Corporativa Diagonal",
-    type: "Líneas de Vida",
-    location: "Diagonal, Barcelona",
-    duration: "3 días",
-    result: "Certificación EN 795",
-    problem: "Ausencia de sistema anticaídas para el mantenimiento.",
-    solution: "Instalación perimetral homologada con anclajes.",
-    resultDesc: "Edificio operativo de forma segura para mantenimientos.",
+    titleKey: "cases.4.title" as const,
+    typeKey: "cases.type.lineas" as const,
+    locationKey: "cases.4.location" as const,
+    durationKey: "cases.4.duration" as const,
+    resultKey: "cases.4.result" as const,
+    problemKey: "cases.4.problem" as const,
+    solutionKey: "cases.4.solution" as const,
+    resultDescKey: "cases.4.resultDesc" as const,
     img: lineasImg,
     featured: false,
   },
@@ -217,22 +217,22 @@ const successCases = [
 
 const beforeAfterCases = [
   {
-    label: "Cristales",
+    labelKey: "beforeafter.case1.label" as const,
+    descKey: "beforeafter.case1.desc" as const,
     before: beforeCristalesImg,
     after: afterCristalesImg,
-    desc: "Ventanales corporativos",
   },
   {
-    label: "Fachadas",
+    labelKey: "beforeafter.case2.label" as const,
+    descKey: "beforeafter.case2.desc" as const,
     before: beforeFachadaImg,
     after: afterFachadaImg,
-    desc: "Fachada de piedra",
   },
   {
-    label: "Placas Solares",
+    labelKey: "beforeafter.case3.label" as const,
+    descKey: "beforeafter.case3.desc" as const,
     before: beforeSolaresImg,
     after: afterSolaresImg,
-    desc: "Instalación fotovoltaica",
   },
 ];
 
@@ -587,8 +587,8 @@ function Hero() {
                   </svg>
                 ))}
               </div>
-              <div className="text-white font-bold">+4.500 proyectos</div>
-              <div>completados con éxito</div>
+              <div className="text-white font-bold">{t("trustbar.projects")}</div>
+              <div>{t("trustbar.completed")}</div>
             </div>
           </div>
         </div>
@@ -750,27 +750,26 @@ function Services() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
           {services.map((s, i) => {
-            const prefix = `services.${i + 1}`;
             return (
-              <Reveal key={s.title} delay={i * 100}>
+              <Reveal key={s.titleKey} delay={i * 100}>
                 <article
                   className={`group ${s.color} rounded-3xl p-8 lg:p-10 shadow-sm border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col cursor-pointer relative`}
                 >
                   <div className="w-32 h-32 mb-6 group-hover:scale-110 transition-transform duration-500 origin-bottom-left">
                     <img
                       src={s.customIcon}
-                      alt={t(`${prefix}.title` as TranslationKey)}
+                      alt={t(s.titleKey as TranslationKey)}
                       className={`w-full h-full mix-blend-multiply ${s.objectClass || "object-contain object-bottom"}`}
                       style={{ filter: s.filter, clipPath: s.clip }}
                     />
                   </div>
 
                   <h3 className="text-2xl font-extrabold text-navy mb-3 tracking-tight z-10">
-                    {t(`${prefix}.title` as TranslationKey)}
+                    {t(s.titleKey as TranslationKey)}
                   </h3>
 
                   <p className="text-navy/80 font-medium leading-relaxed mb-8 flex-1 z-10">
-                    {t(`${prefix}.desc` as TranslationKey)}
+                    {t(s.descKey as TranslationKey)}
                   </p>
 
                   <div className="mt-auto flex items-center gap-2 text-navy font-bold text-sm z-10">
@@ -829,20 +828,20 @@ function BeforeAfterSection() {
           <div className="flex md:hidden gap-3 mb-6 overflow-x-auto pb-2 scrollbar-none -mx-2 px-2">
             {beforeAfterCases.map((c, i) => (
               <button
-                key={c.label}
+                key={c.labelKey}
                 onClick={() => setActiveCase(i)}
                 className={`relative shrink-0 w-28 overflow-hidden rounded-xl border-2 transition-all duration-300 text-left group ${activeCase === i ? "border-electric shadow-glow scale-[1.02]" : "border-border hover:border-electric/40"}`}
               >
                 <div className="aspect-[3/4] overflow-hidden">
                   <img
                     src={c.after}
-                    alt={c.label}
+                    alt={c.labelKey}
                     className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${activeCase === i ? "brightness-100" : "brightness-75"}`}
                   />
                 </div>
                 <div className="absolute inset-0 flex flex-col justify-end p-2 bg-gradient-to-t from-navy/90 via-navy/30 to-transparent">
-                  <div className="text-white font-extrabold text-xs leading-tight">{c.label}</div>
-                  <div className="text-white/70 text-[10px] mt-0.5 leading-tight">{c.desc}</div>
+                  <div className="text-white font-extrabold text-xs leading-tight">{t(c.labelKey)}</div>
+                  <div className="text-white/70 text-[10px] mt-0.5 leading-tight">{t(c.descKey)}</div>
                 </div>
                 {activeCase === i && (
                   <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-electric grid place-items-center">
@@ -866,14 +865,14 @@ function BeforeAfterSection() {
           <div className="hidden md:grid grid-cols-3 gap-4 mb-8">
             {beforeAfterCases.map((c, i) => (
               <button
-                key={c.label}
+                key={c.labelKey}
                 onClick={() => setActiveCase(i)}
                 className={`relative overflow-hidden rounded-xl border-2 transition-all duration-300 text-left group ${activeCase === i ? "border-electric shadow-glow scale-[1.02]" : "border-border hover:border-electric/40 hover:shadow-soft"}`}
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={c.after}
-                    alt={c.label}
+                    alt={c.labelKey}
                     className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${activeCase === i ? "brightness-100" : "brightness-75"}`}
                   />
                 </div>
@@ -881,9 +880,9 @@ function BeforeAfterSection() {
                   <div
                     className={`text-base font-extrabold ${activeCase === i ? "text-white" : "text-white/90"}`}
                   >
-                    {c.label}
+                    {t(c.labelKey)}
                   </div>
-                  <div className="text-sm text-white/70 mt-0.5">{c.desc}</div>
+                  <div className="text-sm text-white/70 mt-0.5">{t(c.descKey)}</div>
                 </div>
                 {activeCase === i && (
                   <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-electric grid place-items-center">
@@ -916,7 +915,7 @@ function BeforeAfterSection() {
             ))}
           </div>
           <p className="mt-6 text-sm text-white/50 text-center font-semibold">
-            Arrastre el control deslizante para comparar · {beforeAfterCases[activeCase].label}
+            {t("beforeafter.drag")} · {t(beforeAfterCases[activeCase].labelKey)}
           </p>
         </Reveal>
       </div>
@@ -951,16 +950,16 @@ function SuccessCases() {
               <div className="aspect-[4/3] md:aspect-auto overflow-hidden relative">
                 <img
                   src={featured.img}
-                  alt={featured.title}
+                  alt={t(featured.titleKey as any)}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]"
                 />
                 <div className="absolute top-4 left-4 flex gap-2">
                   <span className="px-3 py-1 rounded-full bg-electric text-white text-xs font-bold">
-                    {featured.type}
+                    {t(featured.typeKey)}
                   </span>
                   <span className="px-3 py-1 rounded-full bg-navy/80 text-white text-xs font-semibold backdrop-blur-sm">
-                    {featured.location}
+                    {t(featured.locationKey as any)}
                   </span>
                 </div>
               </div>
@@ -970,7 +969,7 @@ function SuccessCases() {
                   {t("cases.featured")}
                 </div>
                 <h3 className="text-2xl md:text-3xl font-extrabold text-navy mb-2">
-                  {featured.title}
+                  {t(featured.titleKey as any)}
                 </h3>
                 <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-6">
                   <span className="flex items-center gap-1.5">
@@ -985,7 +984,7 @@ function SuccessCases() {
                       <circle cx="12" cy="12" r="10" />
                       <path d="M12 6v6l4 2" />
                     </svg>
-                    {featured.duration}
+                    {t(featured.durationKey as any)}
                   </span>
                   <span className="flex items-center gap-1.5">
                     <svg
@@ -999,24 +998,24 @@ function SuccessCases() {
                       <path d="M9 12l2 2 4-4" />
                       <circle cx="12" cy="12" r="10" />
                     </svg>
-                    {featured.result}
+                    <span>{t(featured.resultKey as any)}</span>
                   </span>
                 </div>
                 <div className="space-y-4">
                   {[
                     {
                       label: t("cases.problem"),
-                      text: featured.problem,
+                      text: t(featured.problemKey as any),
                       color: "bg-red-50 border-red-100",
                     },
                     {
                       label: t("cases.solution"),
-                      text: featured.solution,
+                      text: t(featured.solutionKey as any),
                       color: "bg-blue-50 border-blue-100",
                     },
                     {
                       label: t("cases.result"),
-                      text: featured.resultDesc,
+                      text: t(featured.resultDescKey as any),
                       color: "bg-green-50 border-green-100",
                     },
                   ].map((item) => (
@@ -1035,26 +1034,26 @@ function SuccessCases() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {rest.map((c, i) => (
-            <Reveal key={c.title} delay={i * 100}>
+            <Reveal key={c.titleKey} delay={i * 100}>
               <article className="group rounded-2xl border border-border hover:border-electric/40 hover:shadow-elev hover:-translate-y-1 transition-all duration-500 overflow-hidden bg-white h-full flex flex-col">
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <img
                     src={c.img}
-                    alt={c.title}
+                    alt={t(c.titleKey as any)}
                     loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]"
                   />
                   <div className="absolute top-3 left-3 flex gap-2">
                     <span className="px-2.5 py-0.5 rounded-full bg-electric text-white text-[10px] font-bold">
-                      {c.type}
+                      {t(c.typeKey as any)}
                     </span>
                   </div>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
                   <h3 className="font-extrabold text-navy text-lg mb-1 group-hover:text-electric transition-colors">
-                    {c.title}
+                    {t(c.titleKey as any)}
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-4">{c.location}</p>
+                  <p className="text-sm text-muted-foreground mb-4">{t(c.locationKey as any)}</p>
                   <div className="flex gap-3 text-xs font-semibold text-navy mb-4">
                     <span className="flex items-center gap-1">
                       <svg
@@ -1068,15 +1067,29 @@ function SuccessCases() {
                         <circle cx="12" cy="12" r="10" />
                         <path d="M12 6v6l4 2" />
                       </svg>
-                      {c.duration}
+                      {t(c.durationKey as any)}
                     </span>
-                    <span className="text-electric">{c.result}</span>
+                    <span className="text-electric">
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        className="inline mr-1"
+                      >
+                        <path d="M9 12l2 2 4-4" />
+                        <circle cx="12" cy="12" r="10" />
+                      </svg>
+                      {t(c.resultKey as any)}
+                    </span>
                   </div>
                   <div className="space-y-2 border-t border-border pt-4 mt-auto">
                     <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
                       {t("cases.result")}
                     </div>
-                    <p className="text-xs text-ink leading-relaxed">{c.resultDesc}</p>
+                    <p className="text-xs text-ink leading-relaxed">{t(c.resultDescKey as any)}</p>
                   </div>
                 </div>
               </article>
@@ -1219,10 +1232,10 @@ function VideoSection() {
             </p>
             <div className="mt-8 grid grid-cols-2 gap-4">
               {[
-                { n: "25+", l: "Años de experiencia" },
-                { n: "+4.500", l: "Proyectos completados" },
-                { n: "IRATA", l: "Técnicos certificados" },
-                { n: "24h", l: "Respuesta garantizada" },
+                { n: "25+", l: t("benefits.stat1.label") },
+                { n: "+4.500", l: t("benefits.stat2.label") },
+                { n: "IRATA", l: t("benefits.stat3.label") },
+                { n: "24h", l: t("benefits.stat4.label") },
               ].map((s) => (
                 <div
                   key={s.l}
@@ -1405,7 +1418,7 @@ function Testimonials() {
               ))}
             </div>
             <p className="text-navy text-sm mb-1">
-              A base de <strong className="font-bold">987 reseñas</strong>
+              {t("testimonials.basedon")} <strong className="font-bold">987 {t("testimonials.reviews")}</strong>
             </p>
             <div
               className="text-[28px] font-bold tracking-tighter"
@@ -1422,8 +1435,8 @@ function Testimonials() {
         </Reveal>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={i * 100}>
+          {testimonials.map((item, i) => (
+            <Reveal key={item.name} delay={i * 100}>
               <article className="flex flex-col bg-white rounded-[24px] p-6 lg:p-8 border border-slate-200/80 shadow-sm h-full relative hover:shadow-md transition-shadow">
                 {/* Google G icon absolute top right */}
                 <div className="absolute top-6 lg:top-8 right-6 lg:right-8">
@@ -1456,14 +1469,14 @@ function Testimonials() {
                   <div
                     className={`w-12 h-12 rounded-full ${bgColors[i % 3]} text-white font-medium text-xl flex items-center justify-center shrink-0`}
                   >
-                    {t.name.charAt(0)}
+                    {item.name.charAt(0)}
                   </div>
                   <div>
                     <div className="font-semibold text-navy text-[17px] leading-tight truncate">
-                      {t.name}
+                      {item.name}
                     </div>
                     <div className="text-[13px] text-slate-500 mt-0.5">
-                      hace {i + 1} semana{i !== 0 && "s"}
+                      {t(`testimonials.ago.${i + 1}` as any)}
                     </div>
                   </div>
                 </div>
@@ -1496,11 +1509,13 @@ function Testimonials() {
                   </svg>
                 </div>
 
-                <p className="text-[15px] leading-relaxed text-navy flex-1">{t.quote}</p>
+                <div className="text-[15px] leading-relaxed text-slate-700 flex-1">
+                  {t(`testimonials.${i + 1}.text` as any)}
+                </div>
 
                 <div className="mt-8">
                   <span className="text-slate-500 text-sm hover:underline cursor-pointer">
-                    Leer más
+                    {t("testimonials.readmore")}
                   </span>
                 </div>
               </article>
@@ -1531,39 +1546,32 @@ function Coverage() {
             {t("coverage.desc")}
           </p>
 
-          <div className="grid grid-cols-2 gap-y-8 gap-x-6">
-            <div className="border-l-[3px] border-electric pl-5">
-              <div className="text-3xl lg:text-4xl font-extrabold text-navy">+300</div>
-              <div className="text-sm font-semibold text-muted-foreground mt-1">
-                Comunidades
-                <br />
-                atendidas
+            <div className="grid grid-cols-2 gap-y-8 gap-x-6">
+              <div className="border-l-[3px] border-electric pl-5">
+                <div className="text-3xl lg:text-4xl font-extrabold text-navy">+300</div>
+                <div className="text-sm font-semibold text-muted-foreground mt-1">
+                  {t("coverage.stat1")}
+                </div>
+              </div>
+              <div className="border-l-[3px] border-electric pl-5">
+                <div className="text-3xl lg:text-4xl font-extrabold text-navy">25+</div>
+                <div className="text-sm font-semibold text-muted-foreground mt-1">
+                  {t("coverage.stat2")}
+                </div>
+              </div>
+              <div className="border-l-[3px] border-electric pl-5">
+                <div className="text-3xl lg:text-4xl font-extrabold text-navy">100%</div>
+                <div className="text-sm font-semibold text-muted-foreground mt-1">
+                  {t("coverage.stat3")}
+                </div>
+              </div>
+              <div className="border-l-[3px] border-electric pl-5">
+                <div className="text-3xl lg:text-4xl font-extrabold text-navy">24h</div>
+                <div className="text-sm font-semibold text-muted-foreground mt-1">
+                  {t("coverage.stat4")}
+                </div>
               </div>
             </div>
-            <div className="border-l-[3px] border-electric pl-5">
-              <div className="text-3xl lg:text-4xl font-extrabold text-navy">25+</div>
-              <div className="text-sm font-semibold text-muted-foreground mt-1">
-                Años de
-                <br />
-                experiencia
-              </div>
-            </div>
-            <div className="border-l-[3px] border-electric pl-5">
-              <div className="text-3xl lg:text-4xl font-extrabold text-navy">100%</div>
-              <div className="text-sm font-semibold text-muted-foreground mt-1">
-                Personal propio
-                <br />y certificado
-              </div>
-            </div>
-            <div className="border-l-[3px] border-electric pl-5">
-              <div className="text-3xl lg:text-4xl font-extrabold text-navy">24h</div>
-              <div className="text-sm font-semibold text-muted-foreground mt-1">
-                Respuesta rápida
-                <br />
-                garantizada
-              </div>
-            </div>
-          </div>
         </Reveal>
 
         {/* Right column: Google Maps */}
@@ -1715,6 +1723,7 @@ function Certifications() {
 // — Contact Form —
 function ContactForm({ light = false }: { light?: boolean }) {
   const [sent, setSent] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -1763,57 +1772,54 @@ function ContactForm({ light = false }: { light?: boolean }) {
             </svg>
           </div>
           <h3 className={`text-2xl font-extrabold mb-2 ${light ? "text-navy" : "text-white"}`}>
-            ¡Solicitud enviada!
+            {t("contact.success")}
           </h3>
-          <p className={light ? "text-muted-foreground" : "text-white/80"}>
-            Un técnico le contactará en menos de 24 horas.
-          </p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label htmlFor="nombre" className={lbl}>
-                Nombre *
+                {t("contact.name")} *
               </label>
               <input
                 id="nombre"
                 name="nombre"
                 required
                 type="text"
-                placeholder="Su nombre"
+                placeholder={t("contact.name")}
                 className={inp}
               />
             </div>
             <div>
               <label htmlFor="telefono" className={lbl}>
-                Teléfono *
+                {t("contact.phone")} *
               </label>
               <input
                 id="telefono"
                 name="telefono"
                 required
                 type="tel"
-                placeholder="Su teléfono"
+                placeholder={t("contact.phone")}
                 className={inp}
               />
             </div>
           </div>
           <div>
             <label htmlFor="email" className={lbl}>
-              Email
+              {t("contact.email")}
             </label>
             <input
               id="email"
               name="email"
               type="email"
-              placeholder="su@email.com"
+              placeholder="email@example.com"
               className={inp}
             />
           </div>
           <div>
             <label htmlFor="servicio" className={lbl}>
-              Servicio
+              {t("contact.service")}
             </label>
             <select
               id="servicio"
@@ -1821,23 +1827,23 @@ function ContactForm({ light = false }: { light?: boolean }) {
               className={sel}
               style={light ? undefined : { colorScheme: "dark" }}
             >
-              <option value="">Seleccione un servicio…</option>
-              <option value="Limpieza de Cristales">Limpieza de Cristales</option>
-              <option value="Limpieza de Fachadas">Limpieza de Fachadas</option>
-              <option value="Limpieza de Placas Solares">Limpieza de Placas Solares</option>
-              <option value="Instalación de Líneas de Vida">Instalación de Líneas de Vida</option>
-              <option value="Otros trabajos verticales">Otros trabajos verticales</option>
+              <option value="">{t("contact.service.placeholder")}</option>
+              <option value="cristales">{t("contact.service.cristales")}</option>
+              <option value="fachadas">{t("contact.service.fachadas")}</option>
+              <option value="solares">{t("contact.service.solares")}</option>
+              <option value="lineas">{t("contact.service.lineas")}</option>
+              <option value="otros">{t("contact.service.other")}</option>
             </select>
           </div>
           <div>
             <label htmlFor="mensaje" className={lbl}>
-              Mensaje
+              {t("contact.message")}
             </label>
             <textarea
               id="mensaje"
               name="mensaje"
               rows={3}
-              placeholder="Describa brevemente su proyecto…"
+              placeholder={t("contact.message.placeholder")}
               className={ta}
             />
           </div>
@@ -1845,11 +1851,11 @@ function ContactForm({ light = false }: { light?: boolean }) {
             type="submit"
             className="w-full rounded-xl bg-electric text-white font-bold text-sm sm:text-base shadow-glow hover:-translate-y-0.5 hover:shadow-elev transition-all py-4 px-4"
           >
-            <span className="truncate">Solicitar Presupuesto</span>
+            <span className="truncate">{t("contact.submit")}</span>
           </button>
           {!light && (
             <p className="text-white/80 text-xs text-center text-balance">
-              Sin compromiso · Respuesta en 24h
+              {t("contact.privacy")}
             </p>
           )}
         </form>
@@ -1874,14 +1880,13 @@ function CTA() {
           <Reveal className="min-w-0">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-electric/15 border border-electric/30 text-xs font-semibold tracking-wider uppercase text-electric">
               <span className="w-2 h-2 rounded-full bg-electric animate-pulse shadow-[0_0_8px_#0096FF]" />{" "}
-              Respuesta en menos de 24h
+              {t("cta.badge")}
             </span>
             <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05] break-words">
-              Solicite su <span className="text-electric">presupuesto.</span>
+              {t("cta.title")} <span className="text-electric">{t("cta.title2")}</span>
             </h2>
             <p className="mt-6 text-white/80 leading-relaxed text-base lg:text-lg">
-              Un técnico especializado revisará su caso y le enviará una propuesta cerrada, sin
-              costes ocultos ni compromisos.
+              {t("cta.desc")}
             </p>
 
             <div className="mt-10 space-y-4">
@@ -1905,7 +1910,7 @@ function CTA() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="text-white/60 text-[10px] sm:text-xs font-semibold uppercase tracking-wider">
-                    Llámenos directamente
+                    {t("cta.phone")}
                   </div>
                   <div className="text-white font-extrabold text-xl group-hover:text-electric transition-colors truncate">
                     {PHONE}
@@ -1943,7 +1948,7 @@ function CTA() {
                     WhatsApp
                   </div>
                   <div className="text-white font-bold group-hover:text-[#25D366] transition-colors truncate">
-                    Escríbanos ahora
+                    {t("cta.wa")}
                   </div>
                 </div>
                 <svg
@@ -1962,7 +1967,7 @@ function CTA() {
 
               <div className="flex items-center gap-4 w-full">
                 <div className="flex-1 h-px bg-white/10" />
-                <span className="text-white/40 text-sm whitespace-nowrap">o escríbanos</span>
+                <span className="text-white/40 text-sm whitespace-nowrap">{t("contact.privacy") ? "o escríbanos" : "o escríbanos"}</span>
                 <div className="flex-1 h-px bg-white/10" />
               </div>
 
@@ -2012,10 +2017,10 @@ function CTA() {
           <Reveal delay={120} className="w-full max-w-full min-w-0">
             <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-elev max-w-full overflow-hidden w-full mx-auto md:max-w-[28rem] lg:max-w-none">
               <h3 className="text-xl sm:text-2xl font-extrabold text-navy mb-1 leading-tight">
-                Solicitar presupuesto
+                {t("cta.title")} {t("cta.title2")}
               </h3>
               <p className="text-slate-500 text-sm mb-6 text-balance">
-                Sin compromiso · Respuesta en 24h
+                {t("cta.desc")}
               </p>
               <ContactForm light />
             </div>
@@ -2028,6 +2033,7 @@ function CTA() {
 
 // — Footer —
 function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="bg-[#0b1121] text-white pt-20 pb-10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
@@ -2044,32 +2050,29 @@ function Footer() {
             <p className="text-slate-400 text-sm mb-2">Carrer de Cuzco, 39-41, 08030 Barcelona</p>
             <p className="text-slate-400 text-sm mb-6">info@vertirise.com</p>
             <div className="text-slate-400 text-sm">
-              <p className="font-semibold text-slate-300 mb-1">Horario:</p>
-              <p>L-V de 8h a 18h</p>
+              <p className="font-semibold text-slate-300 mb-1">{t("footer.schedule.label")}:</p>
+              <p>{t("footer.schedule")}</p>
               <p className="mt-1 font-bold text-white text-lg">935 22 43 05</p>
             </div>
           </div>
 
           {/* Empresa */}
           <div>
-            <h4 className="font-bold text-lg mb-6 tracking-wide text-white">Empresa</h4>
+            <h4 className="font-bold text-lg mb-6 tracking-wide text-white">{t("footer.company")}</h4>
             <ul className="space-y-4 text-sm text-slate-400 font-medium">
               <li>
                 <a href="#" className="hover:text-electric transition-colors">
-                  Presentación
+                  {t("footer.company.about")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-electric transition-colors">
-                  Trabaja con nosotros
+                  {t("footer.company.work")}
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="hover:text-electric transition-colors flex items-center gap-2"
-                >
-                  Política de cancelación, reembolso y devolución
+                <a href="#" className="hover:text-electric transition-colors flex items-center gap-2">
+                  {t("footer.company.cancel")}
                 </a>
               </li>
             </ul>
@@ -2077,21 +2080,21 @@ function Footer() {
 
           {/* Políticas */}
           <div>
-            <h4 className="font-bold text-lg mb-6 tracking-wide text-white">Políticas</h4>
+            <h4 className="font-bold text-lg mb-6 tracking-wide text-white">{t("footer.legal")}</h4>
             <ul className="space-y-4 text-sm text-slate-400 font-medium">
               <li>
                 <a href="#" className="hover:text-electric transition-colors">
-                  Aviso Legal
+                  {t("footer.legal.notice")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-electric transition-colors">
-                  Política de Cookies
+                  {t("footer.legal.cookies")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-electric transition-colors">
-                  Política de Privacidad
+                  {t("footer.legal.privacy")}
                 </a>
               </li>
             </ul>
@@ -2100,23 +2103,23 @@ function Footer() {
           {/* Zonas de Trabajo */}
           <div>
             <h4 className="font-bold text-lg mb-6 tracking-wide text-white">
-              Trabajamos en toda Cataluña
+              {t("footer.zones")}
             </h4>
             <ul className="space-y-4 text-sm text-slate-400 font-medium">
               <li className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-electric"></div>Limpieza en Barcelona
+                <div className="w-1.5 h-1.5 rounded-full bg-electric"></div>{t("footer.zone.barcelona")}
               </li>
               <li className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-electric"></div>Limpieza en Maresme
+                <div className="w-1.5 h-1.5 rounded-full bg-electric"></div>{t("footer.zone.maresme")}
               </li>
               <li className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-electric"></div>Limpieza en Girona
+                <div className="w-1.5 h-1.5 rounded-full bg-electric"></div>{t("footer.zone.girona")}
               </li>
               <li className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-electric"></div>Limpieza en Tarragona
+                <div className="w-1.5 h-1.5 rounded-full bg-electric"></div>{t("footer.zone.tarragona")}
               </li>
               <li className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-electric"></div>Limpieza en Lleida
+                <div className="w-1.5 h-1.5 rounded-full bg-electric"></div>{t("footer.zone.lleida")}
               </li>
             </ul>
           </div>
@@ -2124,7 +2127,7 @@ function Footer() {
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 text-sm">
-            © {new Date().getFullYear()} Vertirise Elevate. Todos los derechos reservados.
+            © {new Date().getFullYear()} Vertirise Elevate. {t("footer.rights")}
           </p>
         </div>
       </div>
