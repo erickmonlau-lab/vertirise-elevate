@@ -1787,9 +1787,6 @@ function Index() {
         <FAQ />
         <CTA />
       </main>
-      
-      
-      <StickyMobileCTA />
     </div>
   );
 }

@@ -1,5 +1,9 @@
+import { useState, useEffect } from "react";
 import { useTranslation } from "../i18n/I18nContext";
 import logoDiset from "@/assets/logo-diset.webp";
+
+const PHONE_HREF = "tel:+34936556161";
+const WA_HREF = "https://wa.me/34936556161?text=Hola,%20me%20gustaría%20solicitar%20un%20presupuesto%20gratuito.";
 export function Footer() {
   const { t } = useTranslation();
   return (
@@ -104,7 +108,7 @@ export function Footer() {
 }
 
 // — Sticky Mobile CTA —
-function StickyMobileCTA() {
+export function StickyMobileCTA() {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 400);
@@ -147,29 +151,5 @@ function StickyMobileCTA() {
         </a>
       </div>
     </div>
-  );
-}
-
-function VibrantCTA() {
-  const { t } = useTranslation();
-  return (
-    <section className="relative bg-[#00a8e8] py-24 md:py-32 overflow-hidden border-b-[20px] border-navy">
-      <div className="relative max-w-4xl mx-auto px-6 lg:px-10 text-center z-10">
-        <h2 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-navy tracking-tight mb-8">
-          Tu seguridad en altura es nuestra prioridad. <br className="hidden md:block" />
-          <span className="text-white">Adiós suciedad.</span>
-        </h2>
-        <p className="text-navy/90 text-lg md:text-xl font-bold mb-12 max-w-2xl mx-auto leading-relaxed">
-          Contamos con más de 25 años de experiencia en el sector del mantenimiento y la limpieza
-          vertical en Cataluña.
-        </p>
-        <a
-          href={PHONE_HREF}
-          className="inline-flex items-center gap-3 px-10 h-16 rounded-full bg-navy text-white text-lg font-bold hover:bg-white hover:text-navy hover:-translate-y-1 transition-all shadow-xl"
-        >
-          Pide tu presupuesto
-        </a>
-      </div>
-    </section>
   );
 }
