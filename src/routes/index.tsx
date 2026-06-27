@@ -330,6 +330,7 @@ function Reveal({
   const ref = useRef(null);
   useGSAP(
     () => {
+      if (!ref.current) return;
       gsap.from(ref.current, {
         scrollTrigger: {
           trigger: ref.current,
@@ -343,7 +344,7 @@ function Reveal({
         ease: "power3.out",
       });
     },
-    { scope: ref },
+    { scope: ref, dependencies: [] },
   );
 
   return (
