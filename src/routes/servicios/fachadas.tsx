@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from '../../i18n/I18nContext'
 import { ServiceLayout } from '../../components/ServiceLayout'
 import { useEffect } from 'react'
+import imgFachadas from '../../assets/service-fachadas.webp'
 
 export const Route = createFileRoute('/servicios/fachadas')({
   component: Fachadas,
@@ -62,6 +63,7 @@ function Fachadas() {
         t('services.fachadas.benefit4', 'Técnicos especialistas certificados')
       ]}
       accentColor="#D52374"
+      imageSrc={imgFachadas}
       features={features}
       faqs={faqs}
     />

@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from '../../i18n/I18nContext'
 import { ServiceLayout } from '../../components/ServiceLayout'
 import { useEffect } from 'react'
+import imgCristales from '../../assets/service-cristales.webp'
 
 export const Route = createFileRoute('/servicios/cristales')({
   component: Cristales,
@@ -62,6 +63,7 @@ function Cristales() {
         t('services.cristales.benefit4', 'Presupuesto gratuito en 24h')
       ]}
       accentColor="#22c55e"
+      imageSrc={imgCristales}
       features={features}
       faqs={faqs}
     />

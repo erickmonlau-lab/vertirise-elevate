@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from '../../i18n/I18nContext'
 import { ServiceLayout } from '../../components/ServiceLayout'
 import { useEffect } from 'react'
+import imgLineas from '../../assets/service-lineas.webp'
 
 export const Route = createFileRoute('/servicios/lineas-de-vida')({
   component: LineasDeVida,
@@ -62,6 +63,7 @@ function LineasDeVida() {
         t('services.lineas.benefit4', 'Cero riesgo de caída en mantenimiento')
       ]}
       accentColor="#0096FF"
+      imageSrc={imgLineas}
       features={features}
       faqs={faqs}
     />

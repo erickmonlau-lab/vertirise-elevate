@@ -7,6 +7,7 @@ interface ServiceLayoutProps {
   description: string;
   benefits: string[];
   accentColor: string;
+  imageSrc: string;
   features: { icon: React.ReactNode; title: string; desc: string }[];
   faqs: { q: string; a: string }[];
 }
@@ -38,7 +39,7 @@ function FAQItem({ question, answer, accentColor }: { question: string, answer: 
   );
 }
 
-export function ServiceLayout({ title, description, benefits, accentColor, features, faqs }: ServiceLayoutProps) {
+export function ServiceLayout({ title, description, benefits, accentColor, imageSrc, features, faqs }: ServiceLayoutProps) {
   const { t } = useTranslation();
   const [sent, setSent] = useState(false);
 
@@ -64,16 +65,22 @@ export function ServiceLayout({ title, description, benefits, accentColor, featu
     <>
       {/* Hero Section */}
       <section className="bg-[#0a1628] pt-32 pb-20 px-6 lg:px-10 text-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{ background: `radial-gradient(circle at center, ${accentColor} 0%, transparent 70%)` }}></div>
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img src={imageSrc} alt="" className="w-full h-full object-cover opacity-[0.15] object-center" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/60 via-[#0a1628]/80 to-[#0a1628]"></div>
+        </div>
+        <div className="absolute inset-0 opacity-30 mix-blend-screen z-0" style={{ background: `radial-gradient(circle at center, ${accentColor} 0%, transparent 60%)` }}></div>
+        
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-white/50 text-sm font-medium mb-6 flex items-center justify-center gap-2">
+          <div className="text-white/70 text-sm font-medium mb-6 flex items-center justify-center gap-2">
             <a href="/" className="hover:text-white transition-colors">{t("nav.home", "Inicio")}</a>
             <span>&gt;</span>
             <a href="/#servicios" className="hover:text-white transition-colors">{t("nav.services", "Servicios")}</a>
             <span>&gt;</span>
             <span className="text-white">{title}</span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tight max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tight max-w-4xl mx-auto drop-shadow-lg">
             {title}
           </h1>
         </div>
@@ -88,6 +95,12 @@ export function ServiceLayout({ title, description, benefits, accentColor, featu
             <h2 className="text-3xl md:text-4xl font-black text-navy leading-tight tracking-tight mb-8">
               {title}
             </h2>
+
+            <div className="mb-10 rounded-3xl overflow-hidden shadow-2xl relative group bg-navy">
+              <div className="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+              <img src={imageSrc} alt={title} className="w-full h-auto object-cover aspect-[16/10] group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100" />
+            </div>
+
             <div className="prose prose-slate prose-lg max-w-none text-slate-600 mb-10">
               <p className="leading-relaxed">{description}</p>
             </div>
