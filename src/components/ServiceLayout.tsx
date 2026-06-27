@@ -8,6 +8,7 @@ interface ServiceLayoutProps {
   benefits: string[];
   accentColor: string;
   imageSrc: string;
+  badgeSrc: string;
   features: { icon: React.ReactNode; title: string; desc: string }[];
   faqs: { q: string; a: string }[];
 }
@@ -39,7 +40,7 @@ function FAQItem({ question, answer, accentColor }: { question: string, answer: 
   );
 }
 
-export function ServiceLayout({ title, description, benefits, accentColor, imageSrc, features, faqs }: ServiceLayoutProps) {
+export function ServiceLayout({ title, description, benefits, accentColor, imageSrc, badgeSrc, features, faqs }: ServiceLayoutProps) {
   const { t } = useTranslation();
   const [sent, setSent] = useState(false);
 
@@ -65,21 +66,26 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
     <>
       {/* Hero Section */}
       <section className="bg-[#0a1628] pt-32 pb-20 px-6 lg:px-10 text-center relative overflow-hidden">
-        {/* Background Image */}
+        {/* Background Image Overlay */}
         <div className="absolute inset-0 z-0">
-          <img src={imageSrc} alt="" className="w-full h-full object-cover opacity-[0.15] object-center" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/60 via-[#0a1628]/80 to-[#0a1628]"></div>
+          <img src={imageSrc} alt="" className="w-full h-full object-cover opacity-[0.10] object-center mix-blend-luminosity" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/40 via-[#0a1628]/80 to-[#0a1628]"></div>
         </div>
-        <div className="absolute inset-0 opacity-30 mix-blend-screen z-0" style={{ background: `radial-gradient(circle at center, ${accentColor} 0%, transparent 60%)` }}></div>
+        <div className="absolute inset-0 opacity-40 mix-blend-screen z-0" style={{ background: `radial-gradient(circle at center, ${accentColor} 0%, transparent 60%)` }}></div>
         
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-white/70 text-sm font-medium mb-6 flex items-center justify-center gap-2">
+        <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
+          <div className="text-white/70 text-sm font-medium mb-8 flex items-center justify-center gap-2">
             <a href="/" className="hover:text-white transition-colors">{t("nav.home", "Inicio")}</a>
             <span>&gt;</span>
             <a href="/#servicios" className="hover:text-white transition-colors">{t("nav.services", "Servicios")}</a>
             <span>&gt;</span>
             <span className="text-white">{title}</span>
           </div>
+
+          <div className="mb-6 w-32 h-32 md:w-40 md:h-40 bg-white/5 rounded-3xl backdrop-blur-md border border-white/10 p-4 flex items-center justify-center shadow-2xl animate-[float_6s_ease-in-out_infinite]" style={{ boxShadow: `0 20px 40px -10px ${accentColor}40` }}>
+            <img src={badgeSrc} alt="" className="w-full h-full object-contain drop-shadow-xl" />
+          </div>
+
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tight max-w-4xl mx-auto drop-shadow-lg">
             {title}
           </h1>
@@ -96,7 +102,7 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
               {title}
             </h2>
 
-            <div className="mb-10 rounded-3xl overflow-hidden shadow-2xl relative group bg-navy">
+            <div className="mb-10 rounded-3xl overflow-hidden shadow-2xl relative group bg-navy border-4 border-white">
               <div className="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
               <img src={imageSrc} alt={title} className="w-full h-auto object-cover aspect-[16/10] group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100" />
             </div>
@@ -237,23 +243,44 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-24 px-6 text-center relative overflow-hidden" style={{ backgroundColor: accentColor }}>
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,white_0%,transparent_100%)]"></div>
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-            {t("cta.title", "Solicita tu presupuesto")}
-          </h2>
-          <p className="text-white/90 text-lg md:text-xl font-medium mb-10 max-w-2xl mx-auto">
-            {t("cta.desc", "Respondemos en menos de 24 horas. Sin compromiso.")}
-          </p>
-          <a
-            href="tel:+34936556161"
-            className="inline-flex items-center justify-center gap-3 px-10 h-16 rounded-full bg-white text-navy text-lg font-bold hover:-translate-y-1 hover:shadow-xl transition-all"
-            style={{ color: accentColor }}
+      {/* Final CTA Rediseñado */}
+      <section className="bg-white py-20 lg:py-28 px-6 relative">
+        <div className="max-w-5xl mx-auto">
+          <div 
+            className="relative rounded-[3rem] overflow-hidden shadow-2xl"
+            style={{ backgroundColor: accentColor }}
           >
-            Llamar ahora
-          </a>
+            {/* Elementos Decorativos */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-black opacity-10 rounded-full blur-2xl translate-y-1/3 -translate-x-1/4"></div>
+            
+            <div className="relative z-10 px-8 py-16 md:px-16 md:py-20 flex flex-col md:flex-row items-center justify-between gap-10">
+              <div className="text-center md:text-left flex-1">
+                <h2 className="text-3xl md:text-5xl font-black text-white mb-6 drop-shadow-md">
+                  {t("cta.title", "¿Necesitas un presupuesto?")}
+                </h2>
+                <p className="text-white/90 text-lg md:text-xl font-medium mb-0 max-w-xl">
+                  {t("cta.desc", "Respondemos en menos de 24 horas. Sin compromiso. Visita técnica gratuita.")}
+                </p>
+              </div>
+              
+              <div className="shrink-0 flex flex-col items-center gap-4">
+                <a
+                  href="tel:+34936556161"
+                  className="group relative inline-flex items-center justify-center gap-3 px-10 h-16 rounded-full bg-white text-navy text-lg font-black hover:scale-105 transition-all shadow-xl"
+                  style={{ color: accentColor }}
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:rotate-12 transition-transform">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/>
+                  </svg>
+                  {t("nav.call", "Llamar ahora")}
+                </a>
+                <span className="text-white/80 text-sm font-semibold uppercase tracking-widest">
+                  Atención Inmediata
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>

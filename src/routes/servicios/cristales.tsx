@@ -3,6 +3,7 @@ import { useTranslation } from '../../i18n/I18nContext'
 import { ServiceLayout } from '../../components/ServiceLayout'
 import { useEffect } from 'react'
 import imgCristales from '../../assets/service-cristales.webp'
+import badgeCristales from '../../assets/icon-cristales-pastel.png'
 
 export const Route = createFileRoute('/servicios/cristales')({
   component: Cristales,
@@ -64,6 +65,7 @@ function Cristales() {
       ]}
       accentColor="#22c55e"
       imageSrc={imgCristales}
+      badgeSrc={badgeCristales}
       features={features}
       faqs={faqs}
     />

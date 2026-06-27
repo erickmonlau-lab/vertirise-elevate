@@ -3,6 +3,7 @@ import { useTranslation } from '../../i18n/I18nContext'
 import { ServiceLayout } from '../../components/ServiceLayout'
 import { useEffect } from 'react'
 import imgLineas from '../../assets/service-lineas.webp'
+import badgeLineas from '../../assets/icon-lineas-pastel.png'
 
 export const Route = createFileRoute('/servicios/lineas-de-vida')({
   component: LineasDeVida,
@@ -64,6 +65,7 @@ function LineasDeVida() {
       ]}
       accentColor="#0096FF"
       imageSrc={imgLineas}
+      badgeSrc={badgeLineas}
       features={features}
       faqs={faqs}
     />

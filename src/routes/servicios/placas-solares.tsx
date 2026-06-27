@@ -3,6 +3,7 @@ import { useTranslation } from '../../i18n/I18nContext'
 import { ServiceLayout } from '../../components/ServiceLayout'
 import { useEffect } from 'react'
 import imgSolares from '../../assets/service-solar.webp'
+import badgeSolares from '../../assets/icon-solar-pastel.png'
 
 export const Route = createFileRoute('/servicios/placas-solares')({
   component: PlacasSolares,
@@ -64,6 +65,7 @@ function PlacasSolares() {
       ]}
       accentColor="#f59e0b"
       imageSrc={imgSolares}
+      badgeSrc={badgeSolares}
       features={features}
       faqs={faqs}
     />

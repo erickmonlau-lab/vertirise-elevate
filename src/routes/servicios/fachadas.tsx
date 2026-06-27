@@ -3,6 +3,7 @@ import { useTranslation } from '../../i18n/I18nContext'
 import { ServiceLayout } from '../../components/ServiceLayout'
 import { useEffect } from 'react'
 import imgFachadas from '../../assets/service-fachadas.webp'
+import badgeFachadas from '../../assets/icon-fachadas-pastel.png'
 
 export const Route = createFileRoute('/servicios/fachadas')({
   component: Fachadas,
@@ -64,6 +65,7 @@ function Fachadas() {
       ]}
       accentColor="#D52374"
       imageSrc={imgFachadas}
+      badgeSrc={badgeFachadas}
       features={features}
       faqs={faqs}
     />
