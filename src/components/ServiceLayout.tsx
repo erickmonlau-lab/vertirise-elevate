@@ -68,12 +68,12 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
       {/* Hero Section */}
       <section 
         className="w-full min-h-[60vh] flex items-center pt-32 pb-16 px-6 lg:px-10 relative overflow-hidden"
-        style={{ backgroundColor: accentColor }}
+        style={{ backgroundColor: '#0a1628' }}
       >
-        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-10 items-center relative">
+        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center relative">
           
-          {/* Left Column (40%) */}
-          <div className="lg:col-span-5 flex flex-col items-start text-left">
+          {/* Left Column (Text) */}
+          <div className="flex flex-col items-start text-left">
             <div className="text-white/60 text-sm font-medium mb-4 flex items-center gap-2">
               <a href="/" className="hover:text-white transition-colors">{t("nav.home", "Inicio")}</a>
               <span>&gt;</span>
@@ -82,9 +82,11 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
               <span className="text-white">{title}</span>
             </div>
             
-            <h1 className="text-5xl md:text-6xl font-black text-white leading-tight mb-6">
+            <h1 className="text-5xl md:text-6xl font-black text-white leading-tight mb-4">
               {title}
             </h1>
+            
+            <div className="h-1 w-24 rounded mb-8" style={{ backgroundColor: accentColor }}></div>
             
             <p className="text-white/80 text-lg mb-10 max-w-xl">
               {description}
@@ -92,7 +94,7 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
             
             <div className="flex flex-col items-start gap-2">
               <a href="tel:+34936556161" className="flex items-center gap-3 text-white text-3xl font-black hover:scale-105 transition-transform group">
-                <div className="bg-white/20 p-3 rounded-full group-hover:bg-white/30 transition-colors">
+                <div className="bg-white/10 p-3 rounded-full group-hover:bg-white/20 transition-colors">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                   </svg>
@@ -105,27 +107,10 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
             </div>
           </div>
           
-          {/* Center Column (25%) */}
-          <div className="lg:col-span-3 flex justify-center items-center py-10 lg:py-0 relative">
-             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.15)_0%,transparent_60%)] rounded-full w-full h-full scale-150 pointer-events-none"></div>
-             <img src={badgeSrc} alt="Icon" className="w-72 h-72 object-contain animate-[float_6s_ease-in-out_infinite] mix-blend-multiply bg-transparent" />
-          </div>
-
-          {/* Right Column (35%) Form */}
-          <div className="lg:col-span-4 w-full relative z-20">
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 lg:p-8 shadow-2xl">
-              <h3 className="text-xl font-bold text-white mb-6">Solicitar Presupuesto Gratuito</h3>
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                 <input type="text" name="nombre" placeholder="Nombre" required className="w-full h-11 px-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all" />
-                 <input type="tel" name="telefono" placeholder="Teléfono" required className="w-full h-11 px-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all" />
-                 <input type="email" name="email" placeholder="Email" required className="w-full h-11 px-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all" />
-                 <textarea name="mensaje" placeholder="Mensaje" rows={3} required className="w-full py-3 px-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all resize-none"></textarea>
-                 
-                 <button type="submit" className={`w-full bg-white ${heroBtnColor} font-bold h-12 rounded-xl mt-2 hover:scale-[1.02] transition-transform shadow-lg`}>
-                   {sent ? "¡Mensaje Enviado!" : "Solicitar Presupuesto Gratuito"}
-                 </button>
-              </form>
-            </div>
+          {/* Right Column (Icon) */}
+          <div className="flex justify-center items-center py-10 lg:py-0 relative">
+             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,transparent_60%)] rounded-full w-full h-full scale-150 pointer-events-none"></div>
+             <img src={badgeSrc} alt="Icon" className="w-72 h-72 object-contain animate-[float_6s_ease-in-out_infinite] mix-blend-screen brightness-110 saturate-150 bg-transparent" />
           </div>
 
         </div>
