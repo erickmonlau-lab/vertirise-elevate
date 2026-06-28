@@ -256,7 +256,7 @@ const sectorsData = [
   {
     nameKey: "sectors.2.title" as const,
     descKey: "sectors.2.desc" as const,
-    icon: <ConciergeBell className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    icon: <Hotel className="w-7 h-7 text-white" strokeWidth={1.5} />,
     colorClass: "bg-gradient-to-br from-rose-400 to-orange-400 shadow-lg shadow-rose-500/30",
     route: "/sectores/hoteles"
   },
