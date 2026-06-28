@@ -48,6 +48,18 @@ function GondolaWorker() {
           0%, 100% { opacity: 1; }
           50%      { opacity: 0.35; }
         }
+        @keyframes scrub {
+          0%, 100% { transform: rotate(-15deg); }
+          50%      { transform: rotate(15deg); }
+        }
+        @keyframes grip {
+          0%, 100% { transform: translateY(0px); }
+          50%      { transform: translateY(3px); }
+        }
+        @keyframes look {
+          0%, 100% { transform: rotate(0deg); }
+          50%      { transform: rotate(-8deg); }
+        }
       `}</style>
 
       <svg
@@ -130,29 +142,35 @@ function GondolaWorker() {
           {/* Belt */}
           <line x1="88" y1="30" x2="132" y2="30" stroke="#0096FF" strokeWidth="1.5" />
 
-          {/* ── Worker: left arm (extended toward glass, holding squeegee) ── */}
-          <line x1="88" y1="22" x2="60" y2="15"
-            stroke="#f4a261" strokeWidth="5" strokeLinecap="round" />
-          {/* Squeegee handle */}
-          <line x1="60" y1="15" x2="50" y2="13"
-            stroke="#aaa" strokeWidth="3" strokeLinecap="round" />
-          {/* Squeegee blade */}
-          <rect x="44" y="8" width="8" height="20" rx="2"
-            fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="2" />
+          {/* ── Worker: left arm (scrubbing — rotates from shoulder at 88,22) ── */}
+          <g style={{ transformOrigin: '88px 22px', animation: 'scrub 1.5s ease-in-out infinite', transformBox: 'fill-box' }}>
+            <line x1="88" y1="22" x2="60" y2="15"
+              stroke="#f4a261" strokeWidth="5" strokeLinecap="round" />
+            {/* Squeegee handle */}
+            <line x1="60" y1="15" x2="50" y2="13"
+              stroke="#aaa" strokeWidth="3" strokeLinecap="round" />
+            {/* Squeegee blade */}
+            <rect x="44" y="8" width="8" height="20" rx="2"
+              fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="2" />
+          </g>
 
-          {/* ── Worker: right arm ── */}
-          <line x1="132" y1="22" x2="158" y2="55"
-            stroke="#f4a261" strokeWidth="5" strokeLinecap="round" />
+          {/* ── Worker: right arm (grip pulse on railing) ── */}
+          <g style={{ animation: 'grip 2s ease-in-out infinite' }}>
+            <line x1="132" y1="22" x2="158" y2="55"
+              stroke="#f4a261" strokeWidth="5" strokeLinecap="round" />
+          </g>
 
-          {/* ── Worker: face / head ── */}
-          <circle cx="110" cy="0" r="18" fill="#f4a261" />
-          {/* Helmet */}
-          <path d="M 92 0 A 18 16 0 0 1 128 0 Z" fill="#0096FF" />
-          {/* Helmet brim */}
-          <rect x="89" y="-1" width="42" height="5" rx="2" fill="#0096FF" />
-          {/* Visor */}
-          <rect x="97" y="2" width="26" height="8" rx="3"
-            fill="#0d2a4a" stroke="#0096FF" strokeWidth="1" />
+          {/* ── Worker: face / head (looks toward glass) ── */}
+          <g style={{ transformOrigin: '110px 0px', animation: 'look 3s ease-in-out infinite', transformBox: 'fill-box' }}>
+            <circle cx="110" cy="0" r="18" fill="#f4a261" />
+            {/* Helmet */}
+            <path d="M 92 0 A 18 16 0 0 1 128 0 Z" fill="#0096FF" />
+            {/* Helmet brim */}
+            <rect x="89" y="-1" width="42" height="5" rx="2" fill="#0096FF" />
+            {/* Visor */}
+            <rect x="97" y="2" width="26" height="8" rx="3"
+              fill="#0d2a4a" stroke="#0096FF" strokeWidth="1" />
+          </g>
 
           {/* Cleaning wipe flash on the glass */}
           <rect x="44" y="6" width="10" height="24" rx="1"
