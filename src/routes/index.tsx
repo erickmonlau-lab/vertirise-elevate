@@ -37,7 +37,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Especialistas en trabajos verticales en Barcelona: limpieza de cristales, fachadas, placas solares e instalación de líneas de vida. +25 años de experiencia, +4500 proyectos. Llame al 936 556 161.",
+          "Especialistas en trabajos verticales en Barcelona: limpieza de cristales, fachadas, placas solares e instalación de líneas de vida. +25 años de experiencia, +4500 proyectos. Llame al 644 65 27 41.",
       },
       { property: "og:title", content: "DISET · Especialistas en Trabajos Verticales Barcelona" },
       {
@@ -50,10 +50,10 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const PHONE = "936 556 161";
-const PHONE_HREF = "tel:+34936556161";
+const PHONE = "644 65 27 41";
+const PHONE_HREF = "tel:+34644652741";
 const WA_HREF =
-  "https://wa.me/34936556161?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20un%20presupuesto%20gratuito.";
+  "https://wa.me/34644652741?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20un%20presupuesto%20gratuito.";
 
 const statsData = [
   { value: 25, suffix: "+", labelKey: "benefits.stat1.label" as const },

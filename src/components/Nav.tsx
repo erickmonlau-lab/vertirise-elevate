@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "../i18n/I18nContext";
 import logoDiset from "@/assets/logo-diset.webp";
-const PHONE_HREF = "tel:+34936556161";
+const PHONE_HREF = "tel:+34644652741";
 function Logo({ white }: { white: boolean }) {
   return (
     <div className="flex items-center">

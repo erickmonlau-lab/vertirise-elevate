@@ -161,8 +161,8 @@ function GondolaWorker({ className = "" }: { className?: string }) {
   );
 }
 
-const PHONE_HREF = "tel:+34936556161";
-const WA_HREF = "https://wa.me/34936556161?text=Hola,%20me%20gustaría%20solicitar%20un%20presupuesto%20gratuito.";
+const PHONE_HREF = "tel:+34644652741";
+const WA_HREF = "https://wa.me/34644652741?text=Hola,%20me%20gustaría%20solicitar%20un%20presupuesto%20gratuito.";
 export function Footer() {
   const { t } = useTranslation();
   return (
