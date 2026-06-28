@@ -68,40 +68,38 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
       {/* Hero Section */}
       <section 
         className="w-full min-h-[60vh] flex items-center pt-32 pb-16 px-6 lg:px-10 relative overflow-hidden"
-        style={{ backgroundColor: '#0a1628' }}
+        style={{ backgroundColor: accentColor }}
       >
         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center relative">
           
           {/* Left Column (Text) */}
           <div className="flex flex-col items-start text-left">
-            <div className="text-white/60 text-sm font-medium mb-4 flex items-center gap-2">
-              <a href="/" className="hover:text-white transition-colors">{t("nav.home", "Inicio")}</a>
+            <div className="text-[#0a1628]/70 text-sm font-medium mb-4 flex items-center gap-2">
+              <a href="/" className="hover:text-[#0a1628] transition-colors">{t("nav.home", "Inicio")}</a>
               <span>&gt;</span>
-              <a href="/#servicios" className="hover:text-white transition-colors">{t("nav.services", "Servicios")}</a>
+              <a href="/#servicios" className="hover:text-[#0a1628] transition-colors">{t("nav.services", "Servicios")}</a>
               <span>&gt;</span>
-              <span className="text-white">{title}</span>
+              <span className="text-[#0a1628] font-bold">{title}</span>
             </div>
             
-            <h1 className="text-5xl md:text-6xl font-black text-white leading-tight mb-4">
+            <h1 className="text-5xl md:text-6xl font-black text-[#0a1628] leading-tight mb-6">
               {title}
             </h1>
             
-            <div className="h-1 w-24 rounded mb-8" style={{ backgroundColor: accentColor }}></div>
-            
-            <p className="text-white/80 text-lg mb-10 max-w-xl">
+            <p className="text-[#0a1628]/80 text-lg md:text-xl mb-10 max-w-xl font-medium">
               {description}
             </p>
             
             <div className="flex flex-col items-start gap-2">
-              <a href="tel:+34936556161" className="flex items-center gap-3 text-white text-3xl font-black hover:scale-105 transition-transform group">
-                <div className="bg-white/10 p-3 rounded-full group-hover:bg-white/20 transition-colors">
+              <a href="tel:+34936556161" className="flex items-center gap-3 text-[#0a1628] text-3xl font-black hover:scale-105 transition-transform group">
+                <div className="bg-[#0a1628]/10 p-3 rounded-full group-hover:bg-[#0a1628]/20 transition-colors">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                   </svg>
                 </div>
                 936 556 161
               </a>
-              <span className="text-white/60 text-sm font-medium ml-14">
+              <span className="text-[#0a1628]/70 text-sm font-medium ml-14">
                 Respondemos en menos de 24h
               </span>
             </div>
@@ -109,8 +107,8 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
           
           {/* Right Column (Icon) */}
           <div className="flex justify-center items-center py-10 lg:py-0 relative">
-             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,transparent_60%)] rounded-full w-full h-full scale-150 pointer-events-none"></div>
-             <img src={badgeSrc} alt="Icon" className="w-72 h-72 object-contain animate-[float_6s_ease-in-out_infinite] mix-blend-screen brightness-110 saturate-150 bg-transparent" />
+             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.3)_0%,transparent_60%)] rounded-full w-full h-full scale-150 pointer-events-none"></div>
+             <img src={badgeSrc} alt="Icon" className="w-80 h-80 object-contain animate-[float_6s_ease-in-out_infinite] bg-transparent" style={{ mixBlendMode: 'multiply' }} />
           </div>
 
         </div>

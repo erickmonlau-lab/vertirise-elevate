@@ -64,7 +64,7 @@ function LineasDeVida() {
         t('services.lineas.benefit3', 'Revisión técnica anual obligatoria'),
         t('services.lineas.benefit4', 'Cero riesgo de caída en mantenimiento')
       ]}
-      accentColor="#1d4ed8"
+      accentColor="#93c5fd"
       imageSrc={imgLineas}
       badgeSrc={badgeLineas}
       heroBtnColor="text-blue-700"
