@@ -68,7 +68,6 @@ function PlacasSolares() {
       imageSrc={imgSolares}
       badgeSrc={badgeSolares}
       heroBtnColor="text-amber-700"
-      iconFilter="saturate(2.5)"
       features={features}
       faqs={faqs}
     />

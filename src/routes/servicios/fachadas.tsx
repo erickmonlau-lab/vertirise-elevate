@@ -68,7 +68,6 @@ function Fachadas() {
       imageSrc={imgFachadas}
       badgeSrc={badgeFachadas}
       heroBtnColor="text-pink-700"
-      iconFilter="hue-rotate(80deg) saturate(2.5)"
       features={features}
       faqs={faqs}
     />
