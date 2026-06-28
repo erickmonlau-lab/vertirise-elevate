@@ -72,7 +72,7 @@ function AnimatedIconPattern() {
         <AnimatedIcon
           key={i}
           icon={ICONS[data.type]}
-          startIndex={i % HUES.length}
+          startIndex={i % COLORS.length}
           top={data.top}
           right={data.right}
           duration={data.dur}
