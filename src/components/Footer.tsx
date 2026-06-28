@@ -173,43 +173,12 @@ export function Footer() {
           <div className="relative overflow-hidden">
             <GondolaWorker className="md:hidden absolute right-[-8px] bottom-0 w-[100px] h-[140px] opacity-45" />
             <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-6">
-                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-                  {/* Edificio central */}
-                  <polygon points="12,14 30,4 30,42 12,42" fill="#e6f4f9"/>
-                  <polygon points="22,8.5 30,4 30,12" fill="#1a4f8a"/>
-                  {[16, 21, 26, 31, 36].map(y => 
-                    [14, 19, 24].map(x => (
-                      <rect key={`M-${x}-${y}`} x={x} y={y} width="2.5" height="2.5" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                    ))
-                  )}
-                  
-                  {/* Edificio derecho */}
-                  <polygon points="26,10 40,16 40,42 26,42" fill="#72bfe4"/>
-                  {[16, 21, 26, 31, 36].map(y => 
-                    [29, 34].map(x => (
-                      <rect key={`R-${x}-${y}`} x={x} y={y} width="2.5" height="2.5" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                    ))
-                  )}
-                  
-                  {/* Edificio izquierdo */}
-                  <polygon points="4,24 16,18 16,42 4,42" fill="#b5deee"/>
-                  {[25, 30, 35].map(y => 
-                    [6, 11].map(x => (
-                      <rect key={`L-${x}-${y}`} x={x} y={y} width="2.5" height="2.5" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                    ))
-                  )}
-                  
-                  {/* Escobilla */}
-                  <line x1="20" y1="25" x2="28" y2="42" stroke="#2a6db5" strokeWidth="2.5" strokeLinecap="round"/>
-                  <line x1="17" y1="28" x2="23" y2="23" stroke="#2a6db5" strokeWidth="3.5" strokeLinecap="round"/>
-                  <line x1="6" y1="34" x2="32" y2="15" stroke="#2a6db5" strokeWidth="2" strokeLinecap="round"/>
-                  <line x1="7" y1="35" x2="33" y2="16" stroke="#1e4e8c" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-                <div>
-                  <div className="text-white font-black text-2xl tracking-wide leading-none">DISET</div>
-                  <div className="text-[#5bb8e8] font-semibold text-xs tracking-widest mt-0.5">Limpiezas Verticales</div>
-                </div>
+              <div className="flex items-center gap-3 mb-6 bg-white rounded-lg px-4 py-3 w-fit shadow-md">
+                <img
+                  src={logoDiset}
+                  alt="DISET Limpiezas Verticales"
+                  className="h-10 w-auto object-contain"
+                />
               </div>
             <p className="text-slate-400 text-sm mb-2">Carrer de Cuzco, 39-41, 08030 Barcelona</p>
             <p className="text-slate-400 text-sm mb-6">info@vertirise.com</p>
