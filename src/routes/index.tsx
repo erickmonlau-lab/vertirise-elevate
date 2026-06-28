@@ -767,9 +767,14 @@ function BeforeAfterSection() {
               </div>
             ))}
           </div>
-          <p className="mt-6 text-sm text-white/50 text-center font-semibold">
-            {t("beforeafter.drag")} · {t(beforeAfterCases[activeCase].labelKey)}
-          </p>
+          <div className="mt-8 flex items-center justify-center gap-3 text-sm text-white/70 font-semibold bg-white/5 w-fit mx-auto px-5 py-2.5 rounded-full border border-white/10 shadow-lg backdrop-blur-md">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/50">
+              <path d="m8 18-4-4 4-4"/><path d="M4 14h16"/><path d="m16 10 4 4-4 4"/>
+            </svg>
+            <p>
+              {t("beforeafter.drag")} <span className="text-white/30 mx-1">·</span> <span className="text-white font-bold tracking-wide">{t(beforeAfterCases[activeCase].labelKey)}</span>
+            </p>
+          </div>
         </Reveal>
       </div>
     </section>
@@ -1269,7 +1274,7 @@ function Testimonials() {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] text-navy tracking-tight">
               {t("testimonials.title")}
             </h2>
-            <p className="mt-5 text-slate-600 leading-relaxed">
+            <p className="mt-4 text-slate-500 font-medium tracking-wide text-lg">
               {t("testimonials.title2")}
             </p>
           </div>
@@ -1524,8 +1529,16 @@ function Certifications() {
         </div>
         
         <Reveal delay={400}>
-          <div className="mt-12 text-center text-slate-400 text-xs font-medium">
-            Todos nuestros técnicos operan bajo estos estándares
+          <div className="mt-14 flex flex-col items-center">
+            <div className="inline-flex items-center gap-3 bg-white/60 px-5 py-3 rounded-2xl border border-slate-200/60 shadow-sm backdrop-blur-sm">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-electric">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span className="text-slate-500 text-sm font-semibold tracking-wide">
+                Todos nuestros técnicos operan bajo estos estándares
+              </span>
+            </div>
           </div>
         </Reveal>
       </div>
