@@ -72,24 +72,21 @@ function GondolaWorker({ className = "" }: { className?: string }) {
         <rect x="104" y="107" width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.10)" stroke="rgba(0,150,255,0.25)" strokeWidth="0.5" style={{animation:'blinkPanel 2.7s ease-in-out infinite'}}/>
         <rect x="122" y="107" width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.18)" stroke="rgba(0,150,255,0.38)" strokeWidth="0.5"/>
 
-        {/* EDIFICIO IZQUIERDO — tapa 2 primeras filas del central, remate triangular */}
-        <rect x="10" y="71" width="56" height="299" rx="0" fill="#0e2340"/>
+        {/* EDIFICIO IZQUIERDO — el más bajo, tapa las 2 primeras columnas del central */}
+        <rect x="10" y="210" width="92" height="160" rx="0" fill="#0e2340"/>
         {/* Triángulo remate izquierdo: punta derecha arriba */}
-        <polygon points="10,71 66,55 66,71" fill="#162d4a"/>
+        <polygon points="10,210 102,180 102,210" fill="#162d4a"/>
 
         {/* Ventanas edificio izquierdo */}
-        <rect x="16" y="82"  width="11" height="9" rx="1" fill="rgba(91,184,232,0.20)" stroke="rgba(91,184,232,0.40)" strokeWidth="0.5" style={{animation:'blinkPanel 3.2s ease-in-out infinite'}}/>
-        <rect x="32" y="82"  width="11" height="9" rx="1" fill="rgba(91,184,232,0.08)" stroke="rgba(91,184,232,0.20)" strokeWidth="0.5"/>
-        <rect x="48" y="82"  width="11" height="9" rx="1" fill="rgba(91,184,232,0.15)" stroke="rgba(91,184,232,0.32)" strokeWidth="0.5"/>
-        <rect x="16" y="98"  width="11" height="9" rx="1" fill="rgba(91,184,232,0.08)" stroke="rgba(91,184,232,0.20)" strokeWidth="0.5"/>
-        <rect x="32" y="98"  width="11" height="9" rx="1" fill="rgba(91,184,232,0.22)" stroke="rgba(91,184,232,0.42)" strokeWidth="0.5" style={{animation:'blinkPanel 2.1s ease-in-out infinite'}}/>
-        <rect x="48" y="98"  width="11" height="9" rx="1" fill="rgba(91,184,232,0.08)" stroke="rgba(91,184,232,0.20)" strokeWidth="0.5"/>
-        <rect x="16" y="114" width="11" height="9" rx="1" fill="rgba(91,184,232,0.16)" stroke="rgba(91,184,232,0.35)" strokeWidth="0.5"/>
-        <rect x="32" y="114" width="11" height="9" rx="1" fill="rgba(91,184,232,0.08)" stroke="rgba(91,184,232,0.20)" strokeWidth="0.5"/>
-        <rect x="48" y="114" width="11" height="9" rx="1" fill="rgba(91,184,232,0.22)" stroke="rgba(91,184,232,0.42)" strokeWidth="0.5" style={{animation:'blinkPanel 2.8s ease-in-out infinite'}}/>
-        <rect x="16" y="130" width="11" height="9" rx="1" fill="rgba(91,184,232,0.08)" stroke="rgba(91,184,232,0.20)" strokeWidth="0.5"/>
-        <rect x="32" y="130" width="11" height="9" rx="1" fill="rgba(91,184,232,0.18)" stroke="rgba(91,184,232,0.38)" strokeWidth="0.5"/>
-        <rect x="48" y="130" width="11" height="9" rx="1" fill="rgba(91,184,232,0.08)" stroke="rgba(91,184,232,0.20)" strokeWidth="0.5"/>
+        {[...Array(9)].map((_, r) => 
+          [...Array(5)].map((_, c) => (
+            <rect key={`L-${r}-${c}`} x={18 + c * 16} y={225 + r * 16} width="11" height="9" rx="1" 
+              fill={(r + c) % 5 === 0 ? 'rgba(91,184,232,0.22)' : (r + c) % 3 === 0 ? 'rgba(91,184,232,0.15)' : 'rgba(91,184,232,0.08)'} 
+              stroke={(r + c) % 5 === 0 ? 'rgba(91,184,232,0.42)' : 'rgba(91,184,232,0.20)'} strokeWidth="0.5" 
+              style={(r + c) % 5 === 0 ? { animation: `blinkPanel ${2 + (r%3)}s ease-in-out infinite` } : {}} 
+            />
+          ))
+        )}
 
         {/* EDIFICIO DERECHO — altura media, remate triangular */}
         <rect x="148" y="95" width="62" height="275" rx="0" fill="#0d1f38"/>
