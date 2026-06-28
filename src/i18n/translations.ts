@@ -153,6 +153,7 @@ export const translations = {
     'services.cubiertas.short': 'Cubiertas',
 
     'services.title': 'Nuestros servicios en altura',
+    'cases.badge': 'Casos de Éxito',
     'cases.title': 'Proyectos ejecutados',
     'cases.title2': 'con resultados reales.',
     'cases.desc': 'intervenciones técnicas completadas. Cada proyecto, una solución a medida.',
@@ -570,6 +571,7 @@ export const translations = {
     'services.cubiertas.short': 'Cobertes',
 
     'services.title': 'Els nostres serveis en alçada',
+    'cases.badge': 'Casos d\'Èxit',
     'cases.title': 'Projectes executats',
     'cases.title2': 'amb resultats reals.',
     'cases.desc': 'intervencions tècniques completades. Cada projecte, una solució a mida.',
@@ -871,6 +873,7 @@ export const translations = {
     'services.cubiertas.short': 'Roofs',
 
     'services.title': 'Our high-level services',
+    'cases.badge': 'Success Cases',
     'cases.title': 'Projects executed',
     'cases.title2': 'with real results.',
     'cases.desc': 'technical interventions completed. Every project, a tailor-made solution.',
