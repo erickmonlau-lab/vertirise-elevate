@@ -1,6 +1,6 @@
 "use client";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Building2, Hotel, Factory } from "lucide-react";
+import { Building2, Hotel, Factory, Warehouse, PiggyBank, ThumbsUp, Zap, ShieldCheck, Coins, ConciergeBell } from "lucide-react";
 import { useEffect, useRef, useState, ReactNode } from "react";
 import { Reveal } from "../components/Reveal";
 import { useTranslation } from "../i18n/I18nContext";
@@ -107,26 +107,26 @@ const benefitsData = [
   {
     titleKey: "benefits.1.title" as const,
     descKey: "benefits.1.desc" as const,
-    icon: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 9.36l-7.1 7.1a1 1 0 0 1-1.41-1.41l7.1-7.1a6 6 0 0 1 9.36-7.94l-3.77 3.77a1 1 0 0 0-.11 1.3z",
-    color: "bg-[#e91e63]",
+    icon: <PiggyBank className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    colorClass: "bg-gradient-to-br from-pink-500 to-rose-500 shadow-md shadow-pink-500/20",
   },
   {
     titleKey: "benefits.2.title" as const,
     descKey: "benefits.2.desc" as const,
-    icon: "M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3",
-    color: "bg-[#03a9f4]",
+    icon: <ThumbsUp className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    colorClass: "bg-gradient-to-br from-sky-400 to-blue-500 shadow-md shadow-blue-500/20",
   },
   {
     titleKey: "benefits.3.title" as const,
     descKey: "benefits.3.desc" as const,
-    icon: "M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm10 16-5-5",
-    color: "bg-[#cddc39]",
+    icon: <Zap className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    colorClass: "bg-gradient-to-br from-amber-400 to-yellow-500 shadow-md shadow-yellow-500/20",
   },
   {
     titleKey: "benefits.4.title" as const,
     descKey: "benefits.4.desc" as const,
-    icon: "M3 21h18M5 21V7l8-4v18M13 3l8 4v14M7 11h2M7 15h2M15 11h2M15 15h2",
-    color: "bg-[#3f51b5]",
+    icon: <ShieldCheck className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    colorClass: "bg-gradient-to-br from-indigo-500 to-violet-600 shadow-md shadow-indigo-500/20",
   },
 ];
 
@@ -250,21 +250,21 @@ const sectorsData = [
     nameKey: "sectors.1.title" as const,
     descKey: "sectors.1.desc" as const,
     icon: <Building2 className="w-7 h-7 text-white" strokeWidth={1.5} />,
-    colorClass: "bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/30",
+    colorClass: "bg-gradient-to-br from-emerald-400 to-teal-500 shadow-lg shadow-teal-500/30",
     route: "/sectores/comunidades"
   },
   {
     nameKey: "sectors.2.title" as const,
     descKey: "sectors.2.desc" as const,
-    icon: <Hotel className="w-7 h-7 text-white" strokeWidth={1.5} />,
-    colorClass: "bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg shadow-blue-500/30",
+    icon: <ConciergeBell className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    colorClass: "bg-gradient-to-br from-rose-400 to-orange-400 shadow-lg shadow-rose-500/30",
     route: "/sectores/hoteles"
   },
   {
     nameKey: "sectors.3.title" as const,
     descKey: "sectors.3.desc" as const,
-    icon: <Factory className="w-7 h-7 text-white" strokeWidth={1.5} />,
-    colorClass: "bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/30",
+    icon: <Warehouse className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    colorClass: "bg-gradient-to-br from-slate-600 to-slate-800 shadow-lg shadow-slate-500/30",
     route: "/sectores/naves"
   },
 ];
@@ -948,20 +948,9 @@ function Benefits() {
               className="flex flex-col gap-5 p-6 rounded-2xl bg-white border border-slate-200 hover:shadow-lg hover:-translate-y-1 transition-all"
             >
               <div
-                className={`w-14 h-14 rounded-xl flex items-center justify-center shrink-0 shadow-md ${b.color}`}
+                className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 shadow-md ${b.colorClass}`}
               >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d={b.icon} />
-                </svg>
+                {b.icon}
               </div>
               <div>
                 <h3 className="text-lg font-bold text-navy tracking-tight mb-2">
