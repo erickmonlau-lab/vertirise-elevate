@@ -1,9 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from '../../i18n/I18nContext'
 import { ServiceLayout } from '../../components/ServiceLayout'
+import { SEOHead } from '../../components/SEOHead'
+import { ServiceSchema } from '../../components/SchemaOrg'
 import { useEffect } from 'react'
 import imgSolares from '../../assets/service-solar.webp'
-import badgeSolares from '../../assets/icon-solar-pastel.png'
+import badgeSolares from '../../assets/icon-solar-pastel.webp'
 import imgAfterSolares from '../../assets/after-solares.webp'
 
 export const Route = createFileRoute('/servicios/placas-solares')({
@@ -55,23 +57,39 @@ function PlacasSolares() {
   ];
 
   return (
-    <ServiceLayout
-      title={t('services.placas.title', 'Limpieza de Placas Solares')}
-      titleHighlight={t('services.placas.titleHighlight', 'Placas Solares')}
-      description={t('services.placas.longDesc', 'Mantenimiento preventivo y limpieza profesional de huertos solares e instalaciones fotovoltaicas en cubiertas. Aumenta el rendimiento de tus paneles hasta un 20%.')}
-      benefits={[
-        t('services.placas.benefit1', '+25% de rendimiento energético'),
-        t('services.placas.benefit2', 'Agua pura sin detergentes químicos'),
-        t('services.placas.benefit3', 'Garantía de no dañar los paneles'),
-        t('services.placas.benefit4', 'Mantenimiento e informe de eficiencia')
-      ]}
-      accentColor="#5BE87A"
-      imageSrc={imgSolares}
-      badgeSrc={badgeSolares}
-      heroBtnColor="text-amber-700"
-      iconFilter="saturate(2.5)"
-      features={features}
-      faqs={faqs}
-    />
+    <>
+      <SEOHead
+        title="Limpieza Placas Solares Barcelona | Mantenimiento Fotovoltaico"
+        description="Aumenta el rendimiento de tu instalación solar hasta un 30% con la limpieza profesional de placas fotovoltaicas. Servicio en altura certificado para toda Cataluña."
+        canonical="https://vertirise-elevate.vercel.app/servicios/placas-solares"
+        ogImage="/og-home.webp"
+        keywords="limpieza placas solares barcelona, mantenimiento fotovoltaico cataluña, limpieza paneles solares altura"
+      />
+      <ServiceSchema
+        name="Limpieza de Placas Solares"
+        description="Limpieza profesional de placas fotovoltaicas en altura. Aumenta el rendimiento de tu instalación solar hasta un 30%. Servicio certificado para toda Cataluña."
+        url="https://vertirise-elevate.vercel.app/servicios/placas-solares"
+        breadcrumbLabel="Limpieza de Placas Solares"
+        faqs={faqs}
+      />
+      <ServiceLayout
+        title={t('services.placas.title', 'Limpieza de Placas Solares')}
+        titleHighlight={t('services.placas.titleHighlight', 'Placas Solares')}
+        description={t('services.placas.longDesc', 'Mantenimiento preventivo y limpieza profesional de huertos solares e instalaciones fotovoltaicas en cubiertas. Aumenta el rendimiento de tus paneles hasta un 20%.')}
+        benefits={[
+          t('services.placas.benefit1', '+25% de rendimiento energético'),
+          t('services.placas.benefit2', 'Agua pura sin detergentes químicos'),
+          t('services.placas.benefit3', 'Garantía de no dañar los paneles'),
+          t('services.placas.benefit4', 'Mantenimiento e informe de eficiencia')
+        ]}
+        accentColor="#5BE87A"
+        imageSrc={imgSolares}
+        badgeSrc={badgeSolares}
+        heroBtnColor="text-amber-700"
+        iconFilter="saturate(2.5)"
+        features={features}
+        faqs={faqs}
+      />
+    </>
   )
 }

@@ -6,6 +6,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslation } from "../i18n/I18nContext";
 import type { Language, TranslationKey } from "../i18n/translations";
+import { SEOHead } from "../components/SEOHead";
+import { HomeSchema } from "../components/SchemaOrg";
 
 gsap.registerPlugin(ScrollTrigger);
 import { BeforeAfter } from "@/components/BeforeAfter";
@@ -17,10 +19,10 @@ import fachadasImg from "@/assets/service-fachadas.webp";
 import solarImg from "@/assets/service-solar.webp";
 import lineasImg from "@/assets/service-lineas.webp";
 
-import iconCristales from "@/assets/icon-cristales-pastel.png";
-import iconFachadas from "@/assets/icon-fachadas-pastel.png";
-import iconSolar from "@/assets/icon-solar-pastel.png";
-import iconLineas from "@/assets/icon-lineas-pastel.png";
+import iconCristales from "@/assets/icon-cristales-pastel.webp";
+import iconFachadas from "@/assets/icon-fachadas-pastel.webp";
+import iconSolar from "@/assets/icon-solar-pastel.webp";
+import iconLineas from "@/assets/icon-lineas-pastel.webp";
 import logoDiset from "@/assets/logo-diset.webp";
 
 import beforeCristalesImg from "@/assets/before-cristales.webp";
@@ -33,18 +35,16 @@ import afterSolaresImg from "@/assets/after-solares.webp";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DISET · Trabajos Verticales y Limpieza en Altura en Barcelona" },
+      { title: "Limpiezas Verticales Barcelona | DISET – Trabajos en Altura" },
       {
         name: "description",
-        content:
-          "Especialistas en trabajos verticales en Barcelona: limpieza de cristales, fachadas, placas solares e instalación de líneas de vida. +25 años de experiencia, +4500 proyectos. Llame al 644 65 27 41.",
+        content: "Empresa especializada en limpiezas verticales en Barcelona y Cataluña. Limpieza de cristales, fachadas, placas solares y líneas de vida. Más de 25 años de experiencia. Presupuesto gratuito.",
       },
-      { property: "og:title", content: "DISET · Especialistas en Trabajos Verticales Barcelona" },
-      {
-        property: "og:description",
-        content:
-          "Limpieza en altura para empresas, industrias y comunidades en Barcelona y provincia. Presupuesto gratuito en 24h.",
-      },
+      { name: "keywords", content: "limpiezas verticales barcelona, limpieza fachadas altura, limpieza cristales edificios, trabajos verticales cataluña, IRATA barcelona, rappel limpieza" },
+      { property: "og:title", content: "Limpiezas Verticales Barcelona | DISET – Trabajos en Altura" },
+      { property: "og:description", content: "Empresa especializada en limpiezas verticales en Barcelona y Cataluña. Limpieza de cristales, fachadas, placas solares y líneas de vida. Más de 25 años de experiencia." },
+      { property: "og:image", content: "/og-home.webp" },
+      { property: "og:url", content: "https://vertirise-elevate.vercel.app/" },
     ],
   }),
   component: Index,
@@ -1826,23 +1826,29 @@ function CTA() {
 function Index() {
   return (
     <div className="bg-white overflow-x-hidden">
-      
-      <main>
-        <Hero />
-        <TrustBar />
-        <Stats />
-        <Services />
-        <BeforeAfterSection />
-        <Sectors />
-        <Benefits />
-        <Process />
-        <Certifications />
-        <SuccessCases />
-        <Testimonials />
-        <Coverage />
-        <FAQ />
-        <CTA />
-      </main>
+      <SEOHead
+        title="Limpiezas Verticales Barcelona | DISET – Trabajos en Altura"
+        description="Empresa especializada en limpiezas verticales en Barcelona y Cataluña. Limpieza de cristales, fachadas, placas solares y líneas de vida. Más de 25 años de experiencia. Presupuesto gratuito."
+        canonical="https://vertirise-elevate.vercel.app/"
+        ogImage="/og-home.webp"
+        keywords="limpiezas verticales barcelona, limpieza fachadas altura, limpieza cristales edificios, trabajos verticales cataluña, IRATA barcelona, rappel limpieza"
+      />
+      <HomeSchema />
+      <Hero />
+      <TrustBar />
+      <Stats />
+      <Services />
+      <BeforeAfterSection />
+      <Sectors />
+      <Benefits />
+      <Process />
+      <Certifications />
+      <SuccessCases />
+      <Testimonials />
+      <Coverage />
+      <FAQ />
+      <CTA />
     </div>
   );
 }
+

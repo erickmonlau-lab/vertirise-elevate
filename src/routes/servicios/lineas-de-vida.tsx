@@ -1,9 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from '../../i18n/I18nContext'
 import { ServiceLayout } from '../../components/ServiceLayout'
+import { SEOHead } from '../../components/SEOHead'
+import { ServiceSchema } from '../../components/SchemaOrg'
 import { useEffect } from 'react'
 import imgLineas from '../../assets/service-lineas.webp'
-import badgeLineas from '../../assets/icon-lineas-pastel.png'
+import badgeLineas from '../../assets/icon-lineas-pastel.webp'
 import imgHero from '../../assets/hero.webp'
 
 export const Route = createFileRoute('/servicios/lineas-de-vida')({
@@ -55,24 +57,40 @@ function LineasDeVida() {
   ];
 
   return (
-    <ServiceLayout
-      title={t('services.lineas.title', 'Instalación y Certificación de Líneas de Vida')}
-      titleHighlight={t('services.lineas.titleHighlight', 'Líneas de Vida')}
-      description={t('services.lineas.longDesc', 'Diseño, montaje y certificación de sistemas anticaídas y líneas de vida homologadas. Garantizamos la máxima seguridad para trabajos en altura.')}
-      benefits={[
-        t('services.lineas.benefit1', 'Cumplimiento de normativa EN 795'),
-        t('services.lineas.benefit2', 'Puntos de anclaje certificados'),
-        t('services.lineas.benefit3', 'Revisión técnica anual obligatoria'),
-        t('services.lineas.benefit4', 'Cero riesgo de caída en mantenimiento')
-      ]}
-      accentColor="#5B7AE8"
-      heroBg="bg-[#D3B8FF]"
-      imageSrc={imgLineas}
-      badgeSrc={badgeLineas}
-      heroBtnColor="text-blue-700"
-      iconFilter="hue-rotate(90deg) saturate(2.5)"
-      features={features}
-      faqs={faqs}
-    />
+    <>
+      <SEOHead
+        title="Instalación Líneas de Vida Barcelona | Sistemas Anticaída DISET"
+        description="Instalación y certificación de líneas de vida y sistemas anticaída en Barcelona. Cumplimiento normativa EN 795. Inspección y mantenimiento de equipos de protección colectiva."
+        canonical="https://vertirise-elevate.vercel.app/servicios/lineas-de-vida"
+        ogImage="/og-home.webp"
+        keywords="líneas de vida barcelona, sistemas anticaída barcelona, EN 795 barcelona, instalación anclajes altura"
+      />
+      <ServiceSchema
+        name="Instalación de Líneas de Vida"
+        description="Instalación y certificación de líneas de vida y sistemas anticaída en Barcelona. Cumplimiento normativa EN 795."
+        url="https://vertirise-elevate.vercel.app/servicios/lineas-de-vida"
+        breadcrumbLabel="Líneas de Vida"
+        faqs={faqs}
+      />
+      <ServiceLayout
+        title={t('services.lineas.title', 'Instalación y Certificación de Líneas de Vida')}
+        titleHighlight={t('services.lineas.titleHighlight', 'Líneas de Vida')}
+        description={t('services.lineas.longDesc', 'Diseño, montaje y certificación de sistemas anticaídas y líneas de vida homologadas. Garantizamos la máxima seguridad para trabajos en altura.')}
+        benefits={[
+          t('services.lineas.benefit1', 'Cumplimiento de normativa EN 795'),
+          t('services.lineas.benefit2', 'Puntos de anclaje certificados'),
+          t('services.lineas.benefit3', 'Revisión técnica anual obligatoria'),
+          t('services.lineas.benefit4', 'Cero riesgo de caída en mantenimiento')
+        ]}
+        accentColor="#5B7AE8"
+        heroBg="bg-[#D3B8FF]"
+        imageSrc={imgLineas}
+        badgeSrc={badgeLineas}
+        heroBtnColor="text-blue-700"
+        iconFilter="hue-rotate(90deg) saturate(2.5)"
+        features={features}
+        faqs={faqs}
+      />
+    </>
   )
 }

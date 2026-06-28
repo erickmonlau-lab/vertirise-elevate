@@ -1,9 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from '../../i18n/I18nContext'
 import { ServiceLayout } from '../../components/ServiceLayout'
+import { SEOHead } from '../../components/SEOHead'
+import { ServiceSchema } from '../../components/SchemaOrg'
 import { useEffect } from 'react'
 import imgFachadas from '../../assets/service-fachadas.webp'
-import badgeFachadas from '../../assets/icon-fachadas-pastel.png'
+import badgeFachadas from '../../assets/icon-fachadas-pastel.webp'
 import imgAfterFachadas from '../../assets/after-fachada.webp'
 
 export const Route = createFileRoute('/servicios/fachadas')({
@@ -55,23 +57,39 @@ function Fachadas() {
   ];
 
   return (
-    <ServiceLayout
-      title={t('services.fachadas.title', 'Limpieza y Restauración de Fachadas')}
-      titleHighlight={t('services.fachadas.titleHighlight', 'de Fachadas')}
-      description={t('services.fachadas.longDesc', 'Mantenimiento integral de fachadas. Limpiamos, pintamos y reparamos desperfectos en lugares de difícil acceso sin necesidad de andamios.')}
-      benefits={[
-        t('services.fachadas.benefit1', 'Piedra, cristal, ladrillo y metal'),
-        t('services.fachadas.benefit2', 'Sin andamios ni permisos de vía pública'),
-        t('services.fachadas.benefit3', 'Eliminación y tratamiento antigraffiti'),
-        t('services.fachadas.benefit4', 'Técnicos especialistas certificados')
-      ]}
-      accentColor="#E8A05B"
-      imageSrc={imgFachadas}
-      badgeSrc={badgeFachadas}
-      heroBtnColor="text-pink-700"
-      iconFilter="hue-rotate(80deg) saturate(2.5)"
-      features={features}
-      faqs={faqs}
-    />
+    <>
+      <SEOHead
+        title="Limpieza de Fachadas Barcelona | Trabajos Verticales DISET"
+        description="Limpieza y restauración de fachadas en Barcelona mediante técnicas verticales. Eliminación de grafitis, suciedad y manchas. Certificados IRATA. Más de 4.500 fachadas limpias."
+        canonical="https://vertirise-elevate.vercel.app/servicios/fachadas"
+        ogImage="/og-home.webp"
+        keywords="limpieza fachadas barcelona, restauración fachadas altura, eliminación grafitis barcelona"
+      />
+      <ServiceSchema
+        name="Limpieza de Fachadas"
+        description="Limpieza y restauración de fachadas en Barcelona mediante técnicas verticales. Eliminación de grafitis, suciedad y manchas. Certificados IRATA."
+        url="https://vertirise-elevate.vercel.app/servicios/fachadas"
+        breadcrumbLabel="Limpieza de Fachadas"
+        faqs={faqs}
+      />
+      <ServiceLayout
+        title={t('services.fachadas.title', 'Limpieza y Restauración de Fachadas')}
+        titleHighlight={t('services.fachadas.titleHighlight', 'de Fachadas')}
+        description={t('services.fachadas.longDesc', 'Mantenimiento integral de fachadas. Limpiamos, pintamos y reparamos desperfectos en lugares de difícil acceso sin necesidad de andamios.')}
+        benefits={[
+          t('services.fachadas.benefit1', 'Piedra, cristal, ladrillo y metal'),
+          t('services.fachadas.benefit2', 'Sin andamios ni permisos de vía pública'),
+          t('services.fachadas.benefit3', 'Eliminación y tratamiento antigraffiti'),
+          t('services.fachadas.benefit4', 'Técnicos especialistas certificados')
+        ]}
+        accentColor="#E8A05B"
+        imageSrc={imgFachadas}
+        badgeSrc={badgeFachadas}
+        heroBtnColor="text-pink-700"
+        iconFilter="hue-rotate(80deg) saturate(2.5)"
+        features={features}
+        faqs={faqs}
+      />
+    </>
   )
 }

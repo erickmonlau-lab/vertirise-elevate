@@ -8,7 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-import { I18nProvider } from "../i18n/I18nContext";
+import { I18nProvider, useTranslation } from "../i18n/I18nContext";
 import { Nav } from "../components/Nav";
 import { Footer, StickyMobileCTA } from "../components/Footer";
 
@@ -20,16 +20,16 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Página no encontrada</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          La página que buscas no existe o ha sido movida.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            Volver al inicio
           </Link>
         </div>
       </div>
@@ -48,10 +48,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          Esta página no ha cargado
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Algo ha ido mal. Puedes intentar recargar o volver al inicio.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -61,13 +61,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Try again
+            Intentar de nuevo
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Go home
+            Volver al inicio
           </a>
         </div>
       </div>
@@ -80,18 +80,32 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "DISET · Trabajos Verticales y Limpieza en Altura en Barcelona" },
-      { name: "description", content: "Especialistas en trabajos verticales, limpieza de cristales, fachadas, placas solares e instalación de líneas de vida en Barcelona. +25 años de experiencia." },
-      { property: "og:title", content: "DISET · Trabajos Verticales en Altura" },
-      { property: "og:description", content: "Líderes en limpieza en altura y trabajos verticales para empresas, industrias y comunidades en Barcelona." },
+      { title: "Limpiezas Verticales Barcelona | DISET – Trabajos en Altura" },
+      { name: "description", content: "Empresa especializada en limpiezas verticales en Barcelona y Cataluña. Limpieza de cristales, fachadas, placas solares y líneas de vida. Más de 25 años de experiencia. Presupuesto gratuito." },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      { name: "author", content: "DISET Limpiezas Verticales" },
+      { name: "geo.region", content: "ES-CT" },
+      { name: "geo.placename", content: "Barcelona" },
+      { name: "geo.position", content: "41.3851;2.1734" },
+      { name: "ICBM", content: "41.3851, 2.1734" },
+      { name: "theme-color", content: "#0096FF" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "DISET Limpiezas Verticales" },
+      { property: "og:locale", content: "es_ES" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "dns-prefetch", href: "https://www.google-analytics.com" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" },
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico?v=2" },
+      { rel: "manifest", href: "/manifest.json" },
+      { rel: "canonical", href: "https://vertirise-elevate.vercel.app/" },
+      { rel: "alternate", hreflang: "es", href: "https://vertirise-elevate.vercel.app/" },
+      { rel: "alternate", hreflang: "ca", href: "https://vertirise-elevate.vercel.app/" },
+      { rel: "alternate", hreflang: "en", href: "https://vertirise-elevate.vercel.app/" },
+      { rel: "alternate", hreflang: "x-default", href: "https://vertirise-elevate.vercel.app/" },
       { rel: "stylesheet", href: appCss },
     ],
   }),
@@ -103,11 +117,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <HeadContent />
       </head>
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-electric focus:text-white focus:rounded-lg focus:font-bold"
+        >
+          Ir al contenido principal
+        </a>
         {children}
         <Scripts />
       </body>
@@ -122,8 +142,9 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
         <Nav />
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
+        <main id="main-content" role="main">
+          <Outlet />
+        </main>
         <Footer />
         <StickyMobileCTA />
       </I18nProvider>

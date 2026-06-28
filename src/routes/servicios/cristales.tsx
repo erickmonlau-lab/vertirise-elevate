@@ -1,9 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from '../../i18n/I18nContext'
 import { ServiceLayout } from '../../components/ServiceLayout'
+import { SEOHead } from '../../components/SEOHead'
+import { ServiceSchema } from '../../components/SchemaOrg'
 import { useEffect } from 'react'
 import imgCristales from '../../assets/service-cristales.webp'
-import badgeCristales from '../../assets/icon-cristales-pastel.png'
+import badgeCristales from '../../assets/icon-cristales-pastel.webp'
 import imgAfterCristales from '../../assets/after-cristales.webp'
 
 export const Route = createFileRoute('/servicios/cristales')({
@@ -55,23 +57,39 @@ function Cristales() {
   ];
 
   return (
-    <ServiceLayout
-      title={t('services.cristales.title', 'Limpieza de Cristales en Altura')}
-      titleHighlight={t('services.cristales.titleHighlight', 'en Altura')}
-      description={t('services.cristales.longDesc', 'Especialistas en limpieza de cristales en altura mediante técnicas de acceso por cuerdas y agua osmotizada. Sin andamios, sin marcas, sin interrupciones.')}
-      benefits={[
-        t('services.cristales.benefit1', 'Sin andamios ni plataformas elevadoras'),
-        t('services.cristales.benefit2', 'Agua osmotizada sin marcas ni residuos'),
-        t('services.cristales.benefit3', 'Técnicos certificados IRATA'),
-        t('services.cristales.benefit4', 'Presupuesto gratuito en 24h')
-      ]}
-      accentColor="#5BC8E8"
-      imageSrc={imgCristales}
-      badgeSrc={badgeCristales}
-      heroBtnColor="text-green-700"
-      iconFilter="hue-rotate(270deg) saturate(2.5)"
-      features={features}
-      faqs={faqs}
-    />
+    <>
+      <SEOHead
+        title="Limpieza de Cristales en Altura Barcelona | DISET Verticales"
+        description="Servicio profesional de limpieza de cristales en altura para comunidades, hoteles y naves industriales en Barcelona. Técnicos certificados IRATA. Solicita presupuesto sin compromiso."
+        canonical="https://vertirise-elevate.vercel.app/servicios/cristales"
+        ogImage="/og-home.webp"
+        keywords="limpieza cristales altura barcelona, limpieza ventanas edificios, cristalería industrial barcelona"
+      />
+      <ServiceSchema
+        name="Limpieza de Cristales en Altura"
+        description="Servicio profesional de limpieza de cristales en altura para comunidades, hoteles y naves industriales en Barcelona. Técnicos certificados IRATA."
+        url="https://vertirise-elevate.vercel.app/servicios/cristales"
+        breadcrumbLabel="Limpieza de Cristales"
+        faqs={faqs}
+      />
+      <ServiceLayout
+        title={t('services.cristales.title', 'Limpieza de Cristales en Altura')}
+        titleHighlight={t('services.cristales.titleHighlight', 'en Altura')}
+        description={t('services.cristales.longDesc', 'Especialistas en limpieza de cristales en altura mediante técnicas de acceso por cuerdas y agua osmotizada. Sin andamios, sin marcas, sin interrupciones.')}
+        benefits={[
+          t('services.cristales.benefit1', 'Sin andamios ni plataformas elevadoras'),
+          t('services.cristales.benefit2', 'Agua osmotizada sin marcas ni residuos'),
+          t('services.cristales.benefit3', 'Técnicos certificados IRATA'),
+          t('services.cristales.benefit4', 'Presupuesto gratuito en 24h')
+        ]}
+        accentColor="#5BC8E8"
+        imageSrc={imgCristales}
+        badgeSrc={badgeCristales}
+        heroBtnColor="text-green-700"
+        iconFilter="hue-rotate(270deg) saturate(2.5)"
+        features={features}
+        faqs={faqs}
+      />
+    </>
   )
 }
