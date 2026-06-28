@@ -4,6 +4,7 @@ import { ServiceLayout } from '../../components/ServiceLayout'
 import { useEffect } from 'react'
 import imgFachadas from '../../assets/service-fachadas.webp'
 import badgeFachadas from '../../assets/icon-fachadas-pastel.png'
+import imgAfterFachadas from '../../assets/after-fachada.webp'
 
 export const Route = createFileRoute('/servicios/fachadas')({
   component: Fachadas,
@@ -66,6 +67,8 @@ function Fachadas() {
       accentColor="#D52374"
       imageSrc={imgFachadas}
       badgeSrc={badgeFachadas}
+      heroImageSrc={imgAfterFachadas}
+      heroBtnColor="text-pink-700"
       features={features}
       faqs={faqs}
     />

@@ -4,6 +4,7 @@ import { ServiceLayout } from '../../components/ServiceLayout'
 import { useEffect } from 'react'
 import imgCristales from '../../assets/service-cristales.webp'
 import badgeCristales from '../../assets/icon-cristales-pastel.png'
+import imgAfterCristales from '../../assets/after-cristales.webp'
 
 export const Route = createFileRoute('/servicios/cristales')({
   component: Cristales,
@@ -66,6 +67,8 @@ function Cristales() {
       accentColor="#22c55e"
       imageSrc={imgCristales}
       badgeSrc={badgeCristales}
+      heroImageSrc={imgAfterCristales}
+      heroBtnColor="text-green-600"
       features={features}
       faqs={faqs}
     />

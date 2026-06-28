@@ -4,6 +4,7 @@ import { ServiceLayout } from '../../components/ServiceLayout'
 import { useEffect } from 'react'
 import imgLineas from '../../assets/service-lineas.webp'
 import badgeLineas from '../../assets/icon-lineas-pastel.png'
+import imgHero from '../../assets/hero.webp'
 
 export const Route = createFileRoute('/servicios/lineas-de-vida')({
   component: LineasDeVida,
@@ -66,6 +67,8 @@ function LineasDeVida() {
       accentColor="#0096FF"
       imageSrc={imgLineas}
       badgeSrc={badgeLineas}
+      heroImageSrc={imgHero}
+      heroBtnColor="text-blue-700"
       features={features}
       faqs={faqs}
     />

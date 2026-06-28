@@ -9,6 +9,8 @@ interface ServiceLayoutProps {
   accentColor: string;
   imageSrc: string;
   badgeSrc: string;
+  heroImageSrc: string;
+  heroBtnColor: string;
   features: { icon: React.ReactNode; title: string; desc: string }[];
   faqs: { q: string; a: string }[];
 }
@@ -40,7 +42,7 @@ function FAQItem({ question, answer, accentColor }: { question: string, answer: 
   );
 }
 
-export function ServiceLayout({ title, description, benefits, accentColor, imageSrc, badgeSrc, features, faqs }: ServiceLayoutProps) {
+export function ServiceLayout({ title, description, benefits, accentColor, imageSrc, badgeSrc, heroImageSrc, heroBtnColor, features, faqs }: ServiceLayoutProps) {
   const { t } = useTranslation();
   const [sent, setSent] = useState(false);
 
@@ -65,35 +67,55 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-[#0a1628] pt-32 pb-20 px-6 lg:px-10 text-center relative overflow-hidden">
-        {/* Background Image Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img src={imageSrc} alt="" className="w-full h-full object-cover opacity-[0.10] object-center mix-blend-luminosity" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/40 via-[#0a1628]/80 to-[#0a1628]"></div>
-        </div>
-        <div className="absolute inset-0 opacity-40 mix-blend-screen z-0" style={{ background: `radial-gradient(circle at center, ${accentColor} 0%, transparent 60%)` }}></div>
-        
-        <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
-          <div className="text-white/70 text-sm font-medium mb-8 flex items-center justify-center gap-2">
-            <a href="/" className="hover:text-white transition-colors">{t("nav.home", "Inicio")}</a>
-            <span>&gt;</span>
-            <a href="/#servicios" className="hover:text-white transition-colors">{t("nav.services", "Servicios")}</a>
-            <span>&gt;</span>
-            <span className="text-white">{title}</span>
+      <section 
+        className="w-full min-h-[60vh] flex items-center pt-32 pb-16 px-6 lg:px-10 relative"
+        style={{ backgroundColor: accentColor }}
+      >
+        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
+          {/* Columna Izquierda */}
+          <div className="flex flex-col items-start text-left z-10">
+            <div className="text-white/60 text-sm font-medium mb-4 flex items-center gap-2">
+              <a href="/" className="hover:text-white transition-colors">{t("nav.home", "Inicio")}</a>
+              <span>&gt;</span>
+              <a href="/#servicios" className="hover:text-white transition-colors">{t("nav.services", "Servicios")}</a>
+              <span>&gt;</span>
+              <span className="text-white">{title}</span>
+            </div>
+            
+            <div className="flex flex-col items-start gap-4 mb-6">
+              <img src={badgeSrc} alt="" className="w-16 h-16 object-contain drop-shadow-md animate-[float_6s_ease-in-out_infinite]" />
+              <h1 className="text-5xl md:text-6xl font-black text-white leading-tight">
+                {title}
+              </h1>
+            </div>
+            
+            <p className="text-white/80 text-lg mb-10 max-w-xl">
+              {description}
+            </p>
+            
+            <button 
+              onClick={() => {
+                document.getElementById('formulario-presupuesto')?.scrollIntoView({ behavior: 'smooth' })
+              }}
+              className={`bg-white ${heroBtnColor} font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-xl`}
+            >
+              Solicitar Presupuesto
+            </button>
           </div>
-
-          <div className="mb-6 w-32 h-32 md:w-40 md:h-40 bg-white/5 rounded-3xl backdrop-blur-md border border-white/10 p-4 flex items-center justify-center shadow-2xl animate-[float_6s_ease-in-out_infinite]" style={{ boxShadow: `0 20px 40px -10px ${accentColor}40` }}>
-            <img src={badgeSrc} alt="" className="w-full h-full object-contain drop-shadow-xl" />
+          
+          {/* Columna Derecha */}
+          <div className="relative w-full h-[400px] lg:h-full lg:min-h-[500px]">
+            <img 
+              src={heroImageSrc} 
+              alt={title} 
+              className="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-2xl" 
+            />
           </div>
-
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tight max-w-4xl mx-auto drop-shadow-lg">
-            {title}
-          </h1>
         </div>
       </section>
 
       {/* Intro + Form Content */}
-      <div className="bg-[#f8fafc] py-20 lg:py-28">
+      <div id="formulario-presupuesto" className="bg-[#f8fafc] py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left Column */}
