@@ -1,15 +1,12 @@
 "use client";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, ReactNode } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Reveal } from "../components/Reveal";
 import { useTranslation } from "../i18n/I18nContext";
 import type { Language, TranslationKey } from "../i18n/translations";
 import { SEOHead } from "../components/SEOHead";
 import { HomeSchema } from "../components/SchemaOrg";
 
-gsap.registerPlugin(ScrollTrigger);
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { FAQ } from "@/components/FAQ";
 
@@ -307,43 +304,6 @@ function AnimatedCounter({ to, suffix }: { to: number; suffix: string }) {
       {count.toLocaleString("es-ES")}
       {suffix}
     </span>
-  );
-}
-
-// — Reveal Component (Optimized to run once) —
-function Reveal({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  const ref = useRef(null);
-  useGSAP(
-    () => {
-      if (!ref.current) return;
-      gsap.from(ref.current, {
-        scrollTrigger: {
-          trigger: ref.current,
-          start: "top 85%",
-          once: true,
-        },
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        delay: delay / 1000,
-        ease: "power3.out",
-      });
-    },
-    { scope: ref, dependencies: [] },
-  );
-
-  return (
-    <div ref={ref} className={className}>
-      {children}
-    </div>
   );
 }
 
