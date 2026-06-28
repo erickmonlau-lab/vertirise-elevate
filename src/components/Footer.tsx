@@ -177,7 +177,7 @@ export function Footer() {
                 <img
                   src={logoDiset}
                   alt="DISET Limpiezas Verticales"
-                  className="h-12 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+                  className="h-12 w-auto object-contain brightness-0 invert"
                 />
               </div>
             <p className="text-slate-400 text-sm mb-2">Carrer de Cuzco, 39-41, 08030 Barcelona</p>
@@ -265,7 +265,7 @@ export function Footer() {
           </p>
         </div>
       </div>
-      <GondolaWorker className="hidden md:block absolute right-0 bottom-0 h-[340px] w-[220px] opacity-85" />
+      <GondolaWorker className="hidden md:block absolute right-0 bottom-0 h-[340px] w-[220px] opacity-85 z-20 pointer-events-none" />
     </footer>
   );
 }
