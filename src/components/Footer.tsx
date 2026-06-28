@@ -59,7 +59,7 @@ function GondolaWorker({ className = "", isDesktop = false }: { className?: stri
 
       <svg
         className="w-full h-full"
-        viewBox={isDesktop ? "0 0 160 280" : "0 0 220 400"}
+        viewBox={isDesktop ? "60 0 180 260" : "0 0 220 400"}
         preserveAspectRatio="xMidYMax meet"
         style={{ filter: 'drop-shadow(0 0 5px rgba(0,150,255,0.35))' }}
       >
@@ -200,7 +200,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Brand Info */}
           <div className="relative overflow-hidden">
-            <GondolaWorker className="md:hidden absolute right-[-8px] bottom-[-80px] w-[110px] h-[160px] opacity-55" />
+            <GondolaWorker className="md:hidden absolute right-[-8px] bottom-[-60px] w-[110px] h-[160px] opacity-55" />
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-6">
               <img
@@ -294,7 +294,7 @@ export function Footer() {
           </p>
         </div>
       </div>
-      <GondolaWorker isDesktop className="hidden md:block absolute right-[20px] bottom-0 h-[280px] w-[160px] opacity-85" />
+      <GondolaWorker isDesktop className="hidden md:block absolute right-0 bottom-0 h-[260px] w-[200px] opacity-85" />
     </footer>
   );
 }
