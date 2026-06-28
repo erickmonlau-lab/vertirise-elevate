@@ -767,18 +767,21 @@ function BeforeAfterSection() {
               </div>
             ))}
           </div>
-          <div className="mt-10 mx-auto flex flex-col sm:flex-row items-center gap-4 bg-white/10 backdrop-blur-md border border-white/20 shadow-xl rounded-[2rem] sm:rounded-full px-6 py-4 sm:py-3 w-fit max-w-[90%] transition-all">
-            <div className="flex items-center gap-2 bg-electric/20 text-[#60A5FA] px-4 py-1.5 rounded-full border border-electric/30 shadow-inner">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m8 18-4-4 4-4"/><path d="M4 14h16"/><path d="m16 10 4 4-4 4"/>
-              </svg>
-              <span className="font-bold tracking-wider uppercase text-xs">
-                {t(beforeAfterCases[activeCase].labelKey)}
-              </span>
+          <div className="mt-12 mx-auto relative group w-fit max-w-[90%]">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-electric/40 to-blue-600/40 rounded-full blur-md opacity-60 group-hover:opacity-100 transition duration-500"></div>
+            <div className="relative flex flex-col sm:flex-row items-center gap-4 bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-2xl rounded-[2rem] sm:rounded-full px-5 py-4 sm:py-2.5 transition-all">
+              <div className="flex items-center gap-2.5 bg-gradient-to-r from-electric to-blue-600 text-white px-5 py-2 rounded-full shadow-[0_0_20px_rgba(37,99,235,0.4)]">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse">
+                  <path d="m8 18-4-4 4-4"/><path d="M4 14h16"/><path d="m16 10 4 4-4 4"/>
+                </svg>
+                <span className="font-extrabold tracking-widest uppercase text-[11px] drop-shadow-sm">
+                  {t(beforeAfterCases[activeCase].labelKey)}
+                </span>
+              </div>
+              <p className="text-[13px] sm:text-sm font-semibold text-white/90 text-center sm:text-left pr-2 tracking-wide">
+                {t("beforeafter.drag")}
+              </p>
             </div>
-            <p className="text-sm font-medium text-slate-300 text-center sm:text-left leading-relaxed">
-              {t("beforeafter.drag")}
-            </p>
           </div>
         </Reveal>
       </div>
@@ -917,8 +920,8 @@ function SuccessCases() {
                     {t(c.titleKey as any)}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-4">{t(c.locationKey as any)}</p>
-                  <div className="flex gap-3 text-xs font-semibold text-navy mb-4">
-                    <span className="flex items-center gap-1">
+                  <div className="flex gap-4 text-xs font-semibold text-navy mb-4">
+                    <span className="flex items-center gap-1.5 tracking-wide">
                       <svg
                         width="12"
                         height="12"
@@ -932,20 +935,19 @@ function SuccessCases() {
                       </svg>
                       {t(c.durationKey as any)}
                     </span>
-                    <span className="text-electric">
+                    <span className="text-electric flex items-center gap-1.5 tracking-wide">
                       <svg
                         width="12"
                         height="12"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        strokeWidth="2"
-                        className="inline mr-1"
+                        strokeWidth="2.5"
                       >
                         <path d="M9 12l2 2 4-4" />
                         <circle cx="12" cy="12" r="10" />
                       </svg>
-                      {t(c.resultKey as any)}
+                      <span>{t(c.resultKey as any)}</span>
                     </span>
                   </div>
                   <div className="space-y-2 border-t border-border pt-4 mt-auto">
