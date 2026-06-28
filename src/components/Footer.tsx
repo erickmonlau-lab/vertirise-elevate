@@ -57,8 +57,18 @@ function GondolaWorker() {
           50%      { transform: translateY(3px); }
         }
         @keyframes look {
-          0%, 100% { transform: rotate(0deg); }
-          50%      { transform: rotate(-8deg); }
+          0%, 40%, 100% { transform: rotate(0deg); }
+          20%           { transform: rotate(-8deg); }
+          60%           { transform: rotate(0deg); }
+          75%, 90%      { transform: rotate(8deg); }
+        }
+        @keyframes turnFace {
+          0%, 65%, 100% { opacity: 0; transform: translateX(-5px); }
+          75%, 90%      { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes hideVisor {
+          0%, 65%, 100% { transform: translateX(0); width: 26px; }
+          75%, 90%      { transform: translateX(8px); width: 18px; }
         }
       `}</style>
 
@@ -160,16 +170,25 @@ function GondolaWorker() {
               stroke="#f4a261" strokeWidth="5" strokeLinecap="round" />
           </g>
 
-          {/* ── Worker: face / head (looks toward glass) ── */}
-          <g style={{ transformOrigin: '110px 0px', animation: 'look 3s ease-in-out infinite', transformBox: 'fill-box' }}>
+          {/* ── Worker: face / head (looks toward glass, occasionally to side) ── */}
+          <g style={{ transformOrigin: '110px 0px', animation: 'look 6s ease-in-out infinite', transformBox: 'fill-box' }}>
             <circle cx="110" cy="0" r="18" fill="#f4a261" />
+            
+            {/* Eye and Smile that appear when looking side */}
+            <g style={{ animation: 'turnFace 6s ease-in-out infinite' }}>
+              <circle cx="116" cy="-2" r="2.5" fill="#1a1a2e" />
+              <circle cx="117" cy="-3" r="0.8" fill="white" />
+              <path d="M 112 6 Q 118 10 123 5" stroke="#1a1a2e" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+            </g>
+
             {/* Helmet */}
             <path d="M 92 0 A 18 16 0 0 1 128 0 Z" fill="#0096FF" />
             {/* Helmet brim */}
             <rect x="89" y="-1" width="42" height="5" rx="2" fill="#0096FF" />
             {/* Visor */}
             <rect x="97" y="2" width="26" height="8" rx="3"
-              fill="#0d2a4a" stroke="#0096FF" strokeWidth="1" />
+              fill="#0d2a4a" stroke="#0096FF" strokeWidth="1"
+              style={{ animation: 'hideVisor 6s ease-in-out infinite' }} />
           </g>
 
           {/* Cleaning wipe flash on the glass */}
