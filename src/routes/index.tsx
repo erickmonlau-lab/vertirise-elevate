@@ -1170,23 +1170,41 @@ function Process() {
 
         <div className="relative mt-10 md:mt-20">
           {/* Horizontal Line on Desktop */}
-          <div className="hidden md:block absolute top-7 left-14 right-14 border-t-2 border-dashed border-electric/30 z-0" />
+          <div className="hidden md:block absolute top-[24px] left-[16.66%] right-[16.66%] border-t-[2px] border-navy z-0" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 relative z-10">
             {processData.map((p, i) => (
-              <Reveal key={p.n} delay={i * 80} className="relative flex flex-col items-center md:items-start text-center md:text-left">
+              <Reveal key={p.n} delay={i * 80} className="relative flex flex-col items-center text-center">
                 {/* Mobile vertical line connecting steps */}
                 {i !== processData.length - 1 && (
-                  <div className="md:hidden absolute top-14 bottom-[-3rem] left-1/2 w-0.5 border-l-2 border-dashed border-electric/30 -translate-x-1/2 z-0" />
+                  <div className="md:hidden absolute top-[48px] bottom-[-3rem] left-1/2 w-[2px] bg-navy -translate-x-1/2 z-0" />
                 )}
                 
-                {/* Big Number Circle */}
-                <div className="w-14 h-14 rounded-full bg-electric text-white text-2xl font-black flex items-center justify-center mb-6 relative z-10 shrink-0 shadow-lg ring-8 ring-[#eef2f6]">
-                  {p.n}
+                {/* Shape Container */}
+                <div className="h-[48px] flex items-center justify-center mb-6 relative z-10">
+                  {p.shape === 'triangle' && (
+                    <svg width="44" height="44" viewBox="0 0 44 44" className="overflow-visible">
+                      <polygon points="22,4 42,38 2,38" fill="#d91d63" stroke="#0a1628" strokeWidth="3" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                  {p.shape === 'square' && (
+                    <svg width="36" height="36" viewBox="0 0 36 36" className="overflow-visible">
+                      <rect x="2" y="2" width="32" height="32" fill="#d91d63" stroke="#0a1628" strokeWidth="3" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                  {p.shape === 'circle' && (
+                    <svg width="40" height="40" viewBox="0 0 40 40" className="overflow-visible">
+                      <circle cx="20" cy="20" r="18" fill="#d91d63" stroke="#0a1628" strokeWidth="3" />
+                    </svg>
+                  )}
                 </div>
 
-                <div className="md:pr-8">
-                  <h3 className="text-xl font-bold text-navy mb-3 tracking-tight">
+                <div className="text-[11px] font-black tracking-[0.2em] uppercase text-navy/70 mb-3">
+                  Paso {p.n}
+                </div>
+                
+                <div className="px-4 md:px-6">
+                  <h3 className="text-lg md:text-xl font-bold text-navy mb-3 tracking-tight">
                     {t(p.titleKey)}
                   </h3>
                   <p className="text-sm text-slate-500 leading-relaxed">
