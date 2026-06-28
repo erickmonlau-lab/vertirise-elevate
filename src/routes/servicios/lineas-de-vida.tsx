@@ -65,6 +65,7 @@ function LineasDeVida() {
         t('services.lineas.benefit4', 'Cero riesgo de caída en mantenimiento')
       ]}
       accentColor="#5B7AE8"
+      heroBg="bg-[#B28DFF]"
       imageSrc={imgLineas}
       badgeSrc={badgeLineas}
       heroBtnColor="text-blue-700"
