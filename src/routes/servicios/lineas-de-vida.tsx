@@ -68,6 +68,7 @@ function LineasDeVida() {
       imageSrc={imgLineas}
       badgeSrc={badgeLineas}
       heroBtnColor="text-blue-700"
+      iconFilter="hue-rotate(90deg) saturate(2.5)"
       features={features}
       faqs={faqs}
     />

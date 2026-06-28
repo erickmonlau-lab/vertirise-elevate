@@ -68,6 +68,7 @@ function Cristales() {
       imageSrc={imgCristales}
       badgeSrc={badgeCristales}
       heroBtnColor="text-green-700"
+      iconFilter="hue-rotate(270deg) saturate(2.5)"
       features={features}
       faqs={faqs}
     />
