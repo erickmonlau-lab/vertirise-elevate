@@ -67,13 +67,13 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
     <>
       {/* Hero Section */}
       <section 
-        className="w-full min-h-[60vh] flex items-center pt-32 pb-16 px-6 lg:px-10 relative overflow-hidden"
+        className="w-full min-h-[60vh] flex items-center pt-32 pb-16 px-6 lg:px-10 relative z-10"
         style={{ backgroundColor: accentColor }}
       >
         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center relative">
           
           {/* Left Column (Text) */}
-          <div className="flex flex-col items-start text-left">
+          <div className="flex flex-col items-start text-left pb-10">
             <div className="text-[#0a1628]/70 text-sm font-medium mb-4 flex items-center gap-2">
               <a href="/" className="hover:text-[#0a1628] transition-colors">{t("nav.home", "Inicio")}</a>
               <span>&gt;</span>
@@ -106,16 +106,16 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
           </div>
           
           {/* Right Column (Icon) */}
-          <div className="flex justify-center items-center py-10 lg:py-0 relative">
+          <div className="flex justify-center items-end self-end lg:-mb-24 pt-10 lg:pt-0 relative">
              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.3)_0%,transparent_60%)] rounded-full w-full h-full scale-150 pointer-events-none"></div>
-             <img src={badgeSrc} alt="Icon" className="w-80 h-80 object-contain animate-[float_6s_ease-in-out_infinite] bg-transparent" style={{ mixBlendMode: 'multiply' }} />
+             <img src={badgeSrc} alt="Icon" className="animate-[float_6s_ease-in-out_infinite] bg-transparent" style={{ mixBlendMode: 'multiply', filter: 'hue-rotate(60deg) saturate(3) brightness(1.2)', width: '320px', height: '320px', objectFit: 'contain' }} />
           </div>
 
         </div>
       </section>
 
       {/* Intro + Form Content */}
-      <div id="formulario-presupuesto" className="bg-[#f8fafc] py-20 lg:py-28">
+      <div id="formulario-presupuesto" className="bg-[#f8fafc] py-20 lg:py-28 relative z-0">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left Column */}
