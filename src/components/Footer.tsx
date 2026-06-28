@@ -63,15 +63,20 @@ function GondolaWorker() {
           50%  { transform: rotate(25deg)  translateX(5px); }
           100% { transform: rotate(-25deg) translateX(0px); }
         }
-        /* ── right arm grip ── */
-        @keyframes grip {
-          0%, 100% { transform: translateY(0px); }
-          50%      { transform: translateY(3px); }
+        /* ── right arm: rope tension sway ── */
+        @keyframes holdRope {
+          0%, 100% { transform: rotate(-5deg); }
+          50%      { transform: rotate(5deg); }
         }
-        /* ── head look ── */
-        @keyframes look {
-          0%, 100% { transform: rotate(0deg); }
-          50%      { transform: rotate(-8deg); }
+        /* ── head: follows scrubbing arm ── */
+        @keyframes lookAtWork {
+          0%, 100% { transform: rotate(-10deg); }
+          50%      { transform: rotate(5deg); }
+        }
+        /* ── body breathe ── */
+        @keyframes breathe {
+          0%, 100% { transform: scaleY(1); }
+          50%      { transform: scaleY(1.03); }
         }
         /* ── glass clean flash ── */
         @keyframes clean {
@@ -168,12 +173,14 @@ function GondolaWorker() {
             <rect x="96" y="48" width="12" height="30" rx="3" fill="#1a1a2e" />
             <rect x="112" y="48" width="12" height="30" rx="3" fill="#1a1a2e" />
 
-            {/* Body */}
-            <rect x="88" y="10" width="44" height="40" rx="5"
-              fill="#1a1a2e" stroke="#0096FF" strokeWidth="1.5" />
-            <line x1="91" y1="12" x2="129" y2="46" stroke="#0096FF" strokeWidth="2" />
-            <line x1="129" y1="12" x2="91" y2="46" stroke="#0096FF" strokeWidth="2" />
-            <line x1="88" y1="30" x2="132" y2="30" stroke="#0096FF" strokeWidth="1.5" />
+            {/* Body — breathes softly */}
+            <g style={{ transformOrigin: '110px 50px', transformBox: 'fill-box', animation: 'breathe 2.5s ease-in-out infinite' }}>
+              <rect x="88" y="10" width="44" height="40" rx="5"
+                fill="#1a1a2e" stroke="#0096FF" strokeWidth="1.5" />
+              <line x1="91" y1="12" x2="129" y2="46" stroke="#0096FF" strokeWidth="2" />
+              <line x1="129" y1="12" x2="91" y2="46" stroke="#0096FF" strokeWidth="2" />
+              <line x1="88" y1="30" x2="132" y2="30" stroke="#0096FF" strokeWidth="1.5" />
+            </g>
 
             {/* ── Scrubbing arm (LEFT, toward glass) ── */}
             <g style={{
@@ -226,21 +233,34 @@ function GondolaWorker() {
               })}
             </g>
 
-            {/* ── Right arm (grip) ── */}
-            <g style={{ animation: 'grip 2s ease-in-out infinite' }}>
+            {/* ── Right arm (rope tension sway) ── */}
+            <g style={{ transformOrigin: '132px 22px', transformBox: 'fill-box', animation: 'holdRope 2s ease-in-out infinite' }}>
               <line x1="132" y1="22" x2="158" y2="55"
                 stroke="#f4a261" strokeWidth="5" strokeLinecap="round" />
             </g>
 
-            {/* ── Head (looks toward glass) ── */}
+            {/* ── Head — 3/4 view, follows scrubbing arm ── */}
             <g style={{
               transformOrigin: '110px 0px',
               transformBox: 'fill-box',
-              animation: 'look 3s ease-in-out infinite',
+              transform: 'rotate(-15deg)',
+              animation: 'lookAtWork 2s ease-in-out infinite',
             }}>
+              {/* Base head (skin) */}
               <circle cx="110" cy="0" r="18" fill="#f4a261" />
+              {/* Cheek blush */}
+              <circle cx="118" cy="4" r="4" fill="rgba(244,162,97,0.4)" />
+              {/* Eye */}
+              <circle cx="116" cy="-3" r="2.5" fill="#1a1a2e" />
+              {/* Eye highlight */}
+              <circle cx="117" cy="-4" r="0.8" fill="white" />
+              {/* Smile */}
+              <path d="M 106 5 Q 112 10 118 5" stroke="#1a1a2e" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+              {/* Helmet */}
               <path d="M 92 0 A 18 16 0 0 1 128 0 Z" fill="#0096FF" />
+              {/* Helmet brim */}
               <rect x="89" y="-1" width="42" height="5" rx="2" fill="#0096FF" />
+              {/* Visor */}
               <rect x="97" y="2" width="26" height="8" rx="3"
                 fill="#0d2a4a" stroke="#0096FF" strokeWidth="1" />
             </g>
