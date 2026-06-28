@@ -88,7 +88,7 @@ export function SectorLayout({
                       <p className="text-sm opacity-90">{t('form.successDesc', 'Te responderemos en breve.')}</p>
                     </div>
                   ) : (
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                       <input 
                         type="text" 
                         required 
