@@ -1178,10 +1178,7 @@ function Process() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 relative z-10">
             {processData.map((p, i) => (
               <Reveal key={p.n} delay={i * 80} className="relative flex flex-col items-center text-center">
-                {/* Mobile vertical line connecting steps */}
-                {i !== processData.length - 1 && (
-                  <div className="md:hidden absolute top-[48px] bottom-[-3rem] left-1/2 w-[2px] bg-navy -translate-x-1/2 z-0" />
-                )}
+                {/* Mobile vertical line connecting steps (removed to prevent text overlap) */}
                 
                 {/* Shape Container */}
                 <div className="h-[48px] flex items-center justify-center mb-6 relative z-10">
@@ -1492,7 +1489,7 @@ function Certifications() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {certs.map((c, i) => (
-            <Reveal key={c.name} delay={i * 80}>
+            <Reveal key={c.name} delay={i * 80} className={i === 4 ? "col-span-2 md:col-span-1" : ""}>
               <div className="h-full bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-electric/30 hover:-translate-y-1 transition-all flex flex-col group cursor-default">
                 <div className="w-12 h-12 rounded-full bg-electric/10 grid place-items-center mb-5 shrink-0">
                   <svg

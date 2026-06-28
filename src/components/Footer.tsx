@@ -24,7 +24,7 @@ function GondolaWorker() {
   const rope2X = 140;
 
   return (
-    <div className="pointer-events-none z-0 opacity-85 overflow-hidden relative w-full h-[120px] flex justify-center items-center md:absolute md:right-0 md:top-0 md:w-[220px] md:h-full md:block">
+    <div className="pointer-events-none z-0 opacity-85 overflow-hidden absolute right-0 top-0 w-[220px] h-full max-md:w-[180px] max-md:-right-2 max-md:opacity-75">
       <style>{`
         @keyframes gondola {
           0%   { transform: translateY(20px); }
@@ -58,9 +58,9 @@ function GondolaWorker() {
       `}</style>
 
       <svg
-        className="w-[220px] h-[400px] scale-50 origin-center md:h-full md:scale-100"
+        className="w-full h-full"
         viewBox="0 0 220 400"
-        preserveAspectRatio="xMidYMin meet"
+        preserveAspectRatio="xMidYMax meet"
         style={{ filter: 'drop-shadow(0 0 5px rgba(0,150,255,0.35))' }}
       >
         {/* ── Glass wall background ── */}
@@ -96,13 +96,13 @@ function GondolaWorker() {
           />
         ))}
 
-        {/* ── Static ropes from top ── */}
-        <line x1={rope1X} y1="0" x2={rope1X} y2="400"
-          stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.5"
+        {/* ── Ropes — centred on new character position ── */}
+        <line x1="158" y1="-800" x2="158" y2="400"
+          stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.55"
           style={{ animation: 'ropeMove 1s linear infinite' }}
         />
-        <line x1={rope2X} y1="0" x2={rope2X} y2="400"
-          stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.5"
+        <line x1="182" y1="-800" x2="182" y2="400"
+          stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.55"
           style={{ animation: 'ropeMove 1s linear infinite' }}
         />
 
