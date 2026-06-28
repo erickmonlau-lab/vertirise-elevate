@@ -79,8 +79,8 @@ function GondolaWorker({ className = "" }: { className?: string }) {
 
         {/* Ventanas edificio izquierdo */}
         {[...Array(9)].map((_, r) => 
-          [...Array(5)].map((_, c) => (
-            <rect key={`L-${r}-${c}`} x={18 + c * 16} y={225 + r * 16} width="11" height="9" rx="1" 
+          [...Array(4)].map((_, c) => (
+            <rect key={`L-${r}-${c}`} x={22 + c * 18} y={225 + r * 16} width="13" height="11" rx="1.5" 
               fill={(r + c) % 5 === 0 ? 'rgba(91,184,232,0.22)' : (r + c) % 3 === 0 ? 'rgba(91,184,232,0.15)' : 'rgba(91,184,232,0.08)'} 
               stroke={(r + c) % 5 === 0 ? 'rgba(91,184,232,0.42)' : 'rgba(91,184,232,0.20)'} strokeWidth="0.5" 
               style={(r + c) % 5 === 0 ? { animation: `blinkPanel ${2 + (r%3)}s ease-in-out infinite` } : {}} 
@@ -90,8 +90,8 @@ function GondolaWorker({ className = "" }: { className?: string }) {
 
         {/* EDIFICIO DERECHO — altura media, remate triangular */}
         <rect x="148" y="95" width="62" height="275" rx="0" fill="#0d1f38"/>
-        {/* Triángulo remate derecho: punta derecha arriba */}
-        <polygon points="148,95 210,78 210,95" fill="#142840"/>
+        {/* Triángulo remate derecho: punta izquierda arriba */}
+        <polygon points="148,95 148,78 210,95" fill="#142840"/>
 
         {/* Ventanas edificio derecho */}
         <rect x="154" y="106" width="11" height="9" rx="1" fill="rgba(42,109,181,0.22)" stroke="rgba(42,109,181,0.42)" strokeWidth="0.5" style={{animation:'blinkPanel 2.9s ease-in-out infinite'}}/>
