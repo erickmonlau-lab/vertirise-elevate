@@ -11,11 +11,23 @@ interface I18nContextType {
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('es');
+  const [language, setLanguageState] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('language') as Language) || 'es';
+    }
+    return 'es';
+  });
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('language', lang);
+    }
+  };
 
   const t = (key: TranslationKey): string => {
     const trans = translations as any;
-    return trans[language][key] || trans['es'][key] || key;
+    return trans[language]?.[key] || trans['es']?.[key] || key;
   };
 
   return (

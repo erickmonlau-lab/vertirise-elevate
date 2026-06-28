@@ -173,29 +173,26 @@ export function SectorLayout({
       </section>
 
       {/* SECCIÓN 3: Grid de Servicios Específicos */}
-      <section className="py-24 bg-[#f8fafc]">
-        <div className="max-w-7xl mx-auto lg:px-10">
-          <Reveal className="text-center mb-16 px-6">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-navy tracking-tight">
-              {t('sector.services.title', 'Tu espacio seguro y mantenido')}
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-6">
+          <Reveal className="text-center mb-12">
+            <h2 className="text-3xl font-black text-navy">
+              {t('sector.services.title', 'Servicios incluidos')}
             </h2>
           </Reveal>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-0">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {services.map((svc, idx) => (
-              <Reveal key={idx} delay={idx * 100} className="group relative aspect-square p-8 flex flex-col text-center transition-all duration-300 hover:brightness-110 cursor-pointer" style={{ backgroundColor: svc.bgColor }}>
-                <div className="flex-grow flex items-center justify-center">
-                  <div className="w-24 h-24 transition-transform duration-300 group-hover:scale-110">
-                    {svc.icon}
-                  </div>
+              <Reveal key={idx} delay={idx * 100} className="bg-white border border-slate-200 rounded-2xl shadow-sm p-8 hover:shadow-lg hover:border-electric/30 hover:-translate-y-1 transition-all cursor-pointer">
+                <div className="w-20 h-20 mx-auto mb-4">
+                  {/* Remove mix-blend-multiply from inner image via string replace in Sector components, but here we just render the icon */}
+                  {svc.icon}
                 </div>
-                <div className="mt-4">
-                  <h3 className="text-white text-lg font-bold leading-tight mb-2">
-                    {svc.name}
-                  </h3>
-                  <div className="text-white/70 text-sm font-medium group-hover:text-white transition-colors flex items-center justify-center gap-1">
-                    Más info &rarr;
-                  </div>
+                <h3 className="text-navy font-bold text-xl text-center mt-2">
+                  {svc.name}
+                </h3>
+                <div className="text-electric text-sm font-semibold text-center mt-3">
+                  Ver servicio &rarr;
                 </div>
               </Reveal>
             ))}

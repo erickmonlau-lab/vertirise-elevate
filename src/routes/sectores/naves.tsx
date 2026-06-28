@@ -32,22 +32,22 @@ function NavesPage() {
         {
           name: t('services.cubiertas.short', 'Cubiertas'),
           bgColor: '#22c55e',
-          icon: <img src={iconFachadas} alt="" className="w-full h-full object-contain mix-blend-multiply" />
+          icon: <img src={iconFachadas} alt="" className="w-full h-full object-contain " />
         },
         {
           name: t('services.solares.short', 'Placas solares'),
           bgColor: '#22c55e',
-          icon: <img src={iconSolar} alt="" className="w-full h-full object-contain mix-blend-multiply" />
+          icon: <img src={iconSolar} alt="" className="w-full h-full object-contain " />
         },
         {
           name: t('services.lucernarios.short', 'Lucernarios'),
           bgColor: '#0096FF',
-          icon: <img src={iconCristales} alt="" className="w-full h-full object-contain mix-blend-multiply opacity-80" />
+          icon: <img src={iconCristales} alt="" className="w-full h-full object-contain  opacity-80" />
         },
         {
           name: t('services.lineas.short', 'Líneas de vida'),
           bgColor: '#f59e0b',
-          icon: <img src={iconLineas} alt="" className="w-full h-full object-contain mix-blend-multiply" />
+          icon: <img src={iconLineas} alt="" className="w-full h-full object-contain " />
         }
       ]}
     />
