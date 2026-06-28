@@ -56,8 +56,9 @@ function PlacasSolares() {
 
   return (
     <ServiceLayout
-      title={t('services.placas.title', 'Limpieza de Placas Solares Fotovoltaicas')}
-      description={t('services.placas.longDesc', 'Maximizamos el rendimiento de su instalación fotovoltaica con limpiezas especializadas. Eliminamos polvo y suciedad que reducen la eficiencia energética.')}
+      title={t('services.placas.title', 'Limpieza de Placas Solares')}
+      titleHighlight={t('services.placas.titleHighlight', 'Placas Solares')}
+      description={t('services.placas.longDesc', 'Mantenimiento preventivo y limpieza profesional de huertos solares e instalaciones fotovoltaicas en cubiertas. Aumenta el rendimiento de tus paneles hasta un 20%.')}
       benefits={[
         t('services.placas.benefit1', '+25% de rendimiento energético'),
         t('services.placas.benefit2', 'Agua pura sin detergentes químicos'),

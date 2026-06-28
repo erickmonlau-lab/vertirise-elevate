@@ -4,6 +4,7 @@ import { Reveal } from "./Reveal";
 
 interface ServiceLayoutProps {
   title: string;
+  titleHighlight?: string;
   description: string;
   benefits: string[];
   accentColor: string;
@@ -42,7 +43,7 @@ function FAQItem({ question, answer, accentColor }: { question: string, answer: 
   );
 }
 
-export function ServiceLayout({ title, description, benefits, accentColor, imageSrc, badgeSrc, heroBtnColor, iconFilter = "none", features, faqs }: ServiceLayoutProps) {
+export function ServiceLayout({ title, titleHighlight, description, benefits, accentColor, imageSrc, badgeSrc, heroBtnColor, iconFilter = "none", features, faqs }: ServiceLayoutProps) {
   const { t } = useTranslation();
   const [sent, setSent] = useState(false);
 
@@ -83,8 +84,16 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
               <span className="text-[#0a1628] font-bold">{title}</span>
             </div>
             
-            <h1 className="text-5xl md:text-6xl font-black text-[#0a1628] leading-tight mb-6">
-              {title}
+            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-black text-[#0a1628] tracking-tight leading-[1.05] mb-6">
+              {titleHighlight && title.includes(titleHighlight) ? (
+                <>
+                  {title.split(titleHighlight)[0]}
+                  <span className="text-white">{titleHighlight}</span>
+                  {title.split(titleHighlight)[1]}
+                </>
+              ) : (
+                title
+              )}
             </h1>
             
             <p className="text-[#0a1628]/80 text-lg md:text-xl mb-10 max-w-xl font-medium">

@@ -57,7 +57,8 @@ function Fachadas() {
   return (
     <ServiceLayout
       title={t('services.fachadas.title', 'Limpieza y Restauración de Fachadas')}
-      description={t('services.fachadas.longDesc', 'Rehabilitación y mantenimiento de fachadas mediante trabajos verticales. Reparación de grietas, pintura y limpieza profunda sin necesidad de estructuras voluminosas.')}
+      titleHighlight={t('services.fachadas.titleHighlight', 'de Fachadas')}
+      description={t('services.fachadas.longDesc', 'Mantenimiento integral de fachadas. Limpiamos, pintamos y reparamos desperfectos en lugares de difícil acceso sin necesidad de andamios.')}
       benefits={[
         t('services.fachadas.benefit1', 'Piedra, cristal, ladrillo y metal'),
         t('services.fachadas.benefit2', 'Sin andamios ni permisos de vía pública'),

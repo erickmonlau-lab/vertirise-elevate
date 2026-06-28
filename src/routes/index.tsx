@@ -1453,18 +1453,18 @@ function Certifications() {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-[#0a1628] relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-[#f8fafc] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <Reveal className="text-center mb-16">
           <span className="text-sm font-black tracking-[0.15em] uppercase text-electric">
             {t("certs.badge")}
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-navy leading-tight tracking-tight">
             {t("certs.title1")}
             <br />
             {t("certs.title2")}
           </h2>
-          <p className="mt-6 text-white/80 max-w-2xl mx-auto leading-relaxed text-lg md:text-xl font-medium">
+          <p className="mt-6 text-navy/80 max-w-2xl mx-auto leading-relaxed text-lg md:text-xl font-medium">
             {t("certs.desc")}
           </p>
         </Reveal>
@@ -1472,28 +1472,29 @@ function Certifications() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {certs.map((c, i) => (
             <Reveal key={c.name} delay={i * 80}>
-              <div className="h-full bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-electric/40 hover:bg-white/10 hover:-translate-y-1 transition-all flex flex-col group cursor-default">
-                <div className="w-8 h-1 bg-electric rounded mb-4" />
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-electric mb-4"
-                >
-                  <path d={c.icon} />
-                </svg>
-                <div className="text-white font-black text-xl mb-1 tracking-tight">
+              <div className="h-full bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-electric/30 hover:-translate-y-1 transition-all flex flex-col group cursor-default">
+                <div className="w-12 h-12 rounded-full bg-electric/10 grid place-items-center mb-5 shrink-0">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-electric"
+                  >
+                    <path d={c.icon} />
+                  </svg>
+                </div>
+                <div className="text-navy font-black text-xl mb-1 tracking-tight">
                   {c.name}
                 </div>
-                <div className="text-electric/80 text-xs font-semibold uppercase tracking-widest mb-3">
+                <div className="text-electric text-xs font-bold uppercase tracking-widest mb-3">
                   {c.desc}
                 </div>
-                <div className="text-white/50 text-sm leading-relaxed flex-1">
+                <div className="text-slate-500 text-sm leading-relaxed flex-1">
                   {c.detail}
                 </div>
               </div>
@@ -1502,7 +1503,7 @@ function Certifications() {
         </div>
         
         <Reveal delay={400}>
-          <div className="mt-12 text-center text-white/30 text-xs font-medium">
+          <div className="mt-12 text-center text-slate-400 text-xs font-medium">
             Todos nuestros técnicos operan bajo estos estándares
           </div>
         </Reveal>

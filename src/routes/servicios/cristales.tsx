@@ -57,6 +57,7 @@ function Cristales() {
   return (
     <ServiceLayout
       title={t('services.cristales.title', 'Limpieza de Cristales en Altura')}
+      titleHighlight={t('services.cristales.titleHighlight', 'en Altura')}
       description={t('services.cristales.longDesc', 'Especialistas en limpieza de cristales en altura mediante técnicas de acceso por cuerdas y agua osmotizada. Sin andamios, sin marcas, sin interrupciones.')}
       benefits={[
         t('services.cristales.benefit1', 'Sin andamios ni plataformas elevadoras'),

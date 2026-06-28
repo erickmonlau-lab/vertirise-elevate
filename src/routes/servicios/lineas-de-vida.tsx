@@ -57,6 +57,7 @@ function LineasDeVida() {
   return (
     <ServiceLayout
       title={t('services.lineas.title', 'Instalación y Certificación de Líneas de Vida')}
+      titleHighlight={t('services.lineas.titleHighlight', 'Líneas de Vida')}
       description={t('services.lineas.longDesc', 'Diseño, montaje y certificación de sistemas anticaídas y líneas de vida homologadas. Garantizamos la máxima seguridad para trabajos en altura.')}
       benefits={[
         t('services.lineas.benefit1', 'Cumplimiento de normativa EN 795'),
