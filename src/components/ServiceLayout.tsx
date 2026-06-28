@@ -9,7 +9,6 @@ interface ServiceLayoutProps {
   accentColor: string;
   imageSrc: string;
   badgeSrc: string;
-  heroImageSrc: string;
   heroBtnColor: string;
   features: { icon: React.ReactNode; title: string; desc: string }[];
   faqs: { q: string; a: string }[];
@@ -42,7 +41,7 @@ function FAQItem({ question, answer, accentColor }: { question: string, answer: 
   );
 }
 
-export function ServiceLayout({ title, description, benefits, accentColor, imageSrc, badgeSrc, heroImageSrc, heroBtnColor, features, faqs }: ServiceLayoutProps) {
+export function ServiceLayout({ title, description, benefits, accentColor, imageSrc, badgeSrc, heroBtnColor, features, faqs }: ServiceLayoutProps) {
   const { t } = useTranslation();
   const [sent, setSent] = useState(false);
 
@@ -68,12 +67,13 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
     <>
       {/* Hero Section */}
       <section 
-        className="w-full min-h-[60vh] flex items-center pt-32 pb-16 px-6 lg:px-10 relative"
+        className="w-full min-h-[60vh] flex items-center pt-32 pb-16 px-6 lg:px-10 relative overflow-hidden"
         style={{ backgroundColor: accentColor }}
       >
-        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
-          {/* Columna Izquierda */}
-          <div className="flex flex-col items-start text-left z-10">
+        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-10 items-center z-10">
+          
+          {/* Left Column (40%) */}
+          <div className="lg:col-span-5 flex flex-col items-start text-left">
             <div className="text-white/60 text-sm font-medium mb-4 flex items-center gap-2">
               <a href="/" className="hover:text-white transition-colors">{t("nav.home", "Inicio")}</a>
               <span>&gt;</span>
@@ -82,12 +82,9 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
               <span className="text-white">{title}</span>
             </div>
             
-            <div className="flex flex-col items-start gap-4 mb-6">
-              <img src={badgeSrc} alt="" className="w-16 h-16 object-contain drop-shadow-md animate-[float_6s_ease-in-out_infinite]" />
-              <h1 className="text-5xl md:text-6xl font-black text-white leading-tight">
-                {title}
-              </h1>
-            </div>
+            <h1 className="text-5xl md:text-6xl font-black text-white leading-tight mb-6">
+              {title}
+            </h1>
             
             <p className="text-white/80 text-lg mb-10 max-w-xl">
               {description}
@@ -97,20 +94,34 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
               onClick={() => {
                 document.getElementById('formulario-presupuesto')?.scrollIntoView({ behavior: 'smooth' })
               }}
-              className={`bg-white ${heroBtnColor} font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-xl`}
+              className={`bg-white ${heroBtnColor} font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-xl hidden lg:block`}
             >
-              Solicitar Presupuesto
+              Ver Detalles del Servicio
             </button>
           </div>
           
-          {/* Columna Derecha */}
-          <div className="relative w-full h-[400px] lg:h-full lg:min-h-[500px]">
-            <img 
-              src={heroImageSrc} 
-              alt={title} 
-              className="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-2xl" 
-            />
+          {/* Center Column (25%) */}
+          <div className="lg:col-span-3 flex justify-center items-center py-10 lg:py-0">
+             <img src={badgeSrc} alt="Icon" className="w-48 h-48 object-contain drop-shadow-2xl animate-[float_6s_ease-in-out_infinite]" />
           </div>
+
+          {/* Right Column (35%) Form */}
+          <div className="lg:col-span-4 w-full">
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 lg:p-8 shadow-2xl">
+              <h3 className="text-xl font-bold text-white mb-6">Solicitar Presupuesto Gratuito</h3>
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                 <input type="text" name="nombre" placeholder="Nombre" required className="w-full h-11 px-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all" />
+                 <input type="tel" name="telefono" placeholder="Teléfono" required className="w-full h-11 px-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all" />
+                 <input type="email" name="email" placeholder="Email" required className="w-full h-11 px-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all" />
+                 <textarea name="mensaje" placeholder="Mensaje" rows={3} required className="w-full py-3 px-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all resize-none"></textarea>
+                 
+                 <button type="submit" className={`w-full bg-white ${heroBtnColor} font-bold h-12 rounded-xl mt-2 hover:scale-[1.02] transition-transform shadow-lg`}>
+                   {sent ? "¡Mensaje Enviado!" : "Solicitar Presupuesto Gratuito"}
+                 </button>
+              </form>
+            </div>
+          </div>
+
         </div>
       </section>
 
