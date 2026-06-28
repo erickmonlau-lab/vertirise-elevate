@@ -41,8 +41,8 @@ function GondolaWorker({ className = "", isDesktop = false }: { className?: stri
     <div className={`pointer-events-none z-0 overflow-hidden ${className}`}>
       <style>{`
         @keyframes gondola {
-          0%   { transform: translateY(20px); }
-          100% { transform: translateY(320px); }
+          0%   { transform: translateY(-40px); }
+          100% { transform: translateY(140px); }
         }
         @keyframes ropeMove {
           0%   { stroke-dashoffset: 0; }
@@ -73,7 +73,7 @@ function GondolaWorker({ className = "", isDesktop = false }: { className?: stri
 
       <svg
         className="w-full h-full"
-        viewBox={isDesktop ? "0 0 220 280" : "0 0 220 400"}
+        viewBox="0 0 220 400"
         preserveAspectRatio="xMidYMax meet"
         style={{ filter: 'drop-shadow(0 0 5px rgba(0,150,255,0.35))' }}
       >
@@ -134,11 +134,11 @@ function GondolaWorker({ className = "", isDesktop = false }: { className?: stri
         </g>
 
         {/* ── Ropes — centred on character position ── */}
-        <line x1={rope1X} y1="-800" x2={rope1X} y2="400"
+        <line x1={rope1X} y1="0" x2={rope1X} y2="400"
           stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.55"
           style={{ animation: 'ropeMove 1s linear infinite' }}
         />
-        <line x1={rope2X} y1="-800" x2={rope2X} y2="400"
+        <line x1={rope2X} y1="0" x2={rope2X} y2="400"
           stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.55"
           style={{ animation: 'ropeMove 1s linear infinite' }}
         />
@@ -232,20 +232,45 @@ const WA_HREF = "https://wa.me/34936556161?text=Hola,%20me%20gustaría%20solicit
 export function Footer() {
   const { t } = useTranslation();
   return (
-    <footer className="bg-[#0b1121] text-white pt-20 pb-28 md:pb-10 relative overflow-hidden flex flex-col">
+    <footer className="bg-[#0b1121] text-white pt-20 pb-28 md:pb-16 relative overflow-hidden flex flex-col">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Brand Info */}
           <div className="relative overflow-hidden">
-            <GondolaWorker className="md:hidden absolute right-[-8px] bottom-[-60px] w-[110px] h-[160px] opacity-55" />
+            <GondolaWorker className="md:hidden absolute right-[-8px] bottom-0 w-[100px] h-[140px] opacity-45" />
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-6">
-              <img
-                src={logoDiset}
-                alt="Vertirise Elevate"
-                className="h-10 w-auto invert brightness-0 opacity-90"
-              />
-            </div>
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                  {/* Edificio izquierdo más bajo */}
+                  <rect x="2" y="20" width="12" height="22" rx="1" fill="#2a6db5"/>
+                  {/* Ventanas edificio izq */}
+                  <rect x="5" y="23" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                  <rect x="10" y="23" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                  <rect x="5" y="29" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                  <rect x="10" y="29" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                  {/* Edificio central más alto */}
+                  <rect x="16" y="8" width="14" height="34" rx="1" fill="#1a4f8a"/>
+                  {/* Ventanas edificio central */}
+                  <rect x="19" y="12" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                  <rect x="24" y="12" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                  <rect x="19" y="18" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                  <rect x="24" y="18" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                  <rect x="19" y="24" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                  <rect x="24" y="24" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                  {/* Edificio derecho medio */}
+                  <rect x="32" y="14" width="10" height="28" rx="1" fill="#2a6db5"/>
+                  {/* Ventanas edificio der */}
+                  <rect x="34" y="17" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                  <rect x="34" y="23" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                  {/* Escobilla diagonal (símbolo de limpieza) */}
+                  <line x1="8" y1="36" x2="22" y2="14" stroke="#5bb8e8" strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="4" y1="34" x2="12" y2="40" stroke="#1a4f8a" strokeWidth="4" strokeLinecap="round"/>
+                </svg>
+                <div>
+                  <div className="text-white font-black text-2xl tracking-wide leading-none">DISET</div>
+                  <div className="text-[#5bb8e8] font-semibold text-xs tracking-widest mt-0.5">Limpiezas Verticales</div>
+                </div>
+              </div>
             <p className="text-slate-400 text-sm mb-2">Carrer de Cuzco, 39-41, 08030 Barcelona</p>
             <p className="text-slate-400 text-sm mb-6">info@vertirise.com</p>
             <div className="text-slate-400 text-sm">
@@ -331,7 +356,7 @@ export function Footer() {
           </p>
         </div>
       </div>
-      <GondolaWorker isDesktop className="hidden md:block absolute right-0 bottom-0 h-[260px] w-[200px] opacity-85" />
+      <GondolaWorker isDesktop className="hidden md:block absolute right-0 bottom-0 h-[320px] w-[220px] opacity-85" />
     </footer>
   );
 }
