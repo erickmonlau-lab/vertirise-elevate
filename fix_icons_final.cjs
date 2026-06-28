@@ -4,7 +4,7 @@ const path = require('path');
 const config = {
   'icon1-pastel.png': {
     out: 'icon-lineas-pastel.png',
-    keepRegions: 1 // Carabiner
+    keepRegions: 0 // Make carabiner transparent
   },
   'icon2-pastel.png': {
     out: 'icon-cristales-pastel.png',
@@ -29,9 +29,9 @@ async function processIcon(inFile, conf) {
   const width = img.bitmap.width;
   const height = img.bitmap.height;
   
-  // 1. Erase text at the bottom (y >= 925)
+  // 1. Erase text at the bottom (y >= 900)
   for (let x = 0; x < width; x++) {
-    for (let y = 925; y < height; y++) {
+    for (let y = 900; y < height; y++) {
       img.setPixelColor(0x00000000, x, y);
     }
   }
@@ -52,7 +52,7 @@ async function processIcon(inFile, conf) {
   const regions = [];
   
   for (let x = 0; x < width; x++) {
-    for (let y = 0; y < 925; y++) {
+    for (let y = 0; y < 900; y++) {
       if (!visited[x][y] && isWhite(x, y)) {
         let area = 0;
         let isOuter = false;
@@ -65,13 +65,13 @@ async function processIcon(inFile, conf) {
           area++;
           pixels.push([cx, cy]);
           
-          if (cx === 0 || cx === width - 1 || cy === 0 || cy === 924) {
+          if (cx === 0 || cx === width - 1 || cy === 0 || cy === 899) {
             isOuter = true;
           }
           
           const neighbors = [[cx+1, cy], [cx-1, cy], [cx, cy+1], [cx, cy-1]];
           for (const [nx, ny] of neighbors) {
-            if (nx >= 0 && ny >= 0 && nx < width && ny < 925) {
+            if (nx >= 0 && ny >= 0 && nx < width && ny < 900) {
               if (!visited[nx][ny] && isWhite(nx, ny)) {
                 visited[nx][ny] = true;
                 stack.push([nx, ny]);
