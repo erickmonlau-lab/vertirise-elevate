@@ -2,127 +2,45 @@ import { useRef, useEffect, useState } from "react";
 import { useTranslation } from "../i18n/I18nContext";
 import logoDiset from "@/assets/logo-diset.webp";
 
-const PARTICLE_COLORS = ['#0096FF', '#22c55e', '#D52374', '#f59e0b', '#8B5CF6'];
-
-function hexToRgb(hex: string) {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : { r: 0, g: 0, b: 0 };
-}
-
-const COLOR_RGBS = PARTICLE_COLORS.map(hexToRgb);
-
-function ParticleCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animationFrameId: number;
-    let particles: any[] = [];
-    
-    const resize = () => {
-      const parent = canvas.parentElement;
-      if (parent) {
-        canvas.width = parent.clientWidth;
-        canvas.height = parent.clientHeight;
-      }
-    };
-    
-    window.addEventListener('resize', resize);
-    resize();
-
-    class Particle {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-      currentColorIndex: number;
-      targetColorIndex: number;
-      colorProgress: number;
-      colorSpeed: number;
-
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.6; // -0.3 to 0.3
-        this.vy = (Math.random() - 0.5) * 0.6;
-        this.radius = Math.random() * 2 + 2; // 2 to 4
-        
-        this.currentColorIndex = Math.floor(Math.random() * COLOR_RGBS.length);
-        this.targetColorIndex = Math.floor(Math.random() * COLOR_RGBS.length);
-        this.colorProgress = 0;
-        this.colorSpeed = 1 / (Math.random() * 120 + 180);
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (this.x - this.radius < 0 || this.x + this.radius > canvas.width) {
-          this.vx *= -1;
-          this.x = Math.max(this.radius, Math.min(canvas.width - this.radius, this.x));
+function ClimberAnimation() {
+  return (
+    <div className="absolute right-[60px] top-0 h-full w-[80px] pointer-events-none z-0 opacity-15">
+      <style>{`
+        @keyframes descend {
+          0% { transform: translateY(-20px); }
+          100% { transform: translateY(calc(100vh - 40px)); }
         }
-        if (this.y - this.radius < 0 || this.y + this.radius > canvas.height) {
-          this.vy *= -1;
-          this.y = Math.max(this.radius, Math.min(canvas.height - this.radius, this.y));
-        }
+      `}</style>
+      
+      {/* Rope 1 */}
+      <div className="absolute left-[20px] top-0 w-[2px] h-full bg-[#0096FF]"></div>
+      {/* Climber 1 */}
+      <svg className="absolute left-[8px] top-0 w-[24px] h-[40px] text-[#0096FF]" style={{ animation: 'descend 8s ease-in-out infinite alternate' }} viewBox="0 0 24 40">
+        {/* Head */}
+        <circle cx="12" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
+        {/* Body */}
+        <line x1="12" y1="14" x2="12" y2="26" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        {/* Arms holding the rope */}
+        <line x1="12" y1="18" x2="4" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="12" y1="18" x2="20" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        {/* Legs */}
+        <line x1="12" y1="26" x2="6" y2="38" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="12" y1="26" x2="18" y2="38" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
 
-        this.colorProgress += this.colorSpeed;
-        if (this.colorProgress >= 1) {
-          this.colorProgress = 0;
-          this.currentColorIndex = this.targetColorIndex;
-          this.targetColorIndex = Math.floor(Math.random() * COLOR_RGBS.length);
-          this.colorSpeed = 1 / (Math.random() * 120 + 180);
-        }
-      }
-
-      draw() {
-        if (!ctx) return;
-        const c1 = COLOR_RGBS[this.currentColorIndex];
-        const c2 = COLOR_RGBS[this.targetColorIndex];
-        
-        const r = Math.round(c1.r + (c2.r - c1.r) * this.colorProgress);
-        const g = Math.round(c1.g + (c2.g - c1.g) * this.colorProgress);
-        const b = Math.round(c1.b + (c2.b - c1.b) * this.colorProgress);
-
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
-        ctx.fill();
-      }
-    }
-
-    for (let i = 0; i < 40; i++) {
-      particles.push(new Particle());
-    }
-
-    const render = () => {
-      if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      animationFrameId = requestAnimationFrame(render);
-    };
-
-    render();
-
-    return () => {
-      window.removeEventListener('resize', resize);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-30" />;
+      {/* Rope 2 */}
+      <div className="absolute left-[60px] top-0 w-[2px] h-full bg-[#0096FF]"></div>
+      {/* Climber 2 */}
+      <svg className="absolute left-[48px] top-0 w-[24px] h-[40px] text-[#0096FF]" style={{ animation: 'descend 8s ease-in-out infinite alternate -4s' }} viewBox="0 0 24 40">
+        <circle cx="12" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
+        <line x1="12" y1="14" x2="12" y2="26" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="12" y1="18" x2="4" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="12" y1="18" x2="20" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="12" y1="26" x2="6" y2="38" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="12" y1="26" x2="18" y2="38" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    </div>
+  );
 }
 
 const PHONE_HREF = "tel:+34936556161";
@@ -130,8 +48,8 @@ const WA_HREF = "https://wa.me/34936556161?text=Hola,%20me%20gustaría%20solicit
 export function Footer() {
   const { t } = useTranslation();
   return (
-    <footer className="bg-[#0b1121] text-white pt-20 pb-10 relative overflow-hidden">
-      <ParticleCanvas />
+    <footer className="bg-[#0b1121] bg-gradient-to-b from-[#0096FF]/10 to-transparent text-white pt-20 pb-10 relative overflow-hidden">
+      <ClimberAnimation />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Brand Info */}
