@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { translations, Language, TranslationKey } from './translations';
 
 interface I18nContextType {
@@ -11,12 +11,16 @@ interface I18nContextType {
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(() => {
+  const [language, setLanguageState] = useState<Language>('es');
+
+  useEffect(() => {
     if (typeof window !== 'undefined') {
-      return (localStorage.getItem('language') as Language) || 'es';
+      const saved = localStorage.getItem('language') as Language;
+      if (saved && (saved === 'es' || saved === 'ca' || saved === 'en')) {
+        setLanguageState(saved);
+      }
     }
-    return 'es';
-  });
+  }, []);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
