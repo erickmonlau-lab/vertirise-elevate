@@ -1539,12 +1539,12 @@ function Certifications() {
         
         <Reveal delay={400}>
           <div className="mt-14 flex flex-col items-center">
-            <div className="inline-flex items-center gap-3 bg-white/60 px-5 py-3 rounded-2xl border border-slate-200/60 shadow-sm backdrop-blur-sm">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-electric">
+            <div className="inline-flex items-center gap-3 bg-electric px-5 py-3 rounded-2xl shadow-md shadow-electric/20 backdrop-blur-sm">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
                 <path d="m9 12 2 2 4-4"/>
               </svg>
-              <span className="text-slate-500 text-sm font-semibold tracking-wide">
+              <span className="text-white text-sm font-semibold tracking-wide">
                 Todos nuestros técnicos operan bajo estos estándares
               </span>
             </div>
