@@ -7,7 +7,6 @@ interface SectorLayoutProps {
   description: string;
   phone: string;
   bgColor: string; // solid color for the hero, e.g. #5BC8E8
-  iconSvg: React.ReactNode;
   
   benefitsTitle: string;
   benefits: string[];
@@ -25,7 +24,6 @@ export function SectorLayout({
   description,
   phone,
   bgColor,
-  iconSvg,
   benefitsTitle,
   benefits,
   imageSrc,
@@ -51,7 +49,7 @@ export function SectorLayout({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
             {/* Left Col: Text */}
-            <div className="lg:col-span-4 text-center lg:text-left">
+            <div className="lg:col-span-7 text-center lg:text-left">
               <Reveal>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-navy leading-[1.05] tracking-tight mb-6">
                   {title}
@@ -68,15 +66,8 @@ export function SectorLayout({
               </Reveal>
             </div>
 
-            {/* Center Col: Icon */}
-            <div className="lg:col-span-4 hidden lg:flex items-center justify-center">
-              <Reveal delay={100} className="w-full max-w-[280px]">
-                {iconSvg}
-              </Reveal>
-            </div>
-
             {/* Right Col: Form */}
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-5">
               <Reveal delay={200}>
                 <div className="bg-white rounded-3xl p-8 shadow-xl">
                   <h3 className="text-xl font-bold text-navy mb-2">
