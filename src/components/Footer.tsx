@@ -7,7 +7,7 @@ import iconFachadas from "@/assets/icon-fachadas-pastel.png";
 import iconLineas from "@/assets/icon-lineas-pastel.png";
 import iconSolares from "@/assets/icon-solar-pastel.png";
 
-const HUES = [165, 97, 287, 353, 331, 213, 285, 315];
+const COLORS = ['#0096FF', '#22c55e', '#D52374', '#f59e0b', '#8B5CF6', '#EF4444'];
 const ICONS = [iconCristales, iconFachadas, iconLineas, iconSolares];
 
 function AnimatedIcon({ icon, startIndex, top, right, duration, rotation }: any) {
@@ -15,26 +15,34 @@ function AnimatedIcon({ icon, startIndex, top, right, duration, rotation }: any)
   
   useEffect(() => {
     const interval = setInterval(() => {
-      setColorIndex(prev => (prev + 1) % HUES.length);
+      setColorIndex(prev => (prev + 1) % COLORS.length);
     }, 2000);
     return () => clearInterval(interval);
   }, []);
 
-  const hueValue = HUES[colorIndex];
+  const color = COLORS[colorIndex];
 
   return (
-    <img 
-      src={icon} 
-      className="absolute w-10 h-10 pointer-events-none transition-all duration-[2000ms] ease-linear"
+    <div
+      className="absolute pointer-events-none transition-colors duration-[2000ms] ease-linear"
       style={{
-        top: top,
-        right: right,
-        filter: `brightness(0) saturate(100%) invert(1) sepia(1) saturate(5) hue-rotate(${hueValue}deg)`,
+        top,
+        right,
+        backgroundColor: color,
+        borderRadius: '8px',
+        padding: '4px',
+        display: 'inline-flex',
         animation: `floatIcon ${duration}s ease-in-out infinite`,
         '--rot': `${rotation}deg`
       } as React.CSSProperties}
-      alt=""
-    />
+    >
+      <img
+        src={icon}
+        className="w-10 h-10"
+        style={{ mixBlendMode: 'luminosity', opacity: 0.8 }}
+        alt=""
+      />
+    </div>
   );
 }
 
@@ -53,7 +61,7 @@ function AnimatedIconPattern() {
   ];
 
   return (
-    <div className="absolute right-0 top-0 w-1/2 h-full overflow-hidden pointer-events-none z-0 opacity-[0.15]">
+    <div className="absolute right-0 top-0 w-1/2 h-full overflow-hidden pointer-events-none z-0 opacity-25">
       <style>{`
         @keyframes floatIcon { 
           0%, 100% { transform: translateY(0px) rotate(var(--rot)); } 
