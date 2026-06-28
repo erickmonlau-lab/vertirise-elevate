@@ -307,8 +307,8 @@ export function ServiceLayout({ title, titleHighlight, description, benefits, ac
                   </svg>
                   {t("nav.call", "Llamar ahora")}
                 </a>
-                <span className="text-white/80 text-sm font-semibold uppercase tracking-widest">
-                  Atención Inmediata
+                <span className="text-white text-xs font-bold uppercase tracking-widest">
+                  {t('nav.atencion', 'Atención Inmediata')}
                 </span>
               </div>
             </div>
