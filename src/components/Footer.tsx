@@ -281,12 +281,12 @@ export function StickyMobileCTA() {
   }, []);
   return (
     <div
-      className={`fixed bottom-4 left-4 right-4 z-40 md:hidden transition-all duration-500 ${visible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0 pointer-events-none"}`}
+      className={`fixed bottom-5 left-4 right-4 z-40 md:hidden pointer-events-none transition-all duration-500 ${visible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}
     >
-      <div className="bg-slate-900/85 backdrop-blur-2xl border border-white/10 p-2 rounded-[1.25rem] shadow-2xl flex gap-2 w-full max-w-sm mx-auto">
+      <div className="flex gap-3 w-full max-w-[22rem] mx-auto">
         <a
           href={PHONE_HREF}
-          className="flex-1 h-12 rounded-xl bg-gradient-to-r from-electric to-[#007BFF] text-white font-bold flex items-center justify-center gap-2 shadow-[0_4px_15px_rgba(37,99,235,0.4)] active:scale-95 transition-transform"
+          className="pointer-events-auto flex-1 h-14 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(37,99,235,0.4)] active:scale-95 transition-all border border-blue-500/50"
         >
           <svg
             className="w-4 h-4"
@@ -299,13 +299,13 @@ export function StickyMobileCTA() {
           >
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
           </svg>
-          <span className="font-semibold">{t("nav.call", "Llamar")}</span>
+          <span className="font-semibold tracking-wide">{t("nav.call", "Llamar")}</span>
         </a>
         <a
           href={WA_HREF}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 h-12 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-bold flex items-center justify-center gap-2 shadow-[0_4px_15px_rgba(37,211,102,0.4)] active:scale-95 transition-transform"
+          className="pointer-events-auto flex-1 h-14 rounded-full bg-[#25D366] text-white font-bold flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(37,211,102,0.4)] active:scale-95 transition-all border border-[#20BD5A]/50"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
