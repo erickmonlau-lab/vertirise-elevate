@@ -1069,7 +1069,7 @@ function Benefits() {
             </a>
             <a
               href="#contacto"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white font-bold hover:-translate-y-1 transition-all text-sm w-full mt-3 backdrop-blur-sm"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white text-navy font-bold hover:bg-slate-50 hover:-translate-y-1 transition-all shadow-lg hover:shadow-xl text-sm w-full mt-3"
             >
               {t("benefits.cta.visit")}
             </a>
@@ -1710,10 +1710,15 @@ function CTA() {
       <div className="relative max-w-7xl mx-auto px-5 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start min-w-0">
           <Reveal className="min-w-0">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-electric/10 border border-electric/20 text-xs font-semibold tracking-wider uppercase text-electric">
-              <span className="w-2 h-2 rounded-full bg-electric animate-pulse shadow-[0_0_8px_#0096FF]" />{" "}
-              {t("cta.badge")}
-            </span>
+            <div className="relative inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white shadow-[0_0_30px_rgba(0,150,255,0.15)] border border-electric/10 group cursor-default">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-electric/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-tr from-electric to-[#00f2fe] shadow-[0_0_15px_rgba(0,242,254,0.4)]">
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white" />
+              </div>
+              <span className="relative text-[10px] sm:text-xs font-black tracking-[0.15em] uppercase bg-gradient-to-r from-navy to-electric bg-clip-text text-transparent">
+                {t("cta.badge")}
+              </span>
+            </div>
             <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold text-navy leading-[1.05] break-words">
               {t("cta.title")} <span className="text-electric">{t("cta.title2")}</span>
             </h2>
