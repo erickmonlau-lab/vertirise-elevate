@@ -45,10 +45,9 @@ export function Nav() {
   ];
 
   return (
-    <>
-      <div className="fixed top-3 md:top-4 left-0 right-0 z-50 flex justify-center px-4 md:px-4 pointer-events-none transition-all duration-300">
+         <div className="fixed top-2 md:top-4 left-0 right-0 z-50 flex justify-center px-4 md:px-4 pointer-events-none transition-all duration-300">
         <header
-          className={`pointer-events-auto w-full max-w-6xl transition-all duration-500 bg-white rounded-3xl md:rounded-full px-5 md:px-6 py-3.5 md:py-2.5 flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-4 border border-slate-100 ${scrolled ? "shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] translate-y-0" : "shadow-lg md:translate-y-2"}`}
+          className={`pointer-events-auto w-full max-w-6xl transition-all duration-500 bg-white rounded-[1.75rem] md:rounded-full px-5 md:px-6 py-3 md:py-2.5 flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-4 border border-slate-100 ${scrolled ? "shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] translate-y-0" : "shadow-lg md:translate-y-2"}`}
         >
           <div className="flex items-center justify-between w-full md:w-auto">
             <a
@@ -59,44 +58,44 @@ export function Nav() {
               <Logo white={false} />
             </a>
 
-            <div className="flex items-center gap-4 md:hidden">
+            <div className="flex items-center gap-5 md:hidden">
               <button
                 onClick={() => setMobileOpen((o) => !o)}
                 aria-label="Abrir menú"
-                className="flex flex-col justify-center items-center w-8 h-8 gap-[6px] transition-all"
+                className="flex flex-col justify-center items-center w-8 h-8 gap-[4.5px] transition-all"
               >
                 <span
-                  className={`block w-6 h-[1px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "rotate-45 translate-y-[7px]" : ""}`}
+                  className={`block w-[26px] h-[1.5px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "rotate-45 translate-y-[6px]" : ""}`}
                 />
                 <span
-                  className={`block w-6 h-[1px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "opacity-0" : ""}`}
+                  className={`block w-[26px] h-[1.5px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "opacity-0" : ""}`}
                 />
                 <span
-                  className={`block w-6 h-[1px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""}`}
+                  className={`block w-[26px] h-[1.5px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "-rotate-45 -translate-y-[6px]" : ""}`}
                 />
               </button>
 
-              <div className="flex items-center text-xs text-slate-500 tracking-widest gap-2">
+              <div className="flex items-center text-[13px] text-navy tracking-widest gap-2">
                 <button
                   type="button"
                   onClick={() => setLanguage("es")}
-                  className={`transition-colors ${language === "es" ? "text-navy font-black" : "font-medium hover:text-navy"}`}
+                  className={`transition-colors ${language === "es" ? "font-black" : "font-medium hover:text-electric"}`}
                 >
                   ES
                 </button>
-                <span className="text-slate-300 font-light text-[10px] opacity-70">|</span>
+                <span className="text-navy font-light opacity-30">|</span>
                 <button
                   type="button"
                   onClick={() => setLanguage("ca")}
-                  className={`transition-colors ${language === "ca" ? "text-navy font-black" : "font-medium hover:text-navy"}`}
+                  className={`transition-colors ${language === "ca" ? "font-black" : "font-medium hover:text-electric"}`}
                 >
                   CA
                 </button>
-                <span className="text-slate-300 font-light text-[10px] opacity-70">|</span>
+                <span className="text-navy font-light opacity-30">|</span>
                 <button
                   type="button"
                   onClick={() => setLanguage("en")}
-                  className={`transition-colors ${language === "en" ? "text-navy font-black" : "font-medium hover:text-navy"}`}
+                  className={`transition-colors ${language === "en" ? "font-black" : "font-medium hover:text-electric"}`}
                 >
                   EN
                 </button>

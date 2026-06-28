@@ -173,11 +173,11 @@ export function Footer() {
           <div className="relative overflow-hidden">
             <GondolaWorker className="md:hidden absolute right-[-8px] bottom-0 w-[100px] h-[140px] opacity-100" />
             <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-6 bg-white rounded-lg px-4 py-3 w-fit shadow-md">
+              <div className="flex items-center gap-3 mb-6">
                 <img
                   src={logoDiset}
                   alt="DISET Limpiezas Verticales"
-                  className="h-10 w-auto object-contain"
+                  className="h-12 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
                 />
               </div>
             <p className="text-slate-400 text-sm mb-2">Carrer de Cuzco, 39-41, 08030 Barcelona</p>
