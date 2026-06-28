@@ -1493,7 +1493,7 @@ function Certifications() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {certs.map((c, i) => (
             <Reveal key={c.name} delay={i * 80} className={i === 4 ? "col-span-2 md:col-span-1" : ""}>
-              <div className="h-full bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-electric/30 hover:-translate-y-1 transition-all flex flex-col group cursor-default">
+              <div className="h-full bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-electric/30 hover:-translate-y-1 transition-all flex flex-col items-center text-center group cursor-default">
                 <div className="w-12 h-12 rounded-full bg-electric/10 grid place-items-center mb-5 shrink-0">
                   <svg
                     width="24"
