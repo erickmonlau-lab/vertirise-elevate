@@ -170,7 +170,7 @@ function GondolaWorker() {
             {/* Face features (animates between left profile and center) */}
             <g style={{ animation: 'turnFace 6s ease-in-out infinite' }}>
               {/* Helmet brim */}
-              <rect x="88" y="-1" width="30" height="5" rx="2" fill="#0096FF" />
+              <rect x="88" y="-4" width="30" height="5" rx="2" fill="#0096FF" />
               
               {/* Left eye */}
               <circle cx="97" cy="5" r="2.2" fill="#1a1a2e" />
@@ -201,7 +201,7 @@ const WA_HREF = "https://wa.me/34936556161?text=Hola,%20me%20gustaría%20solicit
 export function Footer() {
   const { t } = useTranslation();
   return (
-    <footer className="bg-[#0b1121] text-white pt-20 pb-10 relative overflow-hidden">
+    <footer className="bg-[#0b1121] text-white pt-20 pb-28 md:pb-10 relative overflow-hidden">
       <GondolaWorker />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
