@@ -1807,7 +1807,7 @@ function CTA() {
           </Reveal>
 
           <Reveal delay={120} className="w-full max-w-full min-w-0">
-            <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm max-w-full overflow-hidden w-full mx-auto md:max-w-[28rem] lg:max-w-none">
+            <div className="relative bg-white rounded-2xl border-2 border-electric p-6 sm:p-8 shadow-[0_0_30px_rgba(0,150,255,0.15)] ring-4 ring-electric/10 max-w-full overflow-hidden w-full mx-auto md:max-w-[28rem] lg:max-w-none">
               <h3 className="text-xl sm:text-2xl font-extrabold text-navy mb-1 leading-tight">
                 {t("cta.title")} {t("cta.title2")}
               </h3>
