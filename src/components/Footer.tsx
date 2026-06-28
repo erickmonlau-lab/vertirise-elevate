@@ -2,44 +2,208 @@ import { useRef, useEffect, useState } from "react";
 import { useTranslation } from "../i18n/I18nContext";
 import logoDiset from "@/assets/logo-diset.webp";
 
-function ClimberAnimation() {
-  return (
-    <div className="absolute right-[60px] top-0 h-full w-[80px] pointer-events-none z-0 opacity-15">
-      <style>{`
-        @keyframes descend {
-          0% { transform: translateY(-20px); }
-          100% { transform: translateY(calc(100vh - 40px)); }
-        }
-      `}</style>
-      
-      {/* Rope 1 */}
-      <div className="absolute left-[20px] top-0 w-[2px] h-full bg-[#0096FF]"></div>
-      {/* Climber 1 */}
-      <svg className="absolute left-[8px] top-0 w-[24px] h-[40px] text-[#0096FF]" style={{ animation: 'descend 8s ease-in-out infinite alternate' }} viewBox="0 0 24 40">
-        {/* Head */}
-        <circle cx="12" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
-        {/* Body */}
-        <line x1="12" y1="14" x2="12" y2="26" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        {/* Arms holding the rope */}
-        <line x1="12" y1="18" x2="4" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="12" y1="18" x2="20" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        {/* Legs */}
-        <line x1="12" y1="26" x2="6" y2="38" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="12" y1="26" x2="18" y2="38" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      </svg>
+function BuildingCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-      {/* Rope 2 */}
-      <div className="absolute left-[60px] top-0 w-[2px] h-full bg-[#0096FF]"></div>
-      {/* Climber 2 */}
-      <svg className="absolute left-[48px] top-0 w-[24px] h-[40px] text-[#0096FF]" style={{ animation: 'descend 8s ease-in-out infinite alternate -4s' }} viewBox="0 0 24 40">
-        <circle cx="12" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
-        <line x1="12" y1="14" x2="12" y2="26" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="12" y1="18" x2="4" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="12" y1="18" x2="20" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="12" y1="26" x2="6" y2="38" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="12" y1="26" x2="18" y2="38" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      </svg>
-    </div>
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const W = 300;
+    // Resize canvas height to match parent
+    const parent = canvas.parentElement;
+    const H = parent ? parent.clientHeight : 500;
+    canvas.width = W;
+    canvas.height = H;
+
+    // ── Building geometry ──────────────────────────────────────────────
+    const bldLeft = 20;
+    const bldRight = 160;
+    const bldTop = 10;
+    const bldBottom = H - 10;
+    const bldW = bldRight - bldLeft;
+    const bldH = bldBottom - bldTop;
+
+    // Window grid
+    const cols = 5;
+    const rows = Math.floor(bldH / 28);
+    const winW = 14;
+    const winH = 16;
+    const hGap = (bldW - cols * winW) / (cols + 1);
+    const vGap = (bldH - rows * winH) / (rows + 1);
+
+    // Generate window states
+    const windows: { lit: boolean; opacity: number; timer: number; interval: number }[] = [];
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        windows.push({
+          lit: Math.random() > 0.5,
+          opacity: Math.random() * 0.6 + 0.2,
+          timer: 0,
+          interval: Math.random() * 180 + 60, // frames between state changes
+        });
+      }
+    }
+
+    // ── Operarios ──────────────────────────────────────────────────────
+    const ropeXs = [bldLeft + 30, bldLeft + 75, bldLeft + 120];
+    const workers = ropeXs.map((rx, i) => ({
+      x: rx,
+      y: bldTop + (i * bldH) / 4,            // staggered start
+      speed: 0.4 + i * 0.15,
+      dir: i % 2 === 0 ? 1 : -1,
+      top: bldTop,
+      bottom: bldBottom - 30,
+    }));
+
+    let raf: number;
+    let frame = 0;
+
+    function neon(color: string, blur = 10) {
+      ctx.shadowBlur = blur;
+      ctx.shadowColor = color;
+    }
+    function clearFx() { ctx.shadowBlur = 0; }
+
+    function drawBuilding() {
+      // Outer shell
+      ctx.strokeStyle = '#0096FF';
+      ctx.lineWidth = 1.5;
+      neon('#0096FF', 8);
+      ctx.strokeRect(bldLeft, bldTop, bldW, bldH);
+      clearFx();
+
+      // Horizontal floor lines
+      ctx.strokeStyle = 'rgba(0,150,255,0.15)';
+      ctx.lineWidth = 0.5;
+      for (let r = 1; r < rows; r++) {
+        const fy = bldTop + vGap + r * (winH + vGap) - vGap / 2;
+        ctx.beginPath();
+        ctx.moveTo(bldLeft, fy);
+        ctx.lineTo(bldRight, fy);
+        ctx.stroke();
+      }
+    }
+
+    function drawWindows() {
+      windows.forEach((win, idx) => {
+        const r = Math.floor(idx / cols);
+        const c = idx % cols;
+        const wx = bldLeft + hGap + c * (winW + hGap);
+        const wy = bldTop + vGap + r * (winH + vGap);
+
+        win.timer++;
+        if (win.timer >= win.interval) {
+          win.lit = !win.lit;
+          win.opacity = Math.random() * 0.55 + 0.25;
+          win.timer = 0;
+          win.interval = Math.random() * 200 + 60;
+        }
+
+        if (win.lit) {
+          ctx.fillStyle = `rgba(0,150,255,${win.opacity})`;
+          neon('#0096FF', 6);
+          ctx.fillRect(wx, wy, winW, winH);
+          clearFx();
+        } else {
+          ctx.fillStyle = 'rgba(0,30,60,0.6)';
+          ctx.fillRect(wx, wy, winW, winH);
+        }
+        // Window border
+        ctx.strokeStyle = 'rgba(0,150,255,0.3)';
+        ctx.lineWidth = 0.5;
+        ctx.strokeRect(wx, wy, winW, winH);
+      });
+    }
+
+    function drawRopes() {
+      ctx.setLineDash([4, 4]);
+      ctx.strokeStyle = 'rgba(0,150,255,0.4)';
+      ctx.lineWidth = 1;
+      ropeXs.forEach(rx => {
+        ctx.beginPath();
+        ctx.moveTo(rx, bldTop);
+        ctx.lineTo(rx, bldBottom);
+        ctx.stroke();
+      });
+      ctx.setLineDash([]);
+    }
+
+    function drawWorker(x: number, y: number) {
+      ctx.strokeStyle = '#0096FF';
+      ctx.lineWidth = 1.5;
+      neon('#0096FF', 15);
+
+      // Helmet / head
+      ctx.beginPath();
+      ctx.arc(x, y, 5, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Body
+      ctx.beginPath();
+      ctx.moveTo(x, y + 5);
+      ctx.lineTo(x, y + 16);
+      ctx.stroke();
+
+      // Arms (T-shape)
+      ctx.beginPath();
+      ctx.moveTo(x - 7, y + 9);
+      ctx.lineTo(x + 7, y + 9);
+      ctx.stroke();
+
+      // Legs
+      ctx.beginPath();
+      ctx.moveTo(x, y + 16);
+      ctx.lineTo(x - 4, y + 25);
+      ctx.moveTo(x, y + 16);
+      ctx.lineTo(x + 4, y + 25);
+      ctx.stroke();
+
+      // Cleaning bucket (small rect below)
+      ctx.strokeRect(x - 4, y + 26, 8, 6);
+
+      clearFx();
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, W, H);
+      frame++;
+
+      drawBuilding();
+      drawWindows();
+      drawRopes();
+
+      // Move and draw workers
+      workers.forEach(w => {
+        w.y += w.speed * w.dir;
+        if (w.y >= w.bottom) { w.dir = -1; }
+        if (w.y <= w.top + 10) { w.dir = 1; }
+        drawWorker(w.x, w.y);
+      });
+
+      raf = requestAnimationFrame(render);
+    }
+
+    render();
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        width: '300px',
+        height: '100%',
+        opacity: 0.6,
+        pointerEvents: 'none',
+        zIndex: 0,
+      }}
+    />
   );
 }
 
@@ -48,8 +212,8 @@ const WA_HREF = "https://wa.me/34936556161?text=Hola,%20me%20gustaría%20solicit
 export function Footer() {
   const { t } = useTranslation();
   return (
-    <footer className="bg-[#0b1121] bg-gradient-to-b from-[#0096FF]/10 to-transparent text-white pt-20 pb-10 relative overflow-hidden">
-      <ClimberAnimation />
+    <footer className="bg-[#0b1121] text-white pt-20 pb-10 relative overflow-hidden">
+      <BuildingCanvas />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Brand Info */}
