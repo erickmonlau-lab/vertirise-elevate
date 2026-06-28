@@ -548,7 +548,7 @@ function Sectors() {
                 <p className="text-slate-600 leading-relaxed mb-6 text-sm flex-grow relative z-10">
                   {t(sector.descKey)}
                 </p>
-                <Link to={sector.route} className="flex items-center gap-2 text-slate-500 font-medium text-sm hover:text-electric transition-colors cursor-pointer w-fit relative z-10 mt-auto">
+                <Link to={sector.route} className="flex items-center gap-2 text-navy font-bold text-sm hover:text-electric transition-colors cursor-pointer w-fit relative z-10 mt-auto">
                   {t("sectors.more")}
                   <svg
                     width="16"
