@@ -59,7 +59,7 @@ export function Nav() {
               <Logo white={false} />
             </a>
 
-            <div className="flex items-center gap-5 md:hidden -mt-1">
+            <div className="flex items-center gap-5 md:hidden mt-1.5 mr-2">
               <button
                 onClick={() => setMobileOpen((o) => !o)}
                 aria-label="Abrir menú"
