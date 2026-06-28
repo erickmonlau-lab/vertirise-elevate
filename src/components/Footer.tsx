@@ -8,7 +8,7 @@ const GROWS = 8;
 const GW = 55;   // panel width
 const GH = 52;   // panel height
 
-function GondolaWorker() {
+function GondolaWorker({ className = "" }: { className?: string }) {
   const panels = [];
   for (let r = 0; r < GROWS; r++) {
     for (let c = 0; c < GCOLS; c++) {
@@ -24,7 +24,7 @@ function GondolaWorker() {
   const rope2X = 140;
 
   return (
-    <div className="pointer-events-none z-0 opacity-85 overflow-hidden relative w-full flex justify-center items-center h-[140px] mt-4 md:absolute md:right-0 md:bottom-0 md:h-full md:w-[220px] md:mt-0 md:block">
+    <div className={`pointer-events-none z-0 overflow-hidden ${className}`}>
       <style>{`
         @keyframes gondola {
           0%   { transform: translateY(20px); }
@@ -58,7 +58,7 @@ function GondolaWorker() {
       `}</style>
 
       <svg
-        className="relative w-[120px] h-[140px] md:absolute md:w-full md:h-full"
+        className="w-full h-full"
         viewBox="0 0 220 400"
         preserveAspectRatio="xMidYMax meet"
         style={{ filter: 'drop-shadow(0 0 5px rgba(0,150,255,0.35))' }}
@@ -199,8 +199,10 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Brand Info */}
-          <div>
-            <div className="flex items-center gap-3 mb-6">
+          <div className="relative overflow-hidden">
+            <GondolaWorker className="md:hidden absolute right-[-8px] bottom-0 w-[110px] h-[160px] opacity-[0.18]" />
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-6">
               <img
                 src={logoDiset}
                 alt="Vertirise Elevate"
@@ -213,6 +215,7 @@ export function Footer() {
               <p className="font-semibold text-slate-300 mb-1">{t("footer.schedule.label")}:</p>
               <p>{t("footer.schedule")}</p>
               <p className="mt-1 font-bold text-white text-lg">935 22 43 05</p>
+            </div>
             </div>
           </div>
 
@@ -291,7 +294,7 @@ export function Footer() {
           </p>
         </div>
       </div>
-      <GondolaWorker />
+      <GondolaWorker className="hidden md:block absolute right-0 bottom-0 h-full w-[220px] opacity-85" />
     </footer>
   );
 }
