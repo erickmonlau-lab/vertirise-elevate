@@ -4,7 +4,7 @@ const path = require('path');
 const config = {
   'icon1-pastel.png': {
     out: 'icon-lineas-pastel.png',
-    keepRegions: 1 // Keep carabiner white
+    keepIndices: [1, 8] // Region 1 is the tube, Region 8 is the small metal part. Region 0 is the middle void.
   }
 };
 
@@ -89,11 +89,18 @@ async function processIcon(inFile, conf) {
   // Sort inner regions by area descending
   innerRegions.sort((a, b) => b.area - a.area);
   
-  // Keep the first `conf.keepRegions` inner regions white
+  // Keep the regions specified in `conf.keepIndices` or `conf.keepRegions` white
   // Make the rest transparent (they are gaps)
   let removedGaps = 0;
   for (let i = 0; i < innerRegions.length; i++) {
-    if (i >= conf.keepRegions) {
+    let shouldKeep = false;
+    if (conf.keepIndices) {
+      shouldKeep = conf.keepIndices.includes(i);
+    } else if (conf.keepRegions) {
+      shouldKeep = i < conf.keepRegions;
+    }
+    
+    if (!shouldKeep) {
       for (const [px, py] of innerRegions[i].pixels) {
         img.setPixelColor(0x00000000, px, py);
       }
@@ -101,7 +108,7 @@ async function processIcon(inFile, conf) {
     }
   }
   
-  console.log(`Kept ${Math.min(conf.keepRegions, innerRegions.length)} inner regions white. Removed ${removedGaps} inner gaps.`);
+  console.log(`Removed ${removedGaps} inner gaps.`);
   
   await img.write(outPath);
   console.log(`Saved ${outPath}`);
