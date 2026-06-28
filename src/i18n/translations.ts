@@ -3,7 +3,7 @@ export type Language = 'es' | 'ca' | 'en';
 export const translations = {
   es: {
     // Nav
-    'nav.call': 'Llamar',
+    'nav.call': 'Contactar',
     'nav.services': 'Servicios',
     'nav.projects': 'Proyectos',
     'nav.process': 'Proceso',
@@ -368,7 +368,7 @@ export const translations = {
   },
   ca: {
     // Nav
-    'nav.call': 'Trucar',
+    'nav.call': 'Contactar',
     'nav.services': 'Serveis',
     'nav.projects': 'Projectes',
     'nav.process': 'Procés',
@@ -733,7 +733,7 @@ export const translations = {
   },
   en: {
     // Nav
-    'nav.call': 'Call',
+    'nav.call': 'Contact',
     'nav.services': 'Services',
     'nav.projects': 'Projects',
     'nav.process': 'Process',
