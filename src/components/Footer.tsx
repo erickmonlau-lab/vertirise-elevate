@@ -48,7 +48,7 @@ function GondolaWorker() {
       <style>{`
         @keyframes gondola {
           0%   { transform: translateY(20px); }
-          100% { transform: translateY(300px); }
+          100% { transform: translateY(280px); }
         }
         @keyframes ropeMove {
           to { stroke-dashoffset: -32; }
@@ -57,46 +57,42 @@ function GondolaWorker() {
           0%, 100% { opacity: 1; }
           50%      { opacity: 0.35; }
         }
-        /* ── arm: large scrub sweep ── */
-        @keyframes scrub {
-          0%   { transform: rotate(-25deg) translateX(0px); }
-          50%  { transform: rotate(25deg)  translateX(5px); }
-          100% { transform: rotate(-25deg) translateX(0px); }
+        /* ── window wipe arm ── */
+        @keyframes wipeWindow {
+          0%   { transform: rotate(-30deg); }
+          50%  { transform: rotate(20deg); }
+          100% { transform: rotate(-30deg); }
         }
-        /* ── right arm: rope tension sway ── */
-        @keyframes holdRope {
-          0%, 100% { transform: rotate(-5deg); }
-          50%      { transform: rotate(5deg); }
+        /* ── rope hold arm ── */
+        @keyframes holdRopeL {
+          0%, 100% { transform: rotate(-8deg); }
+          50%      { transform: rotate(8deg); }
         }
-        /* ── head: follows scrubbing arm ── */
-        @keyframes lookAtWork {
-          0%, 100% { transform: rotate(-10deg); }
-          50%      { transform: rotate(5deg); }
+        /* ── head nod ── */
+        @keyframes nod {
+          0%, 100% { transform: rotate(0deg); }
+          30%      { transform: rotate(-8deg); }
+          70%      { transform: rotate(5deg); }
         }
         /* ── body breathe ── */
-        @keyframes breathe {
+        @keyframes bodyBreathe {
           0%, 100% { transform: scaleY(1); }
-          50%      { transform: scaleY(1.03); }
+          50%      { transform: scaleY(1.025); }
         }
-        /* ── glass clean flash ── */
-        @keyframes clean {
+        /* ── glass clean ── */
+        @keyframes glassFlash {
           0%, 100% { opacity: 0; }
-          30%, 70% { opacity: 0.28; }
+          40%, 60% { opacity: 0.22; }
         }
-        /* ── glass shine line ── */
-        @keyframes shine {
+        /* ── shine ── */
+        @keyframes shineFlash {
           0%, 100% { opacity: 0; }
-          50%      { opacity: 1; }
+          50%      { opacity: 0.9; }
         }
-        /* ── water drips ── */
+        /* ── drips ── */
         @keyframes drip {
           0%   { transform: translateY(0px);  opacity: 1; }
-          100% { transform: translateY(40px); opacity: 0; }
-        }
-        /* ── water burst particles ── */
-        @keyframes burst {
-          0%   { opacity: 0.9; transform: scale(1); }
-          100% { opacity: 0;   transform: scale(0.3); }
+          100% { transform: translateY(35px); opacity: 0; }
         }
       `}</style>
 
@@ -135,137 +131,125 @@ function GondolaWorker() {
           />
         ))}
 
-        {/* ── Crystal clean flash (synced 1.2s with scrub) ── */}
-        <rect x="28" y="0" width="30" height="80" rx="2"
-          fill="rgba(255,255,255,0.15)"
-          style={{ animation: 'clean 1.2s ease-in-out infinite' }}
+        {/* ── Crystal clean flash — stays fixed in glass wall ── */}
+        <rect x="120" y="0" width="38" height="100" rx="2"
+          fill="rgba(255,255,255,0.12)"
+          style={{ animation: 'glassFlash 1.5s ease-in-out infinite' }}
         />
-        {/* Shine diagonal line on clean zone */}
-        <line x1="32" y1="10" x2="52" y2="60"
-          stroke="rgba(255,255,255,0.6)" strokeWidth="3" strokeLinecap="round"
-          style={{ animation: 'shine 1.2s ease-in-out infinite' }}
+        <line x1="122" y1="8" x2="148" y2="70"
+          stroke="rgba(255,255,255,0.55)" strokeWidth="2.5" strokeLinecap="round"
+          style={{ animation: 'shineFlash 1.5s ease-in-out infinite' }}
         />
 
-        {/* ── Ropes ── */}
-        <line x1={rope1X} y1="0" x2={rope1X} y2="400"
+        {/* ── Ropes — centred on new character position ── */}
+        <line x1="158" y1="0" x2="158" y2="400"
           stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.55"
           style={{ animation: 'ropeMove 1s linear infinite' }}
         />
-        <line x1={rope2X} y1="0" x2={rope2X} y2="400"
+        <line x1="182" y1="0" x2="182" y2="400"
           stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.55"
           style={{ animation: 'ropeMove 1s linear infinite' }}
         />
 
-        {/* ── Gondola + worker (scale 1.3 from centre) ── */}
+        {/* ══ GONDOLA — animates up/down ══ */}
         <g style={{ animation: 'gondola 6s ease-in-out infinite alternate' }}>
-          <g style={{ transform: 'scale(1.3)', transformOrigin: '110px 50px', transformBox: 'fill-box' }}>
 
-            {/* Platform */}
-            <rect x="51" y="78" width="118" height="16" rx="3"
-              fill="#0d2a4a" stroke="#0096FF" strokeWidth="1.5" />
-            <line x1="60" y1="78" x2="60" y2="55" stroke="#0096FF" strokeWidth="1.5" />
-            <line x1="160" y1="78" x2="160" y2="55" stroke="#0096FF" strokeWidth="1.5" />
-            <line x1="60" y1="55" x2="160" y2="55" stroke="#0096FF" strokeWidth="1" strokeDasharray="5 3" />
-            <circle cx={rope1X} cy="78" r="4" fill="#0096FF" opacity="0.9" />
-            <circle cx={rope2X} cy="78" r="4" fill="#0096FF" opacity="0.9" />
+          {/* Platform */}
+          <rect x="140" y="180" width="70" height="14" rx="3"
+            fill="#0d2a4a" stroke="#0096FF" strokeWidth="1.5" />
+          {/* Railing posts */}
+          <line x1="148" y1="180" x2="148" y2="162" stroke="#0096FF" strokeWidth="1.5" />
+          <line x1="202" y1="180" x2="202" y2="162" stroke="#0096FF" strokeWidth="1.5" />
+          {/* Railing top */}
+          <line x1="148" y1="162" x2="202" y2="162"
+            stroke="#0096FF" strokeWidth="1" strokeDasharray="5 3" />
+          {/* Pulley connectors to ropes */}
+          <circle cx="158" cy="180" r="4" fill="#0096FF" opacity="0.9" />
+          <circle cx="182" cy="180" r="4" fill="#0096FF" opacity="0.9" />
 
-            {/* Legs */}
-            <rect x="96" y="48" width="12" height="30" rx="3" fill="#1a1a2e" />
-            <rect x="112" y="48" width="12" height="30" rx="3" fill="#1a1a2e" />
+          {/* ── WORKER ── */}
 
-            {/* Body — breathes softly */}
-            <g style={{ transformOrigin: '110px 50px', transformBox: 'fill-box', animation: 'breathe 2.5s ease-in-out infinite' }}>
-              <rect x="88" y="10" width="44" height="40" rx="5"
-                fill="#1a1a2e" stroke="#0096FF" strokeWidth="1.5" />
-              <line x1="91" y1="12" x2="129" y2="46" stroke="#0096FF" strokeWidth="2" />
-              <line x1="129" y1="12" x2="91" y2="46" stroke="#0096FF" strokeWidth="2" />
-              <line x1="88" y1="30" x2="132" y2="30" stroke="#0096FF" strokeWidth="1.5" />
-            </g>
+          {/* Legs */}
+          <rect x="163" y="148" width="9" height="32" rx="3" fill="#0d1f3c" />
+          <rect x="178" y="148" width="9" height="32" rx="3" fill="#0d1f3c" />
 
-            {/* ── Scrubbing arm (LEFT, toward glass) ── */}
-            <g style={{
-              transformOrigin: '88px 22px',
-              transformBox: 'fill-box',
-              animation: 'scrub 1.2s ease-in-out infinite',
-            }}>
-              {/* Arm */}
-              <line x1="88" y1="22" x2="60" y2="18"
-                stroke="#f4a261" strokeWidth="5" strokeLinecap="round" />
-              {/* Squeegee handle */}
-              <line x1="60" y1="18" x2="48" y2="16"
-                stroke="#aaa" strokeWidth="3" strokeLinecap="round" />
-              {/* Squeegee blade — wide horizontal */}
-              <rect x="34" y="11" width="35" height="6" rx="3" fill="#0096FF" />
-              <rect x="34" y="10" width="35" height="3" rx="1" fill="rgba(255,255,255,0.5)" />
+          {/* Body — breathing */}
+          <g style={{ transformOrigin: '170px 140px', transformBox: 'fill-box', animation: 'bodyBreathe 2.5s ease-in-out infinite' }}>
+            <rect x="155" y="108" width="30" height="40" rx="5"
+              fill="#0d1f3c" stroke="#0096FF" strokeWidth="1.5" />
+            {/* Arnés orange X */}
+            <path d="M 157 110 L 183 144 M 183 110 L 157 144"
+              stroke="#f4a261" strokeWidth="3" strokeLinecap="round" />
+            {/* Belt */}
+            <rect x="155" y="128" width="30" height="6" rx="2" fill="#f4a261" />
+          </g>
 
-              {/* Water drips from squeegee tip */}
-              {DRIPS.map((d, i) => (
-                <circle
-                  key={i}
-                  cx={34 + d.dx}
-                  cy={17 + d.dy}
-                  r="2"
-                  fill="rgba(0,150,255,0.85)"
-                  style={{
-                    animation: `drip ${d.dur} ease-in ${d.delay} infinite`,
-                  }}
-                />
-              ))}
+          {/* ── Left arm — holds rope, sways ── */}
+          <g style={{ transformOrigin: '155px 115px', transformBox: 'fill-box', animation: 'holdRopeL 3s ease-in-out infinite' }}>
+            {/* Upper arm */}
+            <rect x="143" y="112" width="14" height="8" rx="4" fill="#FDBCB4" />
+            {/* Forearm */}
+            <rect x="132" y="118" width="14" height="8" rx="4"
+              fill="#FDBCB4" style={{ transform: 'rotate(20deg)', transformOrigin: '143px 120px', transformBox: 'fill-box' }} />
+            {/* Hand gripping rope */}
+            <circle cx="133" cy="126" r="5" fill="#FDBCB4" />
+          </g>
 
-              {/* Burst water particles (fan arc from impact point) */}
-              {BURST.map((b, i) => {
-                const rad = (b.angle * Math.PI) / 180;
-                const tx = Math.round(Math.cos(rad) * b.dist);
-                const ty = Math.round(Math.sin(rad) * b.dist);
-                return (
-                  <circle
-                    key={`b${i}`}
-                    cx={34}
-                    cy={14}
-                    r="1.5"
-                    fill="rgba(100,200,255,0.7)"
-                    style={{
-                      animation: `burst 1.2s ease-out ${-(i * 0.15)}s infinite`,
-                      transform: `translate(${tx}px, ${ty}px)`,
-                    }}
-                  />
-                );
-              })}
-            </g>
+          {/* ── Right arm — wipes glass ── */}
+          <g style={{ transformOrigin: '185px 115px', transformBox: 'fill-box', animation: 'wipeWindow 1.5s ease-in-out infinite' }}>
+            {/* Upper arm */}
+            <rect x="185" y="110" width="8" height="18" rx="4" fill="#FDBCB4" />
+            {/* Forearm */}
+            <rect x="185" y="125" width="8" height="16" rx="4" fill="#FDBCB4" />
+            {/* Handle */}
+            <rect x="183" y="138" width="12" height="5" rx="2" fill="#888" />
+            {/* Squeegee blade */}
+            <rect x="178" y="142" width="22" height="7" rx="3" fill="#0096FF" />
+            {/* Squeegee gloss */}
+            <rect x="178" y="142" width="22" height="3" rx="2" fill="rgba(255,255,255,0.45)" />
 
-            {/* ── Right arm (rope tension sway) ── */}
-            <g style={{ transformOrigin: '132px 22px', transformBox: 'fill-box', animation: 'holdRope 2s ease-in-out infinite' }}>
-              <line x1="132" y1="22" x2="158" y2="55"
-                stroke="#f4a261" strokeWidth="5" strokeLinecap="round" />
-            </g>
+            {/* Water drips from blade */}
+            {DRIPS.map((d, i) => (
+              <circle
+                key={i}
+                cx={185 + d.dx}
+                cy={149 + d.dy}
+                r="2"
+                fill="rgba(0,150,255,0.85)"
+                style={{ animation: `drip ${d.dur} ease-in ${d.delay} infinite` }}
+              />
+            ))}
+          </g>
 
-            {/* ── Head — 3/4 view, follows scrubbing arm ── */}
-            <g style={{
-              transformOrigin: '110px 0px',
-              transformBox: 'fill-box',
-              transform: 'rotate(-15deg)',
-              animation: 'lookAtWork 2s ease-in-out infinite',
-            }}>
-              {/* Base head (skin) */}
-              <circle cx="110" cy="0" r="18" fill="#f4a261" />
-              {/* Cheek blush */}
-              <circle cx="118" cy="4" r="4" fill="rgba(244,162,97,0.4)" />
-              {/* Eye */}
-              <circle cx="116" cy="-3" r="2.5" fill="#1a1a2e" />
-              {/* Eye highlight */}
-              <circle cx="117" cy="-4" r="0.8" fill="white" />
-              {/* Smile */}
-              <path d="M 106 5 Q 112 10 118 5" stroke="#1a1a2e" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-              {/* Helmet */}
-              <path d="M 92 0 A 18 16 0 0 1 128 0 Z" fill="#0096FF" />
-              {/* Helmet brim */}
-              <rect x="89" y="-1" width="42" height="5" rx="2" fill="#0096FF" />
-              {/* Visor */}
-              <rect x="97" y="2" width="26" height="8" rx="3"
-                fill="#0d2a4a" stroke="#0096FF" strokeWidth="1" />
-            </g>
+          {/* ── HEAD — nods, 3/4 view ── */}
+          <g style={{ transformOrigin: '170px 88px', transformBox: 'fill-box', animation: 'nod 2s ease-in-out infinite' }}>
+            {/* Face (skin ellipse) */}
+            <ellipse cx="170" cy="88" rx="14" ry="16" fill="#FDBCB4" />
+            {/* Left cheek blush */}
+            <circle cx="160" cy="94" r="5" fill="rgba(255,150,100,0.3)" />
+            {/* Right cheek blush */}
+            <circle cx="178" cy="94" r="4" fill="rgba(255,150,100,0.25)" />
+            {/* Left eye (front, bigger) */}
+            <circle cx="163" cy="85" r="3" fill="#2d1b00" />
+            <circle cx="164" cy="84" r="1" fill="white" />
+            {/* Left eyebrow */}
+            <path d="M 159 81 Q 163 79 167 81"
+              stroke="#2d1b00" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+            {/* Right eye (side, smaller — 3/4 perspective) */}
+            <circle cx="176" cy="85" r="2" fill="#2d1b00" />
+            <circle cx="177" cy="84" r="0.7" fill="white" />
+            {/* Smile */}
+            <path d="M 160 96 Q 168 102 176 96"
+              stroke="#2d1b00" strokeWidth="2" fill="none" strokeLinecap="round" />
+            {/* Helmet top */}
+            <path d="M 156 88 A 14 16 0 0 1 184 88 Z" fill="#0096FF" />
+            {/* Helmet brim */}
+            <rect x="153" y="87" width="34" height="5" rx="2" fill="#0096FF" />
+            {/* Visor strip */}
+            <rect x="160" y="88" width="20" height="6" rx="2"
+              fill="#0d2a4a" stroke="#0096FF" strokeWidth="0.8" />
+          </g>
 
-          </g>{/* end scale group */}
         </g>{/* end gondola */}
       </svg>
     </div>
