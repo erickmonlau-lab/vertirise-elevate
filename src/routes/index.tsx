@@ -368,7 +368,7 @@ function Hero() {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-32 pb-20 w-full mt-10">
         <div className="max-w-3xl text-white">
           <div className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-electric shadow-lg shadow-electric/40 animate-[fade-in_0.8s_ease-out]">
-            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
             <span className="text-[10px] sm:text-xs font-black tracking-widest sm:tracking-[0.2em] uppercase text-white">
               {t("hero.badge")}
             </span>
