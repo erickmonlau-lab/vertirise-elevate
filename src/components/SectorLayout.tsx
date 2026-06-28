@@ -164,7 +164,7 @@ export function SectorLayout({
 
             <div className="relative">
               <Reveal delay={100} className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
-                <img src={imageSrc} alt={title} className="w-full h-full object-cover" />
+                <img loading="lazy" decoding="async" src={imageSrc} alt={title} className="w-full h-full object-cover" />
               </Reveal>
             </div>
 

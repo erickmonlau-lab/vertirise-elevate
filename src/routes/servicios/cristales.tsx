@@ -6,7 +6,6 @@ import { ServiceSchema } from '../../components/SchemaOrg'
 import { useEffect } from 'react'
 import imgCristales from '../../assets/service-cristales.webp'
 import badgeCristales from '../../assets/icon-cristales-pastel.webp'
-import imgAfterCristales from '../../assets/after-cristales.webp'
 
 export const Route = createFileRoute('/servicios/cristales')({
   component: Cristales,

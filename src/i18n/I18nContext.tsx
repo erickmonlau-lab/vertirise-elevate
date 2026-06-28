@@ -1,17 +1,25 @@
 "use client";
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { translations, Language, TranslationKey } from './translations';
+import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
+import type { Language, TranslationKey } from './translations';
+
+type TranslationRecord = Record<string, string>;
 
 interface I18nContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: TranslationKey) => string;
+  t: (key: TranslationKey, fallback?: string) => string;
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
+async function loadLocale(lang: Language): Promise<TranslationRecord> {
+  const mod = await import(`./locales/${lang}.ts`);
+  return mod.default;
+}
+
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('es');
+  const [translations, setTranslations] = useState<TranslationRecord>({});
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -22,17 +30,20 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const setLanguage = (lang: Language) => {
+  useEffect(() => {
+    loadLocale(language).then(setTranslations);
+  }, [language]);
+
+  const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
     if (typeof window !== 'undefined') {
       localStorage.setItem('language', lang);
     }
-  };
+  }, []);
 
-  const t = (key: TranslationKey): string => {
-    const trans = translations as any;
-    return trans[language]?.[key] || trans['es']?.[key] || key;
-  };
+  const t = useCallback((key: TranslationKey, fallback?: string): string => {
+    return translations[key] || fallback || key;
+  }, [translations]);
 
   return (
     <I18nContext.Provider value={{ language, setLanguage, t }}>

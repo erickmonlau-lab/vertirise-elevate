@@ -14,5 +14,31 @@ export default defineConfig({
   },
   nitro: {
     preset: "vercel"
-  }
+  },
+  vite: {
+    build: {
+      target: "es2020",
+      cssCodeSplit: true,
+      cssMinify: true,
+      chunkSizeWarningLimit: 600,
+      reportCompressedSize: false,
+      rollupOptions: {
+        output: {
+          manualChunks: (id: string) => {
+            if (id.includes("node_modules/gsap")) return "gsap";
+            if (id.includes("node_modules/@tanstack/react-query")) return "react-query";
+            if (id.includes("src/i18n/locales/es")) return "i18n-es";
+            if (id.includes("src/i18n/locales/ca")) return "i18n-ca";
+            if (id.includes("src/i18n/locales/en")) return "i18n-en";
+          },
+          chunkFileNames: "assets/[name]-[hash].js",
+          entryFileNames: "assets/[name]-[hash].js",
+          assetFileNames: "assets/[name]-[hash].[ext]",
+        },
+      },
+    },
+    optimizeDeps: {
+      include: ["react", "react-dom", "@gsap/react", "gsap"],
+    },
+  },
 });

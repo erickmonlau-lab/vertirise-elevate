@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { useTranslation } from "../i18n/I18nContext";
 import logoDiset from "@/assets/logo-diset.webp";
 
@@ -163,7 +163,7 @@ function GondolaWorker({ className = "" }: { className?: string }) {
 
 const PHONE_HREF = "tel:+34644652741";
 const WA_HREF = "https://wa.me/34644652741?text=Hola,%20me%20gustaría%20solicitar%20un%20presupuesto%20gratuito.";
-export function Footer() {
+function FooterBase() {
   const { t } = useTranslation();
   return (
     <footer className="bg-[#0b1121] text-white pt-20 pb-28 md:pb-16 relative overflow-hidden flex flex-col">
@@ -174,7 +174,7 @@ export function Footer() {
             <GondolaWorker className="md:hidden absolute right-[-8px] bottom-0 w-[100px] h-[140px] opacity-100" />
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-6">
-                <img
+                <img loading="lazy" decoding="async"
                   src={logoDiset}
                   alt="DISET Limpiezas Verticales"
                   className="h-12 w-auto object-contain brightness-0 invert"
@@ -270,8 +270,9 @@ export function Footer() {
   );
 }
 
-// — Sticky Mobile CTA —
-export function StickyMobileCTA() {
+export const Footer = memo(FooterBase);
+
+function StickyMobileCTABase() {
   const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -317,3 +318,5 @@ export function StickyMobileCTA() {
     </div>
   );
 }
+
+export const StickyMobileCTA = memo(StickyMobileCTABase);

@@ -118,7 +118,7 @@ export function ServiceLayout({ title, titleHighlight, description, benefits, ac
           {/* Right Column (Icon) */}
           <div className="flex justify-center items-center py-10 lg:py-0 relative">
              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2)_0%,transparent_60%)] rounded-full w-full h-full scale-150 pointer-events-none"></div>
-             <img src={badgeSrc} alt="Icon" className="animate-[float_6s_ease-in-out_infinite] drop-shadow-xl" style={{ filter: iconFilter, width: '320px', height: '320px', objectFit: 'contain' }} />
+             <img loading="lazy" decoding="async" src={badgeSrc} alt="Icon" className="animate-[float_6s_ease-in-out_infinite] drop-shadow-xl" style={{ filter: iconFilter, width: '320px', height: '320px', objectFit: 'contain' }} />
           </div>
 
         </div>
@@ -136,7 +136,7 @@ export function ServiceLayout({ title, titleHighlight, description, benefits, ac
 
             <div className="mb-10 rounded-3xl overflow-hidden shadow-2xl relative group bg-navy border-4 border-white">
               <div className="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-              <img src={imageSrc} alt={title} className="w-full h-auto object-cover aspect-[16/10] group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100" />
+              <img loading="lazy" decoding="async" src={imageSrc} alt={title} className="w-full h-auto object-cover aspect-[16/10] group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100" />
             </div>
 
             <div className="prose prose-slate prose-lg max-w-none text-slate-600 mb-10">

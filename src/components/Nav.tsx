@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { useTranslation } from "../i18n/I18nContext";
 import logoDiset from "@/assets/logo-diset.webp";
 const PHONE_HREF = "tel:+34644652741";
 function Logo({ white }: { white: boolean }) {
   return (
     <div className="flex items-center">
-      <img
+      <img loading="lazy" decoding="async"
         src={logoDiset}
         alt="DISET Limpiezas Verticales"
         height={48}
@@ -16,7 +16,7 @@ function Logo({ white }: { white: boolean }) {
 }
 
 // — Nav (White initially, Dark Glass on scroll) —
-export function Nav() {
+function NavBase() {
   const { t, setLanguage, language } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -169,3 +169,5 @@ export function Nav() {
     </>
   );
 }
+
+export const Nav = memo(NavBase);

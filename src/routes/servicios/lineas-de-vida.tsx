@@ -6,7 +6,6 @@ import { ServiceSchema } from '../../components/SchemaOrg'
 import { useEffect } from 'react'
 import imgLineas from '../../assets/service-lineas.webp'
 import badgeLineas from '../../assets/icon-lineas-pastel.webp'
-import imgHero from '../../assets/hero.webp'
 
 export const Route = createFileRoute('/servicios/lineas-de-vida')({
   component: LineasDeVida,

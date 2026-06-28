@@ -6,7 +6,6 @@ import { ServiceSchema } from '../../components/SchemaOrg'
 import { useEffect } from 'react'
 import imgSolares from '../../assets/service-solar.webp'
 import badgeSolares from '../../assets/icon-solar-pastel.webp'
-import imgAfterSolares from '../../assets/after-solares.webp'
 
 export const Route = createFileRoute('/servicios/placas-solares')({
   component: PlacasSolares,

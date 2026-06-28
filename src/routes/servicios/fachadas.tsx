@@ -6,7 +6,6 @@ import { ServiceSchema } from '../../components/SchemaOrg'
 import { useEffect } from 'react'
 import imgFachadas from '../../assets/service-fachadas.webp'
 import badgeFachadas from '../../assets/icon-fachadas-pastel.webp'
-import imgAfterFachadas from '../../assets/after-fachada.webp'
 
 export const Route = createFileRoute('/servicios/fachadas')({
   component: Fachadas,

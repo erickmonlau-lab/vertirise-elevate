@@ -65,7 +65,7 @@ export function CinematicShowcase() {
     <section ref={containerRef} className="relative h-screen w-full bg-[#02040a] overflow-hidden" id="proceso">
       <div className="absolute inset-0 z-0 origin-[50%_20%]">
         <div className="vertigo-bg absolute inset-0 w-full h-full">
-          <img 
+          <img loading="lazy" decoding="async" 
             src={vertigoImg} 
             alt="Fachada de cristal" 
             className="w-full h-full object-cover object-top"

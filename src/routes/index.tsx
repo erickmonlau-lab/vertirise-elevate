@@ -359,6 +359,9 @@ function Hero() {
           alt="Operarios DISET en trabajos verticales sobre fachada de cristal en Barcelona"
           width={1920}
           height={1080}
+          fetchPriority="high"
+          loading="eager"
+          decoding="sync"
           className="absolute inset-0 w-full h-full object-cover object-[55%_10%] md:object-center scale-105"
         />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(10,22,40,0.95)_0%,rgba(10,22,40,0.85)_40%,rgba(10,22,40,0.4)_100%)]" />
@@ -411,7 +414,7 @@ function Hero() {
           <div className="mt-16 flex items-center gap-6 text-white/70 text-sm animate-[fade-in_1s_0.6s_both]">
             <div className="flex -space-x-2">
               {heroAvatars.map((src, i) => (
-                <img
+                <img loading="lazy" decoding="async"
                   key={i}
                   src={src}
                   alt={`Operario DISET ${i + 1}`}
@@ -508,11 +511,10 @@ function Stats() {
 }
 
 // — Sectors (Replaces Client Logos) —
+const SECTOR_CIRCLE_COLORS = ["bg-[#e91e63]", "bg-[#03a9f4]", "bg-[#39FF14] text-navy"];
+
 function Sectors() {
   const { t } = useTranslation();
-  
-  // Custom colors requested by user
-  const circleColors = ["bg-[#e91e63]", "bg-[#03a9f4]", "bg-[#39FF14] text-navy"];
   
   return (
     <section className="bg-[#f8fafc] pt-20 pb-24 border-y border-border overflow-hidden relative">
@@ -530,7 +532,7 @@ function Sectors() {
                   0{i + 1}
                 </div>
                 
-                <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-6 relative z-10 ${circleColors[i]} ${i !== 2 ? 'text-white' : ''}`}>
+                <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-6 relative z-10 ${SECTOR_CIRCLE_COLORS[i]} ${i !== 2 ? 'text-white' : ''}`}>
                   <svg
                     width="24"
                     height="24"
@@ -607,7 +609,7 @@ function Services() {
                     className={`group ${s.color} rounded-3xl p-8 lg:p-10 shadow-sm border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col cursor-pointer relative`}
                   >
                     <div className="w-32 h-32 mb-6 group-hover:scale-110 transition-transform duration-500 origin-bottom-left">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={s.customIcon}
                         alt={t(s.titleKey as TranslationKey)}
                         className={`w-full h-full mix-blend-multiply ${s.objectClass || "object-contain object-bottom"}`}
@@ -688,7 +690,7 @@ function BeforeAfterSection() {
                 className={`relative shrink-0 w-28 overflow-hidden rounded-xl border-2 transition-all duration-300 text-left group ${activeCase === i ? "border-electric shadow-glow scale-[1.02]" : "border-border hover:border-electric/40"}`}
               >
                 <div className="aspect-[3/4] overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={c.after}
                     alt={c.labelKey}
                     className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${activeCase === i ? "brightness-100" : "brightness-75"}`}
@@ -725,7 +727,7 @@ function BeforeAfterSection() {
                 className={`relative overflow-hidden rounded-xl border-2 transition-all duration-300 text-left group ${activeCase === i ? "border-electric shadow-glow scale-[1.02]" : "border-border hover:border-electric/40 hover:shadow-soft"}`}
               >
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={c.after}
                     alt={c.labelKey}
                     className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${activeCase === i ? "brightness-100" : "brightness-75"}`}
@@ -1081,102 +1083,7 @@ function Benefits() {
 }
 
 // — Video Section —
-function VideoSection() {
-  const { t } = useTranslation();
-  const [playing, setPlaying] = useState(false);
-  const VIDEO_ID = "aBf0OXTJgkA";
 
-  return (
-    <section className="py-24 lg:py-32 bg-[#080f1d] overflow-hidden industrial-texture relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <Reveal>
-            <span className="text-sm font-bold tracking-[0.15em] uppercase text-electric">
-              {t("video.badge") || "DISET en acción"}
-            </span>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white">
-              25 años resolviendo trabajos donde otros no pueden intervenir.
-            </h2>
-            <p className="mt-6 text-white/60 leading-relaxed text-lg">
-              Nuestro equipo de técnicos certificados opera con los más altos estándares de
-              seguridad en toda la provincia de Barcelona. Sin subcontratas. Sin excusas.
-            </p>
-            <div className="mt-8 grid grid-cols-2 gap-4">
-              {[
-                { n: "25+", l: t("benefits.stat1.label") },
-                { n: "+4.500", l: t("benefits.stat2.label") },
-                { n: "IRATA", l: t("benefits.stat3.label") },
-                { n: "24h", l: t("benefits.stat4.label") },
-              ].map((s) => (
-                <div
-                  key={s.l}
-                  className="bg-white/[0.04] border border-white/8 rounded-xl p-4 hover:border-electric/30 transition-colors"
-                >
-                  <div className="text-2xl font-extrabold text-electric">{s.n}</div>
-                  <div className="text-sm text-white/50 mt-1">{s.l}</div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <div className="flex justify-center">
-              <div
-                className="relative w-full max-w-[320px] lg:max-w-[360px] rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(0,150,255,0.15)]"
-                style={{ aspectRatio: "9/16" }}
-              >
-                {playing ? (
-                  <iframe
-                    className="absolute inset-0 w-full h-full"
-                    src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
-                    title="DISET Limpiezas Verticales — equipo en acción"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : (
-                  <button
-                    onClick={() => setPlaying(true)}
-                    className="absolute inset-0 w-full h-full group cursor-pointer"
-                    aria-label="Reproducir vídeo DISET en acción"
-                  >
-                    <img
-                      src={`https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`}
-                      alt="DISET técnicos en trabajos verticales"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                    <div className="absolute inset-0 grid place-items-center">
-                      <div className="w-20 h-20 rounded-full bg-electric grid place-items-center shadow-glow group-hover:scale-110 transition-transform animate-pulse-glow">
-                        <svg
-                          width="28"
-                          height="28"
-                          viewBox="0 0 24 24"
-                          fill="white"
-                          stroke="white"
-                          strokeWidth="1"
-                          strokeLinejoin="round"
-                        >
-                          <polygon points="6 4 20 12 6 20 6 4" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="absolute bottom-4 left-0 right-0 text-center">
-                      <span className="text-white/80 text-xs font-semibold tracking-wider uppercase">
-                        Ver vídeo
-                      </span>
-                    </div>
-                  </button>
-                )}
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// — Process (Linear Flow) —
 function Process() {
   const { t } = useTranslation();
   return (
