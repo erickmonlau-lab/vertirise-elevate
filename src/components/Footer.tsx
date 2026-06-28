@@ -2,15 +2,48 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "../i18n/I18nContext";
 import logoDiset from "@/assets/logo-diset.webp";
 
-import iconCristales from "@/assets/icon-cristales-pastel.png";
-import iconFachadas from "@/assets/icon-fachadas-pastel.png";
-import iconLineas from "@/assets/icon-lineas-pastel.png";
-import iconSolares from "@/assets/icon-solar-pastel.png";
-
 const COLORS = ['#0096FF', '#22c55e', '#D52374', '#f59e0b', '#8B5CF6', '#EF4444'];
-const ICONS = [iconCristales, iconFachadas, iconLineas, iconSolares];
 
-function AnimatedIcon({ icon, startIndex, top, right, duration, rotation }: any) {
+const SVGS = [
+  // 0: Window with Squeegee
+  (props: any) => (
+    <svg {...props} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="6" y="6" width="28" height="28" rx="2" />
+      <path d="M6 20h28 M20 6v28" />
+      <path d="M12 28l12-12" />
+      <rect x="22" y="14" width="8" height="3" rx="1" transform="rotate(-45 26 15.5)" fill="currentColor" />
+      <path d="M12 28l-3 3" />
+    </svg>
+  ),
+  // 1: Building Facade
+  (props: any) => (
+    <svg {...props} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="8" y="10" width="24" height="26" />
+      <path d="M4 36h32" />
+      <rect x="12" y="14" width="4" height="6" />
+      <rect x="24" y="14" width="4" height="6" />
+      <rect x="12" y="24" width="4" height="6" />
+      <rect x="24" y="24" width="4" height="6" />
+    </svg>
+  ),
+  // 2: Solar Panel
+  (props: any) => (
+    <svg {...props} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 32l4-24h12l4 24H10z" />
+      <path d="M13 16h14 M12 24h16 M20 8v24 M16 8l-2 24 M24 8l2 24" />
+    </svg>
+  ),
+  // 3: Carabiner/Harness
+  (props: any) => (
+    <svg {...props} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 14v-4a6 6 0 0 1 6-6h0a6 6 0 0 1 6 6v14a6 6 0 0 1-6 6h0a6 6 0 0 1-6-6v-2" />
+      <rect x="13" y="14" width="6" height="8" rx="1" />
+      <path d="M13 18h6" />
+    </svg>
+  )
+];
+
+function AnimatedIcon({ type, startIndex, top, right, duration, rotation }: any) {
   const [colorIndex, setColorIndex] = useState(startIndex);
   
   useEffect(() => {
@@ -21,6 +54,7 @@ function AnimatedIcon({ icon, startIndex, top, right, duration, rotation }: any)
   }, []);
 
   const color = COLORS[colorIndex];
+  const IconSVG = SVGS[type];
 
   return (
     <div
@@ -28,20 +62,12 @@ function AnimatedIcon({ icon, startIndex, top, right, duration, rotation }: any)
       style={{
         top,
         right,
-        backgroundColor: color,
-        borderRadius: '8px',
-        padding: '4px',
-        display: 'inline-flex',
+        color: color,
         animation: `floatIcon ${duration}s ease-in-out infinite`,
         '--rot': `${rotation}deg`
       } as React.CSSProperties}
     >
-      <img
-        src={icon}
-        className="w-10 h-10"
-        style={{ mixBlendMode: 'luminosity', opacity: 0.8 }}
-        alt=""
-      />
+      <IconSVG width="40" height="40" />
     </div>
   );
 }
@@ -61,7 +87,7 @@ function AnimatedIconPattern() {
   ];
 
   return (
-    <div className="absolute right-0 top-0 w-1/2 h-full overflow-hidden pointer-events-none z-0 opacity-25">
+    <div className="absolute right-0 top-0 w-1/2 h-full overflow-hidden pointer-events-none z-0 opacity-40">
       <style>{`
         @keyframes floatIcon { 
           0%, 100% { transform: translateY(0px) rotate(var(--rot)); } 
@@ -71,7 +97,7 @@ function AnimatedIconPattern() {
       {iconsData.map((data, i) => (
         <AnimatedIcon
           key={i}
-          icon={ICONS[data.type]}
+          type={data.type}
           startIndex={i % COLORS.length}
           top={data.top}
           right={data.right}
