@@ -46,9 +46,9 @@ export function Nav() {
 
   return (
     <>
-      <div className="fixed top-2 md:top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none transition-all duration-300">
+      <div className="fixed top-0 md:top-4 left-0 right-0 z-50 flex justify-center px-0 md:px-4 pointer-events-none transition-all duration-300">
         <header
-          className={`pointer-events-auto w-full max-w-6xl transition-all duration-500 bg-white rounded-2xl md:rounded-full px-4 md:px-6 py-2 md:py-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4 border border-slate-100 ${scrolled ? "shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] translate-y-0" : "shadow-lg md:translate-y-2"}`}
+          className={`pointer-events-auto w-full max-w-6xl transition-all duration-500 bg-white rounded-b-[2rem] md:rounded-full px-5 md:px-6 py-4 md:py-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4 border-b border-x md:border-t border-slate-100 ${scrolled ? "shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] translate-y-0" : "shadow-md md:shadow-lg md:translate-y-2"}`}
         >
           <div className="flex items-center justify-between w-full md:w-auto">
             <a
@@ -59,47 +59,48 @@ export function Nav() {
               <Logo white={false} />
             </a>
 
-            <div className="flex items-center gap-1 md:hidden">
-              <div className="flex items-center text-[10px] sm:text-xs font-bold text-slate-400 tracking-wider bg-slate-50 rounded-md shadow-sm border border-slate-100">
+            <div className="flex items-center gap-4 md:hidden">
+              <button
+                onClick={() => setMobileOpen((o) => !o)}
+                aria-label="Abrir menú"
+                className="flex flex-col justify-center items-center w-8 h-8 gap-[5px] transition-all"
+              >
+                <span
+                  className={`block w-5 h-[1.5px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "rotate-45 translate-y-[6.5px]" : ""}`}
+                />
+                <span
+                  className={`block w-5 h-[1.5px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "opacity-0" : ""}`}
+                />
+                <span
+                  className={`block w-5 h-[1.5px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "-rotate-45 -translate-y-[6.5px]" : ""}`}
+                />
+              </button>
+
+              <div className="flex items-center text-xs font-bold text-slate-400 tracking-widest gap-1.5">
                 <button
                   type="button"
                   onClick={() => setLanguage("es")}
-                  className={`w-9 py-2 text-center transition-colors rounded-l-md ${language === "es" ? "text-navy bg-slate-200" : "hover:text-navy active:bg-slate-200"}`}
+                  className={`transition-colors ${language === "es" ? "text-navy font-black" : "hover:text-navy"}`}
                 >
                   ES
                 </button>
-                <span className="w-px h-3 bg-slate-300"></span>
+                <span className="text-slate-200 font-normal">|</span>
                 <button
                   type="button"
                   onClick={() => setLanguage("ca")}
-                  className={`w-9 py-2 text-center transition-colors ${language === "ca" ? "text-navy bg-slate-200" : "hover:text-navy active:bg-slate-200"}`}
+                  className={`transition-colors ${language === "ca" ? "text-navy font-black" : "hover:text-navy"}`}
                 >
                   CA
                 </button>
-                <span className="w-px h-3 bg-slate-300"></span>
+                <span className="text-slate-200 font-normal">|</span>
                 <button
                   type="button"
                   onClick={() => setLanguage("en")}
-                  className={`w-9 py-2 text-center transition-colors rounded-r-md ${language === "en" ? "text-navy bg-slate-200" : "hover:text-navy active:bg-slate-200"}`}
+                  className={`transition-colors ${language === "en" ? "text-navy font-black" : "hover:text-navy"}`}
                 >
                   EN
                 </button>
               </div>
-              <button
-                onClick={() => setMobileOpen((o) => !o)}
-                aria-label="Abrir menú"
-                className="flex flex-col justify-center items-center w-8 h-8 rounded-lg gap-1 transition-all hover:bg-slate-50"
-              >
-                <span
-                  className={`block w-4 h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "rotate-45 translate-y-[6px]" : ""}`}
-                />
-                <span
-                  className={`block w-4 h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "opacity-0" : ""}`}
-                />
-                <span
-                  className={`block w-4 h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "-rotate-45 -translate-y-[6px]" : ""}`}
-                />
-              </button>
             </div>
           </div>
 

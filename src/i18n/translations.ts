@@ -720,6 +720,17 @@ export const translations = {
     'testimonials.2.text': 'Portem 6 anys treballant amb ells en manteniment de cobertes i línies de vida. Imprescindibles.',
     'testimonials.3.text': 'Vidres impecables cada trimestre, personal silenciós i sense afectar l\'operativa de l\'hotel. Recomanats al 100%.',
     'footer.schedule.label': 'Horari',
+    'footer.schedule': 'Dilluns-Divendres de 8h a 18h',
+    'footer.company': 'Empresa',
+    'footer.company.about': 'Presentació',
+    'footer.company.work': 'Treballa amb nosaltres',
+    'footer.company.cancel': 'Política de cancel·lació, reemborsament i devolució',
+    'footer.zones': 'Treballem a tota Catalunya',
+    'footer.zone.barcelona': 'Neteja a Barcelona',
+    'footer.zone.maresme': 'Neteja al Maresme',
+    'footer.zone.girona': 'Neteja a Girona',
+    'footer.zone.tarragona': 'Neteja a Tarragona',
+    'footer.zone.lleida': 'Neteja a Lleida',
   },
   en: {
     // Nav

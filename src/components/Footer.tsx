@@ -175,30 +175,36 @@ export function Footer() {
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-6">
                 <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-                  {/* Edificio izquierdo más bajo */}
-                  <rect x="2" y="20" width="12" height="22" rx="1" fill="#2a6db5"/>
-                  {/* Ventanas edificio izq */}
-                  <rect x="5" y="23" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                  <rect x="10" y="23" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                  <rect x="5" y="29" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                  <rect x="10" y="29" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                  {/* Edificio central más alto */}
-                  <rect x="16" y="8" width="14" height="34" rx="1" fill="#1a4f8a"/>
-                  {/* Ventanas edificio central */}
-                  <rect x="19" y="12" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                  <rect x="24" y="12" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                  <rect x="19" y="18" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                  <rect x="24" y="18" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                  <rect x="19" y="24" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                  <rect x="24" y="24" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                  {/* Edificio derecho medio */}
-                  <rect x="32" y="14" width="10" height="28" rx="1" fill="#2a6db5"/>
-                  {/* Ventanas edificio der */}
-                  <rect x="34" y="17" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                  <rect x="34" y="23" width="3" height="3" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
-                  {/* Escobilla diagonal (símbolo de limpieza) */}
-                  <line x1="8" y1="36" x2="22" y2="14" stroke="#5bb8e8" strokeWidth="2.5" strokeLinecap="round"/>
-                  <line x1="4" y1="34" x2="12" y2="40" stroke="#1a4f8a" strokeWidth="4" strokeLinecap="round"/>
+                  {/* Edificio central */}
+                  <polygon points="12,14 30,4 30,42 12,42" fill="#e6f4f9"/>
+                  <polygon points="22,8.5 30,4 30,12" fill="#1a4f8a"/>
+                  {[16, 21, 26, 31, 36].map(y => 
+                    [14, 19, 24].map(x => (
+                      <rect key={`M-${x}-${y}`} x={x} y={y} width="2.5" height="2.5" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                    ))
+                  )}
+                  
+                  {/* Edificio derecho */}
+                  <polygon points="26,10 40,16 40,42 26,42" fill="#72bfe4"/>
+                  {[16, 21, 26, 31, 36].map(y => 
+                    [29, 34].map(x => (
+                      <rect key={`R-${x}-${y}`} x={x} y={y} width="2.5" height="2.5" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                    ))
+                  )}
+                  
+                  {/* Edificio izquierdo */}
+                  <polygon points="4,24 16,18 16,42 4,42" fill="#b5deee"/>
+                  {[25, 30, 35].map(y => 
+                    [6, 11].map(x => (
+                      <rect key={`L-${x}-${y}`} x={x} y={y} width="2.5" height="2.5" rx="0.5" fill="#5bb8e8" opacity="0.8"/>
+                    ))
+                  )}
+                  
+                  {/* Escobilla */}
+                  <line x1="20" y1="25" x2="28" y2="42" stroke="#2a6db5" strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="17" y1="28" x2="23" y2="23" stroke="#2a6db5" strokeWidth="3.5" strokeLinecap="round"/>
+                  <line x1="6" y1="34" x2="32" y2="15" stroke="#2a6db5" strokeWidth="2" strokeLinecap="round"/>
+                  <line x1="7" y1="35" x2="33" y2="16" stroke="#1e4e8c" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
                 <div>
                   <div className="text-white font-black text-2xl tracking-wide leading-none">DISET</div>
