@@ -367,9 +367,14 @@ function Hero() {
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-32 pb-20 w-full mt-10">
         <div className="max-w-3xl text-white">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-electric/20 backdrop-blur-md border border-electric/30 text-[11px] sm:text-xs font-bold tracking-widest uppercase text-blue-300 animate-[fade-in_0.8s_ease-out] shadow-[0_0_15px_rgba(37,99,235,0.3)]">
-            <span className="w-2 h-2 rounded-full bg-electric animate-pulse shadow-[0_0_10px_rgba(37,99,235,0.8)]" />
-            {t("hero.badge")}
+          <div className="relative inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white shadow-[0_0_40px_rgba(255,255,255,0.3)] border border-white/80 animate-[fade-in_0.8s_ease-out] group hover:scale-105 transition-transform cursor-default">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-electric/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="relative flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-tr from-electric to-[#00f2fe] shadow-[0_0_15px_rgba(0,242,254,0.6)]">
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white animate-pulse" />
+            </div>
+            <span className="relative text-[10px] sm:text-xs font-black tracking-[0.15em] sm:tracking-[0.2em] uppercase bg-gradient-to-r from-navy to-electric bg-clip-text text-transparent">
+              {t("hero.badge")}
+            </span>
           </div>
           <h1 className="mt-7 text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] text-white animate-[fade-up_1s_cubic-bezier(0.22,1,0.36,1)_both]">
             {t("hero.title1")} <span className="text-electric">{t("hero.title2")}</span>{" "}
