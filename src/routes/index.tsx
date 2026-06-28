@@ -367,12 +367,9 @@ function Hero() {
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-32 pb-20 w-full mt-10">
         <div className="max-w-3xl text-white">
-          <div className="relative inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white shadow-[0_0_40px_rgba(255,255,255,0.3)] border border-white/80 animate-[fade-in_0.8s_ease-out] group hover:scale-105 transition-transform cursor-default">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-electric/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-electric">
-              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white animate-pulse" />
-            </div>
-            <span className="relative text-[10px] sm:text-xs font-black tracking-[0.15em] sm:tracking-[0.2em] uppercase bg-gradient-to-r from-navy to-electric bg-clip-text text-transparent">
+          <div className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-electric shadow-lg shadow-electric/40 animate-[fade-in_0.8s_ease-out]">
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+            <span className="text-[10px] sm:text-xs font-black tracking-widest sm:tracking-[0.2em] uppercase text-white">
               {t("hero.badge")}
             </span>
           </div>
