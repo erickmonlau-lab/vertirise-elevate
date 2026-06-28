@@ -1,112 +1,128 @@
-import { useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useTranslation } from "../i18n/I18nContext";
 import logoDiset from "@/assets/logo-diset.webp";
 
-const COLORS = ['#0096FF', '#22c55e', '#D52374', '#f59e0b', '#8B5CF6', '#EF4444'];
+const PARTICLE_COLORS = ['#0096FF', '#22c55e', '#D52374', '#f59e0b', '#8B5CF6'];
 
-const SVGS = [
-  // 0: Window with Squeegee
-  (props: any) => (
-    <svg {...props} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="6" y="6" width="28" height="28" rx="2" />
-      <path d="M6 20h28 M20 6v28" />
-      <path d="M12 28l12-12" />
-      <rect x="22" y="14" width="8" height="3" rx="1" transform="rotate(-45 26 15.5)" fill="currentColor" />
-      <path d="M12 28l-3 3" />
-    </svg>
-  ),
-  // 1: Building Facade
-  (props: any) => (
-    <svg {...props} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="8" y="10" width="24" height="26" />
-      <path d="M4 36h32" />
-      <rect x="12" y="14" width="4" height="6" />
-      <rect x="24" y="14" width="4" height="6" />
-      <rect x="12" y="24" width="4" height="6" />
-      <rect x="24" y="24" width="4" height="6" />
-    </svg>
-  ),
-  // 2: Solar Panel
-  (props: any) => (
-    <svg {...props} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M10 32l4-24h12l4 24H10z" />
-      <path d="M13 16h14 M12 24h16 M20 8v24 M16 8l-2 24 M24 8l2 24" />
-    </svg>
-  ),
-  // 3: Carabiner/Harness
-  (props: any) => (
-    <svg {...props} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M16 14v-4a6 6 0 0 1 6-6h0a6 6 0 0 1 6 6v14a6 6 0 0 1-6 6h0a6 6 0 0 1-6-6v-2" />
-      <rect x="13" y="14" width="6" height="8" rx="1" />
-      <path d="M13 18h6" />
-    </svg>
-  )
-];
-
-function AnimatedIcon({ type, startIndex, top, right, duration, rotation }: any) {
-  const [colorIndex, setColorIndex] = useState(startIndex);
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setColorIndex(prev => (prev + 1) % COLORS.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const color = COLORS[colorIndex];
-  const IconSVG = SVGS[type];
-
-  return (
-    <div
-      className="absolute pointer-events-none transition-colors duration-[2000ms] ease-linear"
-      style={{
-        top,
-        right,
-        color: color,
-        animation: `floatIcon ${duration}s ease-in-out infinite`,
-        '--rot': `${rotation}deg`
-      } as React.CSSProperties}
-    >
-      <IconSVG width="40" height="40" />
-    </div>
-  );
+function hexToRgb(hex: string) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : { r: 0, g: 0, b: 0 };
 }
 
-function AnimatedIconPattern() {
-  const iconsData = [
-    { type: 0, top: '10%', right: '10%', dur: 3.2, rot: 15 },
-    { type: 1, top: '25%', right: '30%', dur: 2.8, rot: -10 },
-    { type: 2, top: '40%', right: '15%', dur: 3.5, rot: 25 },
-    { type: 3, top: '60%', right: '40%', dur: 2.6, rot: -5 },
-    { type: 0, top: '75%', right: '20%', dur: 3.8, rot: 12 },
-    { type: 1, top: '15%', right: '50%', dur: 2.9, rot: -18 },
-    { type: 2, top: '85%', right: '35%', dur: 3.1, rot: 8 },
-    { type: 3, top: '55%', right: '60%', dur: 3.6, rot: -12 },
-    { type: 0, top: '30%', right: '70%', dur: 2.7, rot: 20 },
-    { type: 1, top: '70%', right: '80%', dur: 3.4, rot: -8 },
-  ];
+const COLOR_RGBS = PARTICLE_COLORS.map(hexToRgb);
 
-  return (
-    <div className="absolute right-0 top-0 w-1/2 h-full overflow-hidden pointer-events-none z-0 opacity-40">
-      <style>{`
-        @keyframes floatIcon { 
-          0%, 100% { transform: translateY(0px) rotate(var(--rot)); } 
-          50% { transform: translateY(-12px) rotate(var(--rot)); } 
+function ParticleCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let particles: any[] = [];
+    
+    const resize = () => {
+      const parent = canvas.parentElement;
+      if (parent) {
+        canvas.width = parent.clientWidth;
+        canvas.height = parent.clientHeight;
+      }
+    };
+    
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      currentColorIndex: number;
+      targetColorIndex: number;
+      colorProgress: number;
+      colorSpeed: number;
+
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.6; // -0.3 to 0.3
+        this.vy = (Math.random() - 0.5) * 0.6;
+        this.radius = Math.random() * 2 + 2; // 2 to 4
+        
+        this.currentColorIndex = Math.floor(Math.random() * COLOR_RGBS.length);
+        this.targetColorIndex = Math.floor(Math.random() * COLOR_RGBS.length);
+        this.colorProgress = 0;
+        this.colorSpeed = 1 / (Math.random() * 120 + 180);
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x - this.radius < 0 || this.x + this.radius > canvas.width) {
+          this.vx *= -1;
+          this.x = Math.max(this.radius, Math.min(canvas.width - this.radius, this.x));
         }
-      `}</style>
-      {iconsData.map((data, i) => (
-        <AnimatedIcon
-          key={i}
-          type={data.type}
-          startIndex={i % COLORS.length}
-          top={data.top}
-          right={data.right}
-          duration={data.dur}
-          rotation={data.rot}
-        />
-      ))}
-    </div>
-  );
+        if (this.y - this.radius < 0 || this.y + this.radius > canvas.height) {
+          this.vy *= -1;
+          this.y = Math.max(this.radius, Math.min(canvas.height - this.radius, this.y));
+        }
+
+        this.colorProgress += this.colorSpeed;
+        if (this.colorProgress >= 1) {
+          this.colorProgress = 0;
+          this.currentColorIndex = this.targetColorIndex;
+          this.targetColorIndex = Math.floor(Math.random() * COLOR_RGBS.length);
+          this.colorSpeed = 1 / (Math.random() * 120 + 180);
+        }
+      }
+
+      draw() {
+        if (!ctx) return;
+        const c1 = COLOR_RGBS[this.currentColorIndex];
+        const c2 = COLOR_RGBS[this.targetColorIndex];
+        
+        const r = Math.round(c1.r + (c2.r - c1.r) * this.colorProgress);
+        const g = Math.round(c1.g + (c2.g - c1.g) * this.colorProgress);
+        const b = Math.round(c1.b + (c2.b - c1.b) * this.colorProgress);
+
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 40; i++) {
+      particles.push(new Particle());
+    }
+
+    const render = () => {
+      if (!ctx || !canvas) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-30" />;
 }
 
 const PHONE_HREF = "tel:+34936556161";
@@ -115,7 +131,7 @@ export function Footer() {
   const { t } = useTranslation();
   return (
     <footer className="bg-[#0b1121] text-white pt-20 pb-10 relative overflow-hidden">
-      <AnimatedIconPattern />
+      <ParticleCanvas />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Brand Info */}
