@@ -8,7 +8,7 @@ const GROWS = 8;
 const GW = 55;   // panel width
 const GH = 52;   // panel height
 
-function GondolaWorker({ className = "" }: { className?: string }) {
+function GondolaWorker({ className = "", isDesktop = false }: { className?: string, isDesktop?: boolean }) {
   const panels = [];
   for (let r = 0; r < GROWS; r++) {
     for (let c = 0; c < GCOLS; c++) {
@@ -59,7 +59,7 @@ function GondolaWorker({ className = "" }: { className?: string }) {
 
       <svg
         className="w-full h-full"
-        viewBox="0 0 220 400"
+        viewBox={isDesktop ? "0 0 160 280" : "0 0 220 400"}
         preserveAspectRatio="xMidYMax meet"
         style={{ filter: 'drop-shadow(0 0 5px rgba(0,150,255,0.35))' }}
       >
@@ -294,7 +294,7 @@ export function Footer() {
           </p>
         </div>
       </div>
-      <GondolaWorker className="hidden md:block absolute right-0 bottom-0 h-full w-[220px] opacity-85" />
+      <GondolaWorker isDesktop className="hidden md:block absolute right-[20px] bottom-0 h-[280px] w-[160px] opacity-85" />
     </footer>
   );
 }
