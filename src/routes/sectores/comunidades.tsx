@@ -41,12 +41,12 @@ function ComunidadesPage() {
         },
         {
           name: t('services.zonascomunes.short', 'Zonas comunes'),
-          bgColor: '#f59e0b',
+          bgColor: '#22c55e',
           icon: <img src={iconZonas} alt="" className="w-full h-full object-contain mix-blend-multiply opacity-80" />
         },
         {
           name: t('services.lineas.short', 'Líneas de vida'),
-          bgColor: '#22c55e',
+          bgColor: '#f59e0b',
           icon: <img src={iconLineas} alt="" className="w-full h-full object-contain mix-blend-multiply" />
         }
       ]}

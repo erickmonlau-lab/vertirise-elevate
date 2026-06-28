@@ -173,30 +173,28 @@ export function SectorLayout({
       </section>
 
       {/* SECCIÓN 3: Grid de Servicios Específicos */}
-      <section className="py-24 bg-[#eef2f6]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <Reveal className="text-center mb-16">
+      <section className="py-24 bg-[#f8fafc]">
+        <div className="max-w-7xl mx-auto lg:px-10">
+          <Reveal className="text-center mb-16 px-6">
             <h2 className="text-3xl md:text-4xl font-extrabold text-navy tracking-tight">
               {t('sector.services.title', 'Tu espacio seguro y mantenido')}
             </h2>
           </Reveal>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-0">
             {services.map((svc, idx) => (
-              <Reveal key={idx} delay={idx * 100} className="group relative rounded-3xl overflow-hidden aspect-square p-8 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl" style={{ backgroundColor: svc.bgColor }}>
-                <div className="text-white w-20 h-20 opacity-90 group-hover:scale-110 group-hover:opacity-100 transition-all duration-300">
-                  {svc.icon}
+              <Reveal key={idx} delay={idx * 100} className="group relative aspect-square p-8 flex flex-col text-center transition-all duration-300 hover:brightness-110 cursor-pointer" style={{ backgroundColor: svc.bgColor }}>
+                <div className="flex-grow flex items-center justify-center">
+                  <div className="w-24 h-24 transition-transform duration-300 group-hover:scale-110">
+                    {svc.icon}
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-white text-xl font-bold leading-tight mb-2">
+                <div className="mt-4">
+                  <h3 className="text-white text-lg font-bold leading-tight mb-2">
                     {svc.name}
                   </h3>
-                  <div className="text-white/80 text-sm flex items-center gap-2 group-hover:text-white transition-colors">
-                    {t('nav.services', 'Servicios')}
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
+                  <div className="text-white/70 text-sm font-medium group-hover:text-white transition-colors flex items-center justify-center gap-1">
+                    Más info &rarr;
                   </div>
                 </div>
               </Reveal>

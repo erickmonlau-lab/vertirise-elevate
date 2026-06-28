@@ -41,12 +41,12 @@ function HotelesPage() {
         },
         {
           name: t('services.solares.short', 'Placas solares'),
-          bgColor: '#f59e0b',
+          bgColor: '#22c55e',
           icon: <img src={iconSolar} alt="" className="w-full h-full object-contain mix-blend-multiply" />
         },
         {
           name: t('services.lineas.short', 'Líneas de vida'),
-          bgColor: '#22c55e',
+          bgColor: '#f59e0b',
           icon: <img src={iconLineas} alt="" className="w-full h-full object-contain mix-blend-multiply" />
         }
       ]}
