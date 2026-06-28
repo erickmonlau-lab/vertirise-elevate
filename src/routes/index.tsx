@@ -1,5 +1,6 @@
 "use client";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Building2, Hotel, Factory } from "lucide-react";
 import { useEffect, useRef, useState, ReactNode } from "react";
 import { Reveal } from "../components/Reveal";
 import { useTranslation } from "../i18n/I18nContext";
@@ -248,22 +249,22 @@ const sectorsData = [
   {
     nameKey: "sectors.1.title" as const,
     descKey: "sectors.1.desc" as const,
-    icon: "M4 21h16 M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14 M10 21v-4a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4 M9 9h2 M13 9h2 M9 13h2 M13 13h2",
-    color: "text-[#FF007F]",
+    icon: <Building2 className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    colorClass: "bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/30",
     route: "/sectores/comunidades"
   },
   {
     nameKey: "sectors.2.title" as const,
     descKey: "sectors.2.desc" as const,
-    icon: "M4 21h16 M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16 M12 7l1 2.5 2.5.5-2 1.5.5 2.5-2-1.5-2 1.5.5-2.5-2-1.5 2.5-.5z M9 17h6 M9 14h6",
-    color: "text-[#00E5FF]",
+    icon: <Hotel className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    colorClass: "bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg shadow-blue-500/30",
     route: "/sectores/hoteles"
   },
   {
     nameKey: "sectors.3.title" as const,
     descKey: "sectors.3.desc" as const,
-    icon: "M2 21h20 M4 21V9l4-3 4 3v-2l4-3 4 3v12 M9 21v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5 M18 9V4h2v5",
-    color: "text-[#39FF14]",
+    icon: <Factory className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    colorClass: "bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/30",
     route: "/sectores/naves"
   },
 ];
@@ -471,7 +472,6 @@ function Stats() {
 }
 
 // — Sectors (Replaces Client Logos) —
-const SECTOR_CIRCLE_COLORS = ["bg-[#e91e63]", "bg-[#03a9f4]", "bg-[#39FF14] text-navy"];
 
 function Sectors() {
   const { t } = useTranslation();
@@ -492,19 +492,8 @@ function Sectors() {
                   0{i + 1}
                 </div>
                 
-                <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-6 relative z-10 ${SECTOR_CIRCLE_COLORS[i]} ${i !== 2 ? 'text-white' : ''}`}>
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d={sector.icon} />
-                  </svg>
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 relative z-10 ${sector.colorClass}`}>
+                  {sector.icon}
                 </div>
                 <h3 className="text-xl font-bold text-navy mb-4 tracking-tight relative z-10">
                   {t(sector.nameKey)}
