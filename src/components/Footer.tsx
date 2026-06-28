@@ -56,12 +56,6 @@ function GondolaWorker() {
           0%, 100% { transform: translateY(0px); }
           50%      { transform: translateY(3px); }
         }
-        @keyframes look {
-          0%, 40%, 100% { transform: rotate(0deg); }
-          20%           { transform: rotate(-8deg); }
-          60%           { transform: rotate(0deg); }
-          75%, 90%      { transform: rotate(8deg); }
-        }
         @keyframes turnFace {
           0%, 65%, 100% { opacity: 0; transform: translateX(-5px); }
           75%, 90%      { opacity: 1; transform: translateX(0); }
@@ -170,8 +164,8 @@ function GondolaWorker() {
               stroke="#f4a261" strokeWidth="5" strokeLinecap="round" />
           </g>
 
-          {/* ── Worker: face / head (looks toward glass, occasionally to side) ── */}
-          <g style={{ transformOrigin: '110px 0px', animation: 'look 6s ease-in-out infinite', transformBox: 'fill-box' }}>
+          {/* ── Worker: face / head (static, only face features animate) ── */}
+          <g style={{ transformOrigin: '110px 0px', transformBox: 'fill-box' }}>
             <circle cx="110" cy="0" r="18" fill="#f4a261" />
             
             {/* Eye and Smile that appear when looking side */}
