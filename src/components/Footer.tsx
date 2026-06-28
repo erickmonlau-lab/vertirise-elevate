@@ -9,13 +9,27 @@ const GW = 55;   // panel width
 const GH = 52;   // panel height
 
 function GondolaWorker({ className = "", isDesktop = false }: { className?: string, isDesktop?: boolean }) {
-  const panels = [];
-  for (let r = 0; r < GROWS; r++) {
-    for (let c = 0; c < GCOLS; c++) {
-      // alternating + accent fills
-      const bright = (c + r) % 3 === 0;
-      const accent = (c + r) % 5 === 0;
-      panels.push({ r, c, bright, accent, idx: r * GCOLS + c });
+  // Generate windows for left building
+  const leftWindows = [];
+  for (let r = 0; r < 12; r++) {
+    for (let c = 0; c < 3; c++) {
+      leftWindows.push({ x: 5 + c * 22, y: 170 + r * 22, bright: (r+c)%4===0, accent: (r+c)%7===0, idx: `L-${r}-${c}` });
+    }
+  }
+
+  // Generate windows for right building
+  const rightWindows = [];
+  for (let r = 0; r < 12; r++) {
+    for (let c = 0; c < 3; c++) {
+      rightWindows.push({ x: 165 + c * 22, y: 150 + r * 22, bright: (r+c+1)%4===0, accent: (r+c+2)%7===0, idx: `R-${r}-${c}` });
+    }
+  }
+
+  // Generate windows for middle building
+  const middleWindows = [];
+  for (let r = 0; r < 16; r++) {
+    for (let c = 0; c < 6; c++) {
+      middleWindows.push({ x: 47 + c * 22, y: 40 + r * 22, bright: (r+c+2)%4===0, accent: (r+c+3)%7===0, idx: `M-${r}-${c}` });
     }
   }
 
@@ -59,49 +73,72 @@ function GondolaWorker({ className = "", isDesktop = false }: { className?: stri
 
       <svg
         className="w-full h-full"
-        viewBox={isDesktop ? "60 0 180 260" : "0 0 220 400"}
+        viewBox={isDesktop ? "0 0 220 280" : "0 0 220 400"}
         preserveAspectRatio="xMidYMax meet"
         style={{ filter: 'drop-shadow(0 0 5px rgba(0,150,255,0.35))' }}
       >
-        {/* ── Glass wall background ── */}
-        {panels.map((p) => (
-          <rect
-            key={p.idx}
-            x={p.c * GW}
-            y={p.r * GH}
-            width={GW}
-            height={GH}
-            fill={
-              p.accent  ? 'rgba(0,150,255,0.28)' :
-              p.bright  ? 'rgba(0,150,255,0.16)' :
-                          'rgba(0,150,255,0.07)'
-            }
-            stroke="rgba(0,150,255,0.4)"
-            strokeWidth="1"
-            style={p.accent ? {
-              animation: `blinkPanel ${2 + (p.idx % 3) * 0.7}s ease-in-out ${-(p.idx * 0.3)}s infinite`,
-            } : undefined}
-          />
-        ))}
+        <defs>
+          <clipPath id="clipLeft">
+            <polygon points="0,200 60,170 60,400 0,400" />
+          </clipPath>
+          <clipPath id="clipRight">
+            <polygon points="160,180 220,150 220,400 160,400" />
+          </clipPath>
+          <clipPath id="clipMiddle">
+            <polygon points="40,110 180,40 180,400 40,400" />
+          </clipPath>
+        </defs>
 
-        {/* Glass sheen diagonal lines */}
-        {panels.filter(p => p.bright || p.accent).map((p) => (
-          <line
-            key={`s${p.idx}`}
-            x1={p.c * GW + 6}  y1={p.r * GH + 4}
-            x2={p.c * GW + 20} y2={p.r * GH + 18}
-            stroke="rgba(255,255,255,0.12)"
-            strokeWidth="4"
-            strokeLinecap="round"
-          />
-        ))}
+        {/* Giant Squeegee Logo Overlay (behind buildings) */}
+        <g opacity="0.15">
+          {/* Handle */}
+          <line x1="60" y1="260" x2="160" y2="140" stroke="#0096FF" strokeWidth="14" strokeLinecap="round" />
+          {/* Blade base */}
+          <line x1="30" y1="255" x2="75" y2="295" stroke="#0096FF" strokeWidth="20" strokeLinecap="round" />
+        </g>
 
-        {/* ── Ropes — centred on new character position ── */}
-        <line x1="158" y1="-800" x2="158" y2="400"
+        {/* ── Left Building ── */}
+        <polygon points="0,200 60,170 60,400 0,400" fill="#0d1b32" />
+        <g clipPath="url(#clipLeft)">
+          {leftWindows.map(w => (
+            <rect key={w.idx} x={w.x} y={w.y} width="16" height="16" rx="2"
+              fill={w.accent ? 'rgba(0,150,255,0.28)' : w.bright ? 'rgba(0,150,255,0.16)' : 'rgba(0,150,255,0.07)'}
+              stroke="rgba(0,150,255,0.3)" strokeWidth="1"
+              style={w.accent ? { animation: `blinkPanel 2s ease-in-out infinite` } : undefined}
+            />
+          ))}
+        </g>
+
+        {/* ── Right Building ── */}
+        <polygon points="160,180 220,150 220,400 160,400" fill="#0d1b32" />
+        <g clipPath="url(#clipRight)">
+          {rightWindows.map(w => (
+            <rect key={w.idx} x={w.x} y={w.y} width="16" height="16" rx="2"
+              fill={w.accent ? 'rgba(0,150,255,0.28)' : w.bright ? 'rgba(0,150,255,0.16)' : 'rgba(0,150,255,0.07)'}
+              stroke="rgba(0,150,255,0.3)" strokeWidth="1"
+              style={w.accent ? { animation: `blinkPanel 2.5s ease-in-out infinite` } : undefined}
+            />
+          ))}
+        </g>
+
+        {/* ── Middle Building ── */}
+        <polygon points="40,110 180,40 180,400 40,400" fill="#112340" />
+        <g clipPath="url(#clipMiddle)">
+          {middleWindows.map(w => (
+            <rect key={w.idx} x={w.x} y={w.y} width="16" height="16" rx="2"
+              fill={w.accent ? 'rgba(0,150,255,0.28)' : w.bright ? 'rgba(0,150,255,0.16)' : 'rgba(0,150,255,0.07)'}
+              stroke="rgba(0,150,255,0.3)" strokeWidth="1"
+              style={w.accent ? { animation: `blinkPanel 3s ease-in-out infinite` } : undefined}
+            />
+          ))}
+        </g>
+
+        {/* ── Ropes — centred on character position ── */}
+        <line x1={rope1X} y1="-800" x2={rope1X} y2="400"
           stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.55"
           style={{ animation: 'ropeMove 1s linear infinite' }}
         />
-        <line x1="182" y1="-800" x2="182" y2="400"
+        <line x1={rope2X} y1="-800" x2={rope2X} y2="400"
           stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.55"
           style={{ animation: 'ropeMove 1s linear infinite' }}
         />
