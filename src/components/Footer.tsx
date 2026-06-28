@@ -2,46 +2,26 @@ import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "../i18n/I18nContext";
 import logoDiset from "@/assets/logo-diset.webp";
 
-function IsometricFacade() {
-  // Isometric projection helpers
-  // iso coords → svg coords: x' = (ix - iy) * tileW/2, y' = (ix + iy) * tileH/2
-  const tileW = 44;
-  const tileH = 22;
-  const cols = 4;
-  const rows = 7;
-  // origin offset so the grid sits nicely
-  const ox = 110;
-  const oy = 30;
+// Glass wall grid constants
+const GCOLS = 4;
+const GROWS = 8;
+const GW = 55;   // panel width
+const GH = 52;   // panel height
 
-  function isoPoint(ix: number, iy: number) {
-    return {
-      x: ox + (ix - iy) * (tileW / 2),
-      y: oy + (ix + iy) * (tileH / 2),
-    };
-  }
-
-  function panelPoints(col: number, row: number) {
-    const tl = isoPoint(col,     row);
-    const tr = isoPoint(col + 1, row);
-    const br = isoPoint(col + 1, row + 1);
-    const bl = isoPoint(col,     row + 1);
-    return `${tl.x},${tl.y} ${tr.x},${tr.y} ${br.x},${br.y} ${bl.x},${bl.y}`;
-  }
-
+function GondolaWorker() {
   const panels = [];
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      const lit = (c + r) % 2 === 0;
-      panels.push({ col: c, row: r, lit, idx: r * cols + c });
+  for (let r = 0; r < GROWS; r++) {
+    for (let c = 0; c < GCOLS; c++) {
+      // alternating + accent fills
+      const bright = (c + r) % 3 === 0;
+      const accent = (c + r) % 5 === 0;
+      panels.push({ r, c, bright, accent, idx: r * GCOLS + c });
     }
   }
 
-  // Gondola anchor point — hangs off top-right of grid
-  const gondolaX = ox + (cols - 1) * (tileW / 2) + tileW / 2 + 10;
-  const gondolaY = oy + (cols - 1) * (tileH / 2) - 10;
-  // Rope top attachment
-  const ropeTopX = gondolaX + 8;
-  const ropeTopY = 0;
+  // Rope x positions (centred in the 220px wide container)
+  const rope1X = 80;
+  const rope2X = 140;
 
   return (
     <div style={{
@@ -52,134 +32,132 @@ function IsometricFacade() {
     }}>
       <style>{`
         @keyframes gondola {
-          0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-30px); }
+          0%   { transform: translateY(20px); }
+          100% { transform: translateY(320px); }
+        }
+        @keyframes ropeMove {
+          0%   { stroke-dashoffset: 0; }
+          100% { stroke-dashoffset: -32; }
         }
         @keyframes wipeClean {
-          0%, 40%  { opacity: 0; }
-          50%      { opacity: 0.7; }
-          90%, 100%{ opacity: 0; }
+          0%, 35% { opacity: 0; }
+          50%     { opacity: 0.8; }
+          85%, 100%{ opacity: 0; }
         }
         @keyframes blinkPanel {
-          0%, 100% { opacity: 0.9; }
-          50%      { opacity: 0.3; }
+          0%, 100% { opacity: 1; }
+          50%      { opacity: 0.35; }
         }
       `}</style>
 
       <svg
         width="220"
         height="100%"
-        viewBox="0 0 220 420"
+        viewBox="0 0 220 400"
         preserveAspectRatio="xMidYMin meet"
-        style={{ filter: 'drop-shadow(0 0 6px rgba(0,150,255,0.4))' }}
+        style={{ filter: 'drop-shadow(0 0 5px rgba(0,150,255,0.35))' }}
       >
-        {/* ── Glass facade panels ── */}
+        {/* ── Glass wall background ── */}
         {panels.map((p) => (
-          <polygon
+          <rect
             key={p.idx}
-            points={panelPoints(p.col, p.row)}
-            fill={p.lit ? 'rgba(0,150,255,0.18)' : 'rgba(0,150,255,0.07)'}
-            stroke="#1a3a5c"
-            strokeWidth="0.8"
-            style={p.lit && p.idx % 5 === 0 ? {
-              animation: `blinkPanel ${2.5 + (p.idx % 4) * 0.5}s ease-in-out ${-(p.idx * 0.4)}s infinite`,
+            x={p.c * GW}
+            y={p.r * GH}
+            width={GW}
+            height={GH}
+            fill={
+              p.accent  ? 'rgba(0,150,255,0.28)' :
+              p.bright  ? 'rgba(0,150,255,0.16)' :
+                          'rgba(0,150,255,0.07)'
+            }
+            stroke="rgba(0,150,255,0.4)"
+            strokeWidth="1"
+            style={p.accent ? {
+              animation: `blinkPanel ${2 + (p.idx % 3) * 0.7}s ease-in-out ${-(p.idx * 0.3)}s infinite`,
             } : undefined}
           />
         ))}
 
-        {/* Highlight lines on panels (glass sheen) */}
-        {panels.filter(p => p.lit).map((p) => {
-          const tl = isoPoint(p.col,     p.row);
-          const tr = isoPoint(p.col + 1, p.row);
-          const mid = isoPoint(p.col + 0.5, p.row + 0.5);
-          return (
-            <line
-              key={`shine-${p.idx}`}
-              x1={tl.x + 2} y1={tl.y + 1}
-              x2={mid.x}    y2={mid.y - 2}
-              stroke="rgba(255,255,255,0.15)"
-              strokeWidth="1"
-            />
-          );
-        })}
+        {/* Glass sheen diagonal lines */}
+        {panels.filter(p => p.bright || p.accent).map((p) => (
+          <line
+            key={`s${p.idx}`}
+            x1={p.c * GW + 6}  y1={p.r * GH + 4}
+            x2={p.c * GW + 20} y2={p.r * GH + 18}
+            stroke="rgba(255,255,255,0.12)"
+            strokeWidth="4"
+            strokeLinecap="round"
+          />
+        ))}
 
-        {/* ── Rope from top ── */}
-        <line
-          x1={ropeTopX} y1={ropeTopY}
-          x2={ropeTopX} y2="420"
-          stroke="#0096FF" strokeWidth="1.5"
-          strokeDasharray="3 3" opacity="0.5"
+        {/* ── Static ropes from top ── */}
+        <line x1={rope1X} y1="0" x2={rope1X} y2="400"
+          stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.5"
+          style={{ animation: 'ropeMove 1s linear infinite' }}
+        />
+        <line x1={rope2X} y1="0" x2={rope2X} y2="400"
+          stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.5"
+          style={{ animation: 'ropeMove 1s linear infinite' }}
         />
 
         {/* ── Animated gondola + worker ── */}
-        <g style={{ animation: 'gondola 4s ease-in-out infinite', transformOrigin: `${ropeTopX}px 0px` }}>
-
-          {/* Rope attachment / pulley */}
-          <circle cx={ropeTopX} cy={gondolaY - 12} r="3" fill="#0096FF" opacity="0.8" />
+        <g style={{ animation: 'gondola 6s ease-in-out infinite alternate' }}>
 
           {/* Gondola platform */}
-          <rect
-            x={gondolaX - 18} y={gondolaY + 30}
-            width="36" height="6" rx="2"
-            fill="#0d1f3c" stroke="#0096FF" strokeWidth="1"
-          />
-          {/* Railing left */}
-          <line x1={gondolaX - 16} y1={gondolaY + 30} x2={gondolaX - 16} y2={gondolaY + 14}
-            stroke="#0096FF" strokeWidth="1" />
-          {/* Railing top */}
-          <line x1={gondolaX - 16} y1={gondolaY + 14} x2={gondolaX + 16} y2={gondolaY + 14}
-            stroke="#0096FF" strokeWidth="0.8" strokeDasharray="2 2" />
-          {/* Railing right */}
-          <line x1={gondolaX + 16} y1={gondolaY + 30} x2={gondolaX + 16} y2={gondolaY + 14}
-            stroke="#0096FF" strokeWidth="1" />
+          <rect x="51" y="78" width="118" height="16" rx="3"
+            fill="#0d2a4a" stroke="#0096FF" strokeWidth="1.5" />
+          {/* Railing left post */}
+          <line x1="60" y1="78" x2="60" y2="55" stroke="#0096FF" strokeWidth="1.5" />
+          {/* Railing right post */}
+          <line x1="160" y1="78" x2="160" y2="55" stroke="#0096FF" strokeWidth="1.5" />
+          {/* Railing top bar */}
+          <line x1="60" y1="55" x2="160" y2="55"
+            stroke="#0096FF" strokeWidth="1" strokeDasharray="5 3" />
+          {/* Pulley circles on ropes */}
+          <circle cx={rope1X} cy="78" r="4" fill="#0096FF" opacity="0.9" />
+          <circle cx={rope2X} cy="78" r="4" fill="#0096FF" opacity="0.9" />
 
-          {/* Worker — legs */}
-          <line x1={gondolaX - 4} y1={gondolaY + 30} x2={gondolaX - 4} y2={gondolaY + 22}
-            stroke="#0d1f3c" strokeWidth="4" strokeLinecap="round" />
-          <line x1={gondolaX + 4} y1={gondolaY + 30} x2={gondolaX + 4} y2={gondolaY + 22}
-            stroke="#0d1f3c" strokeWidth="4" strokeLinecap="round" />
+          {/* ── Worker: legs ── */}
+          <rect x="96" y="48" width="12" height="30" rx="3" fill="#1a1a2e" />
+          <rect x="112" y="48" width="12" height="30" rx="3" fill="#1a1a2e" />
 
-          {/* Worker — body */}
-          <rect
-            x={gondolaX - 8} y={gondolaY + 6}
-            width="16" height="16" rx="3"
-            fill="#0d1f3c" stroke="#0096FF" strokeWidth="1"
-          />
-          {/* Arnés straps */}
-          <line x1={gondolaX - 6} y1={gondolaY + 7} x2={gondolaX + 6} y2={gondolaY + 18}
-            stroke="#0096FF" strokeWidth="0.8" />
-          <line x1={gondolaX + 6} y1={gondolaY + 7} x2={gondolaX - 6} y2={gondolaY + 18}
-            stroke="#0096FF" strokeWidth="0.8" />
+          {/* ── Worker: body ── */}
+          <rect x="88" y="10" width="44" height="40" rx="5"
+            fill="#1a1a2e" stroke="#0096FF" strokeWidth="1.5" />
+          {/* Arnés X straps */}
+          <line x1="91" y1="12" x2="129" y2="46" stroke="#0096FF" strokeWidth="2" />
+          <line x1="129" y1="12" x2="91" y2="46" stroke="#0096FF" strokeWidth="2" />
+          {/* Belt */}
+          <line x1="88" y1="30" x2="132" y2="30" stroke="#0096FF" strokeWidth="1.5" />
 
-          {/* Worker — right arm extended toward facade */}
-          <line x1={gondolaX - 8} y1={gondolaY + 12} x2={gondolaX - 22} y2={gondolaY + 8}
-            stroke="#f4a261" strokeWidth="3" strokeLinecap="round" />
-          {/* Squeegee / cleaning tool */}
-          <rect x={gondolaX - 28} y={gondolaY + 5} width="7" height="12" rx="1"
-            fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.2" />
+          {/* ── Worker: left arm (extended toward glass, holding squeegee) ── */}
+          <line x1="88" y1="22" x2="60" y2="15"
+            stroke="#f4a261" strokeWidth="5" strokeLinecap="round" />
+          {/* Squeegee handle */}
+          <line x1="60" y1="15" x2="50" y2="13"
+            stroke="#aaa" strokeWidth="3" strokeLinecap="round" />
+          {/* Squeegee blade */}
+          <rect x="44" y="8" width="8" height="20" rx="2"
+            fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="2" />
 
-          {/* Worker — left arm (holding rail) */}
-          <line x1={gondolaX + 8} y1={gondolaY + 12} x2={gondolaX + 16} y2={gondolaY + 14}
-            stroke="#f4a261" strokeWidth="3" strokeLinecap="round" />
+          {/* ── Worker: right arm ── */}
+          <line x1="132" y1="22" x2="158" y2="55"
+            stroke="#f4a261" strokeWidth="5" strokeLinecap="round" />
 
-          {/* Worker — head / skin */}
-          <circle cx={gondolaX} cy={gondolaY + 2} r="6" fill="#f4a261" />
-
+          {/* ── Worker: face / head ── */}
+          <circle cx="110" cy="0" r="18" fill="#f4a261" />
           {/* Helmet */}
-          <path
-            d={`M ${gondolaX - 7} ${gondolaY + 2} A 7 6 0 0 1 ${gondolaX + 7} ${gondolaY + 2} Z`}
-            fill="#0096FF"
-          />
-          {/* Helmet visor line */}
-          <line x1={gondolaX - 6} y1={gondolaY + 2} x2={gondolaX + 6} y2={gondolaY + 2}
-            stroke="#0d1f3c" strokeWidth="1" />
+          <path d="M 92 0 A 18 16 0 0 1 128 0 Z" fill="#0096FF" />
+          {/* Helmet brim */}
+          <rect x="89" y="-1" width="42" height="5" rx="2" fill="#0096FF" />
+          {/* Visor */}
+          <rect x="97" y="2" width="26" height="8" rx="3"
+            fill="#0d2a4a" stroke="#0096FF" strokeWidth="1" />
 
-          {/* Cleaning wipe effect on facade */}
-          <rect
-            x={gondolaX - 35} y={gondolaY + 3}
-            width="8" height="18" rx="1"
-            fill="rgba(255,255,255,0.45)"
-            style={{ animation: 'wipeClean 4s ease-in-out infinite' }}
+          {/* Cleaning wipe flash on the glass */}
+          <rect x="44" y="6" width="10" height="24" rx="1"
+            fill="rgba(255,255,255,0.6)"
+            style={{ animation: 'wipeClean 6s ease-in-out infinite alternate' }}
           />
         </g>
       </svg>
@@ -193,7 +171,7 @@ export function Footer() {
   const { t } = useTranslation();
   return (
     <footer className="bg-[#0b1121] text-white pt-20 pb-10 relative overflow-hidden">
-      <IsometricFacade />
+      <GondolaWorker />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Brand Info */}
