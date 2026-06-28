@@ -157,7 +157,7 @@ export function SectorLayout({
                   ))}
                 </ul>
                 <a href="#contacto" className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-white transition-all shadow-lg hover:-translate-y-0.5" style={{ backgroundColor: bgColor, color: '#0a1628' }}>
-                  {t('hero.btnPrimary', 'Pide tu presupuesto')}
+                  {t('hero.btn.quote')}
                 </a>
               </Reveal>
             </div>
