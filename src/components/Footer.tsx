@@ -10,7 +10,7 @@ import iconSolares from "@/assets/icon-solar-pastel.png";
 const HUES = [165, 97, 287, 353, 331, 213, 285, 315];
 const ICONS = [iconCristales, iconFachadas, iconLineas, iconSolares];
 
-function AnimatedIcon({ icon, startIndex, size, top, right, duration, rotation }: any) {
+function AnimatedIcon({ icon, startIndex, top, right, duration, rotation }: any) {
   const [colorIndex, setColorIndex] = useState(startIndex);
   
   useEffect(() => {
@@ -25,10 +25,8 @@ function AnimatedIcon({ icon, startIndex, size, top, right, duration, rotation }
   return (
     <img 
       src={icon} 
-      className="absolute opacity-10 pointer-events-none transition-all duration-[2000ms] ease-linear"
+      className="absolute w-10 h-10 pointer-events-none transition-all duration-[2000ms] ease-linear"
       style={{
-        width: size,
-        height: size,
         top: top,
         right: right,
         filter: `brightness(0) saturate(100%) invert(1) sepia(1) saturate(5) hue-rotate(${hueValue}deg)`,
@@ -42,26 +40,20 @@ function AnimatedIcon({ icon, startIndex, size, top, right, duration, rotation }
 
 function AnimatedIconPattern() {
   const iconsData = [
-    { type: 0, size: 80, top: '10%', right: '5%', dur: 3.2, rot: 15 },
-    { type: 1, size: 120, top: '25%', right: '15%', dur: 2.8, rot: -10 },
-    { type: 2, size: 60, top: '40%', right: '8%', dur: 3.5, rot: 25 },
-    { type: 3, size: 90, top: '60%', right: '20%', dur: 2.6, rot: -5 },
-    { type: 0, size: 100, top: '75%', right: '10%', dur: 3.8, rot: 12 },
-    { type: 1, size: 70, top: '15%', right: '25%', dur: 2.9, rot: -18 },
-    { type: 2, size: 110, top: '35%', right: '35%', dur: 3.1, rot: 8 },
-    { type: 3, size: 85, top: '55%', right: '40%', dur: 3.6, rot: -12 },
-    { type: 0, size: 65, top: '80%', right: '30%', dur: 2.7, rot: 20 },
-    { type: 1, size: 95, top: '5%', right: '45%', dur: 3.4, rot: -8 },
-    { type: 2, size: 75, top: '45%', right: '50%', dur: 3.0, rot: 15 },
-    { type: 3, size: 105, top: '70%', right: '48%', dur: 3.9, rot: -20 },
-    { type: 0, size: 80, top: '20%', right: '55%', dur: 2.5, rot: 5 },
-    { type: 1, size: 90, top: '85%', right: '55%', dur: 3.3, rot: -15 },
-    { type: 2, size: 100, top: '30%', right: '65%', dur: 3.7, rot: 10 },
-    { type: 3, size: 70, top: '65%', right: '65%', dur: 2.8, rot: -25 },
+    { type: 0, top: '10%', right: '10%', dur: 3.2, rot: 15 },
+    { type: 1, top: '25%', right: '30%', dur: 2.8, rot: -10 },
+    { type: 2, top: '40%', right: '15%', dur: 3.5, rot: 25 },
+    { type: 3, top: '60%', right: '40%', dur: 2.6, rot: -5 },
+    { type: 0, top: '75%', right: '20%', dur: 3.8, rot: 12 },
+    { type: 1, top: '15%', right: '50%', dur: 2.9, rot: -18 },
+    { type: 2, top: '85%', right: '35%', dur: 3.1, rot: 8 },
+    { type: 3, top: '55%', right: '60%', dur: 3.6, rot: -12 },
+    { type: 0, top: '30%', right: '70%', dur: 2.7, rot: 20 },
+    { type: 1, top: '70%', right: '80%', dur: 3.4, rot: -8 },
   ];
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    <div className="absolute right-0 top-0 w-1/2 h-full overflow-hidden pointer-events-none z-0 opacity-[0.15]">
       <style>{`
         @keyframes floatIcon { 
           0%, 100% { transform: translateY(0px) rotate(var(--rot)); } 
@@ -73,7 +65,6 @@ function AnimatedIconPattern() {
           key={i}
           icon={ICONS[data.type]}
           startIndex={i % HUES.length}
-          size={data.size}
           top={data.top}
           right={data.right}
           duration={data.dur}
