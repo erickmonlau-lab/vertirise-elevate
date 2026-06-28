@@ -14,6 +14,9 @@ import { Route as ServiciosPlacasSolaresRouteImport } from './routes/servicios/p
 import { Route as ServiciosLineasDeVidaRouteImport } from './routes/servicios/lineas-de-vida'
 import { Route as ServiciosFachadasRouteImport } from './routes/servicios/fachadas'
 import { Route as ServiciosCristalesRouteImport } from './routes/servicios/cristales'
+import { Route as SectoresNavesRouteImport } from './routes/sectores/naves'
+import { Route as SectoresHotelesRouteImport } from './routes/sectores/hoteles'
+import { Route as SectoresComunidadesRouteImport } from './routes/sectores/comunidades'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,9 +43,27 @@ const ServiciosCristalesRoute = ServiciosCristalesRouteImport.update({
   path: '/servicios/cristales',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SectoresNavesRoute = SectoresNavesRouteImport.update({
+  id: '/sectores/naves',
+  path: '/sectores/naves',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectoresHotelesRoute = SectoresHotelesRouteImport.update({
+  id: '/sectores/hoteles',
+  path: '/sectores/hoteles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectoresComunidadesRoute = SectoresComunidadesRouteImport.update({
+  id: '/sectores/comunidades',
+  path: '/sectores/comunidades',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/sectores/comunidades': typeof SectoresComunidadesRoute
+  '/sectores/hoteles': typeof SectoresHotelesRoute
+  '/sectores/naves': typeof SectoresNavesRoute
   '/servicios/cristales': typeof ServiciosCristalesRoute
   '/servicios/fachadas': typeof ServiciosFachadasRoute
   '/servicios/lineas-de-vida': typeof ServiciosLineasDeVidaRoute
@@ -50,6 +71,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/sectores/comunidades': typeof SectoresComunidadesRoute
+  '/sectores/hoteles': typeof SectoresHotelesRoute
+  '/sectores/naves': typeof SectoresNavesRoute
   '/servicios/cristales': typeof ServiciosCristalesRoute
   '/servicios/fachadas': typeof ServiciosFachadasRoute
   '/servicios/lineas-de-vida': typeof ServiciosLineasDeVidaRoute
@@ -58,6 +82,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/sectores/comunidades': typeof SectoresComunidadesRoute
+  '/sectores/hoteles': typeof SectoresHotelesRoute
+  '/sectores/naves': typeof SectoresNavesRoute
   '/servicios/cristales': typeof ServiciosCristalesRoute
   '/servicios/fachadas': typeof ServiciosFachadasRoute
   '/servicios/lineas-de-vida': typeof ServiciosLineasDeVidaRoute
@@ -67,6 +94,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/sectores/comunidades'
+    | '/sectores/hoteles'
+    | '/sectores/naves'
     | '/servicios/cristales'
     | '/servicios/fachadas'
     | '/servicios/lineas-de-vida'
@@ -74,6 +104,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/sectores/comunidades'
+    | '/sectores/hoteles'
+    | '/sectores/naves'
     | '/servicios/cristales'
     | '/servicios/fachadas'
     | '/servicios/lineas-de-vida'
@@ -81,6 +114,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/sectores/comunidades'
+    | '/sectores/hoteles'
+    | '/sectores/naves'
     | '/servicios/cristales'
     | '/servicios/fachadas'
     | '/servicios/lineas-de-vida'
@@ -89,6 +125,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SectoresComunidadesRoute: typeof SectoresComunidadesRoute
+  SectoresHotelesRoute: typeof SectoresHotelesRoute
+  SectoresNavesRoute: typeof SectoresNavesRoute
   ServiciosCristalesRoute: typeof ServiciosCristalesRoute
   ServiciosFachadasRoute: typeof ServiciosFachadasRoute
   ServiciosLineasDeVidaRoute: typeof ServiciosLineasDeVidaRoute
@@ -132,11 +171,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServiciosCristalesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sectores/naves': {
+      id: '/sectores/naves'
+      path: '/sectores/naves'
+      fullPath: '/sectores/naves'
+      preLoaderRoute: typeof SectoresNavesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectores/hoteles': {
+      id: '/sectores/hoteles'
+      path: '/sectores/hoteles'
+      fullPath: '/sectores/hoteles'
+      preLoaderRoute: typeof SectoresHotelesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectores/comunidades': {
+      id: '/sectores/comunidades'
+      path: '/sectores/comunidades'
+      fullPath: '/sectores/comunidades'
+      preLoaderRoute: typeof SectoresComunidadesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SectoresComunidadesRoute: SectoresComunidadesRoute,
+  SectoresHotelesRoute: SectoresHotelesRoute,
+  SectoresNavesRoute: SectoresNavesRoute,
   ServiciosCristalesRoute: ServiciosCristalesRoute,
   ServiciosFachadasRoute: ServiciosFachadasRoute,
   ServiciosLineasDeVidaRoute: ServiciosLineasDeVidaRoute,

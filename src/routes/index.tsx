@@ -253,18 +253,21 @@ const sectorsData = [
     descKey: "sectors.1.desc" as const,
     icon: "M4 21h16 M6 21V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14 M10 21v-4a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4 M9 9h2 M13 9h2 M9 13h2 M13 13h2",
     color: "text-[#FF007F]",
+    route: "/sectores/comunidades"
   },
   {
     nameKey: "sectors.2.title" as const,
     descKey: "sectors.2.desc" as const,
     icon: "M4 21h16 M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16 M12 7l1 2.5 2.5.5-2 1.5.5 2.5-2-1.5-2 1.5.5-2.5-2-1.5 2.5-.5z M9 17h6 M9 14h6",
     color: "text-[#00E5FF]",
+    route: "/sectores/hoteles"
   },
   {
     nameKey: "sectors.3.title" as const,
     descKey: "sectors.3.desc" as const,
     icon: "M2 21h20 M4 21V9l4-3 4 3v-2l4-3 4 3v12 M9 21v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5 M18 9V4h2v5",
     color: "text-[#39FF14]",
+    route: "/sectores/naves"
   },
 ];
 
@@ -545,7 +548,7 @@ function Sectors() {
                 <p className="text-slate-600 leading-relaxed mb-6 text-sm flex-grow relative z-10">
                   {t(sector.descKey)}
                 </p>
-                <div className="flex items-center gap-2 text-slate-500 font-medium text-sm hover:text-electric transition-colors cursor-pointer w-fit relative z-10 mt-auto">
+                <Link to={sector.route} className="flex items-center gap-2 text-slate-500 font-medium text-sm hover:text-electric transition-colors cursor-pointer w-fit relative z-10 mt-auto">
                   {t("sectors.more")}
                   <svg
                     width="16"
@@ -561,7 +564,7 @@ function Sectors() {
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />
                   </svg>
-                </div>
+                </Link>
               </article>
             </Reveal>
           ))}
