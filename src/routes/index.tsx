@@ -1710,12 +1710,9 @@ function CTA() {
       <div className="relative max-w-7xl mx-auto px-5 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start min-w-0">
           <Reveal className="min-w-0">
-            <div className="relative inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white shadow-[0_0_30px_rgba(0,150,255,0.15)] border border-electric/10 group cursor-default">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-electric/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-tr from-electric to-[#00f2fe] shadow-[0_0_15px_rgba(0,242,254,0.4)]">
-                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white" />
-              </div>
-              <span className="relative text-[10px] sm:text-xs font-black tracking-[0.15em] uppercase bg-gradient-to-r from-navy to-electric bg-clip-text text-transparent">
+            <div className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-electric shadow-lg shadow-electric/20 cursor-default">
+              <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+              <span className="text-[10px] sm:text-xs font-black tracking-[0.15em] uppercase text-white">
                 {t("cta.badge")}
               </span>
             </div>
