@@ -21,8 +21,8 @@ function GondolaWorker({ className = "" }: { className?: string }) {
           100% { stroke-dashoffset: -20; }
         }
         @keyframes scrubArm {
-          0%, 100% { transform: translateX(0px) translateY(0px); }
-          50%      { transform: translateX(-4px) translateY(-1px); }
+          0%, 100% { transform: rotate(0deg); }
+          50%      { transform: rotate(-15deg); }
         }
         @keyframes grip {
           0%, 100% { transform: translateY(0px); }
@@ -45,10 +45,10 @@ function GondolaWorker({ className = "" }: { className?: string }) {
         style={{ filter: 'drop-shadow(0 0 6px rgba(0,150,255,0.4))' }}
       >
         {/* EDIFICIO CENTRAL — más alto, con remate triangular en la cima */}
-        <polygon points="62,10 148,25 148,370 62,370" fill="#112540"/>
+        <polygon points="62,25 148,10 148,370 62,370" fill="#112540"/>
         <rect x="62" y="25" width="86" height="345" rx="0" fill="#112540"/>
-        {/* Triángulo remate central: punta izquierda arriba */}
-        <polygon points="62,10 148,25 62,25" fill="#1a3a5c"/>
+        {/* Triángulo remate central: punta derecha arriba */}
+        <polygon points="62,25 148,10 148,25" fill="#1a3a5c"/>
 
         {/* Ventanas edificio central */}
         <rect x="68"  y="35"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.28)" stroke="rgba(0,150,255,0.5)" strokeWidth="0.5" style={{animation:'blinkPanel 2.3s ease-in-out infinite'}}/>
@@ -74,8 +74,8 @@ function GondolaWorker({ className = "" }: { className?: string }) {
 
         {/* EDIFICIO IZQUIERDO — tapa 2 primeras filas del central, remate triangular */}
         <rect x="10" y="71" width="56" height="299" rx="0" fill="#0e2340"/>
-        {/* Triángulo remate izquierdo: punta izquierda arriba */}
-        <polygon points="10,55 66,71 10,71" fill="#162d4a"/>
+        {/* Triángulo remate izquierdo: punta derecha arriba */}
+        <polygon points="10,71 66,55 66,71" fill="#162d4a"/>
 
         {/* Ventanas edificio izquierdo */}
         <rect x="16" y="82"  width="11" height="9" rx="1" fill="rgba(91,184,232,0.20)" stroke="rgba(91,184,232,0.40)" strokeWidth="0.5" style={{animation:'blinkPanel 3.2s ease-in-out infinite'}}/>
@@ -93,8 +93,8 @@ function GondolaWorker({ className = "" }: { className?: string }) {
 
         {/* EDIFICIO DERECHO — altura media, remate triangular */}
         <rect x="148" y="95" width="62" height="275" rx="0" fill="#0d1f38"/>
-        {/* Triángulo remate derecho: punta izquierda arriba */}
-        <polygon points="148,78 210,95 148,95" fill="#142840"/>
+        {/* Triángulo remate derecho: punta derecha arriba */}
+        <polygon points="148,95 210,78 210,95" fill="#142840"/>
 
         {/* Ventanas edificio derecho */}
         <rect x="154" y="106" width="11" height="9" rx="1" fill="rgba(42,109,181,0.22)" stroke="rgba(42,109,181,0.42)" strokeWidth="0.5" style={{animation:'blinkPanel 2.9s ease-in-out infinite'}}/>
@@ -137,7 +137,7 @@ function GondolaWorker({ className = "" }: { className?: string }) {
           <line x1="124" y1="112" x2="96"  y2="143" stroke="#0096FF" strokeWidth="1.7"/>
           <line x1="93"  y1="128" x2="127" y2="128" stroke="#0096FF" strokeWidth="1.2"/>
 
-          <g style={{ animation: 'scrubArm 1.5s ease-in-out infinite' }}>
+          <g style={{ transformOrigin: '93px 122px', animation: 'scrubArm 1.5s ease-in-out infinite' }}>
             <line x1="93" y1="122" x2="76" y2="120" stroke="#f4a261" strokeWidth="4.5" strokeLinecap="round"/>
             <line x1="76" y1="120" x2="66" y2="118" stroke="#f4a261" strokeWidth="3.5" strokeLinecap="round"/>
             <line x1="66" y1="118" x2="59" y2="116" stroke="#aaaaaa" strokeWidth="2.5" strokeLinecap="round"/>
