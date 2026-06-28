@@ -127,8 +127,11 @@ export const translations = {
     'sectors.naves.benefit4': 'Presupuesto adaptado a grandes superficies',
 
     'sector.services.title': 'Servicios incluidos',
+    'sector.services.view': 'Ver servicio',
     'sector.cta.title': 'Solicita tu presupuesto sin compromiso',
-    'hero.btnPrimary': 'Solicitar Presupuesto',
+    'sector.cta.desc': 'Respondemos en menos de 24 horas. Sin compromiso.',
+    'sector.cta.btn': 'Contactar ahora',
+    'nav.atencion': 'ATENCIÓN INMEDIATA',
     
     'form.title': 'Solicita información',
     'form.subtitle': 'Respondemos en menos de 24h',
@@ -541,8 +544,11 @@ export const translations = {
     'sectors.naves.benefit4': 'Pressupost adaptat a grans superfícies',
 
     'sector.services.title': 'Serveis inclosos',
+    'sector.services.view': 'Veure servei',
     'sector.cta.title': 'Sol·licita el teu pressupost sense compromís',
-    'hero.btnPrimary': 'Sol·licitar Pressupost',
+    'sector.cta.desc': 'Responem en menys de 24 hores. Sense compromís.',
+    'sector.cta.btn': 'Contactar ara',
+    'nav.atencion': 'ATENCIÓ IMMEDIATA',
     
     'form.title': 'Sol·licita informació',
     'form.subtitle': 'Responem en menys de 24h',
@@ -695,9 +701,12 @@ export const translations = {
     'sectors.naves.benefit3': 'Specialized industrial techniques',
     'sectors.naves.benefit4': 'Quote adapted to large surfaces',
 
-    'sector.services.title': 'Included Services',
+    'sector.services.title': 'Included services',
+    'sector.services.view': 'View service',
     'sector.cta.title': 'Request your free quote',
-    'hero.btnPrimary': 'Request Quote',
+    'sector.cta.desc': 'We respond in under 24 hours. No obligation.',
+    'sector.cta.btn': 'Contact now',
+    'nav.atencion': 'IMMEDIATE ATTENTION',
     
     'form.title': 'Request Information',
     'form.subtitle': 'We respond in less than 24h',

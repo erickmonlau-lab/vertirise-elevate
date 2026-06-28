@@ -191,8 +191,8 @@ export function SectorLayout({
                 <h3 className="text-navy font-bold text-xl text-center mt-2">
                   {svc.name}
                 </h3>
-                <div className="text-electric text-sm font-semibold text-center mt-3">
-                  Ver servicio &rarr;
+                <div className="text-electric text-sm font-semibold text-center mt-3 flex items-center justify-center gap-1">
+                  {t('sector.services.view', 'Ver servicio')} &rarr;
                 </div>
               </Reveal>
             ))}
@@ -214,20 +214,20 @@ export function SectorLayout({
                     {t('sector.cta.title', 'Solicita tu presupuesto sin compromiso')}
                   </h2>
                   <p className="text-white/90 text-base font-medium mb-0">
-                    Respondemos en menos de 24 horas. Sin compromiso.
+                    {t('sector.cta.desc', 'Respondemos en menos de 24 horas. Sin compromiso.')}
                   </p>
                 </div>
                 
                 <div className="shrink-0 flex flex-col items-center gap-3">
                   <a
                     href="tel:+34936556161"
-                    className="px-8 py-4 bg-white font-bold rounded-full hover:scale-105 transition-transform"
+                    className="px-8 py-4 bg-white font-bold rounded-full hover:scale-105 transition-transform shadow-xl"
                     style={{ color: bgColor }}
                   >
-                    Contactar ahora
+                    {t('sector.cta.btn', 'Contactar ahora')}
                   </a>
-                  <span className="text-white font-bold text-xs tracking-widest uppercase">
-                    ATENCIÓN INMEDIATA
+                  <span className="text-white font-bold text-xs tracking-widest uppercase mt-2">
+                    {t('nav.atencion', 'ATENCIÓN INMEDIATA')}
                   </span>
                 </div>
               </div>
