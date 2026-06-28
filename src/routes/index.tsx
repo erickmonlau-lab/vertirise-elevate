@@ -1009,33 +1009,37 @@ function Benefits() {
       </div>
       
       {/* Full-width CTA strip at the bottom */}
-      <div 
-        className="relative overflow-hidden w-full bg-electric py-20 px-6 mt-16"
-        style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '24px 24px' }}
-      >
-        <div className="absolute left-8 top-1/2 -translate-y-1/2 text-[120px] font-black text-white/5 select-none pointer-events-none hidden lg:block">
-          +4.500
-        </div>
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 text-center lg:text-left relative z-10">
-          <div className="text-white shrink-0 bg-white/20 rounded-full p-4">
-            <svg className="w-16 h-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m13 2-2 9h9l-11 11 2-9H2l11-11z"/>
-            </svg>
+      <div className="relative w-full bg-[#0a1628] py-16 px-6 mt-16">
+        <div className="absolute top-0 left-0 w-full h-1 bg-electric"></div>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-10 lg:gap-16 items-center text-center lg:text-left">
+          
+          {/* Col 1: Stat */}
+          <div className="flex flex-col items-center lg:items-start shrink-0">
+            <div className="text-[80px] font-black text-electric leading-none">
+              +25
+            </div>
+            <div className="text-white/60 text-sm uppercase tracking-widest mt-2">
+              años de experiencia
+            </div>
           </div>
+
+          {/* Col 2: Text */}
           <div className="flex-1">
-            <h3 className="text-4xl font-black text-white tracking-tight">
+            <h3 className="text-3xl font-black text-white tracking-tight">
               {t("benefits.cta.title")}
             </h3>
-            <p className="text-white/80 text-lg leading-relaxed max-w-2xl mt-2 mx-auto lg:mx-0">
+            <p className="text-white/60 text-sm leading-relaxed max-w-2xl mt-3 mx-auto lg:mx-0">
               {t("benefits.cta.desc")}
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 shrink-0">
+
+          {/* Col 3: Buttons */}
+          <div className="flex flex-col shrink-0 w-full lg:w-[280px]">
             <a
               href={WA_HREF}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-electric font-bold hover:shadow-lg transition-all text-sm"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-electric text-white font-bold hover:bg-electric/90 transition-all text-sm w-full"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
@@ -1045,7 +1049,7 @@ function Benefits() {
             </a>
             <a
               href="#contacto"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white text-white font-bold hover:bg-white/10 transition-colors text-sm"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-white/20 text-white font-bold hover:bg-white/10 transition-colors text-sm w-full mt-3"
             >
               {t("benefits.cta.visit")}
             </a>
