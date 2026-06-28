@@ -2,144 +2,186 @@ import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "../i18n/I18nContext";
 import logoDiset from "@/assets/logo-diset.webp";
 
-// Window data: 8 rows × 4 cols = 32 windows, each with a unique blink delay
-const WIN_ROWS = 8;
-const WIN_COLS = 4;
-const WIN_W = 20;
-const WIN_H = 14;
-const WIN_GAP_X = 6;
-const WIN_GAP_Y = 10;
-const BLD_X = 140;         // building left edge in viewBox
-const BLD_PAD_X = 8;       // inner padding from building edge to first window col
-const BLD_PAD_Y = 14;      // inner padding from top to first row
+function IsometricFacade() {
+  // Isometric projection helpers
+  // iso coords → svg coords: x' = (ix - iy) * tileW/2, y' = (ix + iy) * tileH/2
+  const tileW = 44;
+  const tileH = 22;
+  const cols = 4;
+  const rows = 7;
+  // origin offset so the grid sits nicely
+  const ox = 110;
+  const oy = 30;
 
-function RappelIllustration() {
-  // Pre-compute window positions & delays once
-  const windows = Array.from({ length: WIN_ROWS * WIN_COLS }, (_, i) => {
-    const row = Math.floor(i / WIN_COLS);
-    const col = i % WIN_COLS;
-    const lit = (row + col) % 3 !== 0; // roughly 2/3 lit initially
-    const duration = 2 + (i % 5) * 0.6;  // 2s – 4.4s
-    const delay = -(i * 0.37 % duration); // stagger without regularity
-    return { row, col, lit, duration, delay };
-  });
+  function isoPoint(ix: number, iy: number) {
+    return {
+      x: ox + (ix - iy) * (tileW / 2),
+      y: oy + (ix + iy) * (tileH / 2),
+    };
+  }
 
-  // Rope x positions (inside the building area, viewBox coords)
-  const ropeXs = [162, 196, 230];
-  const workers = [
-    { x: ropeXs[0], delay: '0s',  duration: '7s' },
-    { x: ropeXs[1], delay: '-2s', duration: '8.5s' },
-    { x: ropeXs[2], delay: '-5s', duration: '6.5s' },
-  ];
+  function panelPoints(col: number, row: number) {
+    const tl = isoPoint(col,     row);
+    const tr = isoPoint(col + 1, row);
+    const br = isoPoint(col + 1, row + 1);
+    const bl = isoPoint(col,     row + 1);
+    return `${tl.x},${tl.y} ${tr.x},${tr.y} ${br.x},${br.y} ${bl.x},${bl.y}`;
+  }
+
+  const panels = [];
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const lit = (c + r) % 2 === 0;
+      panels.push({ col: c, row: r, lit, idx: r * cols + c });
+    }
+  }
+
+  // Gondola anchor point — hangs off top-right of grid
+  const gondolaX = ox + (cols - 1) * (tileW / 2) + tileW / 2 + 10;
+  const gondolaY = oy + (cols - 1) * (tileH / 2) - 10;
+  // Rope top attachment
+  const ropeTopX = gondolaX + 8;
+  const ropeTopY = 0;
 
   return (
     <div style={{
       position: 'absolute', right: 0, top: 0,
-      width: '280px', height: '100%',
+      width: '220px', height: '100%',
       overflow: 'hidden', pointerEvents: 'none', zIndex: 0,
+      opacity: 0.85,
     }}>
       <style>{`
-        @keyframes rappel {
-          0%   { transform: translateY(-80px); }
-          100% { transform: translateY(420px); }
+        @keyframes gondola {
+          0%, 100% { transform: translateY(0px); }
+          50%       { transform: translateY(-30px); }
         }
-        @keyframes blink {
-          0%, 100% { opacity: 0.65; }
-          50%       { opacity: 0.08; }
+        @keyframes wipeClean {
+          0%, 40%  { opacity: 0; }
+          50%      { opacity: 0.7; }
+          90%, 100%{ opacity: 0; }
+        }
+        @keyframes blinkPanel {
+          0%, 100% { opacity: 0.9; }
+          50%      { opacity: 0.3; }
         }
       `}</style>
 
       <svg
-        width="280"
+        width="220"
         height="100%"
-        viewBox="0 0 280 400"
-        preserveAspectRatio="xMidYMid meet"
-        style={{ filter: 'drop-shadow(0 0 4px #0096FF)', opacity: 0.7 }}
+        viewBox="0 0 220 420"
+        preserveAspectRatio="xMidYMin meet"
+        style={{ filter: 'drop-shadow(0 0 6px rgba(0,150,255,0.4))' }}
       >
-        {/* ── Building shell ── */}
-        <rect
-          x={BLD_X} y="0" width="120" height="400"
-          fill="none" stroke="#0096FF" strokeWidth="0.8" opacity="0.4"
-        />
-        {/* Horizontal floor separators */}
-        {Array.from({ length: WIN_ROWS - 1 }, (_, r) => {
-          const y = BLD_PAD_Y + (r + 1) * (WIN_H + WIN_GAP_Y) - WIN_GAP_Y / 2;
-          return (
-            <line
-              key={r}
-              x1={BLD_X} y1={y} x2={BLD_X + 120} y2={y}
-              stroke="#0096FF" strokeWidth="0.3" opacity="0.2"
-            />
-          );
-        })}
-        {/* Vertical column separators */}
-        {Array.from({ length: WIN_COLS - 1 }, (_, c) => {
-          const x = BLD_X + BLD_PAD_X + (c + 1) * (WIN_W + WIN_GAP_X) - WIN_GAP_X / 2;
-          return (
-            <line
-              key={c}
-              x1={x} y1="0" x2={x} y2="400"
-              stroke="#0096FF" strokeWidth="0.3" opacity="0.1"
-            />
-          );
-        })}
-
-        {/* ── Windows ── */}
-        {windows.map((w, i) => {
-          const wx = BLD_X + BLD_PAD_X + w.col * (WIN_W + WIN_GAP_X);
-          const wy = BLD_PAD_Y + w.row * (WIN_H + WIN_GAP_Y);
-          return (
-            <rect
-              key={i}
-              x={wx} y={wy} width={WIN_W} height={WIN_H}
-              rx="1"
-              fill={w.lit ? 'rgba(0,150,255,0.65)' : 'rgba(0,150,255,0.05)'}
-              stroke="#0096FF" strokeWidth="0.5" opacity="0.9"
-              style={w.lit ? {
-                animation: `blink ${w.duration}s ease-in-out ${w.delay}s infinite`,
-              } : undefined}
-            />
-          );
-        })}
-
-        {/* ── Ropes (full height, behind workers) ── */}
-        {ropeXs.map((rx, i) => (
-          <line
-            key={i}
-            x1={rx} y1="0" x2={rx} y2="400"
-            stroke="#0096FF" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.45"
+        {/* ── Glass facade panels ── */}
+        {panels.map((p) => (
+          <polygon
+            key={p.idx}
+            points={panelPoints(p.col, p.row)}
+            fill={p.lit ? 'rgba(0,150,255,0.18)' : 'rgba(0,150,255,0.07)'}
+            stroke="#1a3a5c"
+            strokeWidth="0.8"
+            style={p.lit && p.idx % 5 === 0 ? {
+              animation: `blinkPanel ${2.5 + (p.idx % 4) * 0.5}s ease-in-out ${-(p.idx * 0.4)}s infinite`,
+            } : undefined}
           />
         ))}
 
-        {/* ── Workers ── */}
-        {workers.map((w, i) => (
-          <g
-            key={i}
-            style={{
-              animation: `rappel ${w.duration} ease-in-out ${w.delay} infinite alternate`,
-            }}
-          >
-            {/* Harness lines on rope */}
-            <line x1={w.x - 5} y1="3" x2={w.x} y2="8" stroke="#0096FF" strokeWidth="0.8" opacity="0.7" />
-            <line x1={w.x + 5} y1="3" x2={w.x} y2="8" stroke="#0096FF" strokeWidth="0.8" opacity="0.7" />
+        {/* Highlight lines on panels (glass sheen) */}
+        {panels.filter(p => p.lit).map((p) => {
+          const tl = isoPoint(p.col,     p.row);
+          const tr = isoPoint(p.col + 1, p.row);
+          const mid = isoPoint(p.col + 0.5, p.row + 0.5);
+          return (
+            <line
+              key={`shine-${p.idx}`}
+              x1={tl.x + 2} y1={tl.y + 1}
+              x2={mid.x}    y2={mid.y - 2}
+              stroke="rgba(255,255,255,0.15)"
+              strokeWidth="1"
+            />
+          );
+        })}
 
-            {/* Helmet */}
-            <ellipse cx={w.x} cy="10" rx="8" ry="5" fill="#0096FF" opacity="0.9" />
+        {/* ── Rope from top ── */}
+        <line
+          x1={ropeTopX} y1={ropeTopY}
+          x2={ropeTopX} y2="420"
+          stroke="#0096FF" strokeWidth="1.5"
+          strokeDasharray="3 3" opacity="0.5"
+        />
 
-            {/* Body */}
-            <rect x={w.x - 6} y="15" width="12" height="18" rx="3"
-              fill="#0d2a4a" stroke="#0096FF" strokeWidth="1" />
+        {/* ── Animated gondola + worker ── */}
+        <g style={{ animation: 'gondola 4s ease-in-out infinite', transformOrigin: `${ropeTopX}px 0px` }}>
 
-            {/* Harness cross straps */}
-            <line x1={w.x - 5} y1="16" x2={w.x + 5} y2="26" stroke="#0096FF" strokeWidth="0.8" />
-            <line x1={w.x + 5} y1="16" x2={w.x - 5} y2="26" stroke="#0096FF" strokeWidth="0.8" />
+          {/* Rope attachment / pulley */}
+          <circle cx={ropeTopX} cy={gondolaY - 12} r="3" fill="#0096FF" opacity="0.8" />
 
-            {/* Equipment/bucket */}
-            <rect x={w.x - 4} y="34" width="8" height="6" rx="1"
-              fill="#0d2a4a" stroke="#0096FF" strokeWidth="0.8" />
-            <line x1={w.x - 4} y1="34" x2={w.x + 4} y2="34" stroke="#0096FF" strokeWidth="1" />
-          </g>
-        ))}
+          {/* Gondola platform */}
+          <rect
+            x={gondolaX - 18} y={gondolaY + 30}
+            width="36" height="6" rx="2"
+            fill="#0d1f3c" stroke="#0096FF" strokeWidth="1"
+          />
+          {/* Railing left */}
+          <line x1={gondolaX - 16} y1={gondolaY + 30} x2={gondolaX - 16} y2={gondolaY + 14}
+            stroke="#0096FF" strokeWidth="1" />
+          {/* Railing top */}
+          <line x1={gondolaX - 16} y1={gondolaY + 14} x2={gondolaX + 16} y2={gondolaY + 14}
+            stroke="#0096FF" strokeWidth="0.8" strokeDasharray="2 2" />
+          {/* Railing right */}
+          <line x1={gondolaX + 16} y1={gondolaY + 30} x2={gondolaX + 16} y2={gondolaY + 14}
+            stroke="#0096FF" strokeWidth="1" />
+
+          {/* Worker — legs */}
+          <line x1={gondolaX - 4} y1={gondolaY + 30} x2={gondolaX - 4} y2={gondolaY + 22}
+            stroke="#0d1f3c" strokeWidth="4" strokeLinecap="round" />
+          <line x1={gondolaX + 4} y1={gondolaY + 30} x2={gondolaX + 4} y2={gondolaY + 22}
+            stroke="#0d1f3c" strokeWidth="4" strokeLinecap="round" />
+
+          {/* Worker — body */}
+          <rect
+            x={gondolaX - 8} y={gondolaY + 6}
+            width="16" height="16" rx="3"
+            fill="#0d1f3c" stroke="#0096FF" strokeWidth="1"
+          />
+          {/* Arnés straps */}
+          <line x1={gondolaX - 6} y1={gondolaY + 7} x2={gondolaX + 6} y2={gondolaY + 18}
+            stroke="#0096FF" strokeWidth="0.8" />
+          <line x1={gondolaX + 6} y1={gondolaY + 7} x2={gondolaX - 6} y2={gondolaY + 18}
+            stroke="#0096FF" strokeWidth="0.8" />
+
+          {/* Worker — right arm extended toward facade */}
+          <line x1={gondolaX - 8} y1={gondolaY + 12} x2={gondolaX - 22} y2={gondolaY + 8}
+            stroke="#f4a261" strokeWidth="3" strokeLinecap="round" />
+          {/* Squeegee / cleaning tool */}
+          <rect x={gondolaX - 28} y={gondolaY + 5} width="7" height="12" rx="1"
+            fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.2" />
+
+          {/* Worker — left arm (holding rail) */}
+          <line x1={gondolaX + 8} y1={gondolaY + 12} x2={gondolaX + 16} y2={gondolaY + 14}
+            stroke="#f4a261" strokeWidth="3" strokeLinecap="round" />
+
+          {/* Worker — head / skin */}
+          <circle cx={gondolaX} cy={gondolaY + 2} r="6" fill="#f4a261" />
+
+          {/* Helmet */}
+          <path
+            d={`M ${gondolaX - 7} ${gondolaY + 2} A 7 6 0 0 1 ${gondolaX + 7} ${gondolaY + 2} Z`}
+            fill="#0096FF"
+          />
+          {/* Helmet visor line */}
+          <line x1={gondolaX - 6} y1={gondolaY + 2} x2={gondolaX + 6} y2={gondolaY + 2}
+            stroke="#0d1f3c" strokeWidth="1" />
+
+          {/* Cleaning wipe effect on facade */}
+          <rect
+            x={gondolaX - 35} y={gondolaY + 3}
+            width="8" height="18" rx="1"
+            fill="rgba(255,255,255,0.45)"
+            style={{ animation: 'wipeClean 4s ease-in-out infinite' }}
+          />
+        </g>
       </svg>
     </div>
   );
@@ -151,7 +193,7 @@ export function Footer() {
   const { t } = useTranslation();
   return (
     <footer className="bg-[#0b1121] text-white pt-20 pb-10 relative overflow-hidden">
-      <RappelIllustration />
+      <IsometricFacade />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Brand Info */}
