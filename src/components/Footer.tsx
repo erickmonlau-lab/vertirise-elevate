@@ -24,12 +24,7 @@ function GondolaWorker() {
   const rope2X = 140;
 
   return (
-    <div style={{
-      position: 'absolute', right: 0, top: 0,
-      width: '220px', height: '100%',
-      overflow: 'hidden', pointerEvents: 'none', zIndex: 0,
-      opacity: 0.85,
-    }}>
+    <div className="pointer-events-none z-0 opacity-85 overflow-hidden relative w-full h-[120px] flex justify-center items-center md:absolute md:right-0 md:top-0 md:w-[220px] md:h-full md:block">
       <style>{`
         @keyframes gondola {
           0%   { transform: translateY(20px); }
@@ -63,8 +58,7 @@ function GondolaWorker() {
       `}</style>
 
       <svg
-        width="220"
-        height="100%"
+        className="w-[220px] h-[400px] scale-50 origin-center md:h-full md:scale-100"
         viewBox="0 0 220 400"
         preserveAspectRatio="xMidYMin meet"
         style={{ filter: 'drop-shadow(0 0 5px rgba(0,150,255,0.35))' }}
@@ -201,9 +195,8 @@ const WA_HREF = "https://wa.me/34936556161?text=Hola,%20me%20gustaría%20solicit
 export function Footer() {
   const { t } = useTranslation();
   return (
-    <footer className="bg-[#0b1121] text-white pt-20 pb-28 md:pb-10 relative overflow-hidden">
-      <GondolaWorker />
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+    <footer className="bg-[#0b1121] text-white pt-20 pb-28 md:pb-10 relative overflow-hidden flex flex-col">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Brand Info */}
           <div>
@@ -298,6 +291,7 @@ export function Footer() {
           </p>
         </div>
       </div>
+      <GondolaWorker />
     </footer>
   );
 }
