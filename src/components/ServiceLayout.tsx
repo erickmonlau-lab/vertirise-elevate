@@ -70,7 +70,7 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
         className="w-full min-h-[60vh] flex items-center pt-32 pb-16 px-6 lg:px-10 relative overflow-hidden"
         style={{ backgroundColor: accentColor }}
       >
-        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-10 items-center z-10">
+        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-10 items-center relative">
           
           {/* Left Column (40%) */}
           <div className="lg:col-span-5 flex flex-col items-start text-left">
@@ -107,8 +107,8 @@ export function ServiceLayout({ title, description, benefits, accentColor, image
           
           {/* Center Column (25%) */}
           <div className="lg:col-span-3 flex justify-center items-center py-10 lg:py-0 relative">
-             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.2)_0%,transparent_60%)] rounded-full w-full h-full scale-150"></div>
-             <img src={badgeSrc} alt="Icon" className="w-72 h-72 object-contain drop-shadow-2xl animate-[float_6s_ease-in-out_infinite] relative z-10 mix-blend-multiply bg-transparent" />
+             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.15)_0%,transparent_60%)] rounded-full w-full h-full scale-150 pointer-events-none"></div>
+             <img src={badgeSrc} alt="Icon" className="w-72 h-72 object-contain animate-[float_6s_ease-in-out_infinite] mix-blend-multiply bg-transparent" />
           </div>
 
           {/* Right Column (35%) Form */}
