@@ -107,25 +107,25 @@ const benefitsData = [
   {
     titleKey: "benefits.1.title" as const,
     descKey: "benefits.1.desc" as const,
-    icon: <PiggyBank className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    icon: <PiggyBank className="w-7 h-7 text-white" strokeWidth={1.5} aria-hidden="true" />,
     colorClass: "bg-gradient-to-br from-pink-500 to-rose-500 shadow-md shadow-pink-500/20",
   },
   {
     titleKey: "benefits.2.title" as const,
     descKey: "benefits.2.desc" as const,
-    icon: <ThumbsUp className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    icon: <ThumbsUp className="w-7 h-7 text-white" strokeWidth={1.5} aria-hidden="true" />,
     colorClass: "bg-gradient-to-br from-sky-400 to-blue-500 shadow-md shadow-blue-500/20",
   },
   {
     titleKey: "benefits.3.title" as const,
     descKey: "benefits.3.desc" as const,
-    icon: <Zap className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    icon: <Zap className="w-7 h-7 text-white" strokeWidth={1.5} aria-hidden="true" />,
     colorClass: "bg-gradient-to-br from-amber-400 to-yellow-500 shadow-md shadow-yellow-500/20",
   },
   {
     titleKey: "benefits.4.title" as const,
     descKey: "benefits.4.desc" as const,
-    icon: <ShieldCheck className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    icon: <ShieldCheck className="w-7 h-7 text-white" strokeWidth={1.5} aria-hidden="true" />,
     colorClass: "bg-gradient-to-br from-indigo-500 to-violet-600 shadow-md shadow-indigo-500/20",
   },
 ];
@@ -249,21 +249,21 @@ const sectorsData = [
   {
     nameKey: "sectors.1.title" as const,
     descKey: "sectors.1.desc" as const,
-    icon: <Building2 className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    icon: <Building2 className="w-7 h-7 text-white" strokeWidth={1.5} aria-hidden="true" />,
     colorClass: "bg-gradient-to-br from-emerald-400 to-teal-500 shadow-lg shadow-teal-500/30",
     route: "/sectores/comunidades"
   },
   {
     nameKey: "sectors.2.title" as const,
     descKey: "sectors.2.desc" as const,
-    icon: <Hotel className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    icon: <Hotel className="w-7 h-7 text-white" strokeWidth={1.5} aria-hidden="true" />,
     colorClass: "bg-gradient-to-br from-rose-400 to-orange-400 shadow-lg shadow-rose-500/30",
     route: "/sectores/hoteles"
   },
   {
     nameKey: "sectors.3.title" as const,
     descKey: "sectors.3.desc" as const,
-    icon: <Warehouse className="w-7 h-7 text-white" strokeWidth={1.5} />,
+    icon: <Warehouse className="w-7 h-7 text-white" strokeWidth={1.5} aria-hidden="true" />,
     colorClass: "bg-gradient-to-br from-slate-600 to-slate-800 shadow-lg shadow-slate-500/30",
     route: "/sectores/naves"
   },
