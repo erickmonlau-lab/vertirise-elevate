@@ -8,219 +8,156 @@ const GROWS = 8;
 const GW = 55;   // panel width
 const GH = 52;   // panel height
 
-function GondolaWorker({ className = "", isDesktop = false }: { className?: string, isDesktop?: boolean }) {
-  // Generate windows for left building
-  const leftWindows = [];
-  for (let r = 0; r < 12; r++) {
-    for (let c = 0; c < 3; c++) {
-      leftWindows.push({ x: 5 + c * 22, y: 170 + r * 22, bright: (r+c)%4===0, accent: (r+c)%7===0, idx: `L-${r}-${c}` });
-    }
-  }
-
-  // Generate windows for right building
-  const rightWindows = [];
-  for (let r = 0; r < 12; r++) {
-    for (let c = 0; c < 3; c++) {
-      rightWindows.push({ x: 165 + c * 22, y: 150 + r * 22, bright: (r+c+1)%4===0, accent: (r+c+2)%7===0, idx: `R-${r}-${c}` });
-    }
-  }
-
-  // Generate windows for middle building
-  const middleWindows = [];
-  for (let r = 0; r < 16; r++) {
-    for (let c = 0; c < 6; c++) {
-      middleWindows.push({ x: 47 + c * 22, y: 40 + r * 22, bright: (r+c+2)%4===0, accent: (r+c+3)%7===0, idx: `M-${r}-${c}` });
-    }
-  }
-
-  // Rope x positions (centred in the 220px wide container)
-  const rope1X = 80;
-  const rope2X = 140;
-
+function GondolaWorker({ className = "" }: { className?: string }) {
   return (
     <div className={`pointer-events-none z-0 overflow-hidden ${className}`}>
       <style>{`
         @keyframes gondola {
-          0%   { transform: translateY(-40px); }
-          100% { transform: translateY(140px); }
+          0%   { transform: translateY(0px); }
+          100% { transform: translateY(150px); }
         }
         @keyframes ropeMove {
           0%   { stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: -32; }
+          100% { stroke-dashoffset: -20; }
         }
-        @keyframes wipeClean {
-          0%, 35% { opacity: 0; }
-          50%     { opacity: 0.8; }
-          85%, 100%{ opacity: 0; }
-        }
-        @keyframes blinkPanel {
-          0%, 100% { opacity: 1; }
-          50%      { opacity: 0.35; }
-        }
-        @keyframes scrub {
-          0%, 100% { transform: rotate(-15deg); }
-          50%      { transform: rotate(15deg); }
+        @keyframes scrubArm {
+          0%, 100% { transform: translateX(0px) translateY(0px); }
+          50%      { transform: translateX(-4px) translateY(-1px); }
         }
         @keyframes grip {
           0%, 100% { transform: translateY(0px); }
-          50%      { transform: translateY(3px); }
+          50%      { transform: translateY(2px); }
         }
-        @keyframes turnFace {
-          0%, 30%, 100% { transform: translateX(0px); }
-          45%, 85%      { transform: translateX(10px); }
+        @keyframes blinkPanel {
+          0%, 100% { opacity: 1; }
+          50%      { opacity: 0.25; }
+        }
+        @keyframes wipeClean {
+          0%, 35% { opacity: 0; }
+          50%     { opacity: 0.85; }
+          85%, 100%{ opacity: 0; }
         }
       `}</style>
-
       <svg
         className="w-full h-full"
-        viewBox="0 0 220 400"
+        viewBox="0 0 220 370"
         preserveAspectRatio="xMidYMax meet"
-        style={{ filter: 'drop-shadow(0 0 5px rgba(0,150,255,0.35))' }}
+        style={{ filter: 'drop-shadow(0 0 6px rgba(0,150,255,0.4))' }}
       >
-        <defs>
-          <clipPath id="clipLeft">
-            <polygon points="0,200 60,170 60,400 0,400" />
-          </clipPath>
-          <clipPath id="clipRight">
-            <polygon points="160,180 220,150 220,400 160,400" />
-          </clipPath>
-          <clipPath id="clipMiddle">
-            <polygon points="40,110 180,40 180,400 40,400" />
-          </clipPath>
-        </defs>
+        {/* EDIFICIO CENTRAL — más alto, con remate triangular en la cima */}
+        <polygon points="62,10 148,25 148,370 62,370" fill="#112540"/>
+        <rect x="62" y="25" width="86" height="345" rx="0" fill="#112540"/>
+        {/* Triángulo remate central: punta izquierda arriba */}
+        <polygon points="62,10 148,25 62,25" fill="#1a3a5c"/>
 
-        {/* Giant Squeegee Logo Overlay (behind buildings) */}
-        <g opacity="0.15">
-          {/* Handle */}
-          <line x1="60" y1="260" x2="160" y2="140" stroke="#0096FF" strokeWidth="14" strokeLinecap="round" />
-          {/* Blade base */}
-          <line x1="30" y1="255" x2="75" y2="295" stroke="#0096FF" strokeWidth="20" strokeLinecap="round" />
-        </g>
+        {/* Ventanas edificio central */}
+        <rect x="68"  y="35"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.28)" stroke="rgba(0,150,255,0.5)" strokeWidth="0.5" style={{animation:'blinkPanel 2.3s ease-in-out infinite'}}/>
+        <rect x="86"  y="35"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.10)" stroke="rgba(0,150,255,0.25)" strokeWidth="0.5"/>
+        <rect x="104" y="35"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.20)" stroke="rgba(0,150,255,0.40)" strokeWidth="0.5"/>
+        <rect x="122" y="35"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.08)" stroke="rgba(0,150,255,0.20)" strokeWidth="0.5"/>
+        <rect x="68"  y="53"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.10)" stroke="rgba(0,150,255,0.25)" strokeWidth="0.5"/>
+        <rect x="86"  y="53"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.28)" stroke="rgba(0,150,255,0.50)" strokeWidth="0.5" style={{animation:'blinkPanel 1.9s ease-in-out infinite'}}/>
+        <rect x="104" y="53"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.08)" stroke="rgba(0,150,255,0.20)" strokeWidth="0.5"/>
+        <rect x="122" y="53"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.22)" stroke="rgba(0,150,255,0.42)" strokeWidth="0.5"/>
+        <rect x="68"  y="71"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.08)" stroke="rgba(0,150,255,0.20)" strokeWidth="0.5"/>
+        <rect x="86"  y="71"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.18)" stroke="rgba(0,150,255,0.38)" strokeWidth="0.5"/>
+        <rect x="104" y="71"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.28)" stroke="rgba(0,150,255,0.50)" strokeWidth="0.5" style={{animation:'blinkPanel 3s ease-in-out infinite'}}/>
+        <rect x="122" y="71"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.10)" stroke="rgba(0,150,255,0.25)" strokeWidth="0.5"/>
+        <rect x="68"  y="89"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.22)" stroke="rgba(0,150,255,0.42)" strokeWidth="0.5" style={{animation:'blinkPanel 2.6s ease-in-out infinite'}}/>
+        <rect x="86"  y="89"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.08)" stroke="rgba(0,150,255,0.20)" strokeWidth="0.5"/>
+        <rect x="104" y="89"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.15)" stroke="rgba(0,150,255,0.32)" strokeWidth="0.5"/>
+        <rect x="122" y="89"  width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.28)" stroke="rgba(0,150,255,0.50)" strokeWidth="0.5" style={{animation:'blinkPanel 2s ease-in-out infinite'}}/>
+        <rect x="68"  y="107" width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.08)" stroke="rgba(0,150,255,0.20)" strokeWidth="0.5"/>
+        <rect x="86"  y="107" width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.25)" stroke="rgba(0,150,255,0.45)" strokeWidth="0.5"/>
+        <rect x="104" y="107" width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.10)" stroke="rgba(0,150,255,0.25)" strokeWidth="0.5" style={{animation:'blinkPanel 2.7s ease-in-out infinite'}}/>
+        <rect x="122" y="107" width="13" height="11" rx="1.5" fill="rgba(0,150,255,0.18)" stroke="rgba(0,150,255,0.38)" strokeWidth="0.5"/>
 
-        {/* ── Left Building ── */}
-        <polygon points="0,200 60,170 60,400 0,400" fill="#0d1b32" />
-        <g clipPath="url(#clipLeft)">
-          {leftWindows.map(w => (
-            <rect key={w.idx} x={w.x} y={w.y} width="16" height="16" rx="2"
-              fill={w.accent ? 'rgba(0,150,255,0.28)' : w.bright ? 'rgba(0,150,255,0.16)' : 'rgba(0,150,255,0.07)'}
-              stroke="rgba(0,150,255,0.3)" strokeWidth="1"
-              style={w.accent ? { animation: `blinkPanel 2s ease-in-out infinite` } : undefined}
-            />
-          ))}
-        </g>
+        {/* EDIFICIO IZQUIERDO — tapa 2 primeras filas del central, remate triangular */}
+        <rect x="10" y="71" width="56" height="299" rx="0" fill="#0e2340"/>
+        {/* Triángulo remate izquierdo: punta izquierda arriba */}
+        <polygon points="10,55 66,71 10,71" fill="#162d4a"/>
 
-        {/* ── Right Building ── */}
-        <polygon points="160,180 220,150 220,400 160,400" fill="#0d1b32" />
-        <g clipPath="url(#clipRight)">
-          {rightWindows.map(w => (
-            <rect key={w.idx} x={w.x} y={w.y} width="16" height="16" rx="2"
-              fill={w.accent ? 'rgba(0,150,255,0.28)' : w.bright ? 'rgba(0,150,255,0.16)' : 'rgba(0,150,255,0.07)'}
-              stroke="rgba(0,150,255,0.3)" strokeWidth="1"
-              style={w.accent ? { animation: `blinkPanel 2.5s ease-in-out infinite` } : undefined}
-            />
-          ))}
-        </g>
+        {/* Ventanas edificio izquierdo */}
+        <rect x="16" y="82"  width="11" height="9" rx="1" fill="rgba(91,184,232,0.20)" stroke="rgba(91,184,232,0.40)" strokeWidth="0.5" style={{animation:'blinkPanel 3.2s ease-in-out infinite'}}/>
+        <rect x="32" y="82"  width="11" height="9" rx="1" fill="rgba(91,184,232,0.08)" stroke="rgba(91,184,232,0.20)" strokeWidth="0.5"/>
+        <rect x="48" y="82"  width="11" height="9" rx="1" fill="rgba(91,184,232,0.15)" stroke="rgba(91,184,232,0.32)" strokeWidth="0.5"/>
+        <rect x="16" y="98"  width="11" height="9" rx="1" fill="rgba(91,184,232,0.08)" stroke="rgba(91,184,232,0.20)" strokeWidth="0.5"/>
+        <rect x="32" y="98"  width="11" height="9" rx="1" fill="rgba(91,184,232,0.22)" stroke="rgba(91,184,232,0.42)" strokeWidth="0.5" style={{animation:'blinkPanel 2.1s ease-in-out infinite'}}/>
+        <rect x="48" y="98"  width="11" height="9" rx="1" fill="rgba(91,184,232,0.08)" stroke="rgba(91,184,232,0.20)" strokeWidth="0.5"/>
+        <rect x="16" y="114" width="11" height="9" rx="1" fill="rgba(91,184,232,0.16)" stroke="rgba(91,184,232,0.35)" strokeWidth="0.5"/>
+        <rect x="32" y="114" width="11" height="9" rx="1" fill="rgba(91,184,232,0.08)" stroke="rgba(91,184,232,0.20)" strokeWidth="0.5"/>
+        <rect x="48" y="114" width="11" height="9" rx="1" fill="rgba(91,184,232,0.22)" stroke="rgba(91,184,232,0.42)" strokeWidth="0.5" style={{animation:'blinkPanel 2.8s ease-in-out infinite'}}/>
+        <rect x="16" y="130" width="11" height="9" rx="1" fill="rgba(91,184,232,0.08)" stroke="rgba(91,184,232,0.20)" strokeWidth="0.5"/>
+        <rect x="32" y="130" width="11" height="9" rx="1" fill="rgba(91,184,232,0.18)" stroke="rgba(91,184,232,0.38)" strokeWidth="0.5"/>
+        <rect x="48" y="130" width="11" height="9" rx="1" fill="rgba(91,184,232,0.08)" stroke="rgba(91,184,232,0.20)" strokeWidth="0.5"/>
 
-        {/* ── Middle Building ── */}
-        <polygon points="40,110 180,40 180,400 40,400" fill="#112340" />
-        <g clipPath="url(#clipMiddle)">
-          {middleWindows.map(w => (
-            <rect key={w.idx} x={w.x} y={w.y} width="16" height="16" rx="2"
-              fill={w.accent ? 'rgba(0,150,255,0.28)' : w.bright ? 'rgba(0,150,255,0.16)' : 'rgba(0,150,255,0.07)'}
-              stroke="rgba(0,150,255,0.3)" strokeWidth="1"
-              style={w.accent ? { animation: `blinkPanel 3s ease-in-out infinite` } : undefined}
-            />
-          ))}
-        </g>
+        {/* EDIFICIO DERECHO — altura media, remate triangular */}
+        <rect x="148" y="95" width="62" height="275" rx="0" fill="#0d1f38"/>
+        {/* Triángulo remate derecho: punta izquierda arriba */}
+        <polygon points="148,78 210,95 148,95" fill="#142840"/>
 
-        {/* ── Ropes — centred on character position ── */}
-        <line x1={rope1X} y1="0" x2={rope1X} y2="400"
-          stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.55"
-          style={{ animation: 'ropeMove 1s linear infinite' }}
+        {/* Ventanas edificio derecho */}
+        <rect x="154" y="106" width="11" height="9" rx="1" fill="rgba(42,109,181,0.22)" stroke="rgba(42,109,181,0.42)" strokeWidth="0.5" style={{animation:'blinkPanel 2.9s ease-in-out infinite'}}/>
+        <rect x="169" y="106" width="11" height="9" rx="1" fill="rgba(42,109,181,0.08)" stroke="rgba(42,109,181,0.20)" strokeWidth="0.5"/>
+        <rect x="184" y="106" width="11" height="9" rx="1" fill="rgba(42,109,181,0.18)" stroke="rgba(42,109,181,0.38)" strokeWidth="0.5"/>
+        <rect x="154" y="122" width="11" height="9" rx="1" fill="rgba(42,109,181,0.08)" stroke="rgba(42,109,181,0.20)" strokeWidth="0.5"/>
+        <rect x="169" y="122" width="11" height="9" rx="1" fill="rgba(42,109,181,0.25)" stroke="rgba(42,109,181,0.45)" strokeWidth="0.5" style={{animation:'blinkPanel 2.3s ease-in-out infinite'}}/>
+        <rect x="184" y="122" width="11" height="9" rx="1" fill="rgba(42,109,181,0.08)" stroke="rgba(42,109,181,0.20)" strokeWidth="0.5"/>
+        <rect x="154" y="138" width="11" height="9" rx="1" fill="rgba(42,109,181,0.20)" stroke="rgba(42,109,181,0.40)" strokeWidth="0.5"/>
+        <rect x="169" y="138" width="11" height="9" rx="1" fill="rgba(42,109,181,0.08)" stroke="rgba(42,109,181,0.20)" strokeWidth="0.5"/>
+        <rect x="184" y="138" width="11" height="9" rx="1" fill="rgba(42,109,181,0.28)" stroke="rgba(42,109,181,0.50)" strokeWidth="0.5" style={{animation:'blinkPanel 3.4s ease-in-out infinite'}}/>
+        <rect x="154" y="154" width="11" height="9" rx="1" fill="rgba(42,109,181,0.10)" stroke="rgba(42,109,181,0.25)" strokeWidth="0.5" style={{animation:'blinkPanel 2s ease-in-out infinite'}}/>
+        <rect x="169" y="154" width="11" height="9" rx="1" fill="rgba(42,109,181,0.20)" stroke="rgba(42,109,181,0.40)" strokeWidth="0.5"/>
+        <rect x="184" y="154" width="11" height="9" rx="1" fill="rgba(42,109,181,0.08)" stroke="rgba(42,109,181,0.20)" strokeWidth="0.5"/>
+
+        {/* CUERDAS — x=90 y x=110, dentro del edificio central */}
+        <line x1="90" y1="25" x2="90" y2="370"
+          stroke="#0096FF" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.55"
+          style={{ animation: 'ropeMove 1.2s linear infinite' }}
         />
-        <line x1={rope2X} y1="0" x2={rope2X} y2="400"
-          stroke="#0096FF" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.55"
-          style={{ animation: 'ropeMove 1s linear infinite' }}
+        <line x1="110" y1="25" x2="110" y2="370"
+          stroke="#0096FF" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.55"
+          style={{ animation: 'ropeMove 1.2s linear infinite' }}
         />
 
-        {/* ── Animated gondola + worker ── */}
-        <g style={{ animation: 'gondola 6s ease-in-out infinite alternate' }}>
+        {/* GONDOLA + OPERARIO */}
+        <g style={{ animation: 'gondola 5s ease-in-out infinite alternate' }}>
+          <rect x="66" y="175" width="88" height="12" rx="3" fill="#0d2a4a" stroke="#0096FF" strokeWidth="1.4"/>
+          <line x1="76"  y1="175" x2="76"  y2="157" stroke="#0096FF" strokeWidth="1.2"/>
+          <line x1="144" y1="175" x2="144" y2="157" stroke="#0096FF" strokeWidth="1.2"/>
+          <line x1="76"  y1="157" x2="144" y2="157" stroke="#0096FF" strokeWidth="0.9" strokeDasharray="4 3"/>
+          <circle cx="90"  cy="175" r="3.5" fill="#0096FF" opacity="0.9"/>
+          <circle cx="110" cy="175" r="3.5" fill="#0096FF" opacity="0.9"/>
 
-          {/* Gondola platform */}
-          <rect x="51" y="78" width="118" height="16" rx="3"
-            fill="#0d2a4a" stroke="#0096FF" strokeWidth="1.5" />
-          {/* Railing left post */}
-          <line x1="60" y1="78" x2="60" y2="55" stroke="#0096FF" strokeWidth="1.5" />
-          {/* Railing right post */}
-          <line x1="160" y1="78" x2="160" y2="55" stroke="#0096FF" strokeWidth="1.5" />
-          {/* Railing top bar */}
-          <line x1="60" y1="55" x2="160" y2="55"
-            stroke="#0096FF" strokeWidth="1" strokeDasharray="5 3" />
-          {/* Pulley circles on ropes */}
-          <circle cx={rope1X} cy="78" r="4" fill="#0096FF" opacity="0.9" />
-          <circle cx={rope2X} cy="78" r="4" fill="#0096FF" opacity="0.9" />
+          <rect x="97"  y="146" width="9" height="29" rx="3" fill="#1a1a2e"/>
+          <rect x="110" y="146" width="9" height="29" rx="3" fill="#1a1a2e"/>
 
-          {/* ── Worker: legs ── */}
-          <rect x="96" y="48" width="12" height="30" rx="3" fill="#1a1a2e" />
-          <rect x="112" y="48" width="12" height="30" rx="3" fill="#1a1a2e" />
+          <rect x="93" y="110" width="34" height="36" rx="5" fill="#1a1a2e" stroke="#0096FF" strokeWidth="1.3"/>
+          <line x1="96"  y1="112" x2="124" y2="143" stroke="#0096FF" strokeWidth="1.7"/>
+          <line x1="124" y1="112" x2="96"  y2="143" stroke="#0096FF" strokeWidth="1.7"/>
+          <line x1="93"  y1="128" x2="127" y2="128" stroke="#0096FF" strokeWidth="1.2"/>
 
-          {/* ── Worker: body ── */}
-          <rect x="88" y="10" width="44" height="40" rx="5"
-            fill="#1a1a2e" stroke="#0096FF" strokeWidth="1.5" />
-          {/* Arnés X straps */}
-          <line x1="91" y1="12" x2="129" y2="46" stroke="#0096FF" strokeWidth="2" />
-          <line x1="129" y1="12" x2="91" y2="46" stroke="#0096FF" strokeWidth="2" />
-          {/* Belt */}
-          <line x1="88" y1="30" x2="132" y2="30" stroke="#0096FF" strokeWidth="1.5" />
-
-          {/* ── Worker: left arm (scrubbing — rotates from shoulder at 88,22) ── */}
-          <g style={{ transformOrigin: '88px 22px', animation: 'scrub 1.5s ease-in-out infinite', transformBox: 'fill-box' }}>
-            <line x1="88" y1="22" x2="60" y2="15"
-              stroke="#f4a261" strokeWidth="5" strokeLinecap="round" />
-            {/* Squeegee handle */}
-            <line x1="60" y1="15" x2="50" y2="13"
-              stroke="#aaa" strokeWidth="3" strokeLinecap="round" />
-            {/* Squeegee blade */}
-            <rect x="44" y="8" width="8" height="20" rx="2"
-              fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="2" />
+          <g style={{ animation: 'scrubArm 1.5s ease-in-out infinite' }}>
+            <line x1="93" y1="122" x2="76" y2="120" stroke="#f4a261" strokeWidth="4.5" strokeLinecap="round"/>
+            <line x1="76" y1="120" x2="66" y2="118" stroke="#f4a261" strokeWidth="3.5" strokeLinecap="round"/>
+            <line x1="66" y1="118" x2="59" y2="116" stroke="#aaaaaa" strokeWidth="2.5" strokeLinecap="round"/>
+            <rect x="54" y="110" width="6" height="13" rx="1.5" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="1.8"/>
+            <rect x="54" y="110" width="6" height="13" rx="1" fill="rgba(255,255,255,0.55)"
+              style={{ animation: 'wipeClean 5s ease-in-out infinite alternate' }}/>
           </g>
 
-          {/* ── Worker: right arm (grip pulse on railing) ── */}
           <g style={{ animation: 'grip 2s ease-in-out infinite' }}>
-            <line x1="132" y1="22" x2="158" y2="55"
-              stroke="#f4a261" strokeWidth="5" strokeLinecap="round" />
+            <line x1="127" y1="122" x2="140" y2="154" stroke="#f4a261" strokeWidth="4.5" strokeLinecap="round"/>
           </g>
 
-          {/* ── Worker: head (fixed base) ── */}
-          <g style={{ transformOrigin: '110px 0px', transformBox: 'fill-box' }}>
-            <circle cx="110" cy="0" r="18" fill="#f4a261" />
-            
-            {/* Helmet top (fixed) */}
-            <path d="M 92 0 A 18 18 0 0 1 128 0 Z" fill="#0096FF" />
-            
-            {/* Face features (animates between left profile and center) */}
-            <g style={{ animation: 'turnFace 6s ease-in-out infinite' }}>
-              {/* Helmet brim */}
-              <rect x="88" y="-4" width="30" height="5" rx="2" fill="#0096FF" />
-              
-              {/* Left eye */}
-              <circle cx="97" cy="5" r="2.2" fill="#1a1a2e" />
-              <circle cx="96.5" cy="4" r="0.8" fill="white" />
-              
-              {/* Right eye */}
-              <circle cx="111" cy="5" r="1.8" fill="#1a1a2e" />
-              <circle cx="110.5" cy="4" r="0.6" fill="white" />
-              
-              {/* Happy smile */}
-              <path d="M 95 11 Q 102 16 108 11" stroke="#1a1a2e" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-            </g>
-          </g>
-
-          {/* Cleaning wipe flash on the glass */}
-          <rect x="44" y="6" width="10" height="24" rx="1"
-            fill="rgba(255,255,255,0.6)"
-            style={{ animation: 'wipeClean 6s ease-in-out infinite alternate' }}
-          />
+          <circle cx="110" cy="98" r="15" fill="#f4a261"/>
+          <path d="M 95 98 A 15 15 0 0 1 125 98 Z" fill="#0096FF"/>
+          <rect x="91" y="94" width="24" height="5" rx="2" fill="#0096FF"/>
+          <circle cx="103" cy="102" r="1.9" fill="#1a1a2e"/>
+          <circle cx="102.6" cy="101.3" r="0.6" fill="white"/>
+          <circle cx="116" cy="102" r="1.7" fill="#1a1a2e"/>
+          <circle cx="115.6" cy="101.3" r="0.6" fill="white"/>
+          <path d="M 102 107 Q 110 112 118 107" stroke="#1a1a2e" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
         </g>
       </svg>
     </div>
@@ -356,7 +293,7 @@ export function Footer() {
           </p>
         </div>
       </div>
-      <GondolaWorker isDesktop className="hidden md:block absolute right-0 bottom-0 h-[320px] w-[220px] opacity-85" />
+      <GondolaWorker className="hidden md:block absolute right-0 bottom-0 h-[340px] w-[220px] opacity-85" />
     </footer>
   );
 }
