@@ -4,19 +4,7 @@ const path = require('path');
 const config = {
   'icon1-pastel.png': {
     out: 'icon-lineas-pastel.png',
-    keepRegions: 0 // Make carabiner transparent
-  },
-  'icon2-pastel.png': {
-    out: 'icon-cristales-pastel.png',
-    keepRegions: 6 // Window panes
-  },
-  'icon3-pastel.png': {
-    out: 'icon-solar-pastel.png',
-    keepRegions: 8 // Solar panels/clouds
-  },
-  'icon4-pastel.png': {
-    out: 'icon-fachadas-pastel.png',
-    keepRegions: 9 // Building windows and magnifying glass
+    keepRegions: 1 // Keep carabiner white
   }
 };
 
