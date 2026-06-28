@@ -190,7 +190,7 @@ export const translations = {
 
     // Testimonials
     'testimonials.title': 'Particulares satisfechos',
-    'testimonials.title2': 'con nuestros servicios',
+    'testimonials.title2': 'Con nuestros servicios',
     'testimonials.excellent': 'EXCELENTE',
     'testimonials.rating': 'Valoración 5/5 · Google Business',
 
@@ -606,7 +606,7 @@ export const translations = {
 
     // Testimonials
     'testimonials.title': 'Particulars satisfets',
-    'testimonials.title2': 'amb els nostres serveis',
+    'testimonials.title2': 'Amb els nostres serveis',
     'testimonials.excellent': 'EXCEL·LENT',
     'testimonials.rating': 'Valoració 5/5 · Google Business',
 
@@ -919,7 +919,7 @@ export const translations = {
 
     // Testimonials
     'testimonials.title': 'Happy clients',
-    'testimonials.title2': 'who trust our services',
+    'testimonials.title2': 'Who trust our services',
     'testimonials.excellent': 'EXCELLENT',
     'testimonials.rating': 'Rating 5/5 · Google Business',
 

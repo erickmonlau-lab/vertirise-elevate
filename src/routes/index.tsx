@@ -367,8 +367,8 @@ function Hero() {
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-32 pb-20 w-full mt-10">
         <div className="max-w-3xl text-white">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-wider uppercase animate-[fade-in_0.8s_ease-out]">
-            <span className="w-2 h-2 rounded-full bg-electric animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-electric/20 backdrop-blur-md border border-electric/30 text-[11px] sm:text-xs font-bold tracking-widest uppercase text-blue-300 animate-[fade-in_0.8s_ease-out] shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+            <span className="w-2 h-2 rounded-full bg-electric animate-pulse shadow-[0_0_10px_rgba(37,99,235,0.8)]" />
             {t("hero.badge")}
           </div>
           <h1 className="mt-7 text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] text-white animate-[fade-up_1s_cubic-bezier(0.22,1,0.36,1)_both]">
@@ -991,7 +991,7 @@ function Benefits() {
           {benefitsData.map((b, i) => (
             <Reveal
               key={b.titleKey}
-              delay={i * 100}
+              delay={0}
               className="flex flex-col gap-5 p-6 rounded-2xl bg-white border border-slate-200 hover:shadow-lg hover:-translate-y-1 transition-all"
             >
               <div

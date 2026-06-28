@@ -54,7 +54,7 @@ export function Nav() {
             <a
               href="/#top"
               onClick={() => setMobileOpen(false)}
-              className="scale-[0.95] md:scale-100 origin-left"
+              className="scale-[0.95] md:scale-100 origin-left ml-1.5 mt-1"
             >
               <Logo white={false} />
             </a>
