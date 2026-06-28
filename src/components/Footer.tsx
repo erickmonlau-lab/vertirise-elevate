@@ -1,209 +1,147 @@
-import { useRef, useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "../i18n/I18nContext";
 import logoDiset from "@/assets/logo-diset.webp";
 
-function BuildingCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+// Window data: 8 rows × 4 cols = 32 windows, each with a unique blink delay
+const WIN_ROWS = 8;
+const WIN_COLS = 4;
+const WIN_W = 20;
+const WIN_H = 14;
+const WIN_GAP_X = 6;
+const WIN_GAP_Y = 10;
+const BLD_X = 140;         // building left edge in viewBox
+const BLD_PAD_X = 8;       // inner padding from building edge to first window col
+const BLD_PAD_Y = 14;      // inner padding from top to first row
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+function RappelIllustration() {
+  // Pre-compute window positions & delays once
+  const windows = Array.from({ length: WIN_ROWS * WIN_COLS }, (_, i) => {
+    const row = Math.floor(i / WIN_COLS);
+    const col = i % WIN_COLS;
+    const lit = (row + col) % 3 !== 0; // roughly 2/3 lit initially
+    const duration = 2 + (i % 5) * 0.6;  // 2s – 4.4s
+    const delay = -(i * 0.37 % duration); // stagger without regularity
+    return { row, col, lit, duration, delay };
+  });
 
-    const W = 300;
-    // Resize canvas height to match parent
-    const parent = canvas.parentElement;
-    const H = parent ? parent.clientHeight : 500;
-    canvas.width = W;
-    canvas.height = H;
-
-    // ── Building geometry ──────────────────────────────────────────────
-    const bldLeft = 20;
-    const bldRight = 160;
-    const bldTop = 10;
-    const bldBottom = H - 10;
-    const bldW = bldRight - bldLeft;
-    const bldH = bldBottom - bldTop;
-
-    // Window grid
-    const cols = 5;
-    const rows = Math.floor(bldH / 28);
-    const winW = 14;
-    const winH = 16;
-    const hGap = (bldW - cols * winW) / (cols + 1);
-    const vGap = (bldH - rows * winH) / (rows + 1);
-
-    // Generate window states
-    const windows: { lit: boolean; opacity: number; timer: number; interval: number }[] = [];
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        windows.push({
-          lit: Math.random() > 0.5,
-          opacity: Math.random() * 0.6 + 0.2,
-          timer: 0,
-          interval: Math.random() * 180 + 60, // frames between state changes
-        });
-      }
-    }
-
-    // ── Operarios ──────────────────────────────────────────────────────
-    const ropeXs = [bldLeft + 30, bldLeft + 75, bldLeft + 120];
-    const workers = ropeXs.map((rx, i) => ({
-      x: rx,
-      y: bldTop + (i * bldH) / 4,            // staggered start
-      speed: 0.4 + i * 0.15,
-      dir: i % 2 === 0 ? 1 : -1,
-      top: bldTop,
-      bottom: bldBottom - 30,
-    }));
-
-    let raf: number;
-    let frame = 0;
-
-    function neon(color: string, blur = 10) {
-      ctx.shadowBlur = blur;
-      ctx.shadowColor = color;
-    }
-    function clearFx() { ctx.shadowBlur = 0; }
-
-    function drawBuilding() {
-      // Outer shell
-      ctx.strokeStyle = '#0096FF';
-      ctx.lineWidth = 1.5;
-      neon('#0096FF', 8);
-      ctx.strokeRect(bldLeft, bldTop, bldW, bldH);
-      clearFx();
-
-      // Horizontal floor lines
-      ctx.strokeStyle = 'rgba(0,150,255,0.15)';
-      ctx.lineWidth = 0.5;
-      for (let r = 1; r < rows; r++) {
-        const fy = bldTop + vGap + r * (winH + vGap) - vGap / 2;
-        ctx.beginPath();
-        ctx.moveTo(bldLeft, fy);
-        ctx.lineTo(bldRight, fy);
-        ctx.stroke();
-      }
-    }
-
-    function drawWindows() {
-      windows.forEach((win, idx) => {
-        const r = Math.floor(idx / cols);
-        const c = idx % cols;
-        const wx = bldLeft + hGap + c * (winW + hGap);
-        const wy = bldTop + vGap + r * (winH + vGap);
-
-        win.timer++;
-        if (win.timer >= win.interval) {
-          win.lit = !win.lit;
-          win.opacity = Math.random() * 0.55 + 0.25;
-          win.timer = 0;
-          win.interval = Math.random() * 200 + 60;
-        }
-
-        if (win.lit) {
-          ctx.fillStyle = `rgba(0,150,255,${win.opacity})`;
-          neon('#0096FF', 6);
-          ctx.fillRect(wx, wy, winW, winH);
-          clearFx();
-        } else {
-          ctx.fillStyle = 'rgba(0,30,60,0.6)';
-          ctx.fillRect(wx, wy, winW, winH);
-        }
-        // Window border
-        ctx.strokeStyle = 'rgba(0,150,255,0.3)';
-        ctx.lineWidth = 0.5;
-        ctx.strokeRect(wx, wy, winW, winH);
-      });
-    }
-
-    function drawRopes() {
-      ctx.setLineDash([4, 4]);
-      ctx.strokeStyle = 'rgba(0,150,255,0.4)';
-      ctx.lineWidth = 1;
-      ropeXs.forEach(rx => {
-        ctx.beginPath();
-        ctx.moveTo(rx, bldTop);
-        ctx.lineTo(rx, bldBottom);
-        ctx.stroke();
-      });
-      ctx.setLineDash([]);
-    }
-
-    function drawWorker(x: number, y: number) {
-      ctx.strokeStyle = '#0096FF';
-      ctx.lineWidth = 1.5;
-      neon('#0096FF', 15);
-
-      // Helmet / head
-      ctx.beginPath();
-      ctx.arc(x, y, 5, 0, Math.PI * 2);
-      ctx.stroke();
-
-      // Body
-      ctx.beginPath();
-      ctx.moveTo(x, y + 5);
-      ctx.lineTo(x, y + 16);
-      ctx.stroke();
-
-      // Arms (T-shape)
-      ctx.beginPath();
-      ctx.moveTo(x - 7, y + 9);
-      ctx.lineTo(x + 7, y + 9);
-      ctx.stroke();
-
-      // Legs
-      ctx.beginPath();
-      ctx.moveTo(x, y + 16);
-      ctx.lineTo(x - 4, y + 25);
-      ctx.moveTo(x, y + 16);
-      ctx.lineTo(x + 4, y + 25);
-      ctx.stroke();
-
-      // Cleaning bucket (small rect below)
-      ctx.strokeRect(x - 4, y + 26, 8, 6);
-
-      clearFx();
-    }
-
-    function render() {
-      ctx.clearRect(0, 0, W, H);
-      frame++;
-
-      drawBuilding();
-      drawWindows();
-      drawRopes();
-
-      // Move and draw workers
-      workers.forEach(w => {
-        w.y += w.speed * w.dir;
-        if (w.y >= w.bottom) { w.dir = -1; }
-        if (w.y <= w.top + 10) { w.dir = 1; }
-        drawWorker(w.x, w.y);
-      });
-
-      raf = requestAnimationFrame(render);
-    }
-
-    render();
-    return () => cancelAnimationFrame(raf);
-  }, []);
+  // Rope x positions (inside the building area, viewBox coords)
+  const ropeXs = [162, 196, 230];
+  const workers = [
+    { x: ropeXs[0], delay: '0s',  duration: '7s' },
+    { x: ropeXs[1], delay: '-2s', duration: '8.5s' },
+    { x: ropeXs[2], delay: '-5s', duration: '6.5s' },
+  ];
 
   return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: 'absolute',
-        right: 0,
-        top: 0,
-        width: '300px',
-        height: '100%',
-        opacity: 0.6,
-        pointerEvents: 'none',
-        zIndex: 0,
-      }}
-    />
+    <div style={{
+      position: 'absolute', right: 0, top: 0,
+      width: '280px', height: '100%',
+      overflow: 'hidden', pointerEvents: 'none', zIndex: 0,
+    }}>
+      <style>{`
+        @keyframes rappel {
+          0%   { transform: translateY(-80px); }
+          100% { transform: translateY(420px); }
+        }
+        @keyframes blink {
+          0%, 100% { opacity: 0.65; }
+          50%       { opacity: 0.08; }
+        }
+      `}</style>
+
+      <svg
+        width="280"
+        height="100%"
+        viewBox="0 0 280 400"
+        preserveAspectRatio="xMidYMid meet"
+        style={{ filter: 'drop-shadow(0 0 4px #0096FF)', opacity: 0.7 }}
+      >
+        {/* ── Building shell ── */}
+        <rect
+          x={BLD_X} y="0" width="120" height="400"
+          fill="none" stroke="#0096FF" strokeWidth="0.8" opacity="0.4"
+        />
+        {/* Horizontal floor separators */}
+        {Array.from({ length: WIN_ROWS - 1 }, (_, r) => {
+          const y = BLD_PAD_Y + (r + 1) * (WIN_H + WIN_GAP_Y) - WIN_GAP_Y / 2;
+          return (
+            <line
+              key={r}
+              x1={BLD_X} y1={y} x2={BLD_X + 120} y2={y}
+              stroke="#0096FF" strokeWidth="0.3" opacity="0.2"
+            />
+          );
+        })}
+        {/* Vertical column separators */}
+        {Array.from({ length: WIN_COLS - 1 }, (_, c) => {
+          const x = BLD_X + BLD_PAD_X + (c + 1) * (WIN_W + WIN_GAP_X) - WIN_GAP_X / 2;
+          return (
+            <line
+              key={c}
+              x1={x} y1="0" x2={x} y2="400"
+              stroke="#0096FF" strokeWidth="0.3" opacity="0.1"
+            />
+          );
+        })}
+
+        {/* ── Windows ── */}
+        {windows.map((w, i) => {
+          const wx = BLD_X + BLD_PAD_X + w.col * (WIN_W + WIN_GAP_X);
+          const wy = BLD_PAD_Y + w.row * (WIN_H + WIN_GAP_Y);
+          return (
+            <rect
+              key={i}
+              x={wx} y={wy} width={WIN_W} height={WIN_H}
+              rx="1"
+              fill={w.lit ? 'rgba(0,150,255,0.65)' : 'rgba(0,150,255,0.05)'}
+              stroke="#0096FF" strokeWidth="0.5" opacity="0.9"
+              style={w.lit ? {
+                animation: `blink ${w.duration}s ease-in-out ${w.delay}s infinite`,
+              } : undefined}
+            />
+          );
+        })}
+
+        {/* ── Ropes (full height, behind workers) ── */}
+        {ropeXs.map((rx, i) => (
+          <line
+            key={i}
+            x1={rx} y1="0" x2={rx} y2="400"
+            stroke="#0096FF" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.45"
+          />
+        ))}
+
+        {/* ── Workers ── */}
+        {workers.map((w, i) => (
+          <g
+            key={i}
+            style={{
+              animation: `rappel ${w.duration} ease-in-out ${w.delay} infinite alternate`,
+            }}
+          >
+            {/* Harness lines on rope */}
+            <line x1={w.x - 5} y1="3" x2={w.x} y2="8" stroke="#0096FF" strokeWidth="0.8" opacity="0.7" />
+            <line x1={w.x + 5} y1="3" x2={w.x} y2="8" stroke="#0096FF" strokeWidth="0.8" opacity="0.7" />
+
+            {/* Helmet */}
+            <ellipse cx={w.x} cy="10" rx="8" ry="5" fill="#0096FF" opacity="0.9" />
+
+            {/* Body */}
+            <rect x={w.x - 6} y="15" width="12" height="18" rx="3"
+              fill="#0d2a4a" stroke="#0096FF" strokeWidth="1" />
+
+            {/* Harness cross straps */}
+            <line x1={w.x - 5} y1="16" x2={w.x + 5} y2="26" stroke="#0096FF" strokeWidth="0.8" />
+            <line x1={w.x + 5} y1="16" x2={w.x - 5} y2="26" stroke="#0096FF" strokeWidth="0.8" />
+
+            {/* Equipment/bucket */}
+            <rect x={w.x - 4} y="34" width="8" height="6" rx="1"
+              fill="#0d2a4a" stroke="#0096FF" strokeWidth="0.8" />
+            <line x1={w.x - 4} y1="34" x2={w.x + 4} y2="34" stroke="#0096FF" strokeWidth="1" />
+          </g>
+        ))}
+      </svg>
+    </div>
   );
 }
 
@@ -213,7 +151,7 @@ export function Footer() {
   const { t } = useTranslation();
   return (
     <footer className="bg-[#0b1121] text-white pt-20 pb-10 relative overflow-hidden">
-      <BuildingCanvas />
+      <RappelIllustration />
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Brand Info */}
