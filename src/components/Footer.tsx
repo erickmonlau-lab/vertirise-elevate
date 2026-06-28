@@ -24,7 +24,7 @@ function GondolaWorker() {
   const rope2X = 140;
 
   return (
-    <div className="pointer-events-none z-0 opacity-85 overflow-hidden absolute right-0 top-0 w-[220px] h-full max-md:w-[180px] max-md:-right-2 max-md:opacity-75">
+    <div className="pointer-events-none z-0 opacity-85 overflow-hidden relative w-full flex justify-center items-center h-[140px] mt-4 md:absolute md:right-0 md:bottom-0 md:h-full md:w-[220px] md:mt-0 md:block">
       <style>{`
         @keyframes gondola {
           0%   { transform: translateY(20px); }
@@ -58,7 +58,7 @@ function GondolaWorker() {
       `}</style>
 
       <svg
-        className="w-full h-full"
+        className="relative w-[120px] h-[140px] md:absolute md:w-full md:h-full"
         viewBox="0 0 220 400"
         preserveAspectRatio="xMidYMax meet"
         style={{ filter: 'drop-shadow(0 0 5px rgba(0,150,255,0.35))' }}
