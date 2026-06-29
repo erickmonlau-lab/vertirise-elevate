@@ -118,7 +118,7 @@ export function ServiceLayout({ title, titleHighlight, description, benefits, ac
           {/* Right Column (Icon) */}
           <div className="flex justify-center items-center py-10 lg:py-0 relative">
              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2)_0%,transparent_60%)] rounded-full w-full h-full scale-150 pointer-events-none"></div>
-             <img loading="lazy" decoding="async" src={badgeSrc} alt="Icon" className="animate-[float_6s_ease-in-out_infinite] drop-shadow-xl" style={{ filter: iconFilter, width: '320px', height: '320px', objectFit: 'contain' }} />
+             <img loading="lazy" decoding="async" src={badgeSrc} alt="Icon" className="animate-[float_6s_ease-in-out_infinite] drop-shadow-xl w-[250px] h-[250px] md:w-[320px] md:h-[320px] object-contain" style={{ filter: iconFilter }} />
           </div>
 
         </div>

@@ -59,22 +59,29 @@ function NavBase() {
               <Logo white={false} />
             </a>
 
-            <div className="flex items-center md:hidden mt-1 mr-1">
+            <div className="flex items-center gap-3 md:hidden mt-1 mr-0">
               <button
                 onClick={() => setMobileOpen((o) => !o)}
                 aria-label="Abrir menú"
-                className="flex flex-col justify-center items-center w-10 h-10 gap-[6px] transition-all relative z-50"
+                className="flex flex-col justify-center items-center w-9 h-9 gap-[5px] transition-all relative z-50 shrink-0"
               >
                 <span
-                  className={`block w-[30px] h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "rotate-45 translate-y-[8px]" : ""}`}
+                  className={`block w-[26px] h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "rotate-45 translate-y-[7px]" : ""}`}
                 />
                 <span
-                  className={`block w-[30px] h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "opacity-0" : ""}`}
+                  className={`block w-[26px] h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "opacity-0" : ""}`}
                 />
                 <span
-                  className={`block w-[30px] h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "-rotate-45 -translate-y-[8px]" : ""}`}
+                  className={`block w-[26px] h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""}`}
                 />
               </button>
+              <div className="flex items-center text-[13px] font-bold text-navy tracking-tight gap-1.5 shrink-0">
+                <button type="button" onClick={() => setLanguage("es")} className={language === "es" ? "text-electric" : "opacity-50"}>ES</button>
+                <span className="opacity-20">|</span>
+                <button type="button" onClick={() => setLanguage("ca")} className={language === "ca" ? "text-electric" : "opacity-50"}>CA</button>
+                <span className="opacity-20">|</span>
+                <button type="button" onClick={() => setLanguage("en")} className={language === "en" ? "text-electric" : "opacity-50"}>EN</button>
+              </div>
             </div>
           </div>
 
@@ -123,7 +130,7 @@ function NavBase() {
 
           {/* Mobile menu */}
           <div
-            className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out w-full ${mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+            className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out w-full ${mobileOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"}`}
           >
             <nav className="flex flex-col gap-1 border-t border-slate-100 pt-2 pb-1 mt-2">
               {navLinks.map((l) => (
@@ -137,13 +144,6 @@ function NavBase() {
                 </a>
               ))}
             </nav>
-            <div className="flex items-center justify-center gap-4 py-4 border-t border-slate-100 mt-1">
-              <button onClick={() => setLanguage("es")} className={`text-sm tracking-widest transition-colors ${language === "es" ? "font-black text-navy" : "font-medium text-slate-500 hover:text-electric"}`}>ES</button>
-              <span className="text-slate-300">|</span>
-              <button onClick={() => setLanguage("ca")} className={`text-sm tracking-widest transition-colors ${language === "ca" ? "font-black text-navy" : "font-medium text-slate-500 hover:text-electric"}`}>CA</button>
-              <span className="text-slate-300">|</span>
-              <button onClick={() => setLanguage("en")} className={`text-sm tracking-widest transition-colors ${language === "en" ? "font-black text-navy" : "font-medium text-slate-500 hover:text-electric"}`}>EN</button>
-            </div>
           </div>
         </header>
       </div>
