@@ -107,7 +107,7 @@ export const translations = {
     'process.3.desc': 'Acordaremos una fecha en la que nuestros técnicos se colgarán para realizar el trabajo de limpieza o mantenimiento.',
 
     // Sector Pages
-    'sectors.comunidades.title': 'Servicios verticales para Comunidades de Propietarios',
+    'sectors.comunidades.title': 'Servicios para Comunidades de Propietarios',
     'sectors.comunidades.desc': 'Mantenimiento en altura sin cortar accesos ni molestar a los vecinos. Cristales, fachadas y líneas de vida.',
     'sectors.comunidades.benefitsTitle': '¿Por qué elegirnos para tu comunidad?',
     'sectors.comunidades.benefit1': 'Sin andamios ni interrupciones al tráfico',
@@ -115,7 +115,7 @@ export const translations = {
     'sectors.comunidades.benefit3': 'Técnicos certificados IRATA',
     'sectors.comunidades.benefit4': 'Seguro de responsabilidad civil incluido',
     
-    'sectors.hoteles.title': 'Servicios verticales para Hoteles y Establecimientos',
+    'sectors.hoteles.title': 'Servicios para el Sector Hotelero',
     'sectors.hoteles.desc': 'La imagen exterior es clave en hostelería. Cristales y fachadas impecables sin interrumpir la actividad.',
     'sectors.hoteles.benefitsTitle': '¿Por qué elegirnos para tu hotel?',
     'sectors.hoteles.benefit1': 'Trabajo nocturno disponible',
@@ -123,7 +123,7 @@ export const translations = {
     'sectors.hoteles.benefit3': 'Cristales sin marcas ni residuos',
     'sectors.hoteles.benefit4': 'Certificación de seguridad incluida',
     
-    'sectors.naves.title': 'Servicios verticales para Naves e Industria',
+    'sectors.naves.title': 'Servicios para Naves Industriales',
     'sectors.naves.desc': 'Limpieza de cubiertas, lucernarios y placas fotovoltaicas industriales con técnicas avanzadas.',
     'sectors.naves.benefitsTitle': '¿Por qué elegirnos para tu nave?',
     'sectors.naves.benefit1': 'Limpieza de placas solares +25% rendimiento',
@@ -333,7 +333,7 @@ export const translations = {
     'services.cristales.benefit3': 'Técnicos certificados IRATA',
     'services.cristales.benefit4': 'Presupuesto gratuito en 24h',
 
-    'services.fachadas.title': 'Mantenimiento de Fachadas',
+    'services.fachadas.title': 'Limpieza y Restauración de Fachadas',
     'services.fachadas.longDesc': 'Rehabilitación y mantenimiento de fachadas mediante trabajos verticales. Reparación de grietas, pintura y limpieza profunda sin necesidad de estructuras voluminosas.',
     'services.fachadas.benefit1': 'Intervención rápida y sin molestias',
     'services.fachadas.benefit2': 'Reparación de grietas y desconchones',
@@ -538,7 +538,7 @@ export const translations = {
     'process.3.desc': 'Acordarem una data en la qual els nostres tècnics es penjaran per realitzar el treball de neteja o manteniment.',
 
     // Sector Pages
-    'sectors.comunidades.title': 'Serveis verticals per a Comunitats de Propietaris',
+    'sectors.comunidades.title': 'Serveis per a Comunitats de Propietaris',
     'sectors.comunidades.desc': 'Manteniment en alçada sense tallar accessos ni molestar els veïns. Vidres, façanes i línies de vida.',
     'sectors.comunidades.benefitsTitle': 'Per què triar-nos per a la teva comunitat?',
     'sectors.comunidades.benefit1': 'Sense bastides ni interrupcions al trànsit',
@@ -546,7 +546,7 @@ export const translations = {
     'sectors.comunidades.benefit3': 'Tècnics certificats IRATA',
     'sectors.comunidades.benefit4': 'Assegurança de responsabilitat civil inclosa',
     
-    'sectors.hoteles.title': 'Serveis verticals per a Hotels i Establiments',
+    'sectors.hoteles.title': 'Serveis per al Sector Hoteler',
     'sectors.hoteles.desc': 'La imatge exterior és clau en hostaleria. Vidres i façanes impecables sense interrompre l\'activitat.',
     'sectors.hoteles.benefitsTitle': 'Per què triar-nos per al teu hotel?',
     'sectors.hoteles.benefit1': 'Treball nocturn disponible',
@@ -554,7 +554,7 @@ export const translations = {
     'sectors.hoteles.benefit3': 'Vidres sense marques ni residus',
     'sectors.hoteles.benefit4': 'Certificació de seguretat inclosa',
     
-    'sectors.naves.title': 'Serveis verticals per a Naus i Indústria',
+    'sectors.naves.title': 'Serveis per a Naus Industrials',
     'sectors.naves.desc': 'Neteja de cobertes, lluernes i plaques fotovoltaiques industrials amb tècniques avançades.',
     'sectors.naves.benefitsTitle': 'Per què triar-nos per a la teva nau?',
     'sectors.naves.benefit1': 'Neteja de plaques solars +25% rendiment',
@@ -952,7 +952,7 @@ export const translations = {
     'process.3.desc': 'We will agree on a date when our technicians will hang to carry out the cleaning or maintenance work.',
 
     // Sector Pages
-    'sectors.comunidades.title': 'Rope Access Services for Homeowners Associations',
+    'sectors.comunidades.title': 'Services for Residential Communities',
     'sectors.comunidades.desc': 'High-level maintenance without blocking access or disturbing neighbors. Windows, facades, and lifelines.',
     'sectors.comunidades.benefitsTitle': 'Why choose us for your community?',
     'sectors.comunidades.benefit1': 'No scaffolding or traffic interruptions',
@@ -960,7 +960,7 @@ export const translations = {
     'sectors.comunidades.benefit3': 'IRATA certified technicians',
     'sectors.comunidades.benefit4': 'Liability insurance included',
     
-    'sectors.hoteles.title': 'Rope Access Services for Hotels and Establishments',
+    'sectors.hoteles.title': 'Services for the Hotel Sector',
     'sectors.hoteles.desc': 'Exterior image is key in hospitality. Flawless windows and facades without interrupting activity.',
     'sectors.hoteles.benefitsTitle': 'Why choose us for your hotel?',
     'sectors.hoteles.benefit1': 'Night work available',
@@ -968,7 +968,7 @@ export const translations = {
     'sectors.hoteles.benefit3': 'Streak-free and residue-free windows',
     'sectors.hoteles.benefit4': 'Safety certification included',
     
-    'sectors.naves.title': 'Rope Access Services for Warehouses and Industry',
+    'sectors.naves.title': 'Services for Industrial Buildings',
     'sectors.naves.desc': 'Cleaning of roofs, skylights, and industrial solar panels with advanced techniques.',
     'sectors.naves.benefitsTitle': 'Why choose us for your warehouse?',
     'sectors.naves.benefit1': 'Solar panel cleaning +25% yield',
@@ -1168,7 +1168,7 @@ export const translations = {
 
     // New service pages
     'nav.home': 'Home',
-    'services.cristales.title': 'High-Rise Window Cleaning',
+    'services.cristales.title': 'High-Rise Glass Cleaning',
     'services.cristales.longDesc': 'Specialists in high-rise window cleaning using rope access techniques and pure water. No scaffolding, no streaks, no interruptions.',
     'service.benefits.title': 'Benefits of our service',
     'services.cristales.benefit1': 'No scaffolding or boom lifts needed',
@@ -1176,7 +1176,7 @@ export const translations = {
     'services.cristales.benefit3': 'IRATA certified technicians',
     'services.cristales.benefit4': 'Free quote within 24h',
 
-    'services.fachadas.title': 'Facade Maintenance',
+    'services.fachadas.title': 'Facade Cleaning and Restoration',
     'services.fachadas.longDesc': 'Facade rehabilitation and maintenance through vertical work. Crack repair, painting, and deep cleaning without the need for bulky structures.',
     'services.fachadas.benefit1': 'Fast and disruption-free intervention',
     'services.fachadas.benefit2': 'Repair of cracks and spalling',
@@ -1190,7 +1190,7 @@ export const translations = {
     'services.placas.benefit3': 'Safety on pitched roofs',
     'services.placas.benefit4': 'Preventive maintenance',
 
-    'services.lineas.title': 'Lifeline Installation',
+    'services.lineas.title': 'Life Line Installation',
     'services.lineas.longDesc': 'Design, assembly, and certification of fall arrest systems and certified lifelines. We guarantee maximum safety for work at heights.',
     'services.lineas.benefit1': 'Certified systems (EN 795)',
     'services.lineas.benefit2': 'Customized technical study',

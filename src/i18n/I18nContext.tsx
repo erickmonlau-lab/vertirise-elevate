@@ -27,23 +27,25 @@ async function loadLocale(lang: Language): Promise<TranslationRecord> {
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('es');
+  const [language, setLanguageState] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('diset-lang');
+      if (saved === 'ca' || saved === 'en') return saved as Language;
+    }
+    return 'es';
+  });
   const [translations, setTranslations] = useState<TranslationRecord>(esTranslations);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('language') as Language;
-      if (saved && (saved === 'ca' || saved === 'en')) {
-        setLanguageState(saved);
-        loadLocale(saved).then(setTranslations);
-      }
+    if (language !== 'es') {
+      loadLocale(language).then(setTranslations);
     }
-  }, []);
+  }, [language]);
 
   const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
     if (typeof window !== 'undefined') {
-      localStorage.setItem('language', lang);
+      localStorage.setItem('diset-lang', lang);
     }
     loadLocale(lang).then(setTranslations);
   }, []);

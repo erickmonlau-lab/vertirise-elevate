@@ -30,7 +30,7 @@ function ComunidadesPage() {
         url="https://vertirise-elevate.vercel.app/sectores/comunidades"
       />
       <SectorLayout
-        title={t('sectors.comunidades.title', 'Servicios verticales para Comunidades de Propietarios')}
+        title={t('sectors.comunidades.title', 'Servicios para Comunidades de Propietarios')}
         description={t('sectors.comunidades.desc', 'Mantenimiento en altura sin cortar accesos ni molestar a los vecinos. Cristales, fachadas y líneas de vida.')}
         phone="644 65 27 41"
         bgColor="#5BC8E8"

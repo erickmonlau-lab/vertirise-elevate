@@ -30,7 +30,7 @@ function HotelesPage() {
         url="https://vertirise-elevate.vercel.app/sectores/hoteles"
       />
       <SectorLayout
-        title={t('sectors.hoteles.title', 'Servicios verticales para Hoteles y Establecimientos')}
+        title={t('sectors.hoteles.title', 'Servicios para el Sector Hotelero')}
         description={t('sectors.hoteles.desc', 'La imagen exterior es clave en hostelería. Cristales y fachadas impecables sin interrumpir la actividad.')}
         phone="644 65 27 41"
         bgColor="#F4A261"

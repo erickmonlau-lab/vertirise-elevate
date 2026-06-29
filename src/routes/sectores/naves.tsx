@@ -30,7 +30,7 @@ function NavesPage() {
         url="https://vertirise-elevate.vercel.app/sectores/naves"
       />
       <SectorLayout
-        title={t('sectors.naves.title', 'Servicios verticales para Naves e Industria')}
+        title={t('sectors.naves.title', 'Servicios para Naves Industriales')}
         description={t('sectors.naves.desc', 'Limpieza de cubiertas, lucernarios y placas fotovoltaicas industriales con técnicas avanzadas.')}
         phone="644 65 27 41"
         bgColor="#86efac"
