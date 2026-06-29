@@ -305,6 +305,8 @@ export const translations = {
     'testimonials.3.text': 'Cristales impecables cada trimestre, personal silencioso y sin afectar a la operativa del hotel. Recomendados al 100%.',
     'footer.schedule.label': 'Horario',
     'footer.schedule': 'L-V de 8h a 18h',
+    'footer.address': 'Carrer de Cuzco, 39-41, 08030 Barcelona',
+
     'footer.company': 'Empresa',
     'footer.company.about': 'Presentación',
     'footer.company.work': 'Trabaja con nosotros',
@@ -421,6 +423,12 @@ export const translations = {
   },
   ca: {
     // Nav
+
+    'nav.home': 'Inici',
+    'service.benefits.title': 'Beneficis del servei',
+    'service.features.title': 'El Nostre Mètode',
+    'service.faq.title': 'Preguntes Freqüents',
+
     'nav.call': 'Contactar',
     'nav.services': 'Serveis',
     'nav.projects': 'Projectes',
@@ -645,6 +653,100 @@ export const translations = {
     'certs.5.desc': 'Qualitat i Gestió',
     'certs.5.detail': 'Protocols de qualitat documentats i auditats externament',
 
+
+    'services.cristales.title': 'Neteja de Vidres en Alçada',
+    'services.cristales.longDesc': 'Especialistes en neteja de vidres en alçada mitjançant tècniques d\'accés per cordes i aigua osmotitzada. Sense bastides, sense marques, sense interrupcions.',
+    'services.cristales.benefit1': 'Sense bastides ni plataformes elevadores',
+    'services.cristales.benefit2': 'Aigua osmotitzada sense marques ni residus',
+    'services.cristales.benefit3': 'Tècnics certificats IRATA',
+    'services.cristales.benefit4': 'Pressupost gratuït en 24h',
+    
+    'services.fachadas.title': 'Neteja i Restauració de Façanes',
+    'services.fachadas.longDesc': 'Manteniment integral de façanes. Netegem, pintem i reparem desperfectes en llocs de difícil accés sense necessitat de bastides.',
+    'services.fachadas.benefit1': 'Pedra, vidre, maó i metall',
+    'services.fachadas.benefit2': 'Sense bastides ni permisos de via pública',
+    'services.fachadas.benefit3': 'Eliminació i tractament antigraffiti',
+    'services.fachadas.benefit4': 'Tècnics especialistes certificats',
+    
+    'services.placas.title': 'Neteja de Plaques Solars',
+    'services.placas.longDesc': 'Augmenti el rendiment de la seva instal·lació fotovoltaica fins a un 30% amb el nostre sistema de neteja especialitzat amb aigua pura i raspalls suaus.',
+    'services.placas.benefit1': 'Augment immediat de l\'eficiència energètica',
+    'services.placas.benefit2': 'Aigua pura osmotitzada sense químics abrasius',
+    'services.placas.benefit3': 'Accés segur a cobertes inclinades i industrials',
+    'services.placas.benefit4': 'Prolonga la vida útil dels panells',
+    
+    'services.lineas.title': 'Instal·lació de Línies de Vida',
+    'services.lineas.longDesc': 'Disseny, muntatge i certificació de sistemes anticaigudes i línies de vida homologades. Garantim la màxima seguretat per a treballs en alçada.',
+    'services.lineas.benefit1': 'Sistemes homologats (Norma EN 795)',
+    'services.lineas.benefit2': 'Estudi tècnic a mida',
+    'services.lineas.benefit3': 'Materials de màxima resistència',
+    'services.lineas.benefit4': 'Revisions periòdiques i certificació',
+
+    'services.cristales.faq1.q': 'Cada quant netejar vidres d\'empresa?',
+    'services.cristales.faq1.a': 'Depèn de la ubicació i la imatge desitjada. En zones urbanes o industrials recomanem neteges trimestrals o semestrals per evitar acumulació de calç i contaminació.',
+    'services.cristales.faq2.q': 'Què és l\'aigua osmotitzada?',
+    'services.cristales.faq2.a': 'És aigua purificada i lliure de minerals. En assecar-se, no deixa cercles, marques ni taques de calç, assegurant un acabat perfecte sense usar químics agressius.',
+    'services.cristales.faq3.q': 'Treballeu en edificis en ús?',
+    'services.cristales.faq3.a': 'Sí, el nostre sistema de cordes és silenciós i poc invasiu. Podem fer la neteja sense interrompre l\'activitat normal dels seus treballadors o clients.',
+    'services.cristales.faq4.q': 'Teniu assegurança de responsabilitat civil?',
+    'services.cristales.faq4.a': 'I tant, comptem amb una assegurança de RC integral i tot el nostre personal disposa de les certificacions IRATA corresponents i revisions mèdiques al dia.',
+    
+    'services.cristales.feat1.title': 'Inspecció',
+    'services.cristales.feat1.desc': 'Avaluem els ancoratges i la superfície de vidre per planificar el descens.',
+    'services.cristales.feat2.title': 'Aigua Osmotitzada',
+    'services.cristales.feat2.desc': 'Apliquem aigua pura mitjançant perxes i sistemes de rentat avançats.',
+    'services.cristales.feat3.title': 'Revisió final',
+    'services.cristales.feat3.desc': 'Comprovem l\'absència total de gotes o cercles abans de donar el servei per conclòs.',
+    
+    'services.fachadas.faq1.q': 'Quins tipus de façanes netegeu?',
+    'services.fachadas.faq1.a': 'Treballem sobre façanes de vidre, pedra natural, obra vista, formigó i panells metàl·lics (Alucobond). Adaptem la tècnica al material.',
+    'services.fachadas.faq2.q': 'Elimineu grafitis?',
+    'services.fachadas.faq2.a': 'Sí, disposem de productes i maquinària especialitzada per dissoldre la pintura de grafitis de manera segura i sense danyar la superfície porosa original.',
+    'services.fachadas.faq3.q': 'Afecta als veïns?',
+    'services.fachadas.faq3.a': 'Els nostres mètodes verticals minimitzen les molèsties. No ocupem la vorera amb bastides i es delimiten les zones de pas per seguretat durant la jornada.',
+    'services.fachadas.faq4.q': 'Quant dura el tractament?',
+    'services.fachadas.faq4.a': 'Depenent del tractament protector (com antigrafitis o hidròfugs), la façana pot repel·lir l\'aigua i la brutícia de 3 a 5 anys.',
+    
+    'services.fachadas.feat1.title': 'Hidroneteja',
+    'services.fachadas.feat1.desc': 'Desincrustació de pol·lució i fums amb aigua a alta pressió controlada.',
+    'services.fachadas.feat2.title': 'Reparació d\'esquerdes',
+    'services.fachadas.feat2.desc': 'Segellat d\'esquerdes i reparació de despreniments per evitar filtracions.',
+    'services.fachadas.feat3.title': 'Protecció Hidròfuga',
+    'services.fachadas.feat3.desc': 'Aplicació de productes repel·lents a l\'aigua per perllongar l\'efecte de neteja.',
+    
+    'services.placas.faq1.q': 'Cada quant cal netejar les plaques solars?',
+    'services.placas.faq1.a': 'Generalment 1 o 2 cops l\'any. En zones industrials o agrícoles (pols, pol·len) pot ser necessària major freqüència per no perdre rendiment.',
+    'services.placas.faq2.q': 'Quins productes utilitzeu?',
+    'services.placas.faq2.a': 'Fem servir aigua pura i raspalls ultrasuaus específics per fotovoltaica. Evitem sabons que deixin pel·lícules que redueixen la captació solar.',
+    'services.placas.faq3.q': 'Baixa el rendiment amb la brutícia?',
+    'services.placas.faq3.a': 'Sí, l\'acumulació de pols, sorra o excrements d\'aus pot reduir l\'eficiència de la placa fins a un 30% en casos extrems.',
+    'services.placas.faq4.q': 'Treballeu en cobertes industrials?',
+    'services.placas.faq4.a': 'Especialment. Els nostres operaris verticals instal·len línies de vida temporals si és necessari per netejar naus senceres de forma totalment segura.',
+    
+    'services.placas.feat1.title': 'Accés Segur',
+    'services.placas.feat1.desc': 'Establim punts d\'ancoratge abans d\'accedir a la coberta inclinada.',
+    'services.placas.feat2.title': 'Rentat Suau',
+    'services.placas.feat2.desc': 'Fricció amb raspalls especials que no ratllen el vidre protector.',
+    'services.placas.feat3.title': 'Aclarit sense Calç',
+    'services.placas.feat3.desc': 'L\'aigua pura s\'evapora ràpidament, deixant el vidre 100% translúcid.',
+    
+    'services.lineas.faq1.q': 'Què és una línia de vida?',
+    'services.lineas.faq1.a': 'És un sistema anticaigudes homologat format per un cable o carril d\'acer ancorat a l\'estructura, on els operaris es lliguen amb els seus EPI per treballar amb seguretat.',
+    'services.lineas.faq2.q': 'Cada quant cal revisar-la?',
+    'services.lineas.faq2.a': 'Per normativa, totes les línies de vida i punts d\'ancoratge (EN 795) han de passar una revisió tècnica anual obligatòria.',
+    'services.lineas.faq3.q': 'És obligatori per llei?',
+    'services.lineas.faq3.a': 'Sí, la Llei de Prevenció de Riscos Laborals obliga al propietari de l\'edifici a garantir un accés segur per a tasques de manteniment a la coberta.',
+    'services.lineas.faq4.q': 'Instal·leu en qualsevol coberta?',
+    'services.lineas.faq4.a': 'Sí, muntem sobre xapa simple, panell sandvitx, formigó i teula, adaptant els pals i plaques de fixació a l\'estructura existent.',
+    
+    'services.lineas.feat1.title': 'Estudi Previ',
+    'services.lineas.feat1.desc': 'Analitzem la coberta i dissenyem el recorregut més segur.',
+    'services.lineas.feat2.title': 'Fixació Estructural',
+    'services.lineas.feat2.desc': 'Ancorem els pals als elements portants garantint la màxima càrrega.',
+    'services.lineas.feat3.title': 'Certificació',
+    'services.lineas.feat3.desc': 'Entreguem el dossier tècnic complet amb l\'homologació EN 795.',
+
+
     // Contact / CTA
     'cta.badge': 'Pressupost Gratuït',
     'cta.title': 'Sol·licita el teu pressupost',
@@ -721,6 +823,8 @@ export const translations = {
     'testimonials.3.text': 'Vidres impecables cada trimestre, personal silenciós i sense afectar l\'operativa de l\'hotel. Recomanats al 100%.',
     'footer.schedule.label': 'Horari',
     'footer.schedule': 'Dilluns-Divendres de 8h a 18h',
+    'footer.address': 'Carrer de Cuzco, 39-41, 08030 Barcelona',
+
     'footer.company': 'Empresa',
     'footer.company.about': 'Presentació',
     'footer.company.work': 'Treballa amb nosaltres',
@@ -1034,6 +1138,8 @@ export const translations = {
     'testimonials.3.text': 'Impeccable windows every quarter, quiet staff not affecting hotel operations. 100% recommended.',
     'footer.schedule.label': 'Hours',
     'footer.schedule': 'Mon-Fri 8am to 6pm',
+    'footer.address': 'Carrer de Cuzco, 39-41, 08030 Barcelona',
+
     'footer.company': 'Company',
     'footer.company.about': 'About Us',
     'footer.company.work': 'Work with Us',

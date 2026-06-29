@@ -180,7 +180,7 @@ function FooterBase() {
                   className="h-12 w-auto object-contain brightness-0 invert"
                 />
               </div>
-            <p className="text-slate-400 text-sm mb-2">Carrer de Cuzco, 39-41, 08030 Barcelona</p>
+            <p className="text-slate-400 text-sm mb-2">{t("footer.address", "Carrer de Cuzco, 39-41, 08030 Barcelona")}</p>
             <p className="text-slate-400 text-sm mb-6">info@vertirise.com</p>
             <div className="text-slate-400 text-sm">
               <p className="font-semibold text-slate-300 mb-1">{t("footer.schedule.label")}:</p>
