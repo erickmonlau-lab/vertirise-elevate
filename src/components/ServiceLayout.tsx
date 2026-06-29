@@ -88,7 +88,7 @@ export function ServiceLayout({ title, titleHighlight, description, benefits, ac
               {titleHighlight && title.includes(titleHighlight) ? (
                 <>
                   {title.split(titleHighlight)[0]}
-                  <span className="text-white">{titleHighlight}</span>
+                  <span className="text-electric">{titleHighlight}</span>
                   {title.split(titleHighlight)[1]}
                 </>
               ) : (
@@ -110,7 +110,7 @@ export function ServiceLayout({ title, titleHighlight, description, benefits, ac
                 644 65 27 41
               </a>
               <span className="text-[#0a1628]/70 text-sm font-medium ml-14">
-                Respondemos en menos de 24h
+                {t("form.subtitle", "Respondemos en menos de 24h")}
               </span>
             </div>
           </div>
