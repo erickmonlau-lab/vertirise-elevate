@@ -13,17 +13,17 @@ interface I18nContextType {
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
-const loadedLocales: Partial<Record<Language, TranslationRecord>> = {
+import caTranslations from './locales/ca';
+import enTranslations from './locales/en';
+
+const ALL_LOCALES: Record<Language, TranslationRecord> = {
   es: esTranslations,
+  ca: caTranslations,
+  en: enTranslations,
 };
 
-async function loadLocale(lang: Language): Promise<TranslationRecord> {
-  if (loadedLocales[lang]) {
-    return loadedLocales[lang]!;
-  }
-  const mod = await import(`./locales/${lang}.ts`);
-  loadedLocales[lang] = mod.default;
-  return mod.default;
+function loadLocale(lang: Language): TranslationRecord {
+  return ALL_LOCALES[lang];
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
@@ -34,20 +34,25 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     }
     return 'es';
   });
-  const [translations, setTranslations] = useState<TranslationRecord>(esTranslations);
+  const [translations, setTranslations] = useState<TranslationRecord>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('diset-lang');
+      if (saved === 'ca') return caTranslations;
+      if (saved === 'en') return enTranslations;
+    }
+    return esTranslations;
+  });
 
   useEffect(() => {
-    if (language !== 'es') {
-      loadLocale(language).then(setTranslations);
-    }
+    setTranslations(loadLocale(language));
   }, [language]);
 
   const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
+    setTranslations(loadLocale(lang));
     if (typeof window !== 'undefined') {
       localStorage.setItem('diset-lang', lang);
     }
-    loadLocale(lang).then(setTranslations);
   }, []);
 
   const t = useCallback((key: TranslationKey, fallback?: string): string => {
