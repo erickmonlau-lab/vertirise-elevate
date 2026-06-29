@@ -11,6 +11,7 @@ interface ServiceLayoutProps {
   imageSrc: string;
   badgeSrc: string;
   heroBtnColor: string;
+  heroBg?: string;
   iconFilter?: string;
   features: { icon: React.ReactNode; title: string; desc: string }[];
   faqs: { q: string; a: string }[];
@@ -43,7 +44,7 @@ function FAQItem({ question, answer, accentColor }: { question: string, answer: 
   );
 }
 
-export function ServiceLayout({ title, titleHighlight, description, benefits, accentColor, imageSrc, badgeSrc, heroBtnColor, iconFilter = "none", features, faqs }: ServiceLayoutProps) {
+export function ServiceLayout({ title, titleHighlight, description, benefits, accentColor, imageSrc, badgeSrc, heroBtnColor, heroBg, iconFilter = "none", features, faqs }: ServiceLayoutProps) {
   const { t } = useTranslation();
   const [sent, setSent] = useState(false);
 
@@ -69,8 +70,8 @@ export function ServiceLayout({ title, titleHighlight, description, benefits, ac
     <>
       {/* Hero Section */}
       <section 
-        className="w-full min-h-[60vh] flex items-center pt-32 pb-16 px-6 lg:px-10 relative z-10 overflow-hidden"
-        style={{ backgroundColor: accentColor }}
+        className={`w-full min-h-[60vh] flex items-center pt-32 pb-16 px-6 lg:px-10 relative z-10 overflow-hidden ${heroBg || ''}`}
+        style={!heroBg ? { backgroundColor: accentColor } : undefined}
       >
         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center relative">
           
