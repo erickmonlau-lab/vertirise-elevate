@@ -69,14 +69,14 @@ export function ServiceLayout({ title, titleHighlight, description, benefits, ac
     <>
       {/* Hero Section */}
       <section 
-        className="w-full min-h-[60vh] flex items-center pt-32 pb-16 px-6 lg:px-10 relative z-10"
+        className="w-full min-h-[60vh] flex items-center pt-32 pb-16 px-6 lg:px-10 relative z-10 overflow-hidden"
         style={{ backgroundColor: accentColor }}
       >
         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center relative">
           
           {/* Left Column (Text) */}
           <div className="flex flex-col items-start text-left pb-10">
-            <div className="text-[#0a1628]/70 text-sm font-medium mb-4 flex items-center gap-2">
+            <div className="text-[#0a1628]/70 text-sm font-medium mb-4 flex flex-wrap items-center gap-x-2 gap-y-1">
               <a href="/" className="hover:text-[#0a1628] transition-colors">{t("nav.home", "Inicio")}</a>
               <span>&gt;</span>
               <a href="/#servicios" className="hover:text-[#0a1628] transition-colors">{t("nav.services", "Servicios")}</a>
@@ -117,7 +117,7 @@ export function ServiceLayout({ title, titleHighlight, description, benefits, ac
           
           {/* Right Column (Icon) */}
           <div className="flex justify-center items-center py-10 lg:py-0 relative">
-             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2)_0%,transparent_60%)] rounded-full w-full h-full scale-150 pointer-events-none"></div>
+             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2)_0%,transparent_60%)] rounded-full w-full h-full scale-125 pointer-events-none"></div>
              <img loading="lazy" decoding="async" src={badgeSrc} alt="Icon" className="animate-[float_6s_ease-in-out_infinite] drop-shadow-xl w-[250px] h-[250px] md:w-[320px] md:h-[320px] object-contain" style={{ filter: iconFilter }} />
           </div>
 

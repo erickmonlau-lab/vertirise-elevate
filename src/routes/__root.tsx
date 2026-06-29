@@ -142,7 +142,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
         <Nav />
-        <main id="main-content" role="main">
+        <main id="main-content" role="main" className="overflow-x-hidden w-full">
           <Outlet />
         </main>
         <Footer />
