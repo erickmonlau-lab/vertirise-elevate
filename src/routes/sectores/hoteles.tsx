@@ -19,14 +19,14 @@ function HotelesPage() {
   return (
     <>
       <SEOHead
-        title="Limpieza Fachadas Hoteles Barcelona | Servicios Verticales DISET"
-        description="Soluciones de limpieza vertical para el sector hotelero en Barcelona. Mínima interrupción de actividad, máxima discreción y rapidez. Certificados IRATA y PRL."
+        title={t('seo.hoteles.title', 'Limpieza Fachadas Hoteles Barcelona | Servicios Verticales DISET')}
+        description={t('seo.hoteles.description', 'Soluciones de limpieza vertical para el sector hotelero en Barcelona. Mínima interrupción de actividad, máxima discreción y rapidez. Certificados IRATA y PRL.')}
         canonical="https://vertirise-elevate.vercel.app/sectores/hoteles"
         ogImage="/og-home.webp"
-        keywords="limpieza fachadas hoteles barcelona, mantenimiento vertical sector hotelero"
+        keywords={t('seo.hoteles.keywords', 'limpieza fachadas hoteles barcelona, mantenimiento vertical sector hotelero')}
       />
       <SectorSchema
-        sectorLabel="Hoteles"
+        sectorLabel={t('sectors.hoteles.title', 'Hoteles')}
         url="https://vertirise-elevate.vercel.app/sectores/hoteles"
       />
       <SectorLayout

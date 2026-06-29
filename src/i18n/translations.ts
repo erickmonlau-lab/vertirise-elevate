@@ -572,7 +572,7 @@ export const translations = {
     'form.title': 'Sol·licita informació',
     'form.subtitle': 'Responem en menys de 24h',
     'form.name': 'Nom',
-    'form.email': 'Email',
+    'form.email': 'Correu electrònic',
     'form.phone': 'Telèfon',
     'form.message': 'Missatge',
     'form.privacy': 'He llegit i accepto la política de privacitat',
@@ -765,7 +765,7 @@ export const translations = {
     'cta.phone': 'Trucar ara',
     'cta.wa': 'WhatsApp',
     'contact.name': 'Nom',
-    'contact.email': 'Email',
+    'contact.email': 'Correu electrònic',
     'contact.phone': 'Telèfon',
     'contact.service': 'Servei',
     'contact.service.placeholder': 'Seleccioneu un servei',
@@ -1268,6 +1268,7 @@ export const translations = {
     'services.lineas.feat2.desc': 'We anchor the posts to the load-bearing elements guaranteeing maximum load.',
     'services.lineas.feat3.title': 'Certification',
     'services.lineas.feat3.desc': 'We deliver the complete technical dossier with EN 795 homologation.',
+    'services.placas.longDesc': 'Maximizamos el rendimiento de su instalación fotovoltaica con limpiezas especializadas. Eliminamos polvo y suciedad que reducen la eficiencia energética.',
   },
 } as const;
 

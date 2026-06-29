@@ -58,17 +58,17 @@ function PlacasSolares() {
   return (
     <>
       <SEOHead
-        title="Limpieza Placas Solares Barcelona | Mantenimiento Fotovoltaico"
-        description="Aumenta el rendimiento de tu instalación solar hasta un 30% con la limpieza profesional de placas fotovoltaicas. Servicio en altura certificado para toda Cataluña."
+        title={t('seo.placas.title', 'Limpieza Placas Solares Barcelona | Mantenimiento Fotovoltaico')}
+        description={t('seo.placas.description', 'Aumenta el rendimiento de tu instalación solar hasta un 30% con la limpieza profesional de placas fotovoltaicas. Servicio en altura certificado para toda Cataluña.')}
         canonical="https://vertirise-elevate.vercel.app/servicios/placas-solares"
         ogImage="/og-home.webp"
-        keywords="limpieza placas solares barcelona, mantenimiento fotovoltaico cataluña, limpieza paneles solares altura"
+        keywords={t('seo.placas.keywords', 'limpieza placas solares barcelona, mantenimiento fotovoltaico cataluña, limpieza paneles solares altura')}
       />
       <ServiceSchema
-        name="Limpieza de Placas Solares"
-        description="Limpieza profesional de placas fotovoltaicas en altura. Aumenta el rendimiento de tu instalación solar hasta un 30%. Servicio certificado para toda Cataluña."
+        name={t('services.placas.title', 'Limpieza de Placas Solares')}
+        description={t('seo.placas.schema.desc', 'Limpieza profesional de placas fotovoltaicas en altura. Aumenta el rendimiento de tu instalación solar hasta un 30%. Servicio certificado para toda Cataluña.')}
         url="https://vertirise-elevate.vercel.app/servicios/placas-solares"
-        breadcrumbLabel="Limpieza de Placas Solares"
+        breadcrumbLabel={t('services.placas.short', 'Limpieza de Placas Solares')}
         faqs={faqs}
       />
       <ServiceLayout

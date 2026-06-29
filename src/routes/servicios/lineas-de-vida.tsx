@@ -58,17 +58,17 @@ function LineasDeVida() {
   return (
     <>
       <SEOHead
-        title="Instalación Líneas de Vida Barcelona | Sistemas Anticaída DISET"
-        description="Instalación y certificación de líneas de vida y sistemas anticaída en Barcelona. Cumplimiento normativa EN 795. Inspección y mantenimiento de equipos de protección colectiva."
+        title={t('seo.lineas.title', 'Instalación Líneas de Vida Barcelona | Sistemas Anticaída DISET')}
+        description={t('seo.lineas.description', 'Instalación y certificación de líneas de vida y sistemas anticaída en Barcelona. Cumplimiento normativa EN 795. Inspección y mantenimiento de equipos de protección colectiva.')}
         canonical="https://vertirise-elevate.vercel.app/servicios/lineas-de-vida"
         ogImage="/og-home.webp"
-        keywords="líneas de vida barcelona, sistemas anticaída barcelona, EN 795 barcelona, instalación anclajes altura"
+        keywords={t('seo.lineas.keywords', 'líneas de vida barcelona, sistemas anticaída barcelona, EN 795 barcelona, instalación anclajes altura')}
       />
       <ServiceSchema
-        name="Instalación de Líneas de Vida"
-        description="Instalación y certificación de líneas de vida y sistemas anticaída en Barcelona. Cumplimiento normativa EN 795."
+        name={t('services.lineas.title', 'Instalación de Líneas de Vida')}
+        description={t('seo.lineas.schema.desc', 'Instalación y certificación de líneas de vida y sistemas anticaída en Barcelona. Cumplimiento normativa EN 795.')}
         url="https://vertirise-elevate.vercel.app/servicios/lineas-de-vida"
-        breadcrumbLabel="Líneas de Vida"
+        breadcrumbLabel={t('services.lineas.short', 'Líneas de Vida')}
         faqs={faqs}
       />
       <ServiceLayout

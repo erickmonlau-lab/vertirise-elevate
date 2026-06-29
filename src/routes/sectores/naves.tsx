@@ -19,14 +19,14 @@ function NavesPage() {
   return (
     <>
       <SEOHead
-        title="Limpieza Industrial en Altura Naves Barcelona | DISET Verticales"
-        description="Limpieza de cubiertas, lucernarios y fachadas de naves industriales en Barcelona y área metropolitana. Equipos especializados para grandes superficies."
+        title={t('seo.naves.title', 'Limpieza Industrial en Altura Naves Barcelona | DISET Verticales')}
+        description={t('seo.naves.description', 'Limpieza de cubiertas, lucernarios y fachadas de naves industriales en Barcelona y área metropolitana. Equipos especializados para grandes superficies.')}
         canonical="https://vertirise-elevate.vercel.app/sectores/naves"
         ogImage="/og-home.webp"
-        keywords="limpieza industrial altura barcelona, limpieza naves industriales, mantenimiento cubiertas industriales"
+        keywords={t('seo.naves.keywords', 'limpieza industrial altura barcelona, limpieza naves industriales, mantenimiento cubiertas industriales')}
       />
       <SectorSchema
-        sectorLabel="Naves Industriales"
+        sectorLabel={t('sectors.naves.title', 'Naves Industriales')}
         url="https://vertirise-elevate.vercel.app/sectores/naves"
       />
       <SectorLayout

@@ -58,17 +58,17 @@ function Fachadas() {
   return (
     <>
       <SEOHead
-        title="Limpieza de Fachadas Barcelona | Trabajos Verticales DISET"
-        description="Limpieza y restauración de fachadas en Barcelona mediante técnicas verticales. Eliminación de grafitis, suciedad y manchas. Certificados IRATA. Más de 4.500 fachadas limpias."
+        title={t('seo.fachadas.title', 'Limpieza de Fachadas Barcelona | Trabajos Verticales DISET')}
+        description={t('seo.fachadas.description', 'Limpieza y restauración de fachadas en Barcelona mediante técnicas verticales. Eliminación de grafitis, suciedad y manchas. Certificados IRATA. Más de 4.500 fachadas limpias.')}
         canonical="https://vertirise-elevate.vercel.app/servicios/fachadas"
         ogImage="/og-home.webp"
-        keywords="limpieza fachadas barcelona, restauración fachadas altura, eliminación grafitis barcelona"
+        keywords={t('seo.fachadas.keywords', 'limpieza fachadas barcelona, restauración fachadas altura, eliminación grafitis barcelona')}
       />
       <ServiceSchema
-        name="Limpieza de Fachadas"
-        description="Limpieza y restauración de fachadas en Barcelona mediante técnicas verticales. Eliminación de grafitis, suciedad y manchas. Certificados IRATA."
+        name={t('services.fachadas.title', 'Limpieza de Fachadas')}
+        description={t('seo.fachadas.schema.desc', 'Limpieza y restauración de fachadas en Barcelona mediante técnicas verticales. Eliminación de grafitis, suciedad y manchas. Certificados IRATA.')}
         url="https://vertirise-elevate.vercel.app/servicios/fachadas"
-        breadcrumbLabel="Limpieza de Fachadas"
+        breadcrumbLabel={t('services.fachadas.short', 'Limpieza de Fachadas')}
         faqs={faqs}
       />
       <ServiceLayout

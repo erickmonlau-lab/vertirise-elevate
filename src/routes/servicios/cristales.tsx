@@ -58,17 +58,17 @@ function Cristales() {
   return (
     <>
       <SEOHead
-        title="Limpieza de Cristales en Altura Barcelona | DISET Verticales"
-        description="Servicio profesional de limpieza de cristales en altura para comunidades, hoteles y naves industriales en Barcelona. Técnicos certificados IRATA. Solicita presupuesto sin compromiso."
+        title={t('seo.cristales.title', 'Limpieza de Cristales en Altura Barcelona | DISET Verticales')}
+        description={t('seo.cristales.description', 'Servicio profesional de limpieza de cristales en altura para comunidades, hoteles y naves industriales en Barcelona. Técnicos certificados IRATA. Solicita presupuesto sin compromiso.')}
         canonical="https://vertirise-elevate.vercel.app/servicios/cristales"
         ogImage="/og-home.webp"
-        keywords="limpieza cristales altura barcelona, limpieza ventanas edificios, cristalería industrial barcelona"
+        keywords={t('seo.cristales.keywords', 'limpieza cristales altura barcelona, limpieza ventanas edificios, cristalería industrial barcelona')}
       />
       <ServiceSchema
-        name="Limpieza de Cristales en Altura"
-        description="Servicio profesional de limpieza de cristales en altura para comunidades, hoteles y naves industriales en Barcelona. Técnicos certificados IRATA."
+        name={t('services.cristales.title', 'Limpieza de Cristales en Altura')}
+        description={t('seo.cristales.schema.desc', 'Servicio profesional de limpieza de cristales en altura para comunidades, hoteles y naves industriales en Barcelona. Técnicos certificados IRATA.')}
         url="https://vertirise-elevate.vercel.app/servicios/cristales"
-        breadcrumbLabel="Limpieza de Cristales"
+        breadcrumbLabel={t('services.cristales.short', 'Limpieza de Cristales')}
         faqs={faqs}
       />
       <ServiceLayout

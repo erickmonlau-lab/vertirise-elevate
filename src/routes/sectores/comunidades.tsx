@@ -19,14 +19,14 @@ function ComunidadesPage() {
   return (
     <>
       <SEOHead
-        title="Limpiezas Verticales para Comunidades de Propietarios | DISET"
-        description="Servicio de limpiezas verticales para comunidades de propietarios en Barcelona. Mantenimiento de fachadas, cristales y patios interiores. Presupuestos adaptados a comunidades."
+        title={t('seo.comunidades.title', 'Limpiezas Verticales para Comunidades de Propietarios | DISET')}
+        description={t('seo.comunidades.description', 'Servicio de limpiezas verticales para comunidades de propietarios en Barcelona. Mantenimiento de fachadas, cristales y patios interiores. Presupuestos adaptados a comunidades.')}
         canonical="https://vertirise-elevate.vercel.app/sectores/comunidades"
         ogImage="/og-home.webp"
-        keywords="limpiezas verticales comunidades barcelona, mantenimiento fachadas comunidad propietarios"
+        keywords={t('seo.comunidades.keywords', 'limpiezas verticales comunidades barcelona, mantenimiento fachadas comunidad propietarios')}
       />
       <SectorSchema
-        sectorLabel="Comunidades de Propietarios"
+        sectorLabel={t('sectors.comunidades.title', 'Comunidades de Propietarios')}
         url="https://vertirise-elevate.vercel.app/sectores/comunidades"
       />
       <SectorLayout

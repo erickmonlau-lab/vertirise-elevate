@@ -1672,11 +1672,11 @@ function Index() {
   return (
     <div className="bg-white overflow-x-hidden">
       <SEOHead
-        title="Limpiezas Verticales Barcelona | DISET – Trabajos en Altura"
-        description="Empresa especializada en limpiezas verticales en Barcelona y Cataluña. Limpieza de cristales, fachadas, placas solares y líneas de vida. Más de 25 años de experiencia. Presupuesto gratuito."
+        title={t('seo.index.title', 'Limpiezas Verticales Barcelona | DISET – Trabajos en Altura')}
+        description={t('seo.index.description', 'Empresa especializada en limpiezas verticales en Barcelona y Cataluña. Limpieza de cristales, fachadas, placas solares y líneas de vida. Más de 25 años de experiencia. Presupuesto gratuito.')}
         canonical="https://vertirise-elevate.vercel.app/"
         ogImage="/og-home.webp"
-        keywords="limpiezas verticales barcelona, limpieza fachadas altura, limpieza cristales edificios, trabajos verticales cataluña, IRATA barcelona, rappel limpieza"
+        keywords={t('seo.index.keywords', 'limpiezas verticales barcelona, limpieza fachadas altura, limpieza cristales edificios, trabajos verticales cataluña, IRATA barcelona, rappel limpieza')}
       />
       <HomeSchema />
       <Hero />
