@@ -2,6 +2,11 @@ export type Language = 'es' | 'ca' | 'en';
 
 export const translations = {
   es: {
+    'services.cristales.titleHighlight': 'en Altura',
+    'services.fachadas.titleHighlight': 'de Fachadas',
+    'services.placas.titleHighlight': 'Placas Solares',
+    'services.lineas.titleHighlight': 'Líneas de Vida',
+
     // Nav
     'nav.call': 'Contactar',
     'nav.services': 'Servicios',
@@ -422,6 +427,11 @@ export const translations = {
     'services.lineas.feat3.desc': 'Entregamos el dossier técnico completo con la homologación EN 795.',
   },
   ca: {
+    'services.cristales.titleHighlight': 'en Alçada',
+    'services.fachadas.titleHighlight': 'de Façanes',
+    'services.placas.titleHighlight': 'Plaques Solars',
+    'services.lineas.titleHighlight': 'Línies de Vida',
+
     // Nav
 
     'nav.home': 'Inici',
@@ -837,6 +847,11 @@ export const translations = {
     'footer.zone.lleida': 'Neteja a Lleida',
   },
   en: {
+    'services.cristales.titleHighlight': 'Window Cleaning',
+    'services.fachadas.titleHighlight': 'Facade',
+    'services.placas.titleHighlight': 'Solar Panel',
+    'services.lineas.titleHighlight': 'Lifeline',
+
     // Nav
     'nav.call': 'Contact',
     'nav.services': 'Services',
