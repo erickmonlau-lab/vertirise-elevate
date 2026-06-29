@@ -2,6 +2,8 @@
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import type { Language, TranslationKey } from './translations';
 import esTranslations from './locales/es';
+import caTranslations from './locales/ca';
+import enTranslations from './locales/en';
 
 type TranslationRecord = Record<string, string>;
 
@@ -12,9 +14,6 @@ interface I18nContextType {
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
-
-import caTranslations from './locales/ca';
-import enTranslations from './locales/en';
 
 const ALL_LOCALES: Record<Language, TranslationRecord> = {
   es: esTranslations,
@@ -28,19 +27,40 @@ function loadLocale(lang: Language): TranslationRecord {
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('diset-lang');
-      if (saved === 'ca' || saved === 'en') return saved as Language;
+    if (typeof window === 'undefined') return 'es';
+    
+    // 1. Respetar elección guardada del usuario
+    const saved = localStorage.getItem('diset-lang');
+    if (saved === 'es' || saved === 'ca' || saved === 'en') {
+      return saved as Language;
     }
-    return 'es';
+    
+    // 2. Primera visita: detectar por idioma del navegador
+    const browserLang = navigator.language?.toLowerCase() || '';
+    
+    // Si el navegador está en español (cualquier variante)
+    // es-ES, es-419, es-MX, etc. → mostrar ES
+    if (browserLang.startsWith('es')) return 'es';
+    
+    // Si el navegador está en catalán → mostrar ES igualmente
+    // (CA solo se elige manualmente)
+    if (browserLang.startsWith('ca')) return 'es';
+    
+    // Cualquier otro idioma (en, fr, de, zh, etc.) → EN
+    return 'en';
   });
+  
   const [translations, setTranslations] = useState<TranslationRecord>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('diset-lang');
-      if (saved === 'ca') return caTranslations;
-      if (saved === 'en') return enTranslations;
-    }
-    return esTranslations;
+    if (typeof window === 'undefined') return esTranslations;
+    
+    const saved = localStorage.getItem('diset-lang');
+    if (saved === 'ca') return caTranslations;
+    if (saved === 'en') return enTranslations;
+    if (saved === 'es') return esTranslations;
+    
+    const browserLang = navigator.language?.toLowerCase() || '';
+    if (browserLang.startsWith('es') || browserLang.startsWith('ca')) return esTranslations;
+    return enTranslations;
   });
 
   useEffect(() => {

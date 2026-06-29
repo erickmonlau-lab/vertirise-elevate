@@ -1,5 +1,7 @@
 export type Language = 'es' | 'ca' | 'en';
 
+// DEPRECATED: usar src/i18n/locales/ en su lugar
+// Este archivo se mantiene solo como referencia
 export const translations = {
   es: {
     'services.cristales.titleHighlight': 'en Altura',

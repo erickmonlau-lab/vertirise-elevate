@@ -258,7 +258,7 @@ const es: Record<string, string> = {
   "footer.rights": "Todos los derechos reservados.",
   "footer.schedule.label": "Horario",
   "footer.schedule": "L-V de 8h a 18h",
-  "footer.address": "Carrer de Cuzco, 39-41, 08030 Barcelona",
+  "footer.address": "Calle de Cuzco, 39-41, 08030 Barcelona",
   "footer.company": "Empresa",
   "footer.company.about": "Presentación",
   "footer.company.work": "Trabaja con nosotros",
