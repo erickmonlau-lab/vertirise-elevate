@@ -81,7 +81,8 @@ function Cristales() {
           t('services.cristales.benefit3', 'Técnicos certificados IRATA'),
           t('services.cristales.benefit4', 'Presupuesto gratuito en 24h')
         ]}
-        accentColor="#5BC8E8"
+        accentColor="#a2dcf0"
+        heroBg="bg-[#E5F6FF]"
         imageSrc={imgCristales}
         badgeSrc={badgeCristales}
         heroBtnColor="text-green-700"

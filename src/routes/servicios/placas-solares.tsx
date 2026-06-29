@@ -81,7 +81,7 @@ function PlacasSolares() {
           t('services.placas.benefit3', 'Garantía de no dañar los paneles'),
           t('services.placas.benefit4', 'Mantenimiento e informe de eficiencia')
         ]}
-        accentColor="#5BE87A"
+        accentColor="#a9f2bc"
         imageSrc={imgSolares}
         badgeSrc={badgeSolares}
         heroBtnColor="text-amber-700"

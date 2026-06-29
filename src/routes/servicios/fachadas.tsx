@@ -81,7 +81,8 @@ function Fachadas() {
           t('services.fachadas.benefit3', 'Eliminación y tratamiento antigraffiti'),
           t('services.fachadas.benefit4', 'Técnicos especialistas certificados')
         ]}
-        accentColor="#E8A05B"
+        accentColor="#f0cba2"
+        heroBg="bg-[#FFF0E5]"
         imageSrc={imgFachadas}
         badgeSrc={badgeFachadas}
         heroBtnColor="text-pink-700"
