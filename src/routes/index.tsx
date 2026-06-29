@@ -1669,6 +1669,8 @@ function CTA() {
 
 // — Footer —
 function Index() {
+  const { t } = useTranslation();
+  
   return (
     <div className="bg-white overflow-x-hidden">
       <SEOHead
