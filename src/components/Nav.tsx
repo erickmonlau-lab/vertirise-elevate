@@ -75,12 +75,30 @@ function NavBase() {
                   className={`block w-[26px] h-[2px] rounded-full transition-all duration-300 bg-navy ${mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""}`}
                 />
               </button>
-              <div className="flex items-center text-[13px] font-bold text-navy tracking-tight gap-1.5 shrink-0">
-                <button type="button" onClick={() => setLanguage("es")} className={language === "es" ? "text-electric" : "opacity-50"}>ES</button>
-                <span className="opacity-20">|</span>
-                <button type="button" onClick={() => setLanguage("ca")} className={language === "ca" ? "text-electric" : "opacity-50"}>CA</button>
-                <span className="opacity-20">|</span>
-                <button type="button" onClick={() => setLanguage("en")} className={language === "en" ? "text-electric" : "opacity-50"}>EN</button>
+              <div className="flex items-center text-[15px] text-navy tracking-widest gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => setLanguage("es")}
+                  className={`transition-colors ${language === "es" ? "font-black" : "font-medium hover:text-electric"}`}
+                >
+                  ES
+                </button>
+                <span className="text-navy font-light opacity-30">|</span>
+                <button
+                  type="button"
+                  onClick={() => setLanguage("ca")}
+                  className={`transition-colors ${language === "ca" ? "font-black" : "font-medium hover:text-electric"}`}
+                >
+                  CA
+                </button>
+                <span className="text-navy font-light opacity-30">|</span>
+                <button
+                  type="button"
+                  onClick={() => setLanguage("en")}
+                  className={`transition-colors ${language === "en" ? "font-black" : "font-medium hover:text-electric"}`}
+                >
+                  EN
+                </button>
               </div>
             </div>
           </div>
