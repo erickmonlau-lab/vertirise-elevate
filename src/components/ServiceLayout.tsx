@@ -228,8 +228,7 @@ export function ServiceLayout({ title, titleHighlight, description, benefits, ac
 
                   <button
                     type="submit"
-                    className="w-full h-14 mt-2 rounded-xl text-white font-black text-lg hover:-translate-y-1 transition-all"
-                    style={{ backgroundColor: accentColor, boxShadow: `0 10px 20px -5px ${accentColor}60` }}
+                    className="w-full h-14 mt-2 rounded-xl text-white bg-navy hover:bg-electric font-black text-lg hover:-translate-y-1 hover:shadow-xl hover:shadow-navy/30 transition-all shadow-lg shadow-navy/20"
                   >
                     {t("contact.submit", "Solicitar Presupuesto")}
                   </button>

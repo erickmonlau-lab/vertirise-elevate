@@ -1541,7 +1541,7 @@ function ContactForm({ light = false }: { light?: boolean }) {
           </div>
           <button
             type="submit"
-            className="w-full rounded-xl bg-electric text-white font-bold text-sm sm:text-base shadow-glow hover:-translate-y-0.5 hover:shadow-elev transition-all py-4 px-4"
+            className="w-full rounded-xl bg-navy text-white font-bold text-lg shadow-lg shadow-navy/20 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy/30 hover:bg-electric transition-all py-4 px-4"
           >
             <span className="truncate">{t("contact.submit")}</span>
           </button>
