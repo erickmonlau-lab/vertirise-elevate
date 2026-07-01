@@ -32,8 +32,31 @@ export function SectorLayout({
   const { t } = useTranslation();
   const [sent, setSent] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    
+    const payload = {
+      Nombre: data.get("nombre") || "",
+      Teléfono: data.get("telefono") || "",
+      Email: data.get("email") || "",
+      Servicio: title,
+      Mensaje: data.get("mensaje") || ""
+    };
+
+    try {
+      await fetch("https://n8n.kovia.io/webhook/15cbd43f-d161-4131-9ec3-334f9dfd4de2", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+    } catch (error) {
+      console.error("Error:", error);
+    }
+    
     setSent(true);
     setTimeout(() => setSent(false), 4000);
   };
@@ -91,23 +114,27 @@ export function SectorLayout({
                     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                       <input 
                         type="text" 
+                        name="nombre"
                         required 
                         placeholder={t('form.name', 'Nombre y Apellidos*')}
                         className="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/20 transition-all text-navy placeholder:text-slate-400"
                       />
                       <input 
                         type="email" 
+                        name="email"
                         required 
                         placeholder={t('form.email', 'Correo electrónico*')}
                         className="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/20 transition-all text-navy placeholder:text-slate-400"
                       />
                       <input 
                         type="tel" 
+                        name="telefono"
                         required 
                         placeholder={t('form.phone', 'Teléfono de contacto*')}
                         className="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/20 transition-all text-navy placeholder:text-slate-400"
                       />
                       <textarea 
+                        name="mensaje"
                         rows={3} 
                         placeholder={t('form.message', 'Mensaje')}
                         className="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/20 transition-all text-navy placeholder:text-slate-400 resize-none"

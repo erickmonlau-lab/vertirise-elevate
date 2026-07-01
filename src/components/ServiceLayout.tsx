@@ -48,17 +48,30 @@ export function ServiceLayout({ title, titleHighlight, description, benefits, ac
   const { t } = useTranslation();
   const [sent, setSent] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
-    const nombre = data.get("nombre") as string;
-    const telefono = data.get("telefono") as string;
-    const email = data.get("email") as string;
-    const mensaje = data.get("mensaje") as string;
+    
+    const payload = {
+      Nombre: data.get("nombre") || "",
+      Teléfono: data.get("telefono") || "",
+      Email: data.get("email") || "",
+      Servicio: title,
+      Mensaje: data.get("mensaje") || ""
+    };
 
-    const body = `Nombre: ${nombre}%0ATel%C3%A9fono: ${telefono}%0AEmail: ${email}%0AServicio: ${title}%0AMensaje: ${mensaje}`;
-    window.location.href = `mailto:info@disetlimpiezasverticales.com?subject=Solicitud%20de%20Presupuesto%20-%20${title}&body=${body}`;
+    try {
+      await fetch("https://n8n.kovia.io/webhook/15cbd43f-d161-4131-9ec3-334f9dfd4de2", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+    } catch (error) {
+      console.error("Error:", error);
+    }
     setSent(true);
   };
 
