@@ -1411,11 +1411,11 @@ function ContactForm({ light = false }: { light?: boolean }) {
     const data = new FormData(form);
     
     const payload = {
-      Nombre: data.get("nombre") || "",
+      nombre: data.get("nombre") || "",
       Teléfono: data.get("telefono") || "",
-      Email: data.get("email") || "",
-      Servicio: data.get("servicio") || "General",
-      Mensaje: data.get("mensaje") || ""
+      email: data.get("email") || "",
+      servicio: data.get("servicio") || "General",
+      mensaje: data.get("mensaje") || ""
     };
 
     try {

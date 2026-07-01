@@ -54,11 +54,11 @@ export function ServiceLayout({ title, titleHighlight, description, benefits, ac
     const data = new FormData(form);
     
     const payload = {
-      Nombre: data.get("nombre") || "",
+      nombre: data.get("nombre") || "",
       Teléfono: data.get("telefono") || "",
-      Email: data.get("email") || "",
-      Servicio: title,
-      Mensaje: data.get("mensaje") || ""
+      email: data.get("email") || "",
+      servicio: title,
+      mensaje: data.get("mensaje") || ""
     };
 
     try {
