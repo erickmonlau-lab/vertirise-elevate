@@ -1412,7 +1412,7 @@ function ContactForm({ light = false }: { light?: boolean }) {
     
     const payload = {
       nombre: data.get("nombre") || "",
-      Teléfono: data.get("telefono") || "",
+      telefono: data.get("telefono") || "",
       email: data.get("email") || "",
       servicio: data.get("servicio") || "General",
       mensaje: data.get("mensaje") || ""

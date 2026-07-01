@@ -39,7 +39,7 @@ export function SectorLayout({
     
     const payload = {
       nombre: data.get("nombre") || "",
-      Teléfono: data.get("telefono") || "",
+      telefono: data.get("telefono") || "",
       email: data.get("email") || "",
       servicio: title,
       mensaje: data.get("mensaje") || ""
