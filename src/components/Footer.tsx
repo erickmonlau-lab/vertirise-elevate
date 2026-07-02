@@ -176,6 +176,8 @@ function FooterBase() {
               <div className="flex items-center gap-3 mb-6">
                 <img loading="lazy" decoding="async"
                   src={logoDiset}
+                  width="165"
+                  height="70"
                   alt="DISET Limpiezas Verticales"
                   className="h-12 w-auto object-contain brightness-0 invert"
                 />
@@ -260,7 +262,7 @@ function FooterBase() {
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-slate-500 text-sm">
+          <p className="text-slate-400 text-sm">
             © {new Date().getFullYear()} Vertirise Elevate. {t("footer.rights")}
           </p>
         </div>

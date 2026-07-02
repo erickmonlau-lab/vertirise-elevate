@@ -112,28 +112,36 @@ export function SectorLayout({
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                      <label htmlFor="nombre" className="sr-only">{t('form.name', 'Nombre y Apellidos*')}</label>
                       <input 
+                        id="nombre"
                         type="text" 
                         name="nombre"
                         required 
                         placeholder={t('form.name', 'Nombre y Apellidos*')}
                         className="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/20 transition-all text-navy placeholder:text-slate-400"
                       />
+                      <label htmlFor="email" className="sr-only">{t('form.email', 'Correo electrnico*')}</label>
                       <input 
+                        id="email"
                         type="email" 
                         name="email"
                         required 
                         placeholder={t('form.email', 'Correo electrónico*')}
                         className="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/20 transition-all text-navy placeholder:text-slate-400"
                       />
+                      <label htmlFor="telefono" className="sr-only">{t('form.phone', 'Telfono de contacto*')}</label>
                       <input 
+                        id="telefono"
                         type="tel" 
                         name="telefono"
                         required 
                         placeholder={t('form.phone', 'Teléfono de contacto*')}
                         className="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-electric focus:ring-2 focus:ring-electric/20 transition-all text-navy placeholder:text-slate-400"
                       />
+                      <label htmlFor="mensaje" className="sr-only">{t('form.message', 'Mensaje')}</label>
                       <textarea 
+                        id="mensaje"
                         name="mensaje"
                         rows={3} 
                         placeholder={t('form.message', 'Mensaje')}

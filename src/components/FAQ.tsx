@@ -28,7 +28,7 @@ export function FAQ() {
     <section className="py-24 bg-white border-y border-slate-100 scroll-mt-20" id="faq">
       <div className="max-w-4xl mx-auto px-6 lg:px-10">
         <div className="text-center mb-16">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-electric">
+          <span className="text-xs font-bold tracking-[0.2em] uppercase text-blue-600">
             {t('faq.badge') || "Preguntas Frecuentes"}
           </span>
           <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold text-navy tracking-tight">

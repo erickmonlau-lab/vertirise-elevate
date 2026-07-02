@@ -7,8 +7,9 @@ function Logo({ white }: { white: boolean }) {
     <div className="flex items-center">
       <img loading="lazy" decoding="async"
         src={logoDiset}
+        width="165"
+        height="70"
         alt="DISET Limpiezas Verticales"
-        height={48}
         className={`h-10 md:h-12 w-auto object-contain transition-all duration-300 ${white ? "brightness-0 invert" : ""}`}
       />
     </div>
@@ -52,8 +53,9 @@ function NavBase() {
         >
           <div className="flex items-center justify-between w-full md:w-auto">
             <a
-              href="/#top"
+              href="/"
               onClick={() => setMobileOpen(false)}
+              aria-label="Inicio"
               className="scale-[0.95] md:scale-100 origin-left ml-1.5"
             >
               <Logo white={false} />

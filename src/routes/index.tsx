@@ -535,7 +535,7 @@ function Services() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <Reveal className="max-w-2xl">
-            <span className="text-sm font-bold tracking-[0.15em] uppercase text-electric">
+            <span className="text-sm font-bold tracking-[0.15em] uppercase text-blue-600">
               {t("services.badge")}
             </span>
             <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-navy tracking-tight">
@@ -616,7 +616,7 @@ function BeforeAfterSection() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-12">
-          <span className="text-sm font-bold tracking-[0.15em] uppercase text-electric">
+          <span className="text-sm font-bold tracking-[0.15em] uppercase text-blue-600">
             {t("beforeafter.badge")}
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05]">
@@ -750,7 +750,7 @@ function SuccessCases() {
     <section className="py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-14">
-          <span className="text-sm font-bold tracking-[0.15em] uppercase text-electric">
+          <span className="text-sm font-bold tracking-[0.15em] uppercase text-blue-600">
             {t("cases.badge")}
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
@@ -1202,7 +1202,7 @@ function Coverage() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Left column: Text & Metrics */}
         <Reveal>
-          <span className="text-sm font-bold tracking-[0.15em] uppercase text-electric">
+          <span className="text-sm font-bold tracking-[0.15em] uppercase text-blue-600">
             {t("coverage.badge")}
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
@@ -1336,7 +1336,7 @@ function Certifications() {
     <section className="py-24 lg:py-32 bg-[#f8fafc] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         <Reveal className="text-center mb-16">
-          <span className="text-sm font-black tracking-[0.15em] uppercase text-electric">
+          <span className="text-sm font-black tracking-[0.15em] uppercase text-blue-600">
             {t("certs.badge")}
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-navy leading-tight tracking-tight">
