@@ -11,24 +11,24 @@ import { HomeSchema } from "../components/SchemaOrg";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { FAQ } from "@/components/FAQ";
 
-import heroImg from "@/assets/hero-opt.webp";
-import cristalesImg from "@/assets/service-cristales-opt.webp";
-import fachadasImg from "@/assets/service-fachadas-opt.webp";
-import solarImg from "@/assets/service-solar-opt.webp";
-import lineasImg from "@/assets/service-lineas-opt.webp";
+import heroImg from "@/assets/hero-opt2.webp";
+import cristalesImg from "@/assets/service-cristales-opt2.webp";
+import fachadasImg from "@/assets/service-fachadas-opt2.webp";
+import solarImg from "@/assets/service-solar-opt2.webp";
+import lineasImg from "@/assets/service-lineas-opt2.webp";
 
-import iconCristales from "@/assets/icon-cristales-pastel-opt.webp";
-import iconFachadas from "@/assets/icon-fachadas-pastel-opt.webp";
-import iconSolar from "@/assets/icon-solar-pastel-opt.webp";
-import iconLineas from "@/assets/icon-lineas-pastel-opt.webp";
-import logoDiset from "@/assets/logo-diset-opt.webp";
+import iconCristales from "@/assets/icon-cristales-pastel-opt2.webp";
+import iconFachadas from "@/assets/icon-fachadas-pastel-opt2.webp";
+import iconSolar from "@/assets/icon-solar-pastel-opt2.webp";
+import iconLineas from "@/assets/icon-lineas-pastel-opt2.webp";
+import logoDiset from "@/assets/logo-diset-opt2.webp";
 
-import beforeCristalesImg from "@/assets/before-cristales-opt.webp";
-import afterCristalesImg from "@/assets/after-cristales-opt.webp";
-import beforeFachadaImg from "@/assets/before-fachada-opt.webp";
-import afterFachadaImg from "@/assets/after-fachada-opt.webp";
-import beforeSolaresImg from "@/assets/before-solares-opt.webp";
-import afterSolaresImg from "@/assets/after-solares-opt.webp";
+import beforeCristalesImg from "@/assets/before-cristales-opt2.webp";
+import afterCristalesImg from "@/assets/after-cristales-opt2.webp";
+import beforeFachadaImg from "@/assets/before-fachada-opt2.webp";
+import afterFachadaImg from "@/assets/after-fachada-opt2.webp";
+import beforeSolaresImg from "@/assets/before-solares-opt2.webp";
+import afterSolaresImg from "@/assets/after-solares-opt2.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -239,10 +239,10 @@ const beforeAfterCases = [
 ];
 
 const heroAvatars = [
-  "https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=80&h=80&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=80&h=80&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=80&h=80&fit=crop&crop=face&fm=webp&q=60",
+  "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=80&h=80&fit=crop&crop=face&fm=webp&q=60",
+  "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face&fm=webp&q=60",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face&fm=webp&q=60",
 ];
 
 const sectorsData = [
