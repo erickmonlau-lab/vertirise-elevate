@@ -11,24 +11,24 @@ import { HomeSchema } from "../components/SchemaOrg";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { FAQ } from "@/components/FAQ";
 
-import heroImg from "@/assets/hero.webp";
-import cristalesImg from "@/assets/service-cristales.webp";
-import fachadasImg from "@/assets/service-fachadas.webp";
-import solarImg from "@/assets/service-solar.webp";
-import lineasImg from "@/assets/service-lineas.webp";
+import heroImg from "@/assets/hero-opt.webp";
+import cristalesImg from "@/assets/service-cristales-opt.webp";
+import fachadasImg from "@/assets/service-fachadas-opt.webp";
+import solarImg from "@/assets/service-solar-opt.webp";
+import lineasImg from "@/assets/service-lineas-opt.webp";
 
-import iconCristales from "@/assets/icon-cristales-pastel.webp";
-import iconFachadas from "@/assets/icon-fachadas-pastel.webp";
-import iconSolar from "@/assets/icon-solar-pastel.webp";
-import iconLineas from "@/assets/icon-lineas-pastel.webp";
-import logoDiset from "@/assets/logo-diset.webp";
+import iconCristales from "@/assets/icon-cristales-pastel-opt.webp";
+import iconFachadas from "@/assets/icon-fachadas-pastel-opt.webp";
+import iconSolar from "@/assets/icon-solar-pastel-opt.webp";
+import iconLineas from "@/assets/icon-lineas-pastel-opt.webp";
+import logoDiset from "@/assets/logo-diset-opt.webp";
 
-import beforeCristalesImg from "@/assets/before-cristales.webp";
-import afterCristalesImg from "@/assets/after-cristales.webp";
-import beforeFachadaImg from "@/assets/before-fachada.webp";
-import afterFachadaImg from "@/assets/after-fachada.webp";
-import beforeSolaresImg from "@/assets/before-solares.webp";
-import afterSolaresImg from "@/assets/after-solares.webp";
+import beforeCristalesImg from "@/assets/before-cristales-opt.webp";
+import afterCristalesImg from "@/assets/after-cristales-opt.webp";
+import beforeFachadaImg from "@/assets/before-fachada-opt.webp";
+import afterFachadaImg from "@/assets/after-fachada-opt.webp";
+import beforeSolaresImg from "@/assets/before-solares-opt.webp";
+import afterSolaresImg from "@/assets/after-solares-opt.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({

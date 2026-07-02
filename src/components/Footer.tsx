@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, memo } from "react";
 import { useTranslation } from "../i18n/I18nContext";
-import logoDiset from "@/assets/logo-diset.webp";
+import logoDiset from "@/assets/logo-diset-opt.webp";
 
 // Glass wall grid constants
 const GCOLS = 4;

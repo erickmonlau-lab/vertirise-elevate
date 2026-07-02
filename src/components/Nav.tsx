@@ -1,6 +1,6 @@
 import { useState, useEffect, memo } from "react";
 import { useTranslation } from "../i18n/I18nContext";
-import logoDiset from "@/assets/logo-diset.webp";
+import logoDiset from "@/assets/logo-diset-opt.webp";
 const PHONE_HREF = "tel:+34644652741";
 function Logo({ white }: { white: boolean }) {
   return (
