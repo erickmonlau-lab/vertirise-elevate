@@ -99,7 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "dns-prefetch", href: "https://www.google-analytics.com" },
       { rel: "preload", as: "style", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap", media: "print", onLoad: "this.media='all'" },
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico?v=2" },
       { rel: "manifest", href: "/manifest.json" },
       { rel: "canonical", href: "https://vertirise-elevate.vercel.app/" },
