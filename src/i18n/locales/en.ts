@@ -322,7 +322,7 @@ const en: Record<string, string> = {
   "services.fachadas.feat3.title": "Water Repellent Protection",
   "services.fachadas.feat3.desc": "Application of water-repellent products to prolong the cleaning effect.",
   "services.placas.title": "Solar Panel Cleaning",
-  "services.placas.longDesc": "Maximizamos el rendimiento de su instalación fotovoltaica con limpiezas especializadas. Eliminamos polvo y suciedad que reducen la eficiencia energética.",
+  "services.placas.longDesc": "We maximize the performance of your photovoltaic installation with specialized cleaning. We remove dust and dirt that reduce energy efficiency.",
   "services.placas.benefit1": "Up to 30% increase in energy efficiency",
   "services.placas.benefit2": "Pure water without harmful chemicals",
   "services.placas.benefit3": "Safety on pitched roofs",
